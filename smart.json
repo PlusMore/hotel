@@ -1,0 +1,27 @@
+{
+  "meteor": {},
+  "packages": {
+    "iron-router": {},
+    "bootstrap-3": {},
+    "roles": {},
+    "autoform": {},
+    "fastclick": {},
+    "collection2": {},
+    "inspector": {},
+    "nprogress": {},
+    "font-awesome": {},
+    "accounts-entry": {},
+    "percolatestudio-mixpanel": {},
+    "impicker": {},
+    "pickadate": {
+      "git": "https://github.com/patrickleet/meteor-pickadate.git"
+    },
+    "migrations": {},
+    "googlemaps": {},
+    "tags": {
+      "git": "https://github.com/apendua/meteor-tags.git",
+      "branch": "simple-ui"
+    },
+    "selectize": {}
+  }
+}
