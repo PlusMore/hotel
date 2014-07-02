@@ -1,0 +1,35 @@
+.patron-order {
+  h3 {
+    text-transform: uppercase;
+
+    small {
+      color: #fff;
+      text-transform: none;
+    }
+  }
+
+  &.cancelled {
+    opacity: .5;
+  }
+
+  &.confirmed {
+    box-shadow: 0px 0px 25px #fff;
+  }
+
+  .reservation-details {
+    margin-bottom: 10px;
+    & > p {
+      font-size: 1.5em;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .venue {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    & > span {
+      display: block;
+    }
+  }
+}

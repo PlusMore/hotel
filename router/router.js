@@ -83,6 +83,18 @@ Router.map(function() {
     }
   });
 
+  this.route('addHotelStaff', {
+    path: 'add-hotel-staff',
+    onBeforeAction: function(pause) {
+      filters.isLoggedIn(pause, this, filters.isHotelManager());
+    },
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotelUsers')
+      ]
+    }
+  });
+
   // Staff
   this.route('devices', {
     path: '/devices',
