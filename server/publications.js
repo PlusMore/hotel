@@ -32,12 +32,6 @@ Meteor.publish('userHotelData', function () {
   }
 });
 
-// Experiences
-
-Meteor.publish('singleExperience', function(id) {
-  return Experiences.find(id);
-});
-
 // Tags
 
 Meteor.publish('tags', function(collectionName) {
@@ -45,7 +39,7 @@ Meteor.publish('tags', function(collectionName) {
 });
 
 // Devices
-Meteor.publish('devices', function(hotelId) {
+Meteor.publish('devicesForHotel', function(hotelId) {
   var userId = this.userId,
       user = Meteor.users.findOne(userId),
       hotelId = user.hotelId;
@@ -53,22 +47,15 @@ Meteor.publish('devices', function(hotelId) {
   return Devices.find({hotelId: hotelId});
 });
 
-
-// Hotels
-Meteor.publish('hotels', function() {
-  if(Roles.userIsInRole(this.userId, 'admin')) {
-    return Hotels.find();
-  } else {
-    return Hotels.find({owner: this.userId});
-  }
-});
-
 Meteor.publish('hotel', function(id) {
   return Hotels.find(id);
 });
 
 Meteor.publish('hotelUsers', function(options) {
-  hotelId = options.hotelId;
+  var userId = this.userId,
+      user = Meteor.users.findOne(userId);
+
+  var hotelId = user.hotelId;
   return Meteor.users.find({hotelId: hotelId}, {fields:{emails:1, roles:1, hotelId:1, profile:1}});
 });
 

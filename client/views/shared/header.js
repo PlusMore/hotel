@@ -30,14 +30,11 @@ Template.header.helpers({
   canSeeAdminPages: function() {
     return Roles.userIsInRole(Meteor.userId(), ['admin']);
   },
-  canSeeContentManagerPages: function() {
-    return Roles.userIsInRole(Meteor.userId(), ['content-manager', 'admin']);
-  },
-  canSeeDeviceManagerPages: function() {
-    return Roles.userIsInRole(Meteor.userId(), ['device-manager', 'admin']);
-  },
   isHotelStaff: function() {
     return Roles.userIsInRole(Meteor.userId(), ['hotel-staff']);
+  },
+  isHotelManager: function() {
+    return Roles.userIsInRole(Meteor.userId(), ['hotel-manager']);
   },
   hotelName: function() {
     return Session.get('hotelName');
