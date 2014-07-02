@@ -84,7 +84,7 @@ Router.map(function() {
   });
 
   this.route('addHotelStaff', {
-    path: 'add-hotel-staff',
+    path: '/add-hotel-staff',
     onBeforeAction: function(pause) {
       filters.isLoggedIn(pause, this, filters.isHotelManager());
     },
@@ -94,6 +94,13 @@ Router.map(function() {
       ]
     }
   });
+
+  this.route('customizeHotelDevices', {
+    path: "/customize-devices",
+    onBeforeAction: function(pause) {
+      filters.isLoggedIn(pause, this, filters.isHotelManager());
+    }
+  })
 
   // Staff
   this.route('devices', {
@@ -114,7 +121,7 @@ Router.map(function() {
   });
 
   this.route('openPatronOrders', {
-    path: 'open-patron-orders',
+    path: '/open-patron-orders',
     onBeforeAction: function(pause) {
       filters.isLoggedIn(pause, this, filters.isHotelStaff());
     },
@@ -126,7 +133,7 @@ Router.map(function() {
   });
 
   this.route('patronOrderPage', {
-    path: 'patron-order/:_id',
+    path: '/patron-order/:_id',
     onBeforeAction: function(pause) {
       filters.isLoggedIn(pause, this, filters.isHotelStaff());
     },
