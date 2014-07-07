@@ -45,6 +45,9 @@ var filters = {
   },
   isHotelStaff: function() {
     return Roles.userIsInRole(Meteor.userId(), ['hotel-staff', 'admin']);
+  },
+  isHotelManager: function (argument) {
+    return Roles.userIsInRole(Meteor.userId(), ['hotel-manager', 'admin']);
   }
 };
 
@@ -67,6 +70,39 @@ Router.onBeforeAction(helpers.showLoadingBar, {only: []});
 
 Router.map(function() {
 
+  // Manager
+  this.route('manageHotelUsers', {
+    path: 'manage-hotel-users',
+    onBeforeAction: function(pause) {
+      filters.isLoggedIn(pause, this, filters.isHotelManager());
+    },
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotelUsers')
+      ]
+    }
+  });
+
+  this.route('addHotelStaff', {
+    path: '/add-hotel-staff',
+    onBeforeAction: function(pause) {
+      filters.isLoggedIn(pause, this, filters.isHotelManager());
+    },
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotelUsers')
+      ]
+    }
+  });
+
+  this.route('customizeHotelDevices', {
+    path: "/customize-devices",
+    onBeforeAction: function(pause) {
+      filters.isLoggedIn(pause, this, filters.isHotelManager());
+    }
+  })
+
+  // Staff
   this.route('devices', {
     path: '/devices',
     onBeforeAction: function(pause) {
@@ -74,30 +110,18 @@ Router.map(function() {
     },
     waitOn: function() {
       return [
-        Meteor.subscribe('devices')
+        Meteor.subscribe('devicesForHotel')
       ]
     },
-    onRun: function() {
-      if (Meteor.user()) {
-        var hotel = Hotels.findOne(Meteor.user().hotelId);
-        if (hotel) {
-          Session.set('hotelName', hotel.name);
-          Session.set('hotelId', hotel.id);    
-        }
-      }
-      
-    },
     data: function () {
-      if (Meteor.user()) {
-        return {
-          devices: Devices.find({hotelId: Meteor.user().hotelId})
-        }
+      return {
+        devices: Devices.find({hotelId: Meteor.user().hotelId})
       }
     }
   });
 
   this.route('openPatronOrders', {
-    path: 'open-patron-orders',
+    path: '/open-patron-orders',
     onBeforeAction: function(pause) {
       filters.isLoggedIn(pause, this, filters.isHotelStaff());
     },
@@ -109,7 +133,7 @@ Router.map(function() {
   });
 
   this.route('patronOrderPage', {
-    path: 'patron-order/:_id',
+    path: '/patron-order/:_id',
     onBeforeAction: function(pause) {
       filters.isLoggedIn(pause, this, filters.isHotelStaff());
     },

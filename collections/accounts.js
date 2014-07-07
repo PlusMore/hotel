@@ -4,27 +4,37 @@ Schema.addHotelStaff = new SimpleSchema({
     regEx: SchemaRegEx.Email,
     label: "E-mail address"
   },
-  hotelId: {
-    type: String
+  isManager: {
+    type: Boolean,
+    label: "Manager"
   }
 });
 
 Meteor.methods({
-  addHotelStaff: function (user) {
-    check(user, Schema.addHotelStaff);
+  addHotelStaff: function (newStaff) {
+    check(newStaff, Schema.addHotelStaff);
+    var user = Meteor.user();
 
-    if (!this.isSimulation) {
-      var roles = ['hotel-staff', 'device-manager']
-      var userId = Accounts.createUser({
-        email: user.email,
-        roles: roles,
-        password: Meteor.uuid()
-      });
+    if (user && Roles.userIsInRole(user, ['hotel-manager'])) {
+      if (!this.isSimulation) {
+        var roles = ['hotel-staff'];
 
-      Meteor.users.update(userId, {$set: {hotelId: user.hotelId}});
-      Roles.addUsersToRoles(userId, roles);
-      Accounts.sendEnrollmentEmail(userId, user.email)
-      return userId;
+        if (newStaff.isManager) {
+          roles.push('hotel-manager');
+        }
+        var userId = Accounts.createUser({
+          email: newStaff.email,
+          roles: roles,
+          password: Meteor.uuid()
+        });
+
+        Meteor.users.update(userId, {$set: {hotelId: newStaff.hotelId}});
+        Roles.addUsersToRoles(userId, roles);
+        Accounts.sendEnrollmentEmail(userId, newStaff.email)
+        return userId;
+      }
     }
+
+    
   }
 });

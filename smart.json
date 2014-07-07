@@ -22,6 +22,7 @@
       "git": "https://github.com/apendua/meteor-tags.git",
       "branch": "simple-ui"
     },
-    "selectize": {}
+    "selectize": {},
+    "bootstrap-errors": {}
   }
 }

@@ -1,8 +1,8 @@
 Template.openPatronOrders.helpers({
   hasOrders: function() {
-    return Orders.find().count() > 0;
+    return Orders.find({for: 'hotel'}).count() > 0;
   },
   orders: function() {
-    return Orders.find();
+    return Orders.find({for: 'hotel'});
   }
 });
