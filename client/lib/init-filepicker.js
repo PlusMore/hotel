@@ -1,7 +1,7 @@
 Meteor.startup(function() {
   // init filepicker
   Session.set("widgetSet", false);
-  var key = "A2yOQB3VHRfe2n6QnJ5vZz";
+  var key = Meteor.settings.public.filepicker;
 
   if (!Session.get("widgetSet")) {
     loadPicker(key);
