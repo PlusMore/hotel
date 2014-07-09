@@ -120,6 +120,21 @@ Router.map(function() {
     }
   });
 
+  this.route('device', {
+    path: '/device/:_id',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('deviceUserStatus', this.params._id)
+      ]
+    },
+    data: function () {
+      return {
+        device: Devices.findOne(this.params._id),
+        users: Meteor.users.find({deviceId: this.params._id}, {sort: {'status.lastLogin': -1}})
+      }
+    } 
+  });
+
   this.route('openPatronOrders', {
     path: '/open-patron-orders',
     onBeforeAction: function(pause) {

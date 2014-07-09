@@ -44,7 +44,28 @@ Meteor.publish('devicesForHotel', function(hotelId) {
       user = Meteor.users.findOne(userId),
       hotelId = user.hotelId;
 
-  return Devices.find({hotelId: hotelId});
+  return Devices.find({hotelId: hotelId}, {
+    fields: {
+      location: 1,
+      hotelId: 1,
+      _id: 1
+    }
+  });
+});
+
+// User Status
+Meteor.publish('deviceUserStatus', function(deviceId) {
+  return [
+    Devices.find(deviceId),
+    Meteor.users.find({deviceId: deviceId}, {
+      fields: {
+        emails:1,
+        deviceId: 1,
+        profile: 1,
+        status:1
+      }
+    })
+  ];
 });
 
 Meteor.publish('hotel', function(id) {
