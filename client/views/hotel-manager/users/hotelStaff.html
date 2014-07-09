@@ -5,19 +5,8 @@
 </template>
 
 <template name="hotelStaffItem">
-  <div class='section'>
-    <div>
-      <label for="email">Email:&nbsp;</label><span>{{emailAddress}} </span>
-    </div>
-    
-    <div>
-      <label for="roles">Roles:</label>
-      <ul class="roles">
-        {{#each roles}}
-          <li>{{this}}</li>
-        {{/each}}
-      </ul>  
-    </div>
-    
-  </div>
+  <a class='list-item'>
+    {{emailAddress}}
+    <span class="pull-right">{{role}}</span>
+  </a>
 </template>
