@@ -49,6 +49,9 @@ Meteor.publish('devicesForHotel', function(hotelId) {
       location: 1,
       hotelId: 1,
       _id: 1
+    },
+    sort: {
+      location: 1
     }
   });
 });

@@ -5,10 +5,9 @@
         <h3>Devices</h3>
       </header>
         {{#each devices}}
-          <div class='section'>
-            <a href="{{pathFor 'device'}}">{{location}}</a>
-            {{lastActivity}}
-          </div>
+          <a class='list-item btn-block' href="{{pathFor 'device'}}">
+            {{location}}
+          </a>
         {{/each}}
     </div>
   </div>

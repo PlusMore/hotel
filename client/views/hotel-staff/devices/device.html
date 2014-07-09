@@ -1,0 +1,12 @@
+<template name="device">
+  <div class="container">
+
+    <h1>{{device.location}}</h1>
+
+    <h2>User History</h2>
+    {{#each users}}
+      {{> deviceUserInfo}}
+    {{/each}}
+
+  </div>
+</template>
