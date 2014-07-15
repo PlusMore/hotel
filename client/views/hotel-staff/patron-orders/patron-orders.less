@@ -1,4 +1,14 @@
-.patron-order {
+.order {
+  &.warning {
+    background-color: #fcf8e3;
+    color: #000 !important;
+  }
+
+  &.danger {
+    background-color: #f2dede;
+    color: #000 !important;
+  }
+
   h3 {
     text-transform: uppercase;
 
@@ -6,14 +16,6 @@
       color: #fff;
       text-transform: none;
     }
-  }
-
-  &.cancelled {
-    opacity: .5;
-  }
-
-  &.confirmed {
-    box-shadow: 0px 0px 25px #fff;
   }
 
   .reservation-details {

@@ -29,7 +29,8 @@
       "iron-transitioner": {
         "git": "https://github.com/percolatestudio/iron-transitioner.git",
         "branch": "blaze"
-      }
+      },
+      "timesync": {}
     },
     "packages": {
       "iron-router": {
@@ -126,6 +127,11 @@
         "git": "https://github.com/percolatestudio/iron-transitioner.git",
         "branch": "blaze",
         "commit": "5ec6137bef1ed42606465c939aed937669c984e7"
+      },
+      "timesync": {
+        "git": "https://github.com/mizzao/meteor-timesync.git",
+        "tag": "v0.2.1",
+        "commit": "fa4abd511f4e32a3c5d22795ce2c1e8369428fac"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

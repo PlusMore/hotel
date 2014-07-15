@@ -7,6 +7,11 @@
 </template>
 
 <template name="patronOrder">
+  <div class="order section col-md-12 {{attention}} animated fadeIn">
+    {{> UI.dynamic template=type }}
+  </div>
+</template>
+<!-- 
   <div class="patron-order section col-md-12 {{status}}">
     {{#if isReservation}}
       <header>
@@ -65,4 +70,4 @@
 
     {{/if}}
   </div>
-</template>
+</template> -->
