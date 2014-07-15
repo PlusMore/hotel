@@ -25,7 +25,11 @@
         "branch": "simple-ui"
       },
       "selectize": {},
-      "bootstrap-errors": {}
+      "bootstrap-errors": {},
+      "iron-transitioner": {
+        "git": "https://github.com/percolatestudio/iron-transitioner.git",
+        "branch": "blaze"
+      }
     },
     "packages": {
       "iron-router": {
@@ -45,8 +49,8 @@
       },
       "autoform": {
         "git": "https://github.com/aldeed/meteor-autoform.git",
-        "tag": "v0.13.5",
-        "commit": "27dd5b912eeba687b228a6a7c2c14eef63b12cca"
+        "tag": "v0.14.0",
+        "commit": "30de032833052ea61e9d37bca5523264309d4478"
       },
       "fastclick": {
         "git": "https://github.com/percolatestudio/meteor-fastclick",
@@ -117,6 +121,11 @@
         "git": "https://github.com/lezed1/meteor-bootstrap-errors.git",
         "tag": "v0.3.1",
         "commit": "f85d792683a423bfb6747460d4516b7404871260"
+      },
+      "iron-transitioner": {
+        "git": "https://github.com/percolatestudio/iron-transitioner.git",
+        "branch": "blaze",
+        "commit": "5ec6137bef1ed42606465c939aed937669c984e7"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
