@@ -27,7 +27,7 @@ Meteor.methods({
           password: Meteor.uuid()
         });
 
-        Meteor.users.update(userId, {$set: {hotelId: newStaff.hotelId}});
+        Meteor.users.update(userId, {$set: {hotelId: user.hotelId}});
         Roles.addUsersToRoles(userId, roles);
         Accounts.sendEnrollmentEmail(userId, newStaff.email)
         return userId;
