@@ -26,13 +26,29 @@
     }
   }
 
+  .time-ago {
+    margin-top: 40px;
+    span {
+      padding: 10px;
+      font-size: 16px;
+      background-color: rgba(255,255,255,.1);
+    }
+  }
+
   &.warning {
-    background-color: #fcf8e3;
-    color: #000 !important;
+    .time-ago {
+      span {
+        background-color: rgb(244, 180, 39);
+      }  
+    }
+    
   }
 
   &.danger {
-    background-color: #f2dede;
-    color: #000 !important;
+    .time-ago {
+      span {
+        background-color: rgb(219, 70, 62);
+      }
+    }
   }
 }

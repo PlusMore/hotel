@@ -11,12 +11,12 @@ Categories = new Meteor.Collection('categories')
 
 Categories.allow({
   insert: function(userId, doc){
-    return Roles.userIsInRole(userId, ['admin']);
+    return false;
   },
   update:  function(userId, doc, fieldNames, modifier){
-    return Roles.userIsInRole(userId, ['admin']);
+    return false;
   },
   remove:  function(userId, doc){
-    return Roles.userIsInRole(userId, ['admin']);
+    return false;
   }
 });
