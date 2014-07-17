@@ -58,5 +58,11 @@ Template.request.events({
     if (confirm("Are you sure you want to cancel this request?")) {
       Meteor.call('cancelPatronRequest', this._id);
     } 
+  },
+  'click .btn-complete-request': function (event) {
+    event.preventDefault();
+    if (confirm("Marking this as complete means that the request has been fulfilled or scheduled.")) {
+      Meteor.call('completePatronRequest', this._id);
+    }
   }
 });
