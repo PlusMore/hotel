@@ -20,26 +20,6 @@ var filters = {
   baseSubscriptions: function() {
     this.subscribe('userHotelData').wait();
   },
-  isLoggedIn: function(pause, router, extraCondition) {
-    if (! Meteor.user()) {
-      if (Meteor.loggingIn()) {
-        router.render(this.loadingTemplate);
-      }
-      else {
-        Session.set('fromWhere', router.path)
-        // this.render('entrySignIn');
-        var path = Router.routes['entrySignIn'].path();
-        Router.go(path);
-      }
-      pause()
-    }
-  },
-  isLoggedOut: function(pause) {
-    if (Meteor.user()) {
-      pause();
-      Router.go('dashboard');
-    }
-  },
   isAdmin: function() {
     return Roles.userIsInRole(Meteor.userId(), ['admin']);
   },
@@ -51,20 +31,8 @@ var filters = {
   }
 };
 
-var helpers = {
-  showLoadingBar: function(pause) {
-    if (this.ready()) {
-      NProgress.done();
-    } else {
-      NProgress.start();
-    }
-  }
-};
-Router.onBeforeAction('loading');
-Router.onBeforeAction(filters.baseSubscriptions);
 
-// Show loading bar for any route that loads a subscription
-Router.onBeforeAction(helpers.showLoadingBar, {only: []});
+Router.onBeforeAction('loading');
 
 // Routes
 
@@ -73,9 +41,6 @@ Router.map(function() {
   // Manager
   this.route('manageHotelUsers', {
     path: 'manage-hotel-users',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelManager());
-    },
     waitOn: function() {
       return [
         Meteor.subscribe('hotelUsers')
@@ -85,9 +50,6 @@ Router.map(function() {
 
   this.route('addHotelStaff', {
     path: '/add-hotel-staff',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelManager());
-    },
     waitOn: function() {
       return [
         Meteor.subscribe('hotelUsers')
@@ -96,18 +58,12 @@ Router.map(function() {
   });
 
   this.route('customizeHotelDevices', {
-    path: "/customize-devices",
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelManager());
-    }
-  })
+    path: "/customize-devices"
+  });
 
   // Staff
   this.route('devices', {
     path: '/devices',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelStaff());
-    },
     waitOn: function() {
       return [
         Meteor.subscribe('devicesForHotel')
@@ -137,9 +93,6 @@ Router.map(function() {
 
   this.route('openPatronOrders', {
     path: '/open-patron-orders',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelStaff());
-    },
     waitOn: function () {
       return [
         Meteor.subscribe('openPatronOrders')
@@ -149,9 +102,6 @@ Router.map(function() {
 
   this.route('patronOrderPage', {
     path: '/patron-order/:_id',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelStaff());
-    },
     waitOn: function() {
       return [
         Meteor.subscribe('patronOrder', this.params._id)
@@ -179,9 +129,6 @@ Router.map(function() {
 
   this.route('dashboard', {
     path: '/dashboard',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this);
-    }
   });
 
 });

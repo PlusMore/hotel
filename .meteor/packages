@@ -17,7 +17,6 @@ fastclick
 underscore
 jquery
 inspector
-accounts-ui
 accounts-entry
 nprogress
 font-awesome
@@ -34,3 +33,4 @@ tags
 selectize
 bootstrap-errors
 iron-transitioner
+accounts-ui-bootstrap-3

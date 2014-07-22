@@ -6,10 +6,6 @@ All publications-related code.
 
 /+ ---------------------------------------------------- */
 
-/**
- * Always publish logged-in user's hotelId
- *
- */
 Meteor.publish('userHotelData', function () {
   var userId = this.userId;
 

@@ -1,9 +1,21 @@
 <template name="layout">
+  
   <div id='layout' style="background-image: url('{{hotelPhotoUrl}}')">
     {{> header}}
     {{> meteorErrors}}
-    <div class="content touch-scrollable">
-      {{> transitionedYield}}
-    </div>
+
+    {{#if currentUser}}
+      <div class="content touch-scrollable">
+        {{> transitionedYield}}
+      </div>
+    {{else}}
+      {{#if loggingIn}}
+        {{> loggingInOverlay}}
+      {{else}}
+        <div class="content touch-scrollable">
+          {{> login}}
+        </div>
+      {{/if}}
+    {{/if}}
   </div>
 </template>
