@@ -43,7 +43,7 @@ Router.map(function() {
     path: 'manage-hotel-users',
     waitOn: function() {
       return [
-        Meteor.subscribe('hotelUsers')
+        Meteor.subscribe('hotelUsers', Session.get('hotelId'))
       ]
     }
   });
@@ -52,13 +52,18 @@ Router.map(function() {
     path: '/add-hotel-staff',
     waitOn: function() {
       return [
-        Meteor.subscribe('hotelUsers')
+        Meteor.subscribe('hotelUsers', Session.get('hotelId'))
       ]
     }
   });
 
   this.route('customizeHotelDevices', {
-    path: "/customize-devices"
+    path: "/customize-devices",
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId'))
+      ]
+    } 
   });
 
   // Staff
@@ -66,12 +71,12 @@ Router.map(function() {
     path: '/devices',
     waitOn: function() {
       return [
-        Meteor.subscribe('devicesForHotel')
+        Meteor.subscribe('devicesForHotel', Session.get('hotelId'))
       ]
     },
     data: function () {
       return {
-        devices: Devices.find({hotelId: Meteor.user().hotelId})
+        devices: Devices.find({hotelId: Session.get('hotelId')})
       }
     }
   });
@@ -95,7 +100,7 @@ Router.map(function() {
     path: '/open-patron-orders',
     waitOn: function () {
       return [
-        Meteor.subscribe('openPatronOrders')
+        Meteor.subscribe('openPatronOrders', Session.get('hotelId'))
       ]
     } 
   });
@@ -129,6 +134,13 @@ Router.map(function() {
 
   this.route('dashboard', {
     path: '/dashboard',
+    waitOn: function() {
+      if (Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+        return [
+          Meteor.subscribe('hotels')
+        ]
+      }
+    }
   });
 
 });

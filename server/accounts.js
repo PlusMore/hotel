@@ -26,7 +26,7 @@ Accounts.validateLoginAttempt(function(attempt) {
 Accounts.onLoginFailure(function (attempt) {
   if (attempt.user) {
     if (!attempt.user.emails[0].verified) {
-      Accounts.sendEnrollmentEmail(attempt.user._id)
+      Accounts.sendVerificationEmail(attempt.user._id)
     } 
   }
 })

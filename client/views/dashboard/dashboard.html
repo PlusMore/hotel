@@ -1,14 +1,17 @@
 <template name="dashboard">
   <div class="container">
-    <div class="row">
+    {{#if isInRole 'admin'}}
       <div class="section">
-        <header>
-          <h3>Welcome to Plus More</h3>
-        </header>
-
-        <a class="btn btn-default" href="{{pathFor 'devices'}}">See Devices</a>
-        <a class="btn btn-default" href="{{pathFor 'openPatronOrders'}}">See Open Requests</a>
+        {{> selectHotel}}
       </div>
+    {{/if}}
+    <div class="section">
+      <header>
+        <h3>Welcome to Plus More</h3>
+      </header>
+
+      <a class="btn btn-default" href="{{pathFor 'devices'}}">See Devices</a>
+      <a class="btn btn-default" href="{{pathFor 'openPatronOrders'}}">See Open Requests</a>
     </div>
   </div>
 </template>

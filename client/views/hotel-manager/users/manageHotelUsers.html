@@ -2,7 +2,9 @@
   <div class="container">
     <h1>
       Users
-      <a href="{{pathFor 'addHotelStaff'}}" class='btn btn-default pull-right'>Add New User</a>
+      {{#if isInRole 'hotel-manager'}}
+        <a href="{{pathFor 'addHotelStaff'}}" class='btn btn-default pull-right'>Add New User</a>
+      {{/if}}
     </h1>
     {{> hotelStaff}}
   </div>

@@ -38,7 +38,7 @@ Meteor.publish('tags', function(collectionName) {
 Meteor.publish('devicesForHotel', function(hotelId) {
   var userId = this.userId,
       user = Meteor.users.findOne(userId),
-      hotelId = user.hotelId;
+      hotelId = hotelId || user.hotelId;
 
   return Devices.find({hotelId: hotelId}, {
     fields: {
@@ -71,21 +71,25 @@ Meteor.publish('hotel', function(id) {
   return Hotels.find(id);
 });
 
-Meteor.publish('hotelUsers', function(options) {
+Meteor.publish('hotels', function () {
+  return Hotels.find();
+});
+
+Meteor.publish('hotelUsers', function(hotelId) {
   var userId = this.userId,
       user = Meteor.users.findOne(userId);
 
-  var hotelId = user.hotelId;
-  return Meteor.users.find({hotelId: hotelId}, {fields:{emails:1, roles:1, hotelId:1, profile:1}});
+  hotelId = hotelId || user.hotelId;
+  return Meteor.users.find({hotelId: hotelId, roles: 'hotel-staff'}, {fields:{emails:1, roles:1, hotelId:1, profile:1}});
 });
 
 // Orders
-Meteor.publish("openPatronOrders", function() {
+Meteor.publish("openPatronOrders", function(hotelId) {
   var userId = this.userId,
       user = Meteor.users.findOne(userId);
 
   if (user) {
-    var hotelId = user.hotelId;
+    hotelId = hotelId || user.hotelId;
 
     if (hotelId)
         hotel = Hotels.findOne(hotelId);

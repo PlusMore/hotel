@@ -1,0 +1,11 @@
+<template name="selectHotel">
+  <header>
+    <h3>Select a Hotel</h3>
+  </header>
+  <select class='form-control' id='select-hotel'>
+    <option>-- Select a Hotel--</option>
+    {{#each hotels}}
+      <option value="{{_id}}">{{name}}</option>
+    {{/each}}
+  </select>
+</template>
