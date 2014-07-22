@@ -27,14 +27,14 @@ Template.header.helpers({
   isLoggedIn: function () {
     return !!Meteor.user();
   },
-  canSeeAdminPages: function() {
+  isAdmin: function() {
     return Roles.userIsInRole(Meteor.userId(), ['admin']);
   },
   isHotelStaff: function() {
-    return Roles.userIsInRole(Meteor.userId(), ['hotel-staff']);
+    return Roles.userIsInRole(Meteor.userId(), ['hotel-staff', 'admin']);
   },
   isHotelManager: function() {
-    return Roles.userIsInRole(Meteor.userId(), ['hotel-manager']);
+    return Roles.userIsInRole(Meteor.userId(), ['hotel-manager', 'admin']);
   },
   hotelName: function() {
     return Session.get('hotelName');
