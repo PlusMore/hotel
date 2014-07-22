@@ -4,8 +4,19 @@ Accounts.emailTemplates.enrollAccount.subject = function (user) {
     return "Welcome to Plus More";
 };
 Accounts.emailTemplates.enrollAccount.text = function (user, url) {
-   return "To activate your account, simply click the link below:\n\n"
-     + url;
+  var spliturl = url.split('/#');
+  url = Meteor.settings.apps.hotel.url + '/#' + spliturl[1];
+
+  return "To activate your account, simply click the link below:\n\n"
+    + url;
+};
+
+Accounts.emailTemplates.verifyEmail.text = function (user, url) {
+  var spliturl = url.split('/#');
+  url = Meteor.settings.apps.hotel.url + '/#' + spliturl[1];
+  
+  return "To verify your account email, simply click the link below.:\n\n"
+    + url;
 };
 
 Accounts.validateLoginAttempt(function(attempt) {
