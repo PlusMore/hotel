@@ -14,7 +14,7 @@ Hotels.allow({
     return false;
   },
   update:  function(userId, doc, fieldNames, modifier){
-    return Roles.userIsInRole(userId, ['hotel-manager']);
+    return Roles.userIsInRole(userId, ['hotel-manager', 'admin']);
   },
   remove:  function(userId, doc){
     return false;
@@ -26,7 +26,7 @@ Meteor.methods({
     check(InkBlob, Object);
     var user = Meteor.user();
     
-    if (user && Roles.userIsInRole(user, ['hotel-manager'])) {
+    if (user && Roles.userIsInRole(user, ['hotel-manager', 'admin'])) {
       var hotelId = Meteor.user().hotelId;
       if (hotelId) {
         var hotel = Hotels.findOne();

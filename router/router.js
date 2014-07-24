@@ -44,7 +44,7 @@ Router.map(function() {
     waitOn: function() {
       return [
         Meteor.subscribe('hotelUsers', Session.get('hotelId'))
-      ]
+      ];
     }
   });
 
@@ -53,7 +53,7 @@ Router.map(function() {
     waitOn: function() {
       return [
         Meteor.subscribe('hotelUsers', Session.get('hotelId'))
-      ]
+      ];
     }
   });
 
@@ -62,21 +62,27 @@ Router.map(function() {
     waitOn: function() {
       return [
         Meteor.subscribe('hotel', Session.get('hotelId'))
-      ]
+      ];
     } 
   });
 
   this.route('hotelServices', {
     path: '/hotel-services',
-    yieldTemplates: {
-      'hotelServicesNav': {to: 'aside'}
-    }
+    controller: 'HotelServicesController'
   });
 
   this.route('configureTransportation', {
     path: '/hotel-services/transportation',
-    yieldTemplates: {
-      'hotelServicesNav': {to: 'aside'}
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotelService', 'transportation', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'transportation'})
+      };
     }
   });
 
@@ -86,12 +92,12 @@ Router.map(function() {
     waitOn: function() {
       return [
         Meteor.subscribe('devicesForHotel', Session.get('hotelId'))
-      ]
+      ];
     },
     data: function () {
       return {
         devices: Devices.find({hotelId: Session.get('hotelId')})
-      }
+      };
     }
   });
 
@@ -100,13 +106,13 @@ Router.map(function() {
     waitOn: function() {
       return [
         Meteor.subscribe('deviceUserStatus', this.params._id)
-      ]
+      ];
     },
     data: function () {
       return {
         device: Devices.findOne(this.params._id),
         users: Meteor.users.find({deviceId: this.params._id}, {sort: {'status.lastLogin': -1}})
-      }
+      };
     } 
   });
 
@@ -115,7 +121,7 @@ Router.map(function() {
     waitOn: function () {
       return [
         Meteor.subscribe('openPatronOrders', Session.get('hotelId'))
-      ]
+      ];
     } 
   });
 
@@ -124,7 +130,7 @@ Router.map(function() {
     waitOn: function() {
       return [
         Meteor.subscribe('patronOrder', this.params._id)
-      ]
+      ];
     },
     data: function() {
       var order = Orders.findOne(this.params._id);
@@ -133,7 +139,7 @@ Router.map(function() {
         return {
           order: order,
           experience: experience
-        }
+        };
       }
     }
   });
@@ -152,7 +158,7 @@ Router.map(function() {
       if (Roles.userIsInRole(Meteor.userId(), ['admin'])) {
         return [
           Meteor.subscribe('hotels')
-        ]
+        ];
       }
     }
   });
