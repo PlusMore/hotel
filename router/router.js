@@ -66,6 +66,20 @@ Router.map(function() {
     } 
   });
 
+  this.route('hotelServices', {
+    path: '/hotel-services',
+    yieldTemplates: {
+      'hotelServicesNav': {to: 'aside'}
+    }
+  });
+
+  this.route('configureTransportation', {
+    path: '/hotel-services/transportation',
+    yieldTemplates: {
+      'hotelServicesNav': {to: 'aside'}
+    }
+  });
+
   // Staff
   this.route('devices', {
     path: '/devices',
