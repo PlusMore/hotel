@@ -13,6 +13,27 @@ HotelServices.allow({
   }
 });
 
+Schema.configureServiceAvailabilty = new SimpleSchema({
+  startTime: {
+    type: String,
+    label: 'Start Time',
+    optional: true
+  },
+  endTime: {
+    type: String,
+    label: 'End Time',
+    optional: true
+  },
+  startMinutes: {
+    type: Number,
+    optional: true
+  },
+  endMinutes: {
+    type: Number,
+    optional: true
+  }
+});
+
 Meteor.methods({
   activateHotelService: function(serviceType, hotelId) {
     // validate service type

@@ -30,7 +30,11 @@
         "git": "https://github.com/percolatestudio/iron-transitioner.git",
         "branch": "blaze"
       },
-      "accounts-ui-bootstrap-3": {}
+      "accounts-ui-bootstrap-3": {},
+      "plus-more-icons": {
+        "git": "https://github.com/PlusMore/plus-more-icons.git",
+        "tag": "v1.1"
+      }
     },
     "packages": {
       "iron-router": {
@@ -132,6 +136,11 @@
         "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
         "tag": "v0.3.3",
         "commit": "2e50b605d8d5ed68e48c4529a65f13552d8af3f9"
+      },
+      "plus-more-icons": {
+        "git": "https://github.com/PlusMore/plus-more-icons.git",
+        "tag": "v1.1",
+        "commit": "7731481318f52ecbecedbee106eaf9162762c527"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

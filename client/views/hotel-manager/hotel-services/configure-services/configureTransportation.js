@@ -1,3 +1,18 @@
+Template.configureTransportation.rendered = function () {
+  this.$('.timepicker').pickatime({
+    onSet: function(selection) {
+      var minutes = selection.select;
+      var controlName = this.$node.attr('name');
+      var $reservationOptionsEl = this.$node.closest('.reservationOptions')
+      if (controlName === 'reservationStartTime') {
+        $reservationOptionsEl.find('[name=reservationStartMinutes]').val(minutes);
+      } else if (controlName === 'reservationEndTime') {
+        $reservationOptionsEl.find('[name=reservationEndMinutes]').val(minutes);
+      }
+    }
+  });
+};
+
 Template.configureTransportation.helpers({
   isActivatedClass: function () {
     // if not configured, return inactive
@@ -15,6 +30,9 @@ Template.configureTransportation.helpers({
     } else {
       return this.configuration.active ? 'checked' : '';
     }
+  },
+  configureServiceAvailabiltySchema: function() {
+    return Schema.configureServiceAvailabilty;
   }
 });
 
