@@ -68,7 +68,12 @@ Router.map(function() {
 
   this.route('hotelServices', {
     path: '/hotel-services',
-    controller: 'HotelServicesController'
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId'))
+      ]
+    }
   });
 
   this.route('configureBellService', {
@@ -76,6 +81,7 @@ Router.map(function() {
     controller: 'HotelServicesController',
     waitOn: function() {
       return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
         Meteor.subscribe('hotelService', 'bellService', Session.get('hotelId'))
       ];
     },
@@ -91,6 +97,7 @@ Router.map(function() {
     controller: 'HotelServicesController',
     waitOn: function() {
       return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
         Meteor.subscribe('hotelService', 'houseKeeping', Session.get('hotelId'))
       ];
     },
@@ -106,6 +113,7 @@ Router.map(function() {
     controller: 'HotelServicesController',
     waitOn: function() {
       return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
         Meteor.subscribe('hotelService', 'transportation', Session.get('hotelId'))
       ];
     },
@@ -121,6 +129,7 @@ Router.map(function() {
     controller: 'HotelServicesController',
     waitOn: function() {
       return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
         Meteor.subscribe('hotelService', 'valetServices', Session.get('hotelId'))
       ];
     },
@@ -136,6 +145,7 @@ Router.map(function() {
     controller: 'HotelServicesController',
     waitOn: function() {
       return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
         Meteor.subscribe('hotelService', 'wakeUpCall', Session.get('hotelId'))
       ];
     },
