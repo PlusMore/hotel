@@ -16,11 +16,12 @@
           </div>
           {{#autoForm schema=addHotelStaffSchema id="addHotelStaffForm" type="method" meteormethod="addHotelStaff"}}
             <div class="modal-body">
+              {{> afFieldInput name='hotelId' type='hidden' value=hotel._id}}
               {{> afQuickField name='email'}}
               {{> afQuickField name='isManager'}}
             </div>
             <div class="modal-footer">
-              <button type="submit" data-meteor-method="addHotelStaff" class="btn btn-default">Create User</button>
+              <button type="submit" class="btn btn-default">Create User</button>
             </div>
           {{/autoForm}}  
         </div><!-- /.modal-content -->        

@@ -9,7 +9,7 @@
           <div class="modal-body">
             {{> hotelStaff}}
           </div>
-          {{#if isInRole 'hotel-manager'}}
+          {{#if canAddUsers}}
             <div class="modal-footer">
               <a href="{{pathFor 'addHotelStaff'}}" class='btn btn-default btn-lg'>Add New User</a>
             </div>

@@ -43,6 +43,7 @@ Router.map(function() {
     path: 'manage-hotel-users',
     waitOn: function() {
       return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
         Meteor.subscribe('hotelUsers', Session.get('hotelId'))
       ];
     }
@@ -52,8 +53,14 @@ Router.map(function() {
     path: '/add-hotel-staff',
     waitOn: function() {
       return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
         Meteor.subscribe('hotelUsers', Session.get('hotelId'))
       ];
+    },
+    data: function() {
+      return {
+        hotel: Hotels.findOne(Session.get('hotelId'))
+      }
     }
   });
 

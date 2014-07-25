@@ -19,6 +19,74 @@ Accounts.emailTemplates.verifyEmail.text = function (user, url) {
     + url;
 };
 
+Accounts.validateNewUser(function (user) {
+  console.log('validate new user')
+  
+  // if adding a hotel-staff, or hotel-manager then allow creation
+  var isHotelStaffOrManager = false;
+  var hotelIsValid = false;
+
+  if (user.hotelId) {
+    hotelIsValid = !!Hotels.findOne(user.hotelId);
+  }
+
+  if (!_.isEmpty(user.roles)) {
+    isHotelStaffOrManager = _.any(user.roles, function (role) {
+      return (role === 'hotel-staff' || role === 'hotel-manager');
+    });
+  }
+
+  if (hotelIsValid && isHotelStaffOrManager) {
+    return true;
+  }
+});
+
+
+Accounts.onCreateUser(function(options, user) {
+  // We still want the default hook's 'profile' behavior.
+  if (options.profile)
+    user.profile = options.profile;
+
+  var hotelIsValid = false;
+  var isHotelStaff = false;
+  var isHotelManager = false;
+
+  if (options.hotelId) {
+    hotelIsValid = !!Hotels.findOne(options.hotelId);
+  }
+
+  if (hotelIsValid) {
+    user.hotelId = options.hotelId;
+  } else {
+    throw new Meteor.Error(500, 'Account creation is forbidden.');
+  }
+    
+  if (!_.isEmpty(options.roles)) {
+    isHotelStaff = _.any(options.roles, function (role) {
+      return role === 'hotel-staff';
+    });
+    isHotelManager = _.any(options.roles, function (role) {
+      return role === 'hotel-manager';
+    });
+  }
+
+  user.roles = []; 
+
+  if (isHotelStaff) {
+    user.roles.push('hotel-staff');
+  }
+
+  if (isHotelManager) {
+    user.roles.push('hotel-manager');
+  } 
+
+  if (!(isHotelStaff || isHotelManager)) {
+    throw new Meteor.Error(500, 'Account creation is forbidden.');
+  }
+  
+  return user;
+});
+
 Accounts.validateLoginAttempt(function(attempt) {
   if (!attempt.allowed) {
     return false;
@@ -40,4 +108,30 @@ Accounts.onLoginFailure(function (attempt) {
       Accounts.sendVerificationEmail(attempt.user._id)
     } 
   }
-})
+});
+
+Meteor.methods({
+  addHotelStaff: function (user) {
+    check(user, Schema.addHotelStaff);
+
+    if (Roles.userIsInRole(Meteor.user(), ['hotel-manager','admin'])) {
+      var roles = ['hotel-staff']
+      if (user.isManager) {
+        roles.push('hotel-manager');
+      }
+
+      var userId = Accounts.createUser({
+        email: user.email,
+        roles: roles,
+        password: Meteor.uuid(),
+        hotelId: user.hotelId,
+      });
+
+      Accounts.sendEnrollmentEmail(userId, user.email);
+      return {
+        userId: userId,
+        hotelId: user.hotelId
+      };
+    }
+  }
+});
