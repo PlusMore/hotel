@@ -71,6 +71,36 @@ Router.map(function() {
     controller: 'HotelServicesController'
   });
 
+  this.route('configureBellService', {
+    path: '/hotel-services/bell-service',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotelService', 'bellService', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'bellService'})
+      };
+    }
+  });
+
+  this.route('configureHouseKeeping', {
+    path: '/hotel-services/house-keeping',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotelService', 'houseKeeping', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'houseKeeping'})
+      };
+    }
+  });
+
   this.route('configureTransportation', {
     path: '/hotel-services/transportation',
     controller: 'HotelServicesController',
@@ -82,6 +112,36 @@ Router.map(function() {
     data: function() {
       return {
         configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'transportation'})
+      };
+    }
+  });
+
+  this.route('configureValetServices', {
+    path: '/hotel-services/valet-services',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotelService', 'valetServices', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'valetServices'})
+      };
+    }
+  });
+
+  this.route('configureWakeUpCall', {
+    path: '/hotel-services/wake-up-call',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotelService', 'wakeUpCall', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'wakeUpCall'})
       };
     }
   });

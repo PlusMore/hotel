@@ -1,0 +1,49 @@
+<template name="configureBellService">
+  <div class="col-md-9">
+
+    <div class="modal-content inline {{isActivatedClass}}">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          Bell Service
+          <div class="onoffswitch pull-right">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="service-switch" {{isChecked}}>
+            <label class="onoffswitch-label" for="service-switch">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
+        </h3>
+      </div>
+
+      {{#with configuration}}
+        {{#autoForm schema=configureServiceAvailabilitySchema id='configureServiceAvailability' doc=this type="method" meteormethod="configureServiceAvailability"}}
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Availablity</h4>
+              <p>
+                The default configuration for this service is to be available 24/7. You may optionally configure start and end times for this service by selecting times below.
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            {{> afFieldInput name='_id' type='hidden'}}
+            <div class="col-md-6 picker-container with-vertical-label">
+              {{> afQuickField name='startTime' class='timepicker'}}
+              {{> afFieldInput name="startMinutes" type="hidden"}}
+            </div>
+            <div class="col-md-6 picker-container with-vertical-label">
+              {{> afQuickField name='endTime' class='timepicker'}}
+              {{> afFieldInput name="endMinutes" type="hidden"}}
+            </div>  
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-default btn-lg">Save</button>
+        </div>
+        {{/autoForm}}
+      {{/with}}
+    </div><!-- /.modal-content -->
+
+  </div>
+</template>
