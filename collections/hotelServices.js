@@ -1,4 +1,4 @@
-HotelServices = new Meteor.Collection('HotelServices');
+HotelServices = new Meteor.Collection('hotelServices');
 // Allow/Deny
 
 HotelServices.allow({
@@ -12,6 +12,29 @@ HotelServices.allow({
     return false;
   }
 });
+
+HotelServices.friendlyRequestType = function(requestType) {
+  switch (requestType) {
+    case 'transportation':
+      return 'Transportation';
+      break;
+    case 'bellService': 
+      return 'Bell Service';
+      break;
+    case 'houseKeeping': 
+      return 'House Keeping';
+      break;
+    case 'wakeUpCall': 
+      return 'Wake Up Call';
+      break;
+    case 'valetServices': 
+      return 'Valet Services'
+      break;
+    default: 
+      return 'Invalid Type';
+      break;
+  }
+}
 
 Schema.configureServiceAvailabilty = new SimpleSchema({
   startTime: {
