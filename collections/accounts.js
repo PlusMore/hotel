@@ -5,7 +5,7 @@ Schema.addHotelStaff = new SimpleSchema({
   },
   isManager: {
     type: Boolean,
-    label: "Manager"
+    label: "Is this user a Manager?"
   }
 });
 

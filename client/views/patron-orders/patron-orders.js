@@ -1,4 +1,4 @@
-Template.openPatronOrders.helpers({
+Template.patronOrders.helpers({
   hasOrders: function() {
     return Orders.find({for: 'hotel', open: true}).count() > 0;
   },
