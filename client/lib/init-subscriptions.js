@@ -40,3 +40,28 @@ Meteor.startup(function() {
     }     
   });
 });
+
+Meteor.startup(function() {
+  Deps.autorun(function() {
+    var hotelId = Session.get('hotelId');
+
+    if (hotelId) {
+      subscriptions.hotel = Meteor.subscribe('hotel', hotelId);
+    } else {
+      subscriptions.hotel.stop();
+      subscriptions.hotel = null;
+    }
+  });
+});
+
+Meteor.startup(function() {
+  Deps.autorun(function() {
+    var hotelId = Session.get('hotelId');
+    var hotelCursor = Hotels.find({hotelId: hotelId});
+
+    if (hotelCursor.count() > 0) {
+      var hotel = Hotels.findOne({hotelId: hotelId})
+      Session.set('hotelName', hotel.name);
+    }  
+  });
+});
