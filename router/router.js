@@ -176,9 +176,9 @@ Router.map(function() {
     } 
   });
 
-  this.route('requests', {
-    path: '/requests',
-    template: 'openPatronOrders',
+  this.route('patronOrders', {
+    path: '/orders',
+    template: 'patronOrders',
     waitOn: function () {
       return [
         Meteor.subscribe('openPatronOrders', Session.get('hotelId'))
