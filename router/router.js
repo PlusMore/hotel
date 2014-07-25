@@ -176,8 +176,9 @@ Router.map(function() {
     } 
   });
 
-  this.route('openPatronOrders', {
-    path: '/open-patron-orders',
+  this.route('requests', {
+    path: '/requests',
+    template: 'openPatronOrders',
     waitOn: function () {
       return [
         Meteor.subscribe('openPatronOrders', Session.get('hotelId'))
@@ -185,8 +186,9 @@ Router.map(function() {
     } 
   });
 
-  this.route('patronOrderPage', {
-    path: '/patron-order/:_id',
+  this.route('request', {
+    path: '/request/:_id',
+    template: 'patronOrderPage',
     waitOn: function() {
       return [
         Meteor.subscribe('patronOrder', this.params._id)
