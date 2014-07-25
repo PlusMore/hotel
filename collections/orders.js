@@ -7,7 +7,7 @@ Orders.allow({
     return false;
   },
   update:  function(userId, doc, fieldNames, modifier){
-    return Roles.userIsInRole(userId, ['admin', 'hotel-staff']);
+    return Roles.userIsInRole(userId, ['admin', 'hotel-staff', 'hotel-manager']);
   },
   remove:  function(userId, doc){
     return false;

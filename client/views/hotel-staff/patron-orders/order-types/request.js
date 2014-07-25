@@ -29,25 +29,10 @@ Template.request.helpers({
     return '(In Progress)';
   },
   friendlyRequestType: function() {
-    switch (this.request.type) {
-      case 'transportation':
-        return 'Transportation';
-        break;
-      case 'bellService': 
-        return 'Bell Service';
-        break;
-      case 'houseKeeping': 
-        return 'House Keeping';
-        break;
-      case 'wakeUpCall': 
-        return 'Wake Up Call';
-        break;
-      case 'valetServices': 
-        return 'Valet Services'
-        break;
-      default: 
-        throw new Meteor.Error(500, 'Request type is not configured', request);
-        break;
+    if (typeof HotelServices.friendlyRequestType === 'function') {
+      return HotelServices.friendlyRequestType(this.request.type);
+    } else {
+      return this.request.type;
     }
   }
 });

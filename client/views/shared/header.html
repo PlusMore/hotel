@@ -21,17 +21,20 @@
             <li class="{{activeRouteClass 'openPatronOrders'}}">
               <a href="{{pathFor 'openPatronOrders'}}">Requests</a>
             </li>
-            <li class="{{activeRouteClass 'devices'}}">
-              <a href="{{pathFor 'devices'}}">Devices</a>
-            </li>
           {{/if}}
 
           {{#if isHotelManager}}
+            <li class="{{activeRouteClass 'devices'}}">
+              <a href="{{pathFor 'devices'}}">Devices</a>
+            </li>
             <li class="{{activeRouteClass 'manageHotelUsers'}}">
               <a href="{{pathFor 'manageHotelUsers'}}">Manage Hotel Users</a>
             </li>
             <li class="{{activeRouteClass 'customizeHotelDevices'}}">
               <a href="{{pathFor 'customizeHotelDevices'}}">Customize Devices</a>
+            </li>
+            <li class="{{activeRouteClass 'hotelServices'}}">
+              <a href="{{pathFor 'hotelServices'}}">Hotel Services</a>
             </li>
           {{/if}}
 

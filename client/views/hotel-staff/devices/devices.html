@@ -1,14 +1,18 @@
 <template name="devices">
   <div class="container">
     <div class="row">
-      <header>
-        <h3>Devices</h3>
-      </header>
-        {{#each devices}}
-          <a class='list-item btn-block' href="{{pathFor 'device'}}">
-            {{location}}
-          </a>
-        {{/each}}
+      <div class="col-md-12">
+        
+          <header>
+            <h3>Devices</h3>
+          </header>
+          {{#each devices}}
+            <a class='list-item btn-block' href="{{pathFor 'device'}}">
+              {{location}}
+            </a>
+          {{/each}}
+
+      </div>    
     </div>
   </div>
 </template>

@@ -83,6 +83,16 @@ Meteor.publish('hotelUsers', function(hotelId) {
   return Meteor.users.find({hotelId: hotelId, roles: 'hotel-staff'}, {fields:{emails:1, roles:1, hotelId:1, profile:1}});
 });
 
+Meteor.publish('hotelService', function(serviceType, hotelId) {
+  var userId = this.userId,
+      user = Meteor.users.findOne(userId);
+      
+  hotelId = hotelId || user.hotelId;
+  if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
+    return HotelServices.find({hotelId: hotelId, type: serviceType});
+  }
+});
+
 // Orders
 Meteor.publish("openPatronOrders", function(hotelId) {
   var userId = this.userId,
