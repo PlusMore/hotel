@@ -16,7 +16,7 @@
       </div>
 
       {{#with configuration}}
-        {{#autoForm schema=configureServiceAvailabiltySchema id='configureServiceAvailability' doc=this type="method" meteormethod="configureServiceAvailability"}}
+        {{#autoForm schema=configureServiceAvailabilitySchema id='configureServiceAvailability' doc=this type="method" meteormethod="configureServiceAvailability"}}
         <div class="modal-body">
           <div class="row">
             <div class="col-md-12">
@@ -27,6 +27,7 @@
             </div>
           </div>
           <div class="row">
+            {{> afFieldInput name='_id' type='hidden'}}
             <div class="col-md-6 picker-container with-vertical-label">
               {{> afQuickField name='startTime' class='timepicker'}}
               {{> afFieldInput name="startMinutes" type="hidden"}}
