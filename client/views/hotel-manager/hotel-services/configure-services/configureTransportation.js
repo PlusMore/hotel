@@ -3,11 +3,11 @@ Template.configureTransportation.rendered = function () {
     onSet: function(selection) {
       var minutes = selection.select;
       var controlName = this.$node.attr('name');
-      var $reservationOptionsEl = this.$node.closest('.reservationOptions')
-      if (controlName === 'reservationStartTime') {
-        $reservationOptionsEl.find('[name=reservationStartMinutes]').val(minutes);
-      } else if (controlName === 'reservationEndTime') {
-        $reservationOptionsEl.find('[name=reservationEndMinutes]').val(minutes);
+      var $form = this.$node.closest('form');
+      if (controlName === 'startTime') {
+        $form.find('[name=startMinutes]').val(minutes);
+      } else if (controlName === 'endTime') {
+        $form.find('[name=endMinutes]').val(minutes);
       }
     }
   });
@@ -31,8 +31,8 @@ Template.configureTransportation.helpers({
       return this.configuration.active ? 'checked' : '';
     }
   },
-  configureServiceAvailabiltySchema: function() {
-    return Schema.configureServiceAvailabilty;
+  configureServiceAvailabilitySchema: function() {
+    return Schema.configureServiceAvailability;
   }
 });
 

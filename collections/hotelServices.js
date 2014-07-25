@@ -36,7 +36,10 @@ HotelServices.friendlyRequestType = function(requestType) {
   }
 }
 
-Schema.configureServiceAvailabilty = new SimpleSchema({
+Schema.configureServiceAvailability = new SimpleSchema({
+  _id: {
+    type: String
+  },
   startTime: {
     type: String,
     label: 'Start Time',
@@ -108,7 +111,6 @@ Meteor.methods({
     } else {
       throw new Meteor.Error(500, 'Not a valid hotel.');
     }
-
   },
   deactivateHotelService: function(serviceType, hotelId) {
     // validate service type
@@ -159,5 +161,12 @@ Meteor.methods({
     } else {
       throw new Meteor.Error(500, 'Not a valid hotel.');
     }
+  },
+  configureServiceAvailability: function(serviceAvailabilityConfiguration) {
+    check(serviceAvailabilityConfiguration, Schema.configureServiceAvailability);
+
+    return HotelServices.update(serviceAvailabilityConfiguration._id, {
+      $set: _.omit(serviceAvailabilityConfiguration, '_id')
+    });
   }
 });
