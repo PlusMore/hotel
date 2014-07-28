@@ -33,6 +33,7 @@
       "git": "https://github.com/PlusMore/plus-more-icons.git",
       "tag": "v1.1"
     },
-    "simple-publish": {}
+    "simple-publish": {},
+    "animate-css": {}
   }
 }

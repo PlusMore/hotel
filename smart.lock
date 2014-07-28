@@ -35,7 +35,8 @@
         "git": "https://github.com/PlusMore/plus-more-icons.git",
         "tag": "v1.1"
       },
-      "simple-publish": {}
+      "simple-publish": {},
+      "animate-css": {}
     },
     "packages": {
       "iron-router": {
@@ -147,6 +148,11 @@
         "git": "https://github.com/copleykj/meteor-simple-publish",
         "tag": "v1.0.0",
         "commit": "b58e6a4558a198d33be5b7132f47afd729288861"
+      },
+      "animate-css": {
+        "git": "https://github.com/nate-strauser/meteor-animate-css.git",
+        "tag": "v3.1.1",
+        "commit": "59ce70b99dff5bc3d1227b789eefa43a761db158"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

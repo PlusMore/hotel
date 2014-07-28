@@ -99,12 +99,11 @@ Meteor.publish('hotelMenu', function(hotelId) {
       
   hotelId = hotelId || user.hotelId;
   if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
-    var menu = Menus.find({hotelId: hotelId});
-    if (menu) {
+    var hotel = Hotels.find(hotelId);
+    if (hotel) {
       return [
-        Menus.find({hotelId: hotelId}),
-        MenuCategories.find({menuId: menu._id}),
-        MenuItems.find({menuId: menu._id})
+        MenuCategories.find({hotelId: hotelId}),
+        MenuItems.find({hotelId: hotelId})
       ];
     }
   }

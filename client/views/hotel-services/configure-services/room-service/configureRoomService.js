@@ -1,5 +1,6 @@
 Template.configureRoomService.rendered = function () {
   this.$('.timepicker').pickatime({
+    container: '#configure-room-service',
     onSet: function(selection) {
       var minutes = selection.select;
       var controlName = this.$node.attr('name');
@@ -29,6 +30,13 @@ Template.configureRoomService.helpers({
       return '';
     } else {
       return this.configuration.active ? 'checked' : '';
+    }
+  },
+  showClass: function() {
+    if (!this.configuration) {
+      return 'hidden';
+    } else {
+      return this.configuration.active ? 'animated fadeIn' : 'hidden';
     }
   },
   configureServiceAvailabilitySchema: function() {

@@ -107,28 +107,7 @@ Meteor.methods({
   deactivateHotelService: function(serviceType, hotelId) {
     // validate service type
     check(serviceType, String);
-    switch (serviceType) {
-
-      case 'transportation':       
-        break;
-      
-      case 'bellService':         
-        break;
-      
-      case 'houseKeeping': 
-        break;
-
-      case 'wakeUpCall': 
-        break;
-
-      case 'valetServices': 
-        break;
-
-      default: 
-        throw new Meteor.Error(500, serviceType + ' is not a known service type');
-        break;
-
-    }
+    HotelServices.validateRequestType(serviceType);
 
     // validate hotel id
     hotelId = hotelId || Meteor.user().hotelId;
