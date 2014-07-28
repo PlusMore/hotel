@@ -13,6 +13,16 @@ HotelServices.allow({
   }
 });
 
+HotelServices.validateRequestType = function(requestType) {
+  var friendlyRequestType = HotelServices.friendlyRequestType(requestType);
+
+  if (friendlyRequestType === undefined) {
+    throw new Meteor.Error(500, requestType + ' is not a known service type');
+  }
+
+  return !!friendlyRequestType;
+}
+
 HotelServices.friendlyRequestType = function(requestType) {
   switch (requestType) {
     case 'transportation':
@@ -28,10 +38,13 @@ HotelServices.friendlyRequestType = function(requestType) {
       return 'Wake Up Call';
       break;
     case 'valetServices': 
-      return 'Valet Services'
+      return 'Valet Services';
+      break;
+    case 'roomService':
+      return 'Room Service';
       break;
     default: 
-      return 'Invalid Type';
+      return undefined;
       break;
   }
 }
@@ -64,28 +77,7 @@ Meteor.methods({
   activateHotelService: function(serviceType, hotelId) {
     // validate service type
     check(serviceType, String);
-    switch (serviceType) {
-
-      case 'transportation':      
-        break;
-      
-      case 'bellService':         
-        break;
-      
-      case 'houseKeeping': 
-        break;
-
-      case 'wakeUpCall': 
-        break;
-
-      case 'valetServices': 
-        break;
-
-      default: 
-        throw new Meteor.Error(500, serviceType + ' is not a known service type');
-        break;
-
-    }
+    HotelServices.validateRequestType(serviceType);
 
     // validate hotel id
     hotelId = hotelId || Meteor.user().hotelId;

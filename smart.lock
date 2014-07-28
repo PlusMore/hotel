@@ -34,7 +34,8 @@
       "plus-more-icons": {
         "git": "https://github.com/PlusMore/plus-more-icons.git",
         "tag": "v1.1"
-      }
+      },
+      "simple-publish": {}
     },
     "packages": {
       "iron-router": {
@@ -54,8 +55,8 @@
       },
       "autoform": {
         "git": "https://github.com/aldeed/meteor-autoform.git",
-        "tag": "v0.15.3",
-        "commit": "b0574c71d33ea8ecff397b3bf054601fb979e0b8"
+        "tag": "v0.16.1",
+        "commit": "34a447fd3a1b3164c78f865aabbac3ddc2d033fb"
       },
       "fastclick": {
         "git": "https://github.com/percolatestudio/meteor-fastclick",
@@ -64,8 +65,8 @@
       },
       "collection2": {
         "git": "https://github.com/aldeed/meteor-collection2.git",
-        "tag": "v0.4.2",
-        "commit": "4ff4b707bec8be434919730bf101325adb215444"
+        "tag": "v0.4.3",
+        "commit": "cb470de2cfeebeccbf76d4cc0a39ad4afc76d553"
       },
       "inspector": {
         "git": "https://github.com/broth-eu/meteor-inspector.git",
@@ -141,6 +142,11 @@
         "git": "https://github.com/PlusMore/plus-more-icons.git",
         "tag": "v1.1",
         "commit": "7731481318f52ecbecedbee106eaf9162762c527"
+      },
+      "simple-publish": {
+        "git": "https://github.com/copleykj/meteor-simple-publish",
+        "tag": "v1.0.0",
+        "commit": "b58e6a4558a198d33be5b7132f47afd729288861"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

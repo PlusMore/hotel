@@ -99,6 +99,24 @@ Router.map(function() {
     }
   });
 
+  this.route('configureRoomService', {
+    path: '/hotel-services/room-service',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
+        // TODO: Refactor to allow for multiple menus
+        Meteor.subscribe('hotelMenu', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'roomService'})
+      };
+    }
+  });
+
   this.route('configureHouseKeeping', {
     path: '/hotel-services/house-keeping',
     controller: 'HotelServicesController',
