@@ -101,13 +101,13 @@ Meteor.publish('hotelMenu', function(hotelId) {
   if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
     var menu = Menus.find({hotelId: hotelId});
     if (menu) {
-
       return [
         Menus.find({hotelId: hotelId}),
         MenuCategories.find({menuId: menu._id}),
         MenuItems.find({menuId: menu._id})
       ];
     }
+  }
 });
 
 // Orders
