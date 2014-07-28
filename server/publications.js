@@ -93,6 +93,23 @@ Meteor.publish('hotelService', function(serviceType, hotelId) {
   }
 });
 
+Meteor.publish('hotelMenu', function(hotelId) {
+  var userId = this.userId,
+      user = Meteor.users.findOne(userId);
+      
+  hotelId = hotelId || user.hotelId;
+  if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
+    var menu = Menus.find({hotelId: hotelId});
+    if (menu) {
+
+      return [
+        Menus.find({hotelId: hotelId}),
+        MenuCategories.find({menuId: menu._id}),
+        MenuItems.find({menuId: menu._id})
+      ];
+    }
+});
+
 // Orders
 Meteor.publish("openPatronOrders", function(hotelId) {
   var userId = this.userId,
