@@ -1,0 +1,33 @@
+<template name="menuCategory">
+  <div id='menu-categories' class="modal-content inline">
+    <div class="modal-header">
+      <h4 class="modal-title">
+        {{name}}
+        <small>
+          {{#if startTime}}
+            {{startTime}} - {{endTime}}
+          {{/if}}
+        </small>
+      </h4>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Description</h4>
+          {{description}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Menu Items</h4>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <a href="{{pathFor 'editMenuCategory'}}" class="btn btn-default btn-lg">Edit</a>
+    </div>
+  </div><!-- /.modal-content -->  
+</template>

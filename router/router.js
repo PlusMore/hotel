@@ -117,6 +117,25 @@ Router.map(function() {
     }
   });
 
+  this.route('editMenuCategory', {
+    path: '/hotel-services/room-service/edit-menu-category/:_id',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
+        // TODO: Refactor to allow for multiple menus
+        Meteor.subscribe('hotelMenu', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'roomService'}),
+        menuCategory: MenuCategories.findOne(this.params._id),
+      };
+    }
+  });
+
   this.route('configureHouseKeeping', {
     path: '/hotel-services/house-keeping',
     controller: 'HotelServicesController',

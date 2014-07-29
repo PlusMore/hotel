@@ -1,4 +1,11 @@
 Template.newMenuCategoryModal.helpers({
+  isVisible: function() {
+    if (Session.get('showNewMenuCategoryModal')) {
+      return true;
+    } else {
+      return false;
+    }
+  }, 
   isVisibleClass: function() {
     if (Session.get('showNewMenuCategoryModal')) {
       return 'show in';
