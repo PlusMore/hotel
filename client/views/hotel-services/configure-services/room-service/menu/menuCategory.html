@@ -4,8 +4,11 @@
       <h4 class="modal-title">
         {{name}}
         <small>
+          Available
           {{#if startTime}}
-            {{startTime}} - {{endTime}}
+          {{startTime}} - {{endTime}}
+          {{else}}
+          Anytime
           {{/if}}
         </small>
       </h4>

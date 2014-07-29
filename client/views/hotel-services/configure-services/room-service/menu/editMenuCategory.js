@@ -1,3 +1,19 @@
+Template.editMenuCategory.rendered = function () {
+  this.$('.timepicker').pickatime({
+    container: '#edit-menu-category',
+    onSet: function(selection) {
+      var minutes = selection.select;
+      var controlName = this.$node.attr('name');
+      var $form = this.$node.closest('form');
+      if (controlName === 'startTime') {
+        $form.find('[name=startMinutes]').val(minutes);
+      } else if (controlName === 'endTime') {
+        $form.find('[name=endMinutes]').val(minutes);
+      }
+    }
+  });
+};
+
 Template.editMenuCategory.helpers({
   menuCategoryAvailabilitySchema: function() {
     return Schema.menuCategoryAvailability;
@@ -6,9 +22,6 @@ Template.editMenuCategory.helpers({
     return Schema.menuCategoryDescriptionSchema;
   }
 });
-
-
-
 
 AutoForm.hooks({
   editMenuCategory: {
@@ -21,6 +34,9 @@ AutoForm.hooks({
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
     onError: function(operation, error, template) {
+      if (operation !== 'validation') {
+        Errors.throw(error.message);
+      }
       console.log('error');
     },
 
@@ -49,6 +65,9 @@ AutoForm.hooks({
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
     onError: function(operation, error, template) {
+      if (operation !== 'validation') {
+        Errors.throw(error.message);
+      }
       console.log('error');
     },
 

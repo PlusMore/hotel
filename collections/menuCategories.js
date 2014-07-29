@@ -13,6 +13,24 @@ Schema.MenuCategory = new SimpleSchema({
   },
   hotelId: {
     type: String
+  },
+  startTime: {
+    type: String,
+    label: 'Start Time',
+    optional: true
+  },
+  endTime: {
+    type: String,
+    label: 'End Time',
+    optional: true
+  },
+  startMinutes: {
+    type: Number,
+    optional: true
+  },
+  endMinutes: {
+    type: Number,
+    optional: true
   }
 });
 
@@ -67,7 +85,7 @@ Schema.menuCategoryDescriptionSchema = new SimpleSchema({
 
 Meteor.methods({
   configureMenuCategoryAvailability: function(menuCategoryAvailabilityConfiguration) {
-    check(menuCategoryAvailabilityConfiguration, Schema.configureServiceAvailability);
+    check(menuCategoryAvailabilityConfiguration, Schema.menuCategoryAvailability);
 
     return MenuCategories.update(menuCategoryAvailabilityConfiguration._id, {
       $set: _.omit(menuCategoryAvailabilityConfiguration, '_id')
@@ -77,6 +95,6 @@ Meteor.methods({
     check(description, Schema.menuCategoryDescriptionSchema);
     return MenuCategories.update(description._id, {
       $set: _.omit(description, '_id')
-    });
+    }, {validate: false});
   }
 })
