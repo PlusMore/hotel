@@ -18,7 +18,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <div class="pull-right">
+              <a href="#" class="icon icon-x" data-dismiss="modal"></a>
+            </div>
             <h2 class="modal-title">Add Menu Category</h2>
           </div>
           {{#autoForm collection='MenuCategories' id='newMenuCategory' type='insert'}}
