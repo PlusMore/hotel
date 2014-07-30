@@ -96,5 +96,41 @@ Meteor.methods({
     return MenuCategories.update(description._id, {
       $set: _.omit(description, '_id')
     }, {validate: false});
+  },
+  activateMenuCategory: function(menuCategoryId) {
+    // validate 
+    check(menuCategoryId, String);
+    var menuCategory = MenuCategories.findOne(menuCategoryId);
+
+    if (menuCategory) {
+
+      // upsert (insert or update if exists) active menuCategory service
+      return MenuCategories.update(
+        menuCategoryId, 
+        {$set:{
+          active: true
+        }}
+      );  
+    } else {
+      throw new Meteor.Error(500, 'Not a valid Menu Category.');
+    }
+  },
+  deactivateMenuCategory: function(menuCategoryId) {
+    // validate 
+    check(menuCategoryId, String);
+    var menuCategory = MenuCategories.findOne(menuCategoryId);
+
+    if (menuCategory) {
+
+      // upsert (insert or update if exists) active menuCategory service
+      return MenuCategories.update(
+        menuCategoryId, 
+        {$set:{
+          active: false
+        }}
+      );  
+    } else {
+      throw new Meteor.Error(500, 'Not a valid Menu Category.');
+    }
   }
-})
+});

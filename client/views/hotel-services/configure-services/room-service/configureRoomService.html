@@ -47,7 +47,8 @@
       </div>
     </div>    
 
-    <div class="row">
+    {{#if configuration.active}}
+    <div class="row {{showClass}}">
       <div class="col-md-12">
         {{> menuCategories}}
       </div>
@@ -58,5 +59,6 @@
         {{> addMenuCategory}}
       </div>
     </div>    
+    {{/if}}
   </div>
 </template>
