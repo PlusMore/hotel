@@ -1,7 +1,7 @@
 <template name="configureRoomService">
-  <div id='configure-room-service' class="col-md-9 col-md-offset-3">
+  <div id='configure-room-service' class="col-sm-9 col-sm-offset-3">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-sm-12">
         <div class="modal-content inline {{isActivatedClass}}">
           <div class="modal-header">
             <h3 class="modal-title">
@@ -19,7 +19,7 @@
             {{#autoForm schema=configureServiceAvailabilitySchema id='configureServiceAvailability' doc=this type="method" meteormethod="configureServiceAvailability"}}
             <div class="modal-body">
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                   <h4>Availability</h4>
                   <p>
                     The default configuration for this service is to be available 24/7. You may optionally configure start and end times for this service by selecting times below.
@@ -28,11 +28,11 @@
               </div>
               <div class="row">
                 {{> afFieldInput name='_id' type='hidden'}}
-                <div class="col-md-6 picker-container with-vertical-label">
+                <div class="col-sm-6 picker-container with-vertical-label">
                   {{> afQuickField name='startTime' class='timepicker'}}
                   {{> afFieldInput name="startMinutes" type="hidden"}}
                 </div>
-                <div class="col-md-6 picker-container with-vertical-label">
+                <div class="col-sm-6 picker-container with-vertical-label">
                   {{> afQuickField name='endTime' class='timepicker'}}
                   {{> afFieldInput name="endMinutes" type="hidden"}}
                 </div>  
@@ -49,13 +49,13 @@
 
     {{#if configuration.active}}
     <div class="row {{showClass}}">
-      <div class="col-md-12">
+      <div class="col-sm-12">
         {{> menuCategories}}
       </div>
     </div>
 
     <div class="row {{showClass}}">
-      <div class="col-md-12">
+      <div class="col-sm-12">
         {{> addMenuCategory}}
       </div>
     </div>    

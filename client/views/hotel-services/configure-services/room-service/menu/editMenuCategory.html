@@ -8,6 +8,13 @@
           <div class="modal-header">
             <h3 class="modal-title">
               {{name}}
+              <div class="onoffswitch pull-right">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="category-switch" {{isChecked}}>
+                <label class="onoffswitch-label" for="category-switch">
+                    <span class="onoffswitch-inner"></span>
+                    <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
             </h3>
           </div>
 
