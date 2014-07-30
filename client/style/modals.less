@@ -1,20 +1,39 @@
+.modal-backdrop.in {
+  opacity: .9;
+}
+
 .modal {
-  color: #000;
+  color: #fff;
 
   &.in {
     display: block;
   }
 
   .modal-dialog {
-    margin-top: 65px;
+    margin-top: 100px;
 
     .modal-content {
-      background: rgba(255,255,255,.92);
+      background: transparent;
 
       a, span, legend {
-        color: #000;
+        color: #fff;
       }
     }
+  }
+
+  .modal-footer {
+    
+    .btn {
+      font-size: 16px;
+      padding: 6px 20px;
+      font-weight: 200;
+      letter-spacing: 1px;
+      &.btn-cancel {
+        background: transparent;
+        color: #fff;
+      }
+    }
+
   }
 
   
@@ -24,7 +43,7 @@
   }
 
   .has-error .control-label {
-    color: #000;
+    color: #fff;
   }
 }
 

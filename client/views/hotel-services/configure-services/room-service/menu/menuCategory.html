@@ -22,17 +22,18 @@
     </div>
 
     <div class="modal-body">
+      {{#if description}}
       <div class="row">
         <div class="col-md-12">
-          <h4>Description</h4>
-          {{description}}
+          <p>{{description}}</p>
         </div>
       </div>
+      {{/if}}
       <div class="row">
         <div class="col-md-12">
-          <h4>Menu Items</h4>
-          {{> menuItems}}
+          <h4>Menu Items</h4>  
         </div>
+        {{> menuItems}}
       </div>
     </div>
 
