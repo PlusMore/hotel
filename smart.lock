@@ -2,8 +2,8 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "iron-router": {},
       "bootstrap-3": {},
+      "iron-router": {},
       "roles": {},
       "autoform": {},
       "fastclick": {},
@@ -20,34 +20,30 @@
       },
       "migrations": {},
       "googlemaps": {},
-      "tags": {
-        "git": "https://github.com/apendua/meteor-tags.git",
-        "branch": "simple-ui"
-      },
       "selectize": {},
       "bootstrap-errors": {},
-      "iron-transitioner": {
-        "git": "https://github.com/percolatestudio/iron-transitioner.git",
-        "branch": "blaze"
-      },
       "accounts-ui-bootstrap-3": {},
       "plus-more-icons": {
         "git": "https://github.com/PlusMore/plus-more-icons.git",
         "tag": "v1.1"
       },
+      "tags": {
+        "git": "https://github.com/patrickleet/meteor-tags.git",
+        "tag": "v1.3"
+      },
       "simple-publish": {},
       "animate-css": {}
     },
     "packages": {
-      "iron-router": {
-        "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.7.1",
-        "commit": "d1ffb3f06ea4c112132b030f2eb1a70b81675ecb"
-      },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
         "tag": "v3.2.0-1",
         "commit": "17a63902fc6cf1096c5289d963c66cf28b474727"
+      },
+      "iron-router": {
+        "git": "https://github.com/EventedMind/iron-router.git",
+        "tag": "v0.8.1",
+        "commit": "74e867557fd9cb81173e048e5f81cf4a0a1160a8"
       },
       "roles": {
         "git": "https://github.com/alanning/meteor-roles.git",
@@ -114,11 +110,6 @@
         "tag": "v0.0.2",
         "commit": "da8785c82cfd7de0111f898ef10728e7ed24e361"
       },
-      "tags": {
-        "git": "https://github.com/apendua/meteor-tags.git",
-        "branch": "simple-ui",
-        "commit": "e0919b349128ed5bcf00996c4f3d494879bebe9a"
-      },
       "selectize": {
         "git": "https://github.com/andrewreedy/meteor-selectize.git",
         "tag": "v0.0.1",
@@ -128,11 +119,6 @@
         "git": "https://github.com/lezed1/meteor-bootstrap-errors.git",
         "tag": "v0.3.1",
         "commit": "f85d792683a423bfb6747460d4516b7404871260"
-      },
-      "iron-transitioner": {
-        "git": "https://github.com/percolatestudio/iron-transitioner.git",
-        "branch": "blaze",
-        "commit": "5ec6137bef1ed42606465c939aed937669c984e7"
       },
       "accounts-ui-bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
@@ -144,6 +130,11 @@
         "tag": "v1.1",
         "commit": "7731481318f52ecbecedbee106eaf9162762c527"
       },
+      "tags": {
+        "git": "https://github.com/patrickleet/meteor-tags.git",
+        "tag": "v1.3",
+        "commit": "909efb275c640ef38ef70e39df3a9b119e453728"
+      },
       "simple-publish": {
         "git": "https://github.com/copleykj/meteor-simple-publish",
         "tag": "v1.0.0",
@@ -154,10 +145,10 @@
         "tag": "v3.1.1",
         "commit": "59ce70b99dff5bc3d1227b789eefa43a761db158"
       },
-      "blaze-layout": {
-        "git": "https://github.com/EventedMind/blaze-layout.git",
-        "tag": "v0.2.4",
-        "commit": "b40e9b0612329288d75cf52ad14a7da64bb8618f"
+      "iron-layout": {
+        "git": "https://github.com/EventedMind/iron-layout.git",
+        "tag": "v0.2.0",
+        "commit": "4a2d53e35ba036b0c189c7ceca34be494d4c6c97"
       },
       "simple-schema": {
         "git": "https://github.com/aldeed/meteor-simple-schema.git",
@@ -178,6 +169,21 @@
         "git": "https://github.com/Differential/simple-form.git",
         "tag": "v0.1.8",
         "commit": "1ea0d3621b333e6f24f37e0e93efd3c081068716"
+      },
+      "blaze-layout": {
+        "git": "https://github.com/EventedMind/blaze-layout.git",
+        "tag": "v0.2.5",
+        "commit": "273e3ab7d005d91a1a59c71bd224533b4dae2fbd"
+      },
+      "iron-core": {
+        "git": "https://github.com/EventedMind/iron-core.git",
+        "tag": "v0.2.0",
+        "commit": "0e48b5dc50d03f01025b7b900fb5ce2f13d52cad"
+      },
+      "iron-dynamic-template": {
+        "git": "https://github.com/EventedMind/iron-dynamic-template.git",
+        "tag": "v0.2.1",
+        "commit": "4dd1185c4d9d616c9abdb3f33e4a7d5a88db7e18"
       },
       "underscore-string-latest": {
         "git": "https://github.com/TimHeckel/meteor-underscore-string.git",

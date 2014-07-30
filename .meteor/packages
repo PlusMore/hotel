@@ -4,7 +4,6 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-iron-router
 accounts-base
 accounts-password
 bootstrap-3
@@ -29,12 +28,12 @@ pickadate
 geocoder
 migrations
 googlemaps
-tags
 selectize
 bootstrap-errors
-iron-transitioner
 accounts-ui-bootstrap-3
 coffeescript
 plus-more-icons
 simple-publish
 animate-css
+iron-router
+tags

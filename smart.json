@@ -1,8 +1,8 @@
 {
   "meteor": {},
   "packages": {
-    "iron-router": {},
     "bootstrap-3": {},
+    "iron-router": {},
     "roles": {},
     "autoform": {},
     "fastclick": {},
@@ -18,20 +18,16 @@
     },
     "migrations": {},
     "googlemaps": {},
-    "tags": {
-      "git": "https://github.com/apendua/meteor-tags.git",
-      "branch": "simple-ui"
-    },
     "selectize": {},
     "bootstrap-errors": {},
-    "iron-transitioner": {
-      "git": "https://github.com/percolatestudio/iron-transitioner.git",
-      "branch": "blaze"
-    },
     "accounts-ui-bootstrap-3": {},
     "plus-more-icons": {
       "git": "https://github.com/PlusMore/plus-more-icons.git",
       "tag": "v1.1"
+    },
+    "tags": {
+      "git": "https://github.com/patrickleet/meteor-tags.git",
+      "tag": "v1.3"
     },
     "simple-publish": {},
     "animate-css": {}
