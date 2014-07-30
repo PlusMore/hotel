@@ -89,7 +89,7 @@ Meteor.methods({
 
     return MenuCategories.update(menuCategoryAvailabilityConfiguration._id, {
       $set: _.omit(menuCategoryAvailabilityConfiguration, '_id')
-    });
+    }, {validate: false});
   },
   editMenuCategoryDescription: function(description) {
     check(description, Schema.menuCategoryDescriptionSchema);
@@ -109,7 +109,8 @@ Meteor.methods({
         menuCategoryId, 
         {$set:{
           active: true
-        }}
+        }},
+        {validate: false}
       );  
     } else {
       throw new Meteor.Error(500, 'Not a valid Menu Category.');
@@ -127,7 +128,8 @@ Meteor.methods({
         menuCategoryId, 
         {$set:{
           active: false
-        }}
+        }},
+        {validate: false}
       );  
     } else {
       throw new Meteor.Error(500, 'Not a valid Menu Category.');
