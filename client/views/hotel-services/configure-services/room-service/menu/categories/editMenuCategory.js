@@ -1,6 +1,19 @@
 Template.editMenuCategory.rendered = function () {
+  var roomServiceConfiguartion = this.data.serviceConfiguration;
+
+  var startTime = moment().startOf('day');
+  if (roomServiceConfiguartion.startMinutes) {
+    startTime = startTime.minutes(roomServiceConfiguartion.startMinutes);
+  }
+  var endTime = moment().endOf('day');
+  if (roomServiceConfiguartion.endMinutes) {
+    endTime = moment().startOf('day').minutes(roomServiceConfiguartion.endMinutes);
+  }
+
   this.$('.timepicker').pickatime({
     container: '#edit-menu-category',
+    min: startTime.toDate(),
+    max: endTime.toDate(),
     onSet: function(selection) {
       var minutes = selection.select;
       var controlName = this.$node.attr('name');

@@ -30,6 +30,7 @@
       "tag": "v1.3"
     },
     "simple-publish": {},
-    "animate-css": {}
+    "animate-css": {},
+    "bootboxjs": {}
   }
 }

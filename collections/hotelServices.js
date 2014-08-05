@@ -139,5 +139,20 @@ Meteor.methods({
     return HotelServices.update(serviceAvailabilityConfiguration._id, {
       $set: _.omit(serviceAvailabilityConfiguration, '_id')
     });
+  },
+  resetServiceAvailability: function(serviceId) {
+    check(serviceId, String);
+
+    return HotelServices.update(
+      serviceId, 
+      {
+        $unset: {
+          startTime: 1,
+          endTime: 1,
+          startMinutes: 1,
+          endMinutes: 1
+        }
+      } 
+    );
   }
 });

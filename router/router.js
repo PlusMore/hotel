@@ -130,7 +130,7 @@ Router.map(function() {
     },
     data: function() {
       return {
-        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'roomService'}),
+        serviceConfiguration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'roomService'}),
         menuCategory: MenuCategories.findOne(this.params._id),
       };
     }
@@ -142,6 +142,7 @@ Router.map(function() {
     waitOn: function() {
       return [
         Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
         Meteor.subscribe('menuItem', this.params._id)
       ];
     },

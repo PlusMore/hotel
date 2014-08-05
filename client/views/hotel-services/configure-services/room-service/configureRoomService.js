@@ -15,7 +15,7 @@ Template.configureRoomService.rendered = function () {
 };
 
 Template.configureRoomService.helpers({
-  isActivatedClass: function () {
+  isActivatedClass: function() {
     // if not configured, return inactive
     if (!this.configuration) {
       return 'inactive';
@@ -45,7 +45,7 @@ Template.configureRoomService.helpers({
 });
 
 Template.configureRoomService.events({
-  'change #service-switch': function (e, tmpl) {
+  'change #service-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
       console.log('on');
       Meteor.call('activateHotelService', 'roomService', Session.get('hotelId'));
@@ -53,5 +53,26 @@ Template.configureRoomService.events({
       console.log('off');
       Meteor.call('deactivateHotelService', 'roomService', Session.get('hotelId'));
     }
+  },
+  'click .btn-reset': function(e, tmpl) {
+    var that = this;
+    
+    bootbox.dialog({
+      message: "This will reset the availibilty of this service to it's default settings of anytime.",
+      title: "Reset Availability",
+      buttons: {
+        cancel: {
+          label: "Cancel",
+          className: "btn-cancel"
+        },
+        main: {
+          label: "Reset Availability",
+          className: "btn-default",
+          callback: function() {
+            Meteor.call('resetServiceAvailability', that._id);
+          }
+        }
+      }
+    }); 
   }
 });
