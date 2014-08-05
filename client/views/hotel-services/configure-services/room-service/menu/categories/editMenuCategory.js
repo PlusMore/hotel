@@ -51,6 +51,27 @@ Template.editMenuCategory.events({
       console.log('off');
       Meteor.call('deactivateMenuCategory', this._id);
     }
+  },
+  'click .btn-reset-availability': function(e, tmpl) {
+    var that = this;
+    
+    bootbox.dialog({
+      message: "This will reset the availibilty of this category to it's default settings of anytime that room service is available.",
+      title: "Reset Availability",
+      buttons: {
+        cancel: {
+          label: "Cancel",
+          className: "btn-cancel"
+        },
+        main: {
+          label: "Reset Availability",
+          className: "btn-default",
+          callback: function() {
+            Meteor.call('resetCategoryAvailability', that._id);
+          }
+        }
+      }
+    }); 
   }
 });
 

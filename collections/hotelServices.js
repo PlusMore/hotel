@@ -146,11 +146,11 @@ Meteor.methods({
     return HotelServices.update(
       serviceId, 
       {
-        $unset: {
-          startTime: 1,
-          endTime: 1,
-          startMinutes: 1,
-          endMinutes: 1
+        $set: {
+          startTime: undefined,
+          endTime: undefined,
+          startMinutes: undefined,
+          endMinutes: undefined
         }
       } 
     );

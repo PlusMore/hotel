@@ -17,26 +17,26 @@ Template.configureRoomService.rendered = function () {
 Template.configureRoomService.helpers({
   isActivatedClass: function() {
     // if not configured, return inactive
-    if (!this.configuration) {
+    if (!this) {
       return 'inactive';
     } else {
-      return this.configuration.active ? 'active' : 'inactive';
+      return this.active ? 'active' : 'inactive';
     }
   },
   isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''
     // if not configured, return ''
-    if (!this.configuration) {
+    if (!this) {
       return '';
     } else {
-      return this.configuration.active ? 'checked' : '';
+      return this.active ? 'checked' : '';
     }
   },
   showClass: function() {
-    if (!this.configuration) {
+    if (!this) {
       return 'hidden';
     } else {
-      return this.configuration.active ? 'animated fadeIn' : 'hidden';
+      return this.active ? 'animated fadeIn' : 'hidden';
     }
   },
   configureServiceAvailabilitySchema: function() {
@@ -47,10 +47,8 @@ Template.configureRoomService.helpers({
 Template.configureRoomService.events({
   'change #service-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
-      console.log('on');
       Meteor.call('activateHotelService', 'roomService', Session.get('hotelId'));
     } else {
-      console.log('off');
       Meteor.call('deactivateHotelService', 'roomService', Session.get('hotelId'));
     }
   },

@@ -134,5 +134,21 @@ Meteor.methods({
     } else {
       throw new Meteor.Error(500, 'Not a valid Menu Category.');
     }
+  },
+  resetCategoryAvailability: function(categoryId) {
+    check(categoryId, String);
+
+    return MenuCategories.update(
+      categoryId, 
+      {
+        $set: {
+          startTime: undefined,
+          endTime: undefined,
+          startMinutes: undefined,
+          endMinutes: undefined
+        }
+      },
+      {validate: false} 
+    );
   }
 });
