@@ -23,4 +23,23 @@
   &:hover, &:focus, &:active {
     color: #000;
   }
+
+  &.editable {
+    &:after {
+      *margin-right: .3em;
+      
+      font-family: "plusmore" !important;
+      font-style: normal !important;
+      font-weight: normal !important;
+      font-variant: normal !important;
+      text-transform: none !important;
+      content: 'r';
+      speak: none;
+      margin-left: 5px;
+      position: relative;
+      top: 1px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale; 
+    }
+  }
 }
