@@ -1,30 +1,31 @@
 <template name="configureWakeUpCall">
-  {{#with configuration}}
-    <div class="col-md-9 col-md-offset-3">
+  <div class="col-md-9 col-md-offset-3">
 
-      <div class="modal-content inline {{isActivatedClass}}">
-        <div class="modal-header">
-          <h3 class="modal-title">
-            Wake Up Call
-            <small>
-              Available
-              {{#if startTime}}
-                {{startTime}} - {{endTime}}
-              {{else}}
-                Anytime
-              {{/if}}
-            </small>
-            <div class="onoffswitch pull-right">
-              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="service-switch" {{isChecked}}>
-              <label class="onoffswitch-label" for="service-switch">
-                  <span class="onoffswitch-inner"></span>
-                  <span class="onoffswitch-switch"></span>
-              </label>
-            </div>
-          </h3>
-        </div>
+    <div class="modal-content inline {{isActivatedClass}}">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          Wake Up Call
+          {{#with configuration}}
+          <small>
+            Available
+            {{#if startTime}}
+              {{startTime}} - {{endTime}}
+            {{else}}
+              Anytime
+            {{/if}}
+          </small>
+          {{/with}}
+          <div class="onoffswitch pull-right">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="service-switch" {{isChecked}}>
+            <label class="onoffswitch-label" for="service-switch">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
+        </h3>
+      </div>
 
-        
+      {{#with configuration}}
         {{#autoForm schema=configureServiceAvailabilitySchema id='configureServiceAvailability' doc=this type="method" meteormethod="configureServiceAvailability"}}
           <div class="modal-body">
             <div class="row">
@@ -51,9 +52,8 @@
             <button type="submit" class="btn btn-default btn-lg">Save</button>
           </div>
         {{/autoForm}}
-        
-      </div><!-- /.modal-content -->
+      {{/with}}
+    </div><!-- /.modal-content -->
 
-    </div>
-  {{/with}}
+  </div>
 </template>

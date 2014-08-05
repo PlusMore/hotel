@@ -1,11 +1,12 @@
 <template name="configureHouseKeeping">
-  {{#with configuration}}
+  
     <div class="col-md-9 col-md-offset-3">
 
       <div class="modal-content inline {{isActivatedClass}}">
         <div class="modal-header">
           <h3 class="modal-title">
             House Keeping
+            {{#with configuration}}
             <small>
               Available
               {{#if startTime}}
@@ -14,6 +15,7 @@
                 Anytime
               {{/if}}
             </small>
+            {{/with}}
             <div class="onoffswitch pull-right">
               <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="service-switch" {{isChecked}}>
               <label class="onoffswitch-label" for="service-switch">
@@ -24,7 +26,7 @@
           </h3>
         </div>
 
-        
+      {{#with configuration}}  
         {{#autoForm schema=configureServiceAvailabilitySchema id='configureServiceAvailability' doc=this type="method" meteormethod="configureServiceAvailability"}}
           <div class="modal-body">
             <div class="row">
@@ -51,9 +53,9 @@
             <button type="submit" class="btn btn-default btn-lg">Save</button>
           </div>
         {{/autoForm}}
-        
+      {{/with}}
       </div><!-- /.modal-content -->
 
     </div>
-  {{/with}}
+
 </template>

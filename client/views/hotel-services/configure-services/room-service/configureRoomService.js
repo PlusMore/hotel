@@ -17,26 +17,26 @@ Template.configureRoomService.rendered = function () {
 Template.configureRoomService.helpers({
   isActivatedClass: function() {
     // if not configured, return inactive
-    if (!this) {
+    if (!this.configuration) {
       return 'inactive';
     } else {
-      return this.active ? 'active' : 'inactive';
+      return this.configuration.active ? 'active' : 'inactive';
     }
   },
   isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''
     // if not configured, return ''
-    if (!this) {
+    if (!this.configuration) {
       return '';
     } else {
-      return this.active ? 'checked' : '';
+      return this.configuration.active ? 'checked' : '';
     }
   },
   showClass: function() {
-    if (!this) {
+    if (!this.configuration) {
       return 'hidden';
     } else {
-      return this.active ? 'animated fadeIn' : 'hidden';
+      return this.configuration.active ? 'animated fadeIn' : 'hidden';
     }
   },
   configureServiceAvailabilitySchema: function() {
