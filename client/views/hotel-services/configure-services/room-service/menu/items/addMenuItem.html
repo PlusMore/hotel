@@ -1,0 +1,36 @@
+<template name="addMenuItem">
+  <a href="#" class='btn btn-default' id='add-menu-item'>Add Menu Item</a>
+  {{> newMenuItemModal}} 
+</template>
+
+<template name="newMenuItemModal">
+  {{#if isVisible}}
+    <div class="modal-backdrop fade {{isVisibleClass}}"></div>
+    <div class="modal fade {{isVisibleClass}}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="pull-right">
+              <a href="#" class="icon icon-x" data-dismiss="modal"></a>
+            </div>
+            <h2 class="modal-title">Add {{name}} Menu Item</h2>
+          </div>
+          {{#autoForm collection='MenuItems' id='newMenuItem' type='insert'}}
+            <div class="modal-body">
+              {{> afFieldInput name='menuCategoryId' type='hidden' value=menuCategoryId}}
+              <div class="row">
+                <div class="col-xs-7">{{> afQuickField name='name'}}</div>
+                <div class="col-xs-5">{{> afQuickField name='price'}}</div>
+              </div>
+              {{> afQuickField name='description' rows=3}}
+            </div>
+            <div class="modal-footer">
+              <a class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+              <button type="submit" class="btn btn-default">Add Item</button>
+            </div>
+          {{/autoForm}}
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  {{/if}}
+</template>

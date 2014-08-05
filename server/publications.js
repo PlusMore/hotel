@@ -17,7 +17,7 @@ Meteor.publish('userHotelData', function () {
       return [
         Meteor.users.find({_id: userId}, {fields: fields}),
         Hotels.find({_id: hotelId})
-      ]
+      ];
     } else {
       this.ready();
       return null;
@@ -31,14 +31,15 @@ Meteor.publish('userHotelData', function () {
 // Tags
 
 Meteor.publish('tags', function(collectionName) {
-  return Meteor.tags.find({collection: collectionName})
+  return Meteor.tags.find({collection: collectionName});
 });
 
 // Devices
 Meteor.publish('devicesForHotel', function(hotelId) {
   var userId = this.userId,
-      user = Meteor.users.findOne(userId),
-      hotelId = hotelId || user.hotelId;
+      user = Meteor.users.findOne(userId);
+
+  hotelId = hotelId || user.hotelId;
 
   return Devices.find({hotelId: hotelId}, {
     fields: {
@@ -101,10 +102,17 @@ Meteor.publish('hotelMenu', function(hotelId) {
   if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
     var hotel = Hotels.find(hotelId);
     if (hotel) {
-      return [
-        MenuCategories.find({hotelId: hotelId}),
-        MenuItems.find({hotelId: hotelId})
-      ];
+
+      var publication = new SimplePublication({
+        subHandle: this,
+        collection: MenuCategories,
+        selector: {hotelId: hotelId},
+        dependant: new SimplePublication({
+          subHandle: this,
+          collection: MenuItems,
+          foreignKey: 'menuCategoryId'
+        })
+      }).start();
     }
   }
 });
@@ -123,7 +131,7 @@ Meteor.publish("openPatronOrders", function(hotelId) {
     if (hotel) {
       return [
         Orders.find({hotelId: hotelId})
-      ]
+      ];
     } 
   }
 
@@ -134,5 +142,5 @@ Meteor.publish('patronOrder', function(id) {
   return [
     Orders.find(id),
     Experiences.find(order.reservation.experienceId)
-  ] 
+  ];
 });

@@ -30,15 +30,12 @@
       </div>
       {{/if}}
       <div class="row">
-        <div class="col-md-12">
-          <h4>Menu Items</h4>  
-        </div>
         {{> menuItems}}
       </div>
     </div>
 
     <div class="modal-footer">
-      <a href="{{pathFor 'editMenuCategory'}}" class="btn btn-default btn-lg">Edit</a>
+      <a href="{{pathFor 'editMenuCategory'}}" class="btn btn-default btn-lg">Edit {{name}} Category</a>
     </div>
   </div><!-- /.modal-content -->  
 </template>

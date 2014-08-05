@@ -15,16 +15,21 @@ MenuItems.allow({
 Schema.menuItem = new SimpleSchema({
   name: {
     type: String,
-    label: "Category Name",
+    label: "Item Name",
     max: 200
   },
   price: {
     type: Number,
-    min: 0
+    min: 0,
+    label: "Price ($)"
   },
   description: {
     type: String,
-    label: 'Description'
+    label: 'Description (optional)',
+    optional: true
+  },
+  menuCategoryId: {
+    type: String
   }
 });
 
