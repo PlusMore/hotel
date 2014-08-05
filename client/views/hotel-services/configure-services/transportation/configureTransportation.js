@@ -16,19 +16,19 @@ Template.configureTransportation.rendered = function () {
 Template.configureTransportation.helpers({
   isActivatedClass: function () {
     // if not configured, return inactive
-    if (!this.configuration) {
+    if (!this) {
       return 'inactive';
     } else {
-      return this.configuration.active ? 'active' : 'inactive';
+      return this.active ? 'active' : 'inactive';
     }
   },
   isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''
     // if not configured, return ''
-    if (!this.configuration) {
+    if (!this) {
       return '';
     } else {
-      return this.configuration.active ? 'checked' : '';
+      return this.active ? 'checked' : '';
     }
   },
   configureServiceAvailabilitySchema: function() {
