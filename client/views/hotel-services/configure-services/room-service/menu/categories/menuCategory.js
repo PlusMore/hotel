@@ -7,7 +7,8 @@ Template.menuCategory.helpers({
 });
 
 Template.menuCategory.events({
-  'change #category-switch': function (e, tmpl) {
+  'change [name=onoffswitch]': function (e, tmpl) {
+    debugger;
     if (tmpl.$(e.currentTarget).prop('checked')) {
       console.log('on');
       Meteor.call('activateMenuCategory', this._id);
