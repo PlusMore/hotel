@@ -8,7 +8,7 @@ Template.newMenuItemModal.helpers({
   }, 
   isVisibleClass: function() {
     if (Session.get('showNewMenuItemModal')) {
-      return 'show in';
+      return 'show in animated fadeInDown';
     } else {
       return 'hidden';
     }

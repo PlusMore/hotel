@@ -8,7 +8,7 @@ Template.newMenuCategoryModal.helpers({
   }, 
   isVisibleClass: function() {
     if (Session.get('showNewMenuCategoryModal')) {
-      return 'show in';
+      return 'show in animated fadeInDown';
     } else {
       return 'hidden';
     }
