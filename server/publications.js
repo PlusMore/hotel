@@ -140,16 +140,16 @@ Meteor.publish("openPatronOrders", function(hotelId) {
   if (user) {
     hotelId = hotelId || user.hotelId;
 
-    if (hotelId)
-        hotel = Hotels.findOne(hotelId);
+    if (hotelId) {
+      hotel = Hotels.findOne(hotelId);
 
-    if (hotel) {
-      return [
-        Orders.find({hotelId: hotelId})
-      ];
-    } 
+      if (hotel) {
+        return [
+          Orders.find({hotelId: hotelId})
+        ];
+      } 
+    }
   }
-
 });
 
 Meteor.publish('patronOrder', function(id) {
