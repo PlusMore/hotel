@@ -3,18 +3,26 @@
 .modal-content.inline {
   box-shadow: none;
   background-color: rgba(0,0,0,.4);
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 
   .modal-header {
-    border-bottom: 1px solid rgba(255,255,255,.5);
+    border-bottom: none;
     h1, h2, h3, h4, h5, h6 {
       font-weight: 100;
       letter-spacing: 1px;
+      small {
+        color: #fff;
+        font-weight: 100;
+        letter-spacing: .5px;
+        border-left: 1px solid #fff;
+        padding-left: 10px;
+        margin-left: 5px;
+      }
     }
   }
 
   .modal-body {
-    border-bottom: none;
+    border-top: 1px solid rgba(255,255,255,.5);
   }
 
   .modal-footer {
@@ -25,6 +33,19 @@
       padding: 6px 20px;
       font-weight: 200;
       letter-spacing: 1px;
+    }
+
+    .btn-reset {
+      color: #fff;
+      &:hover, &:active, &:focus {
+        color: #fff;
+      }
+    }
+
+    &.not-bottom {
+      border-top: none;
+      border-bottom: none;
+      border-radius: none;
     }
   }
 

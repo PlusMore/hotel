@@ -60,7 +60,7 @@ Router.map(function() {
     data: function() {
       return {
         hotel: Hotels.findOne(Session.get('hotelId'))
-      }
+      };
     }
   });
 
@@ -79,7 +79,7 @@ Router.map(function() {
     waitOn: function() {
       return [
         Meteor.subscribe('hotel', Session.get('hotelId'))
-      ]
+      ];
     }
   });
 
@@ -96,6 +96,65 @@ Router.map(function() {
       return {
         configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'bellService'})
       };
+    }
+  });
+
+  this.route('configureRoomService', {
+    path: '/hotel-services/room-service',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
+        // TODO: Refactor to allow for multiple menus
+        Meteor.subscribe('hotelMenu', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'roomService'})
+      };
+    }
+  });
+
+  this.route('editMenuCategory', {
+    path: '/hotel-services/room-service/edit-menu-category/:_id',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
+        // TODO: Refactor to allow for multiple menus
+        Meteor.subscribe('hotelMenu', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        serviceConfiguration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'roomService'}),
+        menuCategory: MenuCategories.findOne(this.params._id),
+      };
+    }
+  });
+
+  this.route('editMenuItem', {
+    path: '/hotel-services/room-service/edit-menu-item/:_id',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
+        Meteor.subscribe('menuItem', this.params._id)
+      ];
+    },
+    data: function() {
+      var menuItem = MenuItems.findOne(this.params._id);
+      if (menuItem) {
+        var menuCategory = MenuCategories.findOne(menuItem.menuCategoryId);
+        return {
+          menuItem: menuItem,
+          menuCategory: menuCategory
+        };  
+      }
     }
   });
 
@@ -214,7 +273,7 @@ Router.map(function() {
     data: function() {
       var order = Orders.findOne(this.params._id);
       if (order) {
-        var experience = Experiences.findOne(order.reservation.experienceId)
+        var experience = Experiences.findOne(order.reservation.experienceId);
         return {
           order: order,
           experience: experience

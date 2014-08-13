@@ -13,28 +13,34 @@ HotelServices.allow({
   }
 });
 
+HotelServices.validateRequestType = function(requestType) {
+  var friendlyRequestType = HotelServices.friendlyRequestType(requestType);
+
+  if (friendlyRequestType === undefined) {
+    throw new Meteor.Error(500, requestType + ' is not a known service type');
+  }
+
+  return !!friendlyRequestType;
+};
+
 HotelServices.friendlyRequestType = function(requestType) {
   switch (requestType) {
     case 'transportation':
       return 'Transportation';
-      break;
     case 'bellService': 
       return 'Bell Service';
-      break;
     case 'houseKeeping': 
       return 'House Keeping';
-      break;
     case 'wakeUpCall': 
       return 'Wake Up Call';
-      break;
     case 'valetServices': 
-      return 'Valet Services'
-      break;
+      return 'Valet Services';
+    case 'roomService':
+      return 'Room Service';
     default: 
-      return 'Invalid Type';
-      break;
+      return undefined;
   }
-}
+};
 
 Schema.configureServiceAvailability = new SimpleSchema({
   _id: {
@@ -64,28 +70,7 @@ Meteor.methods({
   activateHotelService: function(serviceType, hotelId) {
     // validate service type
     check(serviceType, String);
-    switch (serviceType) {
-
-      case 'transportation':      
-        break;
-      
-      case 'bellService':         
-        break;
-      
-      case 'houseKeeping': 
-        break;
-
-      case 'wakeUpCall': 
-        break;
-
-      case 'valetServices': 
-        break;
-
-      default: 
-        throw new Meteor.Error(500, serviceType + ' is not a known service type');
-        break;
-
-    }
+    HotelServices.validateRequestType(serviceType);
 
     // validate hotel id
     hotelId = hotelId || Meteor.user().hotelId;
@@ -115,28 +100,7 @@ Meteor.methods({
   deactivateHotelService: function(serviceType, hotelId) {
     // validate service type
     check(serviceType, String);
-    switch (serviceType) {
-
-      case 'transportation':       
-        break;
-      
-      case 'bellService':         
-        break;
-      
-      case 'houseKeeping': 
-        break;
-
-      case 'wakeUpCall': 
-        break;
-
-      case 'valetServices': 
-        break;
-
-      default: 
-        throw new Meteor.Error(500, serviceType + ' is not a known service type');
-        break;
-
-    }
+    HotelServices.validateRequestType(serviceType);
 
     // validate hotel id
     hotelId = hotelId || Meteor.user().hotelId;
@@ -168,5 +132,20 @@ Meteor.methods({
     return HotelServices.update(serviceAvailabilityConfiguration._id, {
       $set: _.omit(serviceAvailabilityConfiguration, '_id')
     });
+  },
+  resetServiceAvailability: function(serviceId) {
+    check(serviceId, String);
+
+    return HotelServices.update(
+      serviceId, 
+      {
+        $set: {
+          startTime: undefined,
+          endTime: undefined,
+          startMinutes: undefined,
+          endMinutes: undefined
+        }
+      } 
+    );
   }
 });

@@ -17,7 +17,7 @@ Meteor.publish('userHotelData', function () {
       return [
         Meteor.users.find({_id: userId}, {fields: fields}),
         Hotels.find({_id: hotelId})
-      ]
+      ];
     } else {
       this.ready();
       return null;
@@ -31,14 +31,15 @@ Meteor.publish('userHotelData', function () {
 // Tags
 
 Meteor.publish('tags', function(collectionName) {
-  return Meteor.tags.find({collection: collectionName})
+  return Meteor.tags.find({collection: collectionName});
 });
 
 // Devices
 Meteor.publish('devicesForHotel', function(hotelId) {
   var userId = this.userId,
-      user = Meteor.users.findOne(userId),
-      hotelId = hotelId || user.hotelId;
+      user = Meteor.users.findOne(userId);
+
+  hotelId = hotelId || user.hotelId;
 
   return Devices.find({hotelId: hotelId}, {
     fields: {
@@ -93,6 +94,44 @@ Meteor.publish('hotelService', function(serviceType, hotelId) {
   }
 });
 
+Meteor.publish('hotelMenu', function(hotelId) {
+  var userId = this.userId,
+      user = Meteor.users.findOne(userId);
+      
+  hotelId = hotelId || user.hotelId;
+  if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
+    var hotel = Hotels.find(hotelId);
+    if (hotel) {
+
+      var publication = new SimplePublication({
+        subHandle: this,
+        collection: MenuCategories,
+        selector: {hotelId: hotelId},
+        dependant: new SimplePublication({
+          subHandle: this,
+          collection: MenuItems,
+          foreignKey: 'menuCategoryId'
+        })
+      }).start();
+    }
+  }
+});
+
+Meteor.publish('menuItem', function(id) {
+  var userId = this.userId,
+      user = Meteor.users.findOne(userId);
+      
+  if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
+    var menuItem = MenuItems.findOne(id);
+    if (menuItem) {
+      return [
+        MenuItems.find(id),
+        MenuCategories.find(menuItem.menuCategoryId) 
+      ];
+    }
+  }
+});
+
 // Orders
 Meteor.publish("openPatronOrders", function(hotelId) {
   var userId = this.userId,
@@ -101,16 +140,16 @@ Meteor.publish("openPatronOrders", function(hotelId) {
   if (user) {
     hotelId = hotelId || user.hotelId;
 
-    if (hotelId)
-        hotel = Hotels.findOne(hotelId);
+    if (hotelId) {
+      hotel = Hotels.findOne(hotelId);
 
-    if (hotel) {
-      return [
-        Orders.find({hotelId: hotelId})
-      ]
-    } 
+      if (hotel) {
+        return [
+          Orders.find({hotelId: hotelId})
+        ];
+      } 
+    }
   }
-
 });
 
 Meteor.publish('patronOrder', function(id) {
@@ -118,5 +157,5 @@ Meteor.publish('patronOrder', function(id) {
   return [
     Orders.find(id),
     Experiences.find(order.reservation.experienceId)
-  ] 
+  ];
 });
