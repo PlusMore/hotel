@@ -1,4 +1,4 @@
-MenuCategories = new Meteor.Collection('roomServiceMenuCategories')
+MenuCategories = new Meteor.Collection('roomServiceMenuCategories');
 
 Schema.MenuCategory = new SimpleSchema({
   name: {

@@ -6,7 +6,7 @@ All code related to the Items collection goes here.
 
 /+ ---------------------------------------------------- */
 
-Categories = new Meteor.Collection('categories')
+Categories = new Meteor.Collection('categories');
 // Allow/Deny
 
 Categories.allow({

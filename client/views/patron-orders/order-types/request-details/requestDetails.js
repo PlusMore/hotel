@@ -12,7 +12,7 @@ Template.requestDetails.helpers({
     if (options && options.date) {
       return moment(this.request.options.date).format('MMMM Do, YYYY h:mm a');
     } else {
-      return "As Soon As Possible"
+      return "As Soon As Possible";
     }
   },
   requestTemplate: function() {

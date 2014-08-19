@@ -4,7 +4,7 @@ Template.patronOrder.helpers({
     console.log(now);
     var requestedAt = moment(this.requestedAt);
     if (requestedAt.isBefore(moment(now).subtract(20, 'minutes'))) {
-      return 'danger'
+      return 'danger';
     }
     if (requestedAt.isBefore(moment(now).subtract(10, 'minutes'))) {
       return 'warning';
