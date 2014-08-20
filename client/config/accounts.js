@@ -10,6 +10,6 @@ Meteor.startup(function () {
 
   AccountsEntry.setProfile = function(profile) {
     profile.signUpRole = Session.get('userSignUpType');
-  }
+  };
 });
 

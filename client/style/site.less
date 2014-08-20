@@ -4,64 +4,35 @@ body {
   padding-top: 60px;
   font-family: 'Helvetica Neue', Helvetica, sans;
   color: #fff;
+
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 200;
+  letter-spacing: 1px;
+}
+
+a, a:hover, a:active {
+  color: #fff;
 }
 
 a:hover {
   text-decoration: none;
 }
 
-.section, .entry {
-  background-color: rgba(255,255,255,0.2);
-  padding: 23px;
-  border-radius: 10px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  color: #fff;
+a.back {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 100;
+  margin: 10px 5px 30px;
+  display: inline-block;
 
-  legend {
-    color: #fff;
+  i {
+    vertical-align: middle;
+    margin-right: 5px;
   }
-
-  a:not(.btn) {
-    color: #fff;
-    font-weight: bold;
-  }
-
-  header {
-    & > h1, & > h2, & > h3, & > h4, & > h5, & > h6,  {
-      padding-top: 0;
-      margin-top: 0;
-    }
-  }
-
-}
-
-.container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.main-container {
-  position: absolute;
-  top: 51px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  width: 100%;
-
-  background : #A5DFF9;
-  background : rgba(165, 223, 249, 1);
-  filter: alpha(opacity=60) progid:DXImageTransform.Microsoft.Alpha(opacity=60) ;
-  background:url('/backgrounds/body-bg-blue.png');
-  background-size: 101% 101%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 span.gc-cs-link {
@@ -129,6 +100,10 @@ span.gc-cs-link {
 
 .no-padding {
   padding: 0;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
 }
 
 input.time-component, select.time-component {

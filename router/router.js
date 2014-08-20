@@ -20,26 +20,6 @@ var filters = {
   baseSubscriptions: function() {
     this.subscribe('userHotelData').wait();
   },
-  isLoggedIn: function(pause, router, extraCondition) {
-    if (! Meteor.user()) {
-      if (Meteor.loggingIn()) {
-        router.render(this.loadingTemplate);
-      }
-      else {
-        Session.set('fromWhere', router.path)
-        // this.render('entrySignIn');
-        var path = Router.routes['entrySignIn'].path();
-        Router.go(path);
-      }
-      pause()
-    }
-  },
-  isLoggedOut: function(pause) {
-    if (Meteor.user()) {
-      pause();
-      Router.go('dashboard');
-    }
-  },
   isAdmin: function() {
     return Roles.userIsInRole(Meteor.userId(), ['admin']);
   },
@@ -51,20 +31,8 @@ var filters = {
   }
 };
 
-var helpers = {
-  showLoadingBar: function(pause) {
-    if (this.ready()) {
-      NProgress.done();
-    } else {
-      NProgress.start();
-    }
-  }
-};
-Router.onBeforeAction('loading');
-Router.onBeforeAction(filters.baseSubscriptions);
 
-// Show loading bar for any route that loads a subscription
-Router.onBeforeAction(helpers.showLoadingBar, {only: []});
+Router.onBeforeAction('loading');
 
 // Routes
 
@@ -73,83 +41,243 @@ Router.map(function() {
   // Manager
   this.route('manageHotelUsers', {
     path: 'manage-hotel-users',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelManager());
-    },
     waitOn: function() {
       return [
-        Meteor.subscribe('hotelUsers')
-      ]
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelUsers', Session.get('hotelId'))
+      ];
     }
   });
 
   this.route('addHotelStaff', {
     path: '/add-hotel-staff',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelManager());
-    },
     waitOn: function() {
       return [
-        Meteor.subscribe('hotelUsers')
-      ]
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelUsers', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        hotel: Hotels.findOne(Session.get('hotelId'))
+      };
     }
   });
 
   this.route('customizeHotelDevices', {
     path: "/customize-devices",
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelManager());
-    }
-  })
-
-  // Staff
-  this.route('devices', {
-    path: '/devices',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelStaff());
-    },
     waitOn: function() {
       return [
-        Meteor.subscribe('devicesForHotel')
-      ]
+        Meteor.subscribe('hotel', Session.get('hotelId'))
+      ];
+    } 
+  });
+
+  this.route('hotelServices', {
+    path: '/hotel-services',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId'))
+      ];
+    }
+  });
+
+  this.route('configureBellService', {
+    path: '/hotel-services/bell-service',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'bellService', Session.get('hotelId'))
+      ];
     },
-    data: function () {
+    data: function() {
       return {
-        devices: Devices.find({hotelId: Meteor.user().hotelId})
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'bellService'})
+      };
+    }
+  });
+
+  this.route('configureRoomService', {
+    path: '/hotel-services/room-service',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
+        // TODO: Refactor to allow for multiple menus
+        Meteor.subscribe('hotelMenu', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'roomService'})
+      };
+    }
+  });
+
+  this.route('editMenuCategory', {
+    path: '/hotel-services/room-service/edit-menu-category/:_id',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
+        // TODO: Refactor to allow for multiple menus
+        Meteor.subscribe('hotelMenu', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        serviceConfiguration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'roomService'}),
+        menuCategory: MenuCategories.findOne(this.params._id),
+      };
+    }
+  });
+
+  this.route('editMenuItem', {
+    path: '/hotel-services/room-service/edit-menu-item/:_id',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
+        Meteor.subscribe('menuItem', this.params._id)
+      ];
+    },
+    data: function() {
+      var menuItem = MenuItems.findOne(this.params._id);
+      if (menuItem) {
+        var menuCategory = MenuCategories.findOne(menuItem.menuCategoryId);
+        return {
+          menuItem: menuItem,
+          menuCategory: menuCategory
+        };  
       }
     }
   });
 
-  this.route('openPatronOrders', {
-    path: '/open-patron-orders',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelStaff());
-    },
-    waitOn: function () {
+  this.route('configureHouseKeeping', {
+    path: '/hotel-services/house-keeping',
+    controller: 'HotelServicesController',
+    waitOn: function() {
       return [
-        Meteor.subscribe('openPatronOrders')
-      ]
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'houseKeeping', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'houseKeeping'})
+      };
+    }
+  });
+
+  this.route('configureTransportation', {
+    path: '/hotel-services/transportation',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'transportation', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'transportation'})
+      };
+    }
+  });
+
+  this.route('configureValetServices', {
+    path: '/hotel-services/valet-services',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'valetServices', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'valetServices'})
+      };
+    }
+  });
+
+  this.route('configureWakeUpCall', {
+    path: '/hotel-services/wake-up-call',
+    controller: 'HotelServicesController',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelService', 'wakeUpCall', Session.get('hotelId'))
+      ];
+    },
+    data: function() {
+      return {
+        configuration: HotelServices.findOne({hotelId: Session.get('hotelId'), type: 'wakeUpCall'})
+      };
+    }
+  });
+
+  // Staff
+  this.route('devices', {
+    path: '/devices',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('devicesForHotel', Session.get('hotelId'))
+      ];
+    },
+    data: function () {
+      return {
+        devices: Devices.find({hotelId: Session.get('hotelId')})
+      };
+    }
+  });
+
+  this.route('device', {
+    path: '/device/:_id',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('deviceUserStatus', this.params._id)
+      ];
+    },
+    data: function () {
+      return {
+        device: Devices.findOne(this.params._id),
+        users: Meteor.users.find({deviceId: this.params._id}, {sort: {'status.lastLogin': -1}})
+      };
     } 
   });
 
-  this.route('patronOrderPage', {
-    path: '/patron-order/:_id',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this, filters.isHotelStaff());
-    },
+  this.route('patronOrders', {
+    path: '/orders',
+    template: 'patronOrders',
+    waitOn: function () {
+      return [
+        Meteor.subscribe('openPatronOrders', Session.get('hotelId'))
+      ];
+    } 
+  });
+
+  this.route('request', {
+    path: '/request/:_id',
+    template: 'patronOrderPage',
     waitOn: function() {
       return [
         Meteor.subscribe('patronOrder', this.params._id)
-      ]
+      ];
     },
     data: function() {
       var order = Orders.findOne(this.params._id);
       if (order) {
-        var experience = Experiences.findOne(order.reservation.experienceId)
+        var experience = Experiences.findOne(order.reservation.experienceId);
         return {
           order: order,
           experience: experience
-        }
+        };
       }
     }
   });
@@ -164,8 +292,12 @@ Router.map(function() {
 
   this.route('dashboard', {
     path: '/dashboard',
-    onBeforeAction: function(pause) {
-      filters.isLoggedIn(pause, this);
+    waitOn: function() {
+      if (Roles.userIsInRole(Meteor.userId(), ['admin'])) {
+        return [
+          Meteor.subscribe('hotels')
+        ];
+      }
     }
   });
 

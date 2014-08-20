@@ -1,0 +1,12 @@
+<template name="hotelStaff">
+  {{#each hotelStaff}}
+    {{> hotelStaffItem}}
+  {{/each}}
+</template>
+
+<template name="hotelStaffItem">
+  <a class='list-item'>
+    {{emailAddress}}
+    <span class="pull-right">{{role}}</span>
+  </a>
+</template>

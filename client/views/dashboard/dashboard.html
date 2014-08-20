@@ -1,28 +1,33 @@
 <template name="dashboard">
   <div class="container">
     <div class="row">
-      {{#if isInRole 'admin'}}
-      {{/if}}
-      {{#if canManageExperiences}}
-        <div class="section">
-          <header>
-            <h3>Manage Your Experiences</h3>
-          </header>
-
-          <a class="btn btn-default" href="{{pathFor 'manageExperiencesCategories'}}">Manage Experiences</a>
+      <div class="col-md-12">
+        <div class="modal-content inline">
+          <div class="modal-header">
+            <h2 class="modal-title">
+              Welcome to PlusMore
+            </h2>
+          </div>
         </div>
-      {{/if}}
-      {{#if isInRole 'hotel-staff'}}
-        <div class="section">
-          <header>
-            <h3>Welcome to Plus More</h3>
-          </header>
-
-          <a class="btn btn-default" href="{{pathFor 'devices'}}">See Devices</a>
-          <a class="btn btn-default" href="{{pathFor 'openPatronOrders'}}">See Open Orders</a>
-        </div>
-      {{/if}}
+      </div>
+      
     </div>
+  
+    {{#if isInRole 'admin'}}
+      <div class="row">
+        <div class="col-md-12">
+            <div class="modal-content inline">
+              <div class="modal-header">
+                <h3 class="modal-title">Select a Hotel</h3>
+              </div>
+              <div class="modal-body">
+                {{> selectHotel}}
+              </div>
+            </div><!-- /.modal-content -->
+        </div>    
+      </div>
+    {{/if}}  
 
   </div>
+  
 </template>

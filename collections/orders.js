@@ -7,7 +7,7 @@ Orders.allow({
     return false;
   },
   update:  function(userId, doc, fieldNames, modifier){
-    return Roles.userIsInRole(userId, ['admin', 'hotel-staff']);
+    return Roles.userIsInRole(userId, ['admin', 'hotel-staff', 'hotel-manager']);
   },
   remove:  function(userId, doc){
     return false;
@@ -15,12 +15,20 @@ Orders.allow({
 });
 
 Meteor.methods({
-  markAsRead: function(orderId) {
+  cancelPatronRequest: function(orderId) {
     var order = Orders.findOne(orderId);
     if (!order) {
       throw new Meteor.Error(403, 'Not a valid order'); 
     }
 
-    return Orders.update(orderId, {$set: {read: true}});
+    Orders.update(orderId, {$set: {open: false, status: 'cancelled', cancelledDate: new Date(), cancelledBy: Meteor.userId() }});
+  },
+  completePatronRequest: function(orderId) {
+    var order = Orders.findOne(orderId);
+    if (!order) {
+      throw new Meteor.Error(403, 'Not a valid order'); 
+    }
+
+    Orders.update(orderId, {$set: {open: false, status: 'confirmed', confirmedDate: new Date(), confirmedBy: Meteor.userId() }});
   }
 });

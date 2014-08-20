@@ -1,0 +1,41 @@
+<template name="addMenuCategory">
+  <div class="modal-content inline">
+    <div class="modal-header">
+      <h4 class="modal-title">
+        <a href="#" id='add-menu-category'>+ Add New Menu Category</a>
+      </h4>
+    </div>
+  </div><!-- /.modal-content -->  
+
+  {{> newMenuCategoryModal}}
+  
+</template>
+
+<template name="newMenuCategoryModal">
+  {{#if isVisible}}
+    <div class="modal-backdrop fade {{isVisibleClass}}"></div>
+    <div class="modal fade {{isVisibleClass}}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="pull-right">
+              <a href="#" class="icon icon-x" data-dismiss="modal"></a>
+            </div>
+            <h2 class="modal-title">Add Menu Category</h2>
+          </div>
+          {{#autoForm collection='MenuCategories' id='newMenuCategory' type='insert'}}
+            <div class="modal-body">
+              {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+              {{> afQuickField name='name'}}
+              {{> afQuickField name='description' rows=3}}
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+              <button type="submit" class="btn btn-default">Add Category</button>
+            </div>
+          {{/autoForm}}
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  {{/if}}
+</template>

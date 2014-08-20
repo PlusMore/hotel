@@ -1,0 +1,47 @@
+<template name="editMenuItem">
+  <div id='edit-menu-category' class="col-md-9 col-md-offset-3">
+    <div class="row">
+      <div class="col-md-12">
+        {{#with menuCategory}}
+          <a class='back' href="{{pathFor 'editMenuCategory'}}">
+            <i class="icon icon-back"></i>
+            Back To {{name}} Category
+          </a>
+        {{/with}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        {{#with menuItem}}
+          <div class="modal-content inline">
+            <div class="modal-header">
+              <h3 class="modal-title">
+                Edit {{name}}
+                <div class="onoffswitch pull-right">
+                  <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="item-switch" {{isChecked}}>
+                  <label class="onoffswitch-label" for="item-switch">
+                      <span class="onoffswitch-inner"></span>
+                      <span class="onoffswitch-switch"></span>
+                  </label>
+                </div>
+              </h3>
+            </div>
+            {{#autoForm collection='MenuItems' id='editMenuItem' doc=this type='update'}}
+              <div class="modal-body">
+                {{> afFieldInput name='menuCategoryId' type='hidden' value=menuCategoryId}}
+                <div class="row">
+                  <div class="col-xs-7">{{> afQuickField name='name'}}</div>
+                  <div class="col-xs-5">{{> afQuickField name='price'}}</div>
+                </div>
+                {{> afQuickField name='description' rows=3}}
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-default">Update Item</button>
+              </div>
+            {{/autoForm}}
+          </div>
+        {{/with}}
+      </div>
+    </div>
+  </div>
+</template>

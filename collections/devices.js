@@ -4,12 +4,12 @@ Devices = new Meteor.Collection('devices');
 
 Devices.allow({
   insert: function(userId, doc){
-    return Roles.userIsInRole(userId, ['hotel-staff', 'admin']);
+    return false;
   },
   update:  function(userId, doc, fieldNames, modifier){
-    return Roles.userIsInRole(userId, ['hotel-staff', 'admin']);
+    return false;
   },
   remove:  function(userId, doc){
-    return Roles.userIsInRole(userId, ['hotel-staff', 'admin']);
+    return false;
   }
 });

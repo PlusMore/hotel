@@ -4,7 +4,6 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-iron-router
 accounts-base
 accounts-password
 bootstrap-3
@@ -17,7 +16,6 @@ fastclick
 underscore
 jquery
 inspector
-accounts-ui
 accounts-entry
 nprogress
 font-awesome
@@ -30,6 +28,13 @@ pickadate
 geocoder
 migrations
 googlemaps
-tags
 selectize
 bootstrap-errors
+accounts-ui-bootstrap-3
+coffeescript
+plus-more-icons
+simple-publish
+animate-css
+iron-router
+tags
+bootboxjs

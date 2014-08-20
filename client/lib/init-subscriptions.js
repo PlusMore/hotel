@@ -5,18 +5,9 @@ Meteor.startup(function() {
   Deps.autorun(function () {
     var user = Meteor.user();
 
-    if (user) {
-      var hotelId = user.hotelId || null;
-
-      if (hotelId) {
-        var hotelId = Meteor.user().hotelId,
-        hotel = Hotels.findOne(hotelId);
-
-        if (hotel) {
-          console.log('subscribing for userId', user._id);
-          subscriptions.hotelData = Meteor.subscribe('userHotelData');
-        }
-      }
+    if (user) {  
+      console.log('subscribing user data');
+      subscriptions.hotelData = Meteor.subscribe('userHotelData');
     }
     else {
       console.log('unsubscribing user data');
@@ -25,7 +16,6 @@ Meteor.startup(function() {
         subscriptions.hotelData = null;
       }
     }
-    
   });
 });
 
@@ -39,8 +29,7 @@ Meteor.startup(function() {
       var hotelId = user.hotelId || null;
 
       if (hotelId) {
-        var hotelId = Meteor.user().hotelId,
-        hotel = Hotels.findOne(hotelId);
+        var hotel = Hotels.findOne(hotelId);
 
         if (hotel) {
           Session.set('hotelName', hotel.name);
