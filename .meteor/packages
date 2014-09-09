@@ -19,7 +19,6 @@ joshowens:accounts-entry@0.8.0
 natestrauser:font-awesome@4.1.0
 percolatestudio:percolatestudio-mixpanel@0.5.0
 mrt:impicker@1.2.0
-moment
 pickadate
 geocoder
 mrt:migrations@0.0.2
@@ -35,3 +34,5 @@ iron:router
 ian:bootstrap-3
 ian:accounts-ui-bootstrap-3
 jeremy:selectize
+mrt:moment
+
