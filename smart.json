@@ -1,26 +1,9 @@
 {
   "meteor": {},
   "packages": {
-    "bootstrap-3": {},
-    "iron-router": {},
-    "roles": {},
-    "autoform": {},
-    "fastclick": {},
-    "collection2": {},
-    "inspector": {},
-    "nprogress": {},
-    "font-awesome": {},
-    "accounts-entry": {},
-    "percolatestudio-mixpanel": {},
-    "impicker": {},
     "pickadate": {
       "git": "https://github.com/patrickleet/meteor-pickadate.git"
     },
-    "migrations": {},
-    "googlemaps": {},
-    "selectize": {},
-    "bootstrap-errors": {},
-    "accounts-ui-bootstrap-3": {},
     "plus-more-icons": {
       "git": "https://github.com/PlusMore/plus-more-icons.git",
       "tag": "v1.1"
@@ -28,9 +11,6 @@
     "tags": {
       "git": "https://github.com/patrickleet/meteor-tags.git",
       "tag": "v1.3"
-    },
-    "simple-publish": {},
-    "animate-css": {},
-    "bootboxjs": {}
+    }
   }
 }
