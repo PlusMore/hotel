@@ -20,7 +20,6 @@ natestrauser:font-awesome@4.1.0
 percolatestudio:percolatestudio-mixpanel@0.5.0
 mrt:impicker@1.2.0
 pickadate
-geocoder
 mrt:migrations@0.0.2
 mrt:googlemaps@0.0.2
 lezed1:bootstrap-errors@0.3.1
@@ -35,4 +34,5 @@ ian:bootstrap-3
 ian:accounts-ui-bootstrap-3
 jeremy:selectize
 mrt:moment
+aldeed:geocoder
 

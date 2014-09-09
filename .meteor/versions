@@ -3,6 +3,7 @@ accounts-password@1.0.1
 alanning:roles@1.2.13
 aldeed:autoform@0.17.1
 aldeed:collection2@0.4.6
+aldeed:geocoder@0.3.1
 aldeed:simple-schema@0.7.0
 anti:i18n@0.4.3
 application-configuration@1.0.1
@@ -22,7 +23,6 @@ deps@1.0.3
 ejson@1.0.1
 email@1.0.2
 follower-livedata@1.0.1
-geocoder@0.0.0
 geojson-utils@1.0.0
 handlebars@1.0.0
 html-tools@1.0.0
