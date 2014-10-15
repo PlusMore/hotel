@@ -14,7 +14,6 @@ aldeed:collection2@0.4.5
 percolatestudio:fastclick@0.6.7
 underscore
 jquery
-broth:inspector@0.2.2
 joshowens:accounts-entry@0.8.0
 natestrauser:font-awesome@4.1.0
 percolatestudio:percolatestudio-mixpanel@0.5.0
@@ -35,4 +34,3 @@ ian:accounts-ui-bootstrap-3
 jeremy:selectize
 mrt:moment
 aldeed:geocoder
-

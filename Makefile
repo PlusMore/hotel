@@ -11,11 +11,11 @@ start:
 	MONGO_OPLOG_URL=$(MONGO_OPLOG_URL) \
 	meteor -p $(PORT) --settings ./config/$(APP_ENV)/settings.json
 
-start-debug:
+debug:
 	NODE_OPTIONS='--debug' \
 	MONGO_URL=$(MONGO_URL) \
 	MONGO_OPLOG_URL=$(MONGO_OPLOG_URL) \
-	meteor -p $(PORT) --settings ./config/$(APP_ENV)/settings.json
+	meteor debug -p $(PORT) --settings ./config/$(APP_ENV)/settings.json
 
 start-prod:
 	NODE_OPTIONS=$(NODE_OPTIONS) \
