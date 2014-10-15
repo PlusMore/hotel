@@ -34,6 +34,15 @@ Template.request.helpers({
     } else {
       return this.request.type;
     }
+  },
+  deviceLocation: function() {
+    // backwards compatible
+    if (this.deviceLocation) {
+      return this.deviceLocation;
+    } else {
+      var device = Devices.findOne(this.deviceId);
+      return device.location;
+    }
   }
 });
 

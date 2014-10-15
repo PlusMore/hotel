@@ -134,6 +134,7 @@ Meteor.publish('menuItem', function(id) {
 
 // Orders
 Meteor.publish("openPatronOrders", function(hotelId) {
+  // join device from each order
   var userId = this.userId,
       user = Meteor.users.findOne(userId);
 
@@ -143,10 +144,23 @@ Meteor.publish("openPatronOrders", function(hotelId) {
     if (hotelId) {
       hotel = Hotels.findOne(hotelId);
 
+
       if (hotel) {
-        return [
-          Orders.find({hotelId: hotelId})
-        ];
+        // return [
+        //   Orders.find({hotelId: hotelId}),
+        // ];
+
+        var publication = new SimplePublication({
+          subHandle: this,
+          collection: Orders,
+          selector: {hotelId: hotelId},
+          dependant: new SimplePublication({
+            subHandle: this,
+            collection: Devices,
+            foreignKey: 'deviceId',
+            inverted: true
+          })
+        }).start();
       } 
     }
   }
