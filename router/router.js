@@ -122,7 +122,9 @@ Router.map(function() {
     controller: 'HotelServicesController',
     waitOn: function () {
       return [
-        Meteor.subscribe('hotel', Session.get('hotelId'))
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelAmenities', Session.get('hotelId')),
+        Meteor.subscribe('amenityDetails', Session.get('hotelId'))
       ];
     }
   });
