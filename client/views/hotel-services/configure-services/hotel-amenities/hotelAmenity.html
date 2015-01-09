@@ -1,0 +1,34 @@
+<template name="hotelAmenity">
+	<div class="modal-content inline">
+		<div class="modal-header">
+		<div class="pull-right">
+			<a href="#" class="icon icon-x" id="remove-amenity"></a>
+		</div>
+			<h3 class="modal-title">
+				{{name}}
+				<small>
+				Available
+				{{#if availableAnytime}}
+					Anytime
+				{{else}}
+					{{startTime}} - {{endTime}}
+				{{/if}}
+				</small>		
+			</h3>
+		</div>
+		<div class="modal-body">
+			<h4>{{description}}</h4>
+			<div class="row">
+				<div class="col-sm-11">
+					<ul>
+						{{#each amenityDetails}}	
+							<li><p>{{detail}} <a href="#" class="icon icon-x" id="remove-detail"></a></p></li>
+						{{/each}}
+					</ul><br />
+				</div>
+			</div>
+			{{> addAmenityDetail}}
+		</div>
+	</div>
+
+</template>

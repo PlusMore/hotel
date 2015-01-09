@@ -1,0 +1,11 @@
+<template name='addAmenityDetail'>
+	<div class="row">
+		<div class="col-sm-12">
+			{{#autoForm collection="AmenityDetails" type="insert"}}
+				{{> afFieldInput name="hotelId" type="hidden" value=hotelId}}
+				{{> afFieldInput name="amenityId" type="hidden" value=amenityId}}
+				{{> afQuickField name="detail" label=false placeholder="Type here to add details..."}}
+			{{/autoForm}}
+		</div>
+	</div>
+</template>
