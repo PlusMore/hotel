@@ -6,7 +6,10 @@ Template.hotelAmenity.helpers({
 
 Template.hotelAmenity.events({
 	'click #remove-amenity': function () {
-		Meteor.call('removeAmenity', this._id, function (err, result){});
+
+		if (confirm('Are you sure you want to delete?')) {
+			Meteor.call('removeAmenity', this._id, function (err, result){});
+		}
 	},
 	'click #remove-detail': function () {
 		Meteor.call('removeAmenityDetail', this._id, function (err, result){});
