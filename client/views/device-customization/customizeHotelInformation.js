@@ -51,7 +51,6 @@ AutoForm.hooks({
     onError: function(operation, error, template) {
       if (operation !== 'validation') {
         Errors.throw(error.message);
-        console.log(error.message);
         console.log('error');
       }
     },
