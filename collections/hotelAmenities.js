@@ -1,15 +1,15 @@
 HotelAmenities = new Meteor.Collection('hotelAmenities');
 
 HotelAmenities.allow({
-	insert: function(userId, doc){
-	    return Roles.userIsInRole(userId, ['hotel-manager', 'admin']);
-	},
-	update:  function(userId, doc, fieldNames, modifier){
-	    return Roles.userIsInRole(userId, ['hotel-manager', 'admin']);
-	},
-	remove:  function(userId, doc){
-	    return false;
-	}
+  insert: function(userId, doc){
+    return Roles.userIsInRole(userId, ['hotel-manager', 'admin']);
+  },
+  update:  function(userId, doc, fieldNames, modifier){
+    return Roles.userIsInRole(userId, ['hotel-manager', 'admin']);
+  },
+  remove:  function(userId, doc){
+    return false;
+  }
 });
 
 Schema.Amenity = new SimpleSchema({
@@ -27,8 +27,8 @@ Schema.Amenity = new SimpleSchema({
     type: String
   },
   availableAnytime: {
-  	type: Boolean,
-  	label: "Available 24/7"
+    type: Boolean,
+    label: "Available 24/7"
   },
   startTime: {
     type: String,
