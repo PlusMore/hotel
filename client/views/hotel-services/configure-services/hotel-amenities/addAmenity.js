@@ -7,9 +7,9 @@ Template.addAmenity.events({
 Template.newAmenityModal.helpers({
 	isVisible: function (){
 		if(Session.get('showNewAmenityModal')){
-			return true
+			return true;
 		} else {
-			return false
+			return false;
 		}
 	},
 	isVisibleClass: function() {
