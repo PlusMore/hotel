@@ -4,8 +4,8 @@
 			<div class="modal-header">
 				<h3 class="modal-title">Edit Hotel Information</h3>
 			</div>
-			{{#autoForm schema=editHotelSchema id="updateHotelInfo" type="method" meteormethod="updateHotelInfo"}}
-				{{> afFieldInput name="hotelId" type="hidden" value=hotel._id}}
+			{{#autoForm schema=editHotelSchema id="updateHotelInfo" type="method" meteormethod="updateHotelInfo" resetOnSuccess=false}}
+				{{> afFieldInput name="hotelId" type="hidden" value=hotel._id placeholder=hotel._id}}
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-sm-8">
