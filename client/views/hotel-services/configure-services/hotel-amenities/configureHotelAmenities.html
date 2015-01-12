@@ -1,0 +1,42 @@
+<template name="configureHotelAmenities">
+
+  <div id="configure-hotel-amenities" class="col-sm-9 col-sm-offset-3">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="modal-content inline">
+          <div class="modal-header">
+            <h3 class="modal-title">
+              Hotel Amenities
+            </h3>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>What is an Amenity?</h4>
+                <p>
+                  An amenity is a feature or facility you have made available to your guests 
+                  for their comfort or convenience. Common examples include a pool, gym, boardroom, and/or a complimentary breakfast.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+
+    <div class="row animated fadeIn">
+          <div class="col-sm-12">
+            {{#each amenities}}
+          {{> hotelAmenity}}
+            {{/each}}
+          </div>
+      </div>  
+
+      <div class="row animated fadeIn">
+          <div class="col-sm-12">
+        {{> addAmenity}}
+          </div>
+      </div>  
+
+  </div>
+</template>

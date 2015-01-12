@@ -1,0 +1,26 @@
+<template name="customizeHotelInformation">
+  {{#with hotel}}
+    <div class="modal-content inline">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Hotel Information</h3>
+      </div>
+      {{#autoForm schema=editHotelSchema id="updateHotelInfo" type="method" meteormethod="updateHotelInfo" resetOnSuccess=false}}
+        {{> afFieldInput name="hotelId" type="hidden" value=hotel._id placeholder=hotel._id}}
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-8">
+              {{> afQuickField name="name" value=hotel.name}}
+            </div>
+            <div class="col-sm-4">
+              {{> afQuickField name="phone" value=hotel.phone}}
+            </div>
+          </div>
+          {{> afQuickField name="description" rows=4 value=hotel.description}}
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      {{/autoForm}}
+    </div>
+  {{/with}}
+</template>
