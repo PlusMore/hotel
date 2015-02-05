@@ -117,6 +117,18 @@ Router.map(function() {
     }
   });
 
+  this.route('configureHotelAmenities', {
+    path: '/hotel-services/hotel-amenities',
+    controller: 'HotelServicesController',
+    waitOn: function () {
+      return [
+        Meteor.subscribe('hotel', Session.get('hotelId')),
+        Meteor.subscribe('hotelAmenities', Session.get('hotelId')),
+        Meteor.subscribe('amenityDetails', Session.get('hotelId'))
+      ];
+    }
+  });
+
   this.route('editMenuCategory', {
     path: '/hotel-services/room-service/edit-menu-category/:_id',
     controller: 'HotelServicesController',

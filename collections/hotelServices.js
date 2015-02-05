@@ -42,7 +42,7 @@ HotelServices.friendlyServiceType = function(serviceType) {
   }
 };
 
-Schema.configureServiceAvailability = new SimpleSchema({
+Schema.configureService = new SimpleSchema({
   _id: {
     type: String
   },
@@ -63,6 +63,10 @@ Schema.configureServiceAvailability = new SimpleSchema({
   endMinutes: {
     type: Number,
     optional: true
+  },
+  allowTips: {
+    type: Boolean,
+    label: "Allow Tipping?"
   }
 });
 
@@ -126,11 +130,11 @@ Meteor.methods({
       throw new Meteor.Error(500, 'Not a valid hotel.');
     }
   },
-  configureServiceAvailability: function(serviceAvailabilityConfiguration) {
-    check(serviceAvailabilityConfiguration, Schema.configureServiceAvailability);
+  configureService: function(serviceConfiguration) {
+    check(serviceConfiguration, Schema.configureService);
 
-    return HotelServices.update(serviceAvailabilityConfiguration._id, {
-      $set: _.omit(serviceAvailabilityConfiguration, '_id')
+    return HotelServices.update(serviceConfiguration._id, {
+      $set: _.omit(serviceConfiguration, '_id')
     });
   },
   resetServiceAvailability: function(serviceId) {
