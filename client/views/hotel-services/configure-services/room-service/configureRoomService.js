@@ -39,8 +39,8 @@ Template.configureRoomService.helpers({
       return this.configuration.active ? 'animated fadeIn' : 'hidden';
     }
   },
-  configureServiceAvailabilitySchema: function() {
-    return Schema.configureServiceAvailability;
+  configureServiceSchema: function() {
+    return Schema.configureService;
   }
 });
 

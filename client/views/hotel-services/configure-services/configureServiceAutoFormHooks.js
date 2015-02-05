@@ -1,5 +1,5 @@
 AutoForm.hooks({
-  configureServiceAvailability: {
+  configureService: {
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "remove", or the method name.
     onSuccess: function(operation, result, template) {

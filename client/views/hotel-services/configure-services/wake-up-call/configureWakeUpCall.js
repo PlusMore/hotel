@@ -31,8 +31,8 @@ Template.configureWakeUpCall.helpers({
       return this.configuration.active ? 'checked' : '';
     }
   },
-  configureServiceAvailabilitySchema: function() {
-    return Schema.configureServiceAvailability;
+  configureServiceSchema: function() {
+    return Schema.configureService;
   }
 });
 
