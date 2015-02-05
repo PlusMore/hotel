@@ -153,7 +153,40 @@ Meteor.publish("openPatronOrders", function(hotelId) {
         var publication = new SimplePublication({
           subHandle: this,
           collection: Orders,
-          selector: {hotelId: hotelId},
+          selector: {hotelId: hotelId, open: true, handledBy: 'hotel'},
+          dependant: new SimplePublication({
+            subHandle: this,
+            collection: Devices,
+            foreignKey: 'deviceId',
+            inverted: true
+          })
+        }).start();
+      } 
+    }
+  }
+});
+
+Meteor.publish("historyPatronOrders", function(hotelId) {
+  // join device from each order
+  var userId = this.userId,
+      user = Meteor.users.findOne(userId);
+
+  if (user) {
+    hotelId = hotelId || user.hotelId;
+
+    if (hotelId) {
+      hotel = Hotels.findOne(hotelId);
+
+
+      if (hotel) {
+        // return [
+        //   Orders.find({hotelId: hotelId}),
+        // ];
+
+        var publication = new SimplePublication({
+          subHandle: this,
+          collection: Orders,
+          selector: {hotelId: hotelId, open: false, handledBy: 'hotel'},
           dependant: new SimplePublication({
             subHandle: this,
             collection: Devices,

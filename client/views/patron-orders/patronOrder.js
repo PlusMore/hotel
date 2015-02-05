@@ -2,11 +2,11 @@ Template.patronOrder.helpers({
   attention: function() {
     var now = Session.get('currentTime') || new Date();
     console.log(now);
-    var requestedAt = moment(this.requestedAt);
-    if (requestedAt.isBefore(moment(now).subtract(20, 'minutes'))) {
+    var requestedDate = moment(this.requestedDate);
+    if (requestedDate.isBefore(moment(now).subtract(20, 'minutes'))) {
       return 'danger';
     }
-    if (requestedAt.isBefore(moment(now).subtract(10, 'minutes'))) {
+    if (requestedDate.isBefore(moment(now).subtract(10, 'minutes'))) {
       return 'warning';
     }
   }

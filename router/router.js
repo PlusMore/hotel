@@ -252,14 +252,35 @@ Router.map(function() {
     } 
   });
 
-  this.route('patronOrders', {
-    path: '/orders',
-    template: 'patronOrders',
+  //this.route('patronOrders', {
+  //  path: '/orders',
+  //  template: 'patronOrders',
+  //  waitOn: function () {
+  //    return [
+  //      Meteor.subscribe('openPatronOrders', Session.get('hotelId'))
+  //    ];
+  //  } 
+  //});
+
+  this.route('openPatronOrders', {
+    path: '/orders/open',
+    template: 'openPatronOrders',
     waitOn: function () {
       return [
-        Meteor.subscribe('openPatronOrders', Session.get('hotelId'))
+        Meteor.subscribe('openPatronOrders', Session.get('hotelId')),
+        Meteor.subscribe('hotelUsers', Session.get('hotelId'))
       ];
-    } 
+    }
+  });
+
+  this.route('historyPatronOrders', {
+    path: '/orders/history',
+    template: 'historyPatronOrder',
+    waitOn: function () {
+      return [
+        Meteor.subscribe('historyPatronOrders', Session.get('hotelId'))
+      ];
+    }
   });
 
   this.route('request', {

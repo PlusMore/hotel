@@ -1,0 +1,9 @@
+<template name='openPatronOrders'>
+	<div class="container">
+		<ul class="nav nav-pills">
+			<li role="presentation" class="active"><a href="/">Open</a></li>
+			<li role="presentation"><a href="{{pathFor 'historyPatronOrders'}}">Completed</a></li>
+		</ul>
+		{{> tabular table=TabularTables.OpenOrders selector=selector class="table table-condensed"}}
+  </div>
+</template>

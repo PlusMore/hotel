@@ -1,0 +1,22 @@
+<template name="requestedTimeAgoCell">
+	<div class="{{attention}}">
+		<p>{{requestedDateTimeAgo}}</p>
+	</div>
+</template>
+
+<template name="patronReservationCell">
+	<p>{{deviceLocation}}</p>
+	<p>{{guestName}}</p>
+</template>
+
+<template name="orderStatusCell">
+	<p>{{orderStatus}}</p>
+	{{#if isPending}}
+		<p>Claimed by: {{claimedName}}</p>
+		<p>{{claimedDate}}</p>
+	{{/if}}
+</template>
+
+<template name="orderStatusButtonsCell">
+
+</template>

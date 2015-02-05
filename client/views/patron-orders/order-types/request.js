@@ -28,11 +28,11 @@ Template.request.helpers({
 
     return '(In Progress)';
   },
-  friendlyRequestType: function() {
-    if (typeof HotelServices.friendlyRequestType === 'function') {
-      return HotelServices.friendlyRequestType(this.request.type);
+  friendlyServiceType: function() {
+    if (typeof HotelServices.friendlyServiceType === 'function') {
+      return HotelServices.friendlyServiceType(this.service.type);
     } else {
-      return this.request.type;
+      return this.service.type;
     }
   },
   deviceLocation: function() {
