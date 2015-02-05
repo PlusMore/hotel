@@ -170,16 +170,28 @@ Meteor.publish("openPatronOrders", function(hotelId) {
         //   Orders.find({hotelId: hotelId}),
         // ];
 
+        var devicesPub = new SimplePublication({
+          subHandle: this,
+          collection: Devices,
+          foreignKey: 'deviceId',
+          inverted: true
+        });
+
+        var usersPub = new SimplePublication({
+          subHandle: this,
+          collection: Meteor.users,
+          foreignKey: 'userId',
+          inverted: true
+        });
+
         var publication = new SimplePublication({
           subHandle: this,
           collection: Orders,
           selector: {hotelId: hotelId, open: true, handledBy: 'hotel'},
-          dependant: new SimplePublication({
-            subHandle: this,
-            collection: Devices,
-            foreignKey: 'deviceId',
-            inverted: true
-          })
+          dependant: [
+            devicesPub,
+            usersPub
+          ]
         }).start();
       } 
     }

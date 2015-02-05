@@ -18,16 +18,14 @@ Template.requestedTimeAgoCell.helpers({
 
 Template.patronReservationCell.helpers({
 	deviceLocation: function() {
-		// backwards compatible
-    if (this.deviceLocation) {
-      return this.deviceLocation;
-    } else {
-      var device = Devices.findOne(this.deviceId);
-      return device.location;
-    }
+		var order = Orders.findOne(this._id);
+		var device = Devices.findOne(order.deviceId);
+		return device.location;
 	},
-	patronName: function() {
-		return Meteor.call('getPatronLastName', this.userId);
+	guestName: function() {
+    var order = Orders.findOne(this._id);
+		var user = Meteor.users.findOne(order.userId);
+    return user.profile.lastName;
 	}
 });
 

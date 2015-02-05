@@ -37,11 +37,7 @@ Meteor.methods({
       throw new Meteor.Error(403, 'Not a valid order'); 
     }
 
-    Orders.update(orderId, {$set: {open: false; status: 'complete', completedDate: new Date(), completedBy: Meteor.userId() }});
-  },
-  getPatronName: function(userId) {
-    check(userId, String);
-    return Meteor.users.findOne( {_id: userId} ).profile.lastName;
+    Orders.update(orderId, {$set: {open: false, status: 'complete', completedDate: new Date(), completedBy: Meteor.userId() }});
   }
   //assignPatronRequest: function(orderId,userId) {
   //  var order = Orders.findOne(orderId);

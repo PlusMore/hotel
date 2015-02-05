@@ -17,7 +17,7 @@ TabularTables.OpenOrders = new Tabular.Table({
 			render: function(val,type,doc) {
 				if(val == 'service'){
 					var order = Orders.findOne(doc._id);
-					return HotelServices.friendlyRequestType(order.service.type);
+					return HotelServices.friendlyServiceType(order.service.type);
 				}
 			}
 		},
