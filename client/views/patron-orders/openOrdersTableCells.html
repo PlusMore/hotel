@@ -1,16 +1,18 @@
 <template name="requestedTimeAgoCell">
-	<div class="{{attention}}">
-		<p>{{requestedDateTimeAgo}}</p>
-	</div>
+	<h4><span class="label label-{{attention}}">{{requestedDateTimeAgo}}</span></h4>
+</template>
+
+<template name="orderTypeCell">
+	<p><strong>{{friendlyOrderType}}</strong></p>
 </template>
 
 <template name="patronReservationCell">
-	<p>{{deviceLocation}}</p>
+	<p><strong>{{deviceLocation}}</strong></p>
 	<p>{{guestName}}</p>
 </template>
 
 <template name="orderStatusCell">
-	<p>{{orderStatus}}</p>
+	<p><strong>{{orderStatus}}</strong></p>
 	{{#if isPending}}
 		<p>Claimed by: {{claimedName}}</p>
 		<p>{{claimedDate}}</p>
@@ -18,5 +20,6 @@
 </template>
 
 <template name="orderStatusButtonsCell">
-
+	<button type="button" class="btn-block {{statusButtonClass}}">{{statusButtonText}}</button>
+	<button type="button" class="btn-block btn btn-default btn-cancel-order">Cancel</button>
 </template>

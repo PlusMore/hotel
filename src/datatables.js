@@ -14,12 +14,7 @@ TabularTables.OpenOrders = new Tabular.Table({
 		{
 			data: "type",
 			title: "Type",
-			render: function(val,type,doc) {
-				if(val == 'service'){
-					var order = Orders.findOne(doc._id);
-					return HotelServices.friendlyServiceType(order.service.type);
-				}
-			}
+			tmpl: Meteor.isClient && Template.orderTypeCell
 		},
 		{
 			title: "Reservation",
