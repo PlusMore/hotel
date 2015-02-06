@@ -29,8 +29,7 @@ Template.orderTypeCell.helpers({
 Template.patronReservationCell.helpers({
 	deviceLocation: function() {
 		var order = Orders.findOne(this._id);
-		var device = Devices.findOne(order.deviceId);
-		return device.location;
+		return '(' + Devices.findOne(order.deviceId).location + ')';
 	},
 	guestName: function() {
     var order = Orders.findOne(this._id);
@@ -45,7 +44,7 @@ Template.orderStatusCell.helpers({
     case 'requested':
       return 'Requested';
     case 'pending': 
-      return 'Pending';
+      return 'In-Progress';
     case 'completed': 
       return 'Completed';
     case 'cancelled': 
@@ -67,40 +66,5 @@ Template.orderStatusCell.helpers({
 	},
   isPending: function() {
     return this.status === 'pending';
-  }
-});
-
-Template.orderStatusButtonsCell.helpers({
-  statusButtonClass: function() {
-    if (this.status == 'requested'){
-      return 'btn btn-primary btn-claim-order';
-    }
-    if (this.status == 'pending'){
-      return 'btn btn-success btn-complete-order';
-    }
-  },
-  statusButtonText: function() {
-    if (this.status == 'requested'){
-      return 'Claim';
-    }
-    if (this.status == 'pending'){
-      return 'Mark Complete';
-    }
-  }
-});
-
-Template.orderStatusButtonsCell.events({
-  'click .btn-claim-order': function(e) {
-    Meteor.call('claimPatronRequest', this._id);
-  },
-  'click .btn-complete-order': function(e) {
-    if (confirm("Are you sure you want to close this order?")) {
-      Meteor.call('completePatronRequest', this._id);
-    }
-  },
-  'click .btn-cancel-order': function(e) {
-    if (confirm("Are you sure you want to cancel this order?")) {
-      Meteor.call('cancelPatronRequest', this._id);
-    }
   }
 });

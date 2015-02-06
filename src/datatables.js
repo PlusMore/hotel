@@ -8,7 +8,7 @@ TabularTables.OpenOrders = new Tabular.Table({
 	columns: [
 		{
 			data: "requestedDate", 
-			title: "Requested",
+			title: "When",
 			tmpl: Meteor.isClient && Template.requestedTimeAgoCell
 		},
 		{
@@ -24,10 +24,6 @@ TabularTables.OpenOrders = new Tabular.Table({
 			data: "status",
 			title: "Status",
 			tmpl: Meteor.isClient && Template.orderStatusCell
-		},
-		{
-			tmpl: Meteor.isClient && Template.orderStatusButtonsCell
 		}
-
 	]
 });

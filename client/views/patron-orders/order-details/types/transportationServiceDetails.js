@@ -1,4 +1,4 @@
-Template.transportationRequestDetails.helpers({
+Template.transportationServiceDetails.helpers({
   transportationType: function () {
     switch (this.request.options.transportationType) {
       case 'taxi': 

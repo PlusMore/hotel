@@ -1,0 +1,22 @@
+<template name="orderDetails">
+	{{#if orderSelected}}
+
+		<h4>Order Details</h4>
+		{{#with order}}
+
+			<p><strong>Requested:</strong> <span class="pull-right">{{requestedWhen}}</span></p>
+			<p><strong>Guest:</strong> <span class="pull-right">{{guestName}} {{deviceLocation}}</span></p>
+
+			{{> UI.dynamic template=typeDetailsTemplate}}
+
+			<button type="button" class="btn-block {{statusButtonClass}}">{{statusButtonText}}</button>
+			<button type="button" class="btn-block btn btn-default btn-cancel-order">Cancel</button>
+
+		{{/with}}
+
+	{{else}}
+
+		<h4>Select a request to view order details</h4>
+
+	{{/if}}
+</template>
