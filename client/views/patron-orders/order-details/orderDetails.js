@@ -7,11 +7,11 @@ Template.orderDetails.helpers({
     var order = Orders.findOne(orderId);
     switch (order.service.type) {
       case 'transportation': 
-        return 'transportationRequestDetails';
+        return 'transportationServiceDetails';
       case 'roomService': 
-        return 'roomServiceRequestDetails';
+        return 'roomServiceDetails';
       case 'valetServices': 
-        return 'valetServicesRequestDetails';
+        return 'valetServiceDetails';
       default:
         return '';
     }

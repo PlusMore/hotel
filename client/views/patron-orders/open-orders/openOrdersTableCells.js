@@ -21,19 +21,18 @@ Template.requestedTimeAgoCell.helpers({
 
 Template.orderTypeCell.helpers({
   friendlyOrderType: function() {
-    var order = Orders.findOne(this._id);
-    return HotelServices.friendlyServiceType(order.service.type);
+    return HotelServices.friendlyServiceType(this.service.type);
   }
 });
 
 Template.patronReservationCell.helpers({
 	deviceLocation: function() {
-		var order = Orders.findOne(this._id);
-		return '(' + Devices.findOne(order.deviceId).location + ')';
+    if (this.deviceId) {
+      return '(' + Devices.findOne(this.deviceId).location + ')';
+    }
 	},
 	guestName: function() {
-    var order = Orders.findOne(this._id);
-		var user = Meteor.users.findOne(order.userId);
+		var user = Meteor.users.findOne(this.userId);
     return user.profile.lastName;
 	}
 });
@@ -54,13 +53,11 @@ Template.orderStatusCell.helpers({
   	}
 	},
 	claimedName: function() {
-		var order = Orders.findOne(this._id);
-    var user = Meteor.users.findOne(order.userId);
+    var user = Meteor.users.findOne(this.userId);
 		return "{0} {1}".format(user.profile.firstName, user.profile.lastName);
 	},
 	claimedDate: function() {
-    var order = Orders.findOne(this._id);
-		var when = moment(order.receivedDate).zone(order.requestedZone);
+		var when = moment(this.receivedDate).zone(this.requestedZone);
     when = when.format('MMMM Do YYYY, h:mm a') + " (" + when.calendar() + ")";
     return when;
 	},
