@@ -3,6 +3,10 @@ Template.requestedTimeAgoCell.helpers({
 		var now = Session.get('currentTime');
     return moment(this.requestedDate).fromNow();
 	},
+  requestedWhen: function() {
+    var when = moment(this.requestedDate).zone(this.requestedZone);
+    return when.format('MMMM Do YYYY, h:mm a') + " (" + when.calendar() + ")";
+  },
 	attention: function() {
     if (this.status == 'pending'){
       return 'info';
