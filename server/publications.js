@@ -167,7 +167,7 @@ Meteor.publish("tabular_Orders", function(tableName, ids, fields){
   var usersPub = new SimplePublication({
     subHandle: this,
     collection: Meteor.users,
-    foreignKey: 'userId',
+    foreignKey: ['userId','receivedBy','completedBy','cancelledBy'],
     inverted: true
   });
 

@@ -1,6 +1,6 @@
 Template.transportationServiceDetails.helpers({
   transportationType: function () {
-    switch (this.request.options.transportationType) {
+    switch (this.service.options.transportationType) {
       case 'taxi': 
         return 'Taxi';
         break;

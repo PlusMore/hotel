@@ -5,7 +5,10 @@ Template.orderHistoryTypeCell.helpers({
 });
 
 Template.orderHistoryRequestedDateCell.helpers({
-
+  orderRequestedDate: function() {
+  	var when = moment(this.requestedDate).zone(this.requestedZone);
+    return when.format('MMMM Do YYYY, h:mm a');
+  } 
 });
 
 Template.orderHistoryStatusCell.helpers({
@@ -19,9 +22,11 @@ Template.orderHistoryStatusCell.helpers({
 });
 
 Template.orderHistoryClosedDateCell.helpers({
-
-});
-
-Template.orderHistoryViewOrderCell.events({
-
+	orderClosedDate: function() {
+		if (this.cancelledDate) {
+		var when = moment(this.cancelledDate).zone(this.requestedZone);
+	}
+		var when = moment(this.completedDate).zone(this.requestedZone);
+	  return when.format('MMMM Do YYYY, h:mm a');
+	}
 });

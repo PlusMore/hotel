@@ -1,6 +1,9 @@
 Template.orderDetails.helpers({
-	orderSelected: function() {
-		return !!Session.get('detailsOrderId');
+	validOrderSelected: function() {
+    if (Orders.findOne(Session.get('detailsOrderId'))) {
+      return true;
+    }
+    return false;
 	},
 	typeDetailsTemplate: function() {
     var orderId = Session.get('detailsOrderId');
@@ -20,11 +23,45 @@ Template.orderDetails.helpers({
     var orderId = Session.get('detailsOrderId');
     return Orders.findOne(orderId);
   },
+  orderStatus: function() {
+    switch (this.status) {
+      case 'requested':
+        return 'Requested';
+      case 'pending': 
+        return 'In-Progress';
+      case 'completed': 
+        return 'Completed';
+      case 'cancelled': 
+        return 'Cancelled';
+      default: 
+        return '';
+    }
+  },
   requestedWhen: function() {
     return moment(this.requestedDate).calendar();
   },
+  closedWhen: function() {
+    if (this.cancelledDate){
+      return moment(this.cancelledDate).calendar();
+    }
+    return moment(this.completedDate).calendar();
+  },
+  closedBy: function() {
+    if (this.cancelledBy) {
+      var user = Meteor.users.findOne(this.cancelledBy);
+      if (Roles.userIsInRole(this.cancelledBy, ['hotel-manager', 'hotel-staff', 'admin'])) {
+        return user.profile.firstName;
+      }
+      return 'Guest';
+    } else {
+      return Meteor.users.findOne(this.completedBy).profile.firstName;
+    }
+  },
   guestName: function() {
     return Meteor.users.findOne(this.userId).profile.lastName;
+  },
+  receivedBy: function () {
+    return Meteor.users.findOne(this.receivedBy).profile.firstName;
   },
   deviceLocation: function() {
     if (this.deviceId) {

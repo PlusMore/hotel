@@ -40,9 +40,6 @@ TabularTables.ClosedOrders = new Tabular.Table({
 			data: "status",
 			title: "Status",
 			tmpl: Meteor.isClient && Template.orderHistoryStatusCell
-		},
-		{
-			tmpl: Meteor.isClient && Template.orderHistoryViewOrderCell
 		}
 	]
 });
