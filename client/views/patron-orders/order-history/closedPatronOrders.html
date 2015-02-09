@@ -1,0 +1,12 @@
+<template name='closedPatronOrders'>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				{{> tabular table=TabularTables.ClosedOrders selector=selector class="table table-condensed table-hover"}}
+			</div>
+			<div class="col-md-4">
+				{{> orderDetails}}
+			</div>
+		</div>
+  </div>
+</template>

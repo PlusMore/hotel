@@ -1,0 +1,30 @@
+<template name="orderDetails">
+	{{#if validOrderSelected}}
+
+		<h4>Order Details</h4>
+		{{#with order}}
+
+			<p><strong>Status:</strong> <span class="pull-right">{{orderStatus}}</span></p>
+			<p><strong>Guest:</strong> <span class="pull-right">{{guestName}} {{deviceLocation}}</span></p>
+			<p><strong>Requested:</strong> <span class="pull-right">{{requestedWhen}}</span></p>
+			<p><strong>Received by:</strong> <span class="pull-right">{{receivedBy}}</span></p>
+			{{#unless open}}
+				<p><strong>Closed:</strong> <span class="pull-right">{{closedWhen}}</span></p>
+				<p><strong>Closed by:</strong> <span class="pull-right">{{closedBy}}</span></p>
+			{{/unless}}
+
+			{{> UI.dynamic template=typeDetailsTemplate}}
+
+			{{#if open}}
+				<button type="button" class="btn-block {{statusButtonClass}}">{{statusButtonText}}</button>
+				<button type="button" class="btn-block btn btn-default btn-cancel-order">Cancel</button>
+			{{/if}}
+
+		{{/with}}
+
+	{{else}}
+
+		<h4>Select a request to view order details</h4>
+
+	{{/if}}
+</template>

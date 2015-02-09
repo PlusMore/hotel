@@ -264,14 +264,14 @@ Router.map(function() {
     } 
   });
 
-  this.route('patronOrders', {
-    path: '/orders',
-    template: 'patronOrders',
-    waitOn: function () {
-      return [
-        Meteor.subscribe('openPatronOrders', Session.get('hotelId'))
-      ];
-    } 
+  this.route('openPatronOrders', {
+    path: '/orders/open',
+    template: 'openPatronOrders'
+  });
+
+  this.route('closedPatronOrders', {
+    path: '/orders/closed',
+    template: 'closedPatronOrders'
   });
 
   this.route('request', {

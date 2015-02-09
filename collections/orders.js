@@ -23,12 +23,28 @@ Meteor.methods({
 
     Orders.update(orderId, {$set: {open: false, status: 'cancelled', cancelledDate: new Date(), cancelledBy: Meteor.userId() }});
   },
+  claimPatronRequest: function(orderId) {
+    var order = Orders.findOne(orderId);
+    if (!order) {
+      throw new Meteor.Error(403, 'Not a valid order'); 
+    }
+
+    Orders.update(orderId, {$set: {status: 'pending', receivedDate: new Date(), receivedBy: Meteor.userId() }});
+  },
   completePatronRequest: function(orderId) {
     var order = Orders.findOne(orderId);
     if (!order) {
       throw new Meteor.Error(403, 'Not a valid order'); 
     }
 
-    Orders.update(orderId, {$set: {open: false, status: 'confirmed', confirmedDate: new Date(), confirmedBy: Meteor.userId() }});
+    Orders.update(orderId, {$set: {open: false, status: 'completed', completedDate: new Date(), completedBy: Meteor.userId() }});
   }
+  //assignPatronRequest: function(orderId,userId) {
+  //  var order = Orders.findOne(orderId);
+  //  if (!order) {
+  //    throw new Meteor.Error(403, 'Not a valid order'); 
+  //  }
+  //
+  //  Orders.update(orderId, {$set: {assignedDate: new Date(), assignedTo: Meteor.userId() }});
+  //}
 });

@@ -152,38 +152,35 @@ Meteor.publish('menuItem', function(id) {
   }
 });
 
-// Orders
-Meteor.publish("openPatronOrders", function(hotelId) {
-  // join device from each order
-  var userId = this.userId,
-      user = Meteor.users.findOne(userId);
+Meteor.publish("tabular_Orders", function(tableName, ids, fields){
+  check(tableName, String);
+  check(ids, Array);
+  check(fields, Match.Optional(Object));
 
-  if (user) {
-    hotelId = hotelId || user.hotelId;
+  var devicesPub = new SimplePublication({
+    subHandle: this,
+    collection: Devices,
+    foreignKey: 'deviceId',
+    inverted: true
+  });
 
-    if (hotelId) {
-      hotel = Hotels.findOne(hotelId);
+  var usersPub = new SimplePublication({
+    subHandle: this,
+    collection: Meteor.users,
+    foreignKey: ['userId','receivedBy','completedBy','cancelledBy'],
+    inverted: true
+  });
 
-
-      if (hotel) {
-        // return [
-        //   Orders.find({hotelId: hotelId}),
-        // ];
-
-        var publication = new SimplePublication({
-          subHandle: this,
-          collection: Orders,
-          selector: {hotelId: hotelId},
-          dependant: new SimplePublication({
-            subHandle: this,
-            collection: Devices,
-            foreignKey: 'deviceId',
-            inverted: true
-          })
-        }).start();
-      } 
-    }
-  }
+  var publication = new SimplePublication({
+    subHandle: this,
+    collection: Orders,
+    selector: {_id: {$in: ids}},
+    fields: fields,
+    dependant: [
+      devicesPub,
+      usersPub
+    ]
+  }).start();
 });
 
 Meteor.publish('patronOrder', function(id) {
