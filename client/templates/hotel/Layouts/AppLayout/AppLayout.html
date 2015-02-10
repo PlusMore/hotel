@@ -1,4 +1,5 @@
 <template name="AppLayout">
+    {{#if currentUser}}
     <!-- Page Wrapper-->
     <section id="main-wrapper" class="{{theme}} {{ios}}">
         <!-- Page wrapper -->
@@ -19,10 +20,18 @@
     <!-- /Page wrapper-->
 
     <!-- Right Sidebar Navigation -->
-    {{> RightSidebar}}
+    <!-- {{> RightSidebar}} -->
 
     <!--Config demo-->
-    {{> ConfigDemo}}
+    <!-- {{> ConfigDemo}} -->
 
     {{> yield "modals"}}
+    
+    {{else}}
+        {{#if loggingIn}}
+            {{> loading}}
+        {{else}}
+            {{> login}}
+        {{/if}}
+    {{/if}}
 </template>

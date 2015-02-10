@@ -1,4 +1,4 @@
-Session.setDefault('theme', 'theme-default');
+Session.setDefault('theme', 'theme-green');
 
 Template.AppLayout.helpers({
   theme: function () {

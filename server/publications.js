@@ -10,7 +10,7 @@ Meteor.publish('userHotelData', function () {
   var userId = this.userId;
 
   if (userId) {
-    var fields = {hotelId:1},
+    var fields = {hotelId:1, emails: 1, profile: 1, kiosk: 1},
       user = Meteor.users.findOne({_id:userId}),
       hotelId = user && user.hotelId || null;
     if (hotelId) {
