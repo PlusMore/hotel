@@ -1,13 +1,14 @@
 <template name="dashboard">
-	{{#Layout template="EmptyLayout"}}
+	{{#Layout template="Page"}}
+	
+    {{#contentFor "header"}}
+      <h1>Dashboard</h1>
+      <p class="description">{{hotelName}}, at a glance!</p>
+    {{/contentFor}}
 
-		<div class="pageheader">
-			<h1>Dashboard</h1>
-		</div>
+    {{#contentFor "breadcrumb"}}
+      <li class="active">Dashboard</li>
+    {{/contentFor}}
 
-		<section id="main-content" class="animated fadeInUp">
-  		  
-  	</section>
-  	
   {{/Layout}}
 </template>

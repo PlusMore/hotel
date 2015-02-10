@@ -34,7 +34,13 @@ Template.Navigation.helpers({
     // }
 
     return '';
-  }
+  },
+  isHotelStaff: function() {
+    return Roles.userIsInRole(Meteor.userId(), ['hotel-staff', 'admin']);
+  },
+  isHotelManager: function() {
+    return Roles.userIsInRole(Meteor.userId(), ['hotel-manager', 'admin']);
+  },
 });
 
 Template.Navigation.events({
