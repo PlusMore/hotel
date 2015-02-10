@@ -1,0 +1,51 @@
+<template name="ChatWidget">
+    <div class="panel panel-default chat-widget">
+        <div class="panel-heading">
+            <h3 class="panel-title">chat</h3>
+            <div class="actions pull-right">
+                <i data-widget-toggle  class="fa fa-chevron-down"></i>
+                <i data-widget-close class="fa fa-times"></i>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row wrapper animated fadeInRight">
+                <div class="col-xs-2 col-sm-2 col-md-2 ">
+                    <span class="avatar">
+                        <img src="img/avatar3.png" class="img-circle" alt="">
+                        <i class="on animated bounceIn"></i>
+                    </span>
+                </div>
+                <div class="col-xs-10 col-sm-10 col-md-10">
+                    <div class="post default">
+                        <span class="arrow left"></span>
+                        <p>Hey Mike...Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibut</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row wrapper animated fadeInLeft">
+                <div class="col-xs-10 col-sm-10 col-md-10">
+                    <div class="post primary">
+                        <span class="arrow right"></span>
+                        <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et.</p>
+                    </div>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 ">
+                    <span class="avatar">
+                        <img src="img/profile.jpg" class="img-circle" alt="">
+                        <i class="on animated bounceIn"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <form>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Say something">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">SEND</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>

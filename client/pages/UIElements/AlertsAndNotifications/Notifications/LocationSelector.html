@@ -1,0 +1,9 @@
+<template name="LocationSelector">
+  <h3>Location Options</h3>
+  <p>This jQuery Notification plugin gives you the ability to place your messages in any corner of the screen. Simply click on any of the areas below while a message is visible.</p>
+  <div class="location-selector">
+    {{#each bits}}
+      <div class="bit {{this}}" data-position="{{this}}"></div>
+    {{/each}}
+  </div>
+</template>

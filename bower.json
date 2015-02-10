@@ -1,0 +1,18 @@
+{
+  "name": "NeoBoard",
+  "version": "0.0.1",
+  "dependencies": {
+    "flot": "~0.8.3",
+    "messenger": "~1.4.1",
+    "jquery-validation": "~1.13.1",
+    "gauge.js": "~1.2.1",
+    "c3": "~0.4.9",
+    "chartjs": "~1.0.1",
+    "iCheck": "~1.0.2",
+    "clndr": "~1.2.7",
+    "seiyria-bootstrap-slider": "~4.4.1",
+    "nestable2": "~1.2.2",
+    "d3": "~3.5.0"
+  },
+  "private": true
+}

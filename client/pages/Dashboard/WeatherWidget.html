@@ -1,0 +1,80 @@
+<template name="WeatherWidget">
+    <div class="panel panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Weather</h3>
+            <div class="actions pull-right">
+                <i class="fa fa-chevron-down"></i>
+                <i class="fa fa-times"></i>
+            </div>
+        </div>
+        <div class="panel-body widget-weather">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <h3 class="text-center title">Today</h3>
+                    <div class="text-center">
+                        <canvas id="clear-day" width="75" height="75"></canvas>
+                        <div class="temp">62°C</div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <h3 class="text-center title">Tonight</h3>
+                    <div class="text-center">
+                        <canvas id="partly-cloudy-night" width="75" height="75"></canvas>
+                        <div class="temp">44°C</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <h6 class="text-center small-thin uppercase">Mon</h6>
+                    <div class="text-center">
+                        <canvas id="partly-cloudy-day" width="32" height="32"></canvas>
+                        <span>48°C</span>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <h6 class="text-center small-thin uppercase">Tue</h6>
+                    <div class="text-center">
+                        <canvas id="rain" width="32" height="32"></canvas>
+                        <span>39°C</span>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <h6 class="text-center small-thin uppercase">Wed</h6>
+                    <div class="text-center">
+                        <canvas id="sleet" width="32" height="32"></canvas>
+                        <span>32°C</span>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <h6 class="text-center small-thin uppercase">Thu</h6>
+                    <div class="text-center">
+                        <canvas id="snow" width="32" height="32"></canvas>
+                        <span>28°C</span>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <h6 class="text-center small-thin uppercase">Fri</h6>
+                    <div class="text-center">
+                        <canvas id="wind" width="32" height="32"></canvas>
+                        <span>40°C</span>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-2">
+                    <h6 class="text-center small-thin uppercase">Sat</h6>
+                    <div class="text-center">
+                        <canvas id="fog" width="32" height="32"></canvas>
+                        <span>42°C</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

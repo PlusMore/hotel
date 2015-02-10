@@ -1,0 +1,25 @@
+<template name="BrowserStatsWidget">
+  <div class="panel panel-default browser-chart">
+      <div class="panel-heading">
+          <h3 class="panel-title">BROWSER STATS</h3>
+      </div>
+      <div class="panel-body">
+          <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <ul>
+                      <li><i class="fa fa-circle primary-color"></i> Chrome</li>
+                      <li><i class="fa fa-circle danger-color"></i> IE</li>
+                      <li><i class="fa fa-circle info-color"></i> Safari</li>
+                      <li><i class="fa fa-circle warning-color"></i> Firefox</li>
+                      <li><i class="fa fa-circle success-color"></i> Other</li>
+                  </ul>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <div id="doughnut-canvas-holder">
+                      <canvas id="doughnut-chart-area" width="137" height="137"></canvas>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</template>

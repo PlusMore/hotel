@@ -1,0 +1,39 @@
+<template name="AccountSettings">
+  <h5 class="sidebar-header">Account Settings</h5>
+  <div class="setting-list">
+    <div class="row">
+        <div class="col-xs-8">
+            <label for="share-status-switch" class="control-label">Share your status</label>
+        </div>
+        <div class="col-xs-4 tgl-container">
+          <label class="tgl">
+            <input id="share-status-switch" type="checkbox" {{shareStatus}}/>
+            <span class="tgl_body">
+              <span class="tgl_switch"></span>
+              <span class="tgl_track">
+                <span class="tgl_bgd"></span>
+                <span class="tgl_bgd tgl_bgd-negative"></span>
+              </span>
+            </span>
+          </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8">
+            <label for="push-notifications-switch" class="control-label">Push Notifications</label>
+        </div>
+        <div class="col-xs-4 tgl-container">
+          <label class="tgl">
+            <input id="push-notifications-switch" type="checkbox" {{pushNotifications}}/>
+            <span class="tgl_body">
+              <span class="tgl_switch"></span>
+              <span class="tgl_track">
+                <span class="tgl_bgd"></span>
+                <span class="tgl_bgd tgl_bgd-negative"></span>
+              </span>
+            </span>
+          </label>
+        </div>
+    </div>
+  </div>
+</template>

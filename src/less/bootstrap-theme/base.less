@@ -1,0 +1,82 @@
+@import '/client/style/imports.import.less';
+
+html {
+height: 100%;
+font-size:100%;
+}
+body {
+    color: #565656; 
+    background: #F0F3F3;
+    font-family:  @fontStack;
+    font-size:100%;
+    padding: 0px;
+    margin: 0px;
+    min-height: 100%;
+    position: relative;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch; 
+}
+a:link, a:visited {
+    text-decoration: none;
+    outline: none; 
+    color: @aLinkColor; 
+} 
+a:hover, a:active {
+    outline: none;
+    text-decoration: none;
+    color: @aLinkHover;
+  
+}
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6  {
+    font-family:  @fontHeader;
+    color: #424856;
+}
+h1,.h1 {
+  font-size: @22px;
+}
+
+
+h2,.h2 {
+  font-size: @19px;
+}
+
+h3,.h3 {
+  font-size: @17px;
+}
+
+h4,.h4 {
+  font-size: @15px;
+}
+
+h5,.h5 {
+  font-size: @13px;
+}
+
+h6,.h6 {
+  font-size: @12px;
+}
+p {
+    font-size: @14px;
+}
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+img {
+    max-width: 100%;
+}
+::selection {
+    background: #fff7dd;
+}
+::-moz-selection {
+    background: #fff7dd;
+}
+
+canvas {
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 100%;
+}

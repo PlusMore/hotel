@@ -1,0 +1,19 @@
+<template name="SimpleLineIcons">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  <h2>Simple Line Icons <span class="label badge badge-primary">webfont</span></h2>
+                  <p>Simple line icons are great for mobile applications, websites, user interfaces, etc. </p>
+                  <div class="row list-icon">
+                      {{#each simpleLineIcons}}
+                          <div class="col-md-3 col-sm-4">
+                              <i class="{{this}}"></i> {{this}}
+                          </div>
+                      {{/each}}    
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</template>

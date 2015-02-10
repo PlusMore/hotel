@@ -1,38 +1,28 @@
 # Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
 #
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-standard-app-packages
-accounts-base
-accounts-password
-less
-email
-alanning:roles@1.2.10
-aldeed:autoform@0.16.1
-aldeed:collection2@0.4.5
-percolatestudio:fastclick@0.6.7
-underscore
-jquery
-joshowens:accounts-entry@0.8.0
-natestrauser:font-awesome@4.1.0
-percolatestudio:percolatestudio-mixpanel@0.5.0
-mrt:impicker@1.2.0
-pickadate
-mrt:migrations@0.0.2
-mrt:googlemaps@0.0.2
-lezed1:bootstrap-errors@0.3.1
-coffeescript
-plus-more-icons
-copleykj:simple-publish@1.0.0
-natestrauser:animate-css@3.1.1
-tags
-mizzao:bootboxjs@4.2.1-master.1
+meteor-platform
+autopublish
+insecure
 iron:router
-ian:bootstrap-3
-ian:accounts-ui-bootstrap-3
-jeremy:selectize
-mrt:moment
-aldeed:geocoder
+less
+nemo64:bootstrap
+mquandalle:bower
+momentjs:moment
+fortawesome:fontawesome
+nahue:simple-line-icons
+natestrauser:animate-css
+cwaring:modernizr
+awatson1978:dropzone
+summernote:standalone
 aldeed:tabular
-
+anti:fake
+vazco:maps
+iron:layout
+ian:accounts-ui-bootstrap-3
+accounts-facebook
+accounts-password
+accounts-google

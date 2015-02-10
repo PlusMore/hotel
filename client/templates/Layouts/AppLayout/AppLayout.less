@@ -1,0 +1,62 @@
+@import '/client/style/imports.import.less';
+
+#main-wrapper {
+    .transition(all, .5s, ease-in-out); 
+    overflow: hidden; 
+}
+.main-content-wrapper { 
+    margin-right: 0;
+    padding-top: 60px;
+    background: #F0F3F3;
+    position: relative;
+    & #main-content {
+        padding: 15px 15px 0 15px;
+        width: 100%;
+        & .h1 {
+            margin: 0;
+            padding: 0px 10px 40px 10px;
+            float: left;
+            line-height: 10px;
+            font-weight: 300;
+            font-size: @24px;
+        }
+    }
+}
+
+.ios .main-content-wrapper {
+    padding-top: 80px;
+}
+
+.main-content-toggle-left {
+    margin-left: 0;
+}
+.main-content-toggle-right {
+    margin-right: 240px;
+}
+
+@media (max-width: 767px) {
+    .main-content-wrapper {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 480px) {
+    /* Main Content */
+    #main-content .h1 {
+        font-size: @24px;
+    }
+}
+
+
+@media only screen and (max-width: 660px) {
+    .main-content-toggle-left {
+        margin-left: 660px;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    /* Main Content */
+    #main-content .h1 {
+        font-size: 22px;
+    }
+}
