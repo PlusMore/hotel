@@ -3,6 +3,10 @@ accounts-facebook@1.0.3
 accounts-google@1.0.3
 accounts-oauth@1.1.3
 accounts-password@1.0.6
+alanning:roles@1.2.13
+aldeed:autoform@4.2.2
+aldeed:collection2@2.3.2
+aldeed:simple-schema@1.3.0
 aldeed:tabular@1.0.6
 anti:fake@0.4.1
 anti:i18n@0.4.3
@@ -17,6 +21,7 @@ blaze-tools@1.0.2
 boilerplate-generator@1.0.2
 callback-hook@1.0.2
 check@1.0.4
+copleykj:simple-publish@1.0.4
 cwaring:modernizr@0.0.2
 ddp@1.0.14
 deps@1.0.6
