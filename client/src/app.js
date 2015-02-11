@@ -32,31 +32,6 @@ App = function() {
         });
     };
 
-    var dateRangePicker = function() {
-        $('.reportdate').daterangepicker({
-            format: 'YYYY-MM-DD',
-            startDate: '2014-01-01',
-            endDate: '2014-06-30'
-        });
-    };
-
-    // TODO: Add Meteor PreLoader
-
-    var spinStart = function(spinOn) {
-        var spinFull = $('<div class="preloader"><div class="iconWrapper"><i class="fa fa-circle-o-notch fa-spin"></i></div></div>');
-        var spinInner = $('<div class="preloader preloader-inner"><div class="iconWrapper"><i class="fa fa-circle-o-notch fa-spin"></i></div></div>');
-        if (spinOn === undefined) {
-            $('body').prepend(spinFull);
-        } else {
-            $(spinOn).prepend(spinInner);
-        };
-
-    };
-
-    var spinStop = function() {
-        $('.preloader').remove();
-    };
-
     var maskInputs = function($selector) {
         $selector.each(function() {
             var mask = $(this).data('mask');
@@ -90,9 +65,6 @@ App = function() {
     return {
         colors: colors,
         customCheckbox: customCheckbox,
-        dateRangePicker: dateRangePicker,
-        maskInputs: maskInputs,
-        spinStart: spinStart,
-        spinStop: spinStop
+        maskInputs: maskInputs
     };
 }();
