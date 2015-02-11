@@ -31,10 +31,8 @@
     
     
     {{else}}
-        {{#if loggingIn}}
-            {{> loading}}
-        {{else}}
-            {{> login}}
-        {{/if}}
+        {{#unless loggingIn}}
+            {{> Login}}
+        {{/unless}}
     {{/if}}
 </template>
