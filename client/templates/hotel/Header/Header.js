@@ -24,7 +24,11 @@ Template.Header.events({
   'click #toggle-profile': function () {
     $('.sidebar-profile').slideToggle();
   },
-  'click #logout': function () {
+  'click #logout': function (e) {
+    e.preventDefault();
     Meteor.logout();
+  },
+  'click #account-dropdown': function(e) {
+    e.preventDefault();
   }
 });

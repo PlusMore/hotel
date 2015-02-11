@@ -13,7 +13,8 @@ Template.SidebarProfile.helpers({
 });
 
 Template.SidebarProfile.events({
-	'click #logout': function () {
+	'click #logout': function (e) {
+    e.preventDefault();
     Meteor.logout();
   }
 });
