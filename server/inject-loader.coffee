@@ -6,7 +6,6 @@ Inject.rawHead 'loader-style',
   # The loading spinner needs some theming.
   '<style>' +
     'html{background-color: #F0F3F3;}' +
-    'body{color:#ddd;overflow-x:hidden;overflow-y:auto;width:100%;}' +
     '.app-loader {'+
       'position: fixed;'+
       'top: 0px;'+

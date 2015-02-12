@@ -28,6 +28,20 @@ Meteor.publish('userHotelData', function () {
   }
 });
 
+Meteor.publish('hotelsAdminSelect', function () {
+  if (Roles.userIsInRole(this.userId,'admin')){
+    return Hotels.find({}, {
+      fields: {
+        _id: 1,
+        name: 1
+      },
+      sort: {
+        name: 1
+      }
+    });
+  }
+});
+
 // Tags
 
 Meteor.publish('tags', function(collectionName) {
@@ -70,10 +84,6 @@ Meteor.publish('deviceUserStatus', function(deviceId) {
 
 Meteor.publish('hotel', function(id) {
   return Hotels.find(id);
-});
-
-Meteor.publish('hotels', function () {
-  return Hotels.find();
 });
 
 Meteor.publish('hotelUsers', function(hotelId) {
