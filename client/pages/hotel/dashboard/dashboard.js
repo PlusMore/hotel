@@ -1,5 +1,8 @@
 Template.Dashboard.helpers({
 	hotelName: function() {
-		return Session.get('hotelName') || "Your hotel";
-	}
+		return Session.get('hotelName') || "All hotels";
+	},
+	notAdmin: function() {
+    return !Roles.userIsInRole(Meteor.userId(),'admin');
+  },
 });

@@ -41,6 +41,18 @@ Template.Navigation.helpers({
   isHotelManager: function() {
     return Roles.userIsInRole(Meteor.userId(), ['hotel-manager', 'admin']);
   },
+  hotelRequiredClass: function() {
+    if (Session.get('hotelId')){
+      return "";
+    }
+    return "disabled";
+  },
+  hotelRequiredBadge: function() {
+    if (Session.get('hotelId')){
+      return "";
+    }
+    return '<span class="pull-right badge badge-danger">Hotel</span>';
+  }
 });
 
 Template.Navigation.events({

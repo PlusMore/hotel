@@ -11,8 +11,25 @@
     {{/contentFor}}
 
     <!-- begin content -->
+    {{#if notAdmin}}
+      <!-- Hotel Content -->
 
-    <!-- end content -->
+
+
+
+
+
+
+
+
+
+
+
+
+    {{else}}
+      {{> AdminDashboard}}
+    {{/if}}
+   
 
   {{/Layout}}
 </template>
