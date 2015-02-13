@@ -193,6 +193,37 @@ Meteor.publish("tabular_Orders", function(tableName, ids, fields){
   }).start();
 });
 
+Meteor.publish("tabular_Devices", function(tableName, ids, fields){
+  check(tableName, String);
+  check(ids, Array);
+  check(fields, Match.Optional(Object));
+
+  var staysPub = new SimplePublication({
+    subHandle: this,
+    collection: Stays,
+    foreignKey: 'stayId',
+    inverted: true
+  });
+
+  //var usersPub = new SimplePublication({
+  //  subHandle: this,
+  //  collection: Meteor.users,
+  //  foreignKey: ['userId','receivedBy','completedBy','cancelledBy'],
+  //  inverted: true
+  //});
+
+  var publication = new SimplePublication({
+    subHandle: this,
+    collection: Devices,
+    selector: {_id: {$in: ids}},
+    fields: fields,
+    dependant: [
+      staysPub,
+      //usersPub
+    ]
+  }).start();
+});
+
 Meteor.publish('patronOrder', function(id) {
   var order = Orders.findOne(id);
   return [

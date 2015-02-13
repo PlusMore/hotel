@@ -3,6 +3,6 @@ Template.Dashboard.helpers({
 		return Session.get('hotelName') || "All hotels";
 	},
 	notAdmin: function() {
-    return !Roles.userIsInRole(Meteor.userId(),'admin');
+    return !Roles.userIsInRole(Meteor.user(),'admin');
   },
 });

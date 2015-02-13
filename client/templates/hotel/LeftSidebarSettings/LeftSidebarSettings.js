@@ -3,10 +3,10 @@ Session.setDefault('shareStatus', false);
 
 Template.LeftSidebarSettings.helpers({
   isAdmin: function() {
-    return Roles.userIsInRole(Meteor.userId(), 'admin');
+    return Roles.userIsInRole(Meteor.user(), 'admin');
   },
   hotels: function() {
-    if (Roles.userIsInRole(Meteor.userId(), 'admin')){
+    if (Roles.userIsInRole(Meteor.user(), 'admin')){
       Meteor.subscribe('hotelsAdminSelect');
       return Hotels.find();
     }
