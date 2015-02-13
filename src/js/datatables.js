@@ -4,11 +4,12 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
 
 
 
-TabularTables.ClosedOrders = new Tabular.Table({
-	name: "ClosedOrders",
+TabularTables.OrderHistory = new Tabular.Table({
+	name: "OrderHistory",
 	collection: Orders,
 	pub: "tabular_Orders",
 	autoWidth: true,
+	order: [0, 'desc'],
 	extraFields: [
 								'requestedZone', 
 								'receivedDate',
@@ -24,23 +25,22 @@ TabularTables.ClosedOrders = new Tabular.Table({
 								],
 	columns: [
 		{
+			data: "requestedDate", 
+			title: "Requested",
+			tmpl: Meteor.isClient && Template.orderHistoryRequestedCell
+		},
+		{
 			data: "type",
 			title: "Type",
 			tmpl: Meteor.isClient && Template.orderHistoryTypeCell
 		},
 		{
-			data: "requestedDate", 
-			title: "Date Requested",
-			tmpl: Meteor.isClient && Template.orderHistoryRequestedDateCell
-		},
-		{
-			title: "Date Closed",
-			tmpl: Meteor.isClient && Template.orderHistoryClosedDateCell
-		},
-		{
 			data: "status",
 			title: "Status",
 			tmpl: Meteor.isClient && Template.orderHistoryStatusCell
+		},
+		{
+			tmpl: Meteor.isClient && Template.orderHistoryViewCell
 		}
 	]
 });
@@ -84,6 +84,9 @@ TabularTables.OpenOrders = new Tabular.Table({
 			data: "status",
 			title: "Status",
 			tmpl: Meteor.isClient && Template.orderStatusCell
+		},
+		{
+			tmpl: Meteor.isClient && Template.viewDetailsCell
 		}
 	],
 	createdRow: function(row, data, dataIndex){
