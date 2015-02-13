@@ -8,6 +8,7 @@ TabularTables.ClosedOrders = new Tabular.Table({
 	name: "ClosedOrders",
 	collection: Orders,
 	pub: "tabular_Orders",
+	autoWidth: true,
 	extraFields: [
 								'requestedZone', 
 								'receivedDate',
@@ -50,6 +51,9 @@ TabularTables.OpenOrders = new Tabular.Table({
 	name: "OpenOrders",
 	collection: Orders,
 	pub: "tabular_Orders",
+	autoWidth: true,
+	searching: false,
+	order: [0, 'desc'],
 	extraFields: [
 								'requestedZone', 
 								'receivedDate',
@@ -69,17 +73,28 @@ TabularTables.OpenOrders = new Tabular.Table({
 		},
 		{
 			data: "type",
-			title: "Type",
+			title: "Order Type",
 			tmpl: Meteor.isClient && Template.orderTypeCell
 		},
 		{
 			title: "Reservation",
-			tmpl: Meteor.isClient && Template.patronReservationCell
+			tmpl: Meteor.isClient && Template.reservationCell
 		},
 		{
 			data: "status",
 			title: "Status",
 			tmpl: Meteor.isClient && Template.orderStatusCell
 		}
-	]
+	],
+	createdRow: function(row, data, dataIndex){
+		var now = Session.get('currentTime') || new Date();
+    var requestedDate = moment(data.requestedDate);
+    if (requestedDate.isBefore(moment(now).subtract(20, 'minutes'))) {
+      $(row).addClass( 'danger' );
+    }
+    if (requestedDate.isBefore(moment(now).subtract(10, 'minutes'))) {
+      $(row).addClass( 'warning' );
+    }
+    $(row).addClass( 'success' );
+	}
 });
