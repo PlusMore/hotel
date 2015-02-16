@@ -1,5 +1,5 @@
 Template.Account.helpers({
-	user: function() {
-		return Meteor.user();
-	}
+  user: function() {
+    return Meteor.user();
+  }
 });

@@ -1,3 +1,19 @@
 <template name="AccountSettings">
+	{{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Account</h1>
+    {{/contentFor}}
 
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li>
+      	<a href="{{pathFor 'Account'}}">Account</a>
+      </li>
+      <li class="active">Settings</li>
+    {{/contentFor}}
+
+
+  {{/Layout}}
 </template>
