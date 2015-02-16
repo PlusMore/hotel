@@ -1,3 +1,39 @@
 <template name="Account">
+    {{#Layout template="Page"}}
+        {{#contentFor "header"}}
+          <h1>Account</h1>
+        {{/contentFor}}
 
+        {{#contentFor "breadcrumb"}}
+            <li>
+                <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+            </li>
+            <li class="active">Account</li>
+        {{/contentFor}}
+
+        <!-- page content -->
+        {{#with user}}
+	        <div class="row">
+	            <div class="col-xs-12">
+	                <section class="panel">
+	                    <div class="panel-body profile-wrapper">
+	                        <div class="col-md-3">
+	                            <div class="profile-pic text-center">
+	                                <img src="{{userAvatar}}" alt="" class="img-circle">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-9">
+	                            <div class="profile-info">
+	                                <h1>{{userFirstName}} {{userLastName}} <small>{{userHotelName}}</small></h1>
+	                                <span class="text-muted">{{userFriendlyRole}} - <a href="{{userEmail}}">{{userEmail}}</a></span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </section>
+	            </div>
+	        </div>
+        {{/with}}
+        <!-- page content end -->
+
+    {{/Layout}}
 </template>
