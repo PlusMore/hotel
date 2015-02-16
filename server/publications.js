@@ -247,23 +247,28 @@ Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
     inverted: true
   });
 
+  // Can't get user dependant to work because the user IDs in Stay
+  // are in an array. Simple-publish documentation lacking.
   //var usersPub = new SimplePublication({
   //  subHandle: this,
   //  collection: Meteor.users,
-  //  foreignKey: ['userId','receivedBy','completedBy','cancelledBy'],
-  //  inverted: true
+  //  foreignKey: "users.0",
+  //  inverted: true,
+  //  dependant: staysPub
   //});
 
   var publication = new SimplePublication({
     subHandle: this,
     collection: Devices,
     selector: {
-      _id: { $in: ids }
+      _id: {
+        $in: ids
+      }
     },
     fields: fields,
     dependant: [
       staysPub,
-      //usersPub
+    //  usersPub
     ]
   }).start();
 });

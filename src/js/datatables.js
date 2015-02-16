@@ -13,11 +13,13 @@ TabularTables.OrderHistory = new Tabular.Table({
   pagingType: "simple",
   order: [0, 'desc'],
   extraFields: [
+    'open',
+    'type',
+    'status',
+    'requestedDate',
     'requestedZone',
     'receivedDate',
     'receivedBy',
-    'completedBy',
-    'completedDate',
     'deviceId',
     'userId',
     'handledBy',
@@ -26,18 +28,40 @@ TabularTables.OrderHistory = new Tabular.Table({
     'reservation'
   ],
   columns: [{
-    data: "requestedDate",
+    data: "orderRequestedWhen()",
     title: "Requested",
-    tmpl: Meteor.isClient && Template.orderHistoryRequestedCell
+    tmpl: Meteor.isClient && Template.orderHistoryRequestedCell,
+    render: function(val, type, doc) {
+      if (type != 'display') {
+        if (val) {
+          return val;
+        }
+      }
+    }
   }, {
-    data: "type",
+    data: "orderServiceType()",
     title: "Type",
-    tmpl: Meteor.isClient && Template.orderHistoryTypeCell
+    tmpl: Meteor.isClient && Template.orderHistoryTypeCell,
+    render: function(val, type, doc) {
+      if (type != 'display') {
+        if (val) {
+          return val;
+        }
+      }
+    }
   }, {
-    data: "status",
+    data: "orderStatus()",
     title: "Status",
-    tmpl: Meteor.isClient && Template.orderHistoryStatusCell
+    tmpl: Meteor.isClient && Template.orderHistoryStatusCell,
+    render: function(val, type, doc) {
+      if (type != 'display') {
+        if (val) {
+          return val;
+        }
+      }
+    }
   }, {
+    orderable: false,
     tmpl: Meteor.isClient && Template.orderHistoryViewCell
   }]
 });
@@ -53,6 +77,10 @@ TabularTables.OpenOrders = new Tabular.Table({
   pagingType: "simple",
   order: [0, 'desc'],
   extraFields: [
+    'open',
+    'type',
+    'status',
+    'requestedDate',
     'requestedZone',
     'receivedDate',
     'receivedBy',
@@ -64,21 +92,43 @@ TabularTables.OpenOrders = new Tabular.Table({
     'reservation'
   ],
   columns: [{
-    data: "requestedDate",
+    data: "orderRequestedWhen()",
     title: "When",
-    tmpl: Meteor.isClient && Template.requestedTimeAgoCell
+    tmpl: Meteor.isClient && Template.requestedTimeAgoCell,
+    render: function(val, type, doc) {
+      if (type != 'display') {
+        if (val) {
+          return val;
+        }
+      }
+    }
   }, {
-    data: "type",
-    title: "Order Type",
-    tmpl: Meteor.isClient && Template.orderTypeCell
+    data: "orderServiceType()",
+    title: "Type",
+    tmpl: Meteor.isClient && Template.orderTypeCell,
+    render: function(val, type, doc) {
+      if (type != 'display') {
+        if (val) {
+          return val;
+        }
+      }
+    }
   }, {
     title: "Reservation",
     tmpl: Meteor.isClient && Template.reservationCell
   }, {
-    data: "status",
+    data: "orderStatus()",
     title: "Status",
-    tmpl: Meteor.isClient && Template.orderStatusCell
+    tmpl: Meteor.isClient && Template.orderStatusCell,
+    render: function(val, type, doc) {
+      if (type != 'display') {
+        if (val) {
+          return val;
+        }
+      }
+    }
   }, {
+    orderable: false,
     tmpl: Meteor.isClient && Template.viewDetailsCell
   }],
   createdRow: function(row, data, dataIndex) {
@@ -117,6 +167,7 @@ TabularTables.ViewDevices = new Tabular.Table({
     title: "Check-out",
     tmpl: Meteor.isClient && Template.viewDevicesCheckoutCell
   }, {
+    orderable: false,
     tmpl: Meteor.isClient && Template.viewDevicesActionCell
   }],
   createdRow: function(row, data, dataIndex) {
@@ -130,4 +181,78 @@ TabularTables.ViewDevices = new Tabular.Table({
       }
     }
   }
+});
+
+
+TabularTables.ViewStaff = new Tabular.Table({
+  name: "ViewStaff",
+  collection: Meteor.users,
+  autoWidth: true,
+  searching: false,
+  pagingType: "simple",
+  order: [1, 'desc'],
+  extraFields: [
+    'profile',
+    'roles',
+    'emails'
+  ],
+  columns: [{
+    orderable: false,
+    tmpl: Meteor.isClient && Template.staffAvatarCell
+  }, {
+    data: "userFirstName()",
+    title: "First",
+    render: function(val, type, doc) {
+      if (type != 'display') {
+        if (val) {
+          return val;
+        } else {
+          return '';
+        }
+      }
+    },
+    tmpl: Meteor.isClient && Template.staffFirstNameCell
+  }, {
+    data: "userLastName()",
+    title: "Last",
+    render: function(val, type, doc) {
+      if (type != 'display') {
+        if (val) {
+          return val;
+        } else {
+          return '';
+        }
+      }
+    },
+    tmpl: Meteor.isClient && Template.staffLastNameCell
+  }, {
+    data: "userEmail()",
+    title: "Email",
+    render: function(val, type, doc) {
+      if (type != 'display') {
+        if (val) {
+          return val;
+        } else {
+          return '';
+        }
+      }
+    },
+    tmpl: Meteor.isClient && Template.staffEmailCell
+  }, {
+    data: "userFriendlyRole()",
+    title: "Role",
+    render: function(val, type, doc) {
+      if (type != 'display') {
+        if (val) {
+          return val;
+        } else {
+          return '';
+        }
+      }
+    },
+    tmpl: Meteor.isClient && Template.staffRoleCell
+  }, {
+    orderable: false,
+    tmpl: Meteor.isClient && Template.staffEditCell
+  }]
 });
