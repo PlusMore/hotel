@@ -6,18 +6,18 @@ Template.LeftSidebarSettings.helpers({
     return Roles.userIsInRole(Meteor.user(), 'admin');
   },
   hotels: function() {
-    if (Roles.userIsInRole(Meteor.user(), 'admin')){
+    if (Roles.userIsInRole(Meteor.user(), 'admin')) {
       Meteor.subscribe('hotelsAdminSelect');
       return Hotels.find();
     }
   },
   currentHotelOrNone: function() {
-    if (Session.get('hotelName')){
+    if (Session.get('hotelName')) {
       return "Selected: " + Session.get('hotelName');
     }
     return "Selected: None";
   },
-  pushNotifications: function () {
+  pushNotifications: function() {
     return Session.get('pushNotifications') ? 'checked' : '';
   },
   shareStatus: function() {
@@ -26,7 +26,7 @@ Template.LeftSidebarSettings.helpers({
 });
 
 Template.LeftSidebarSettings.events({
-  'change #push-notifications-switch': function (e, tmpl) {
+  'change #push-notifications-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
       console.log('on');
       Session.set('pushNotifications', true);
@@ -35,7 +35,7 @@ Template.LeftSidebarSettings.events({
       Session.set('pushNotifications', false);
     }
   },
-  'change #share-status-switch': function (e, tmpl) {
+  'change #share-status-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
       console.log('on');
       Session.set('shareStatus', true);
@@ -44,7 +44,7 @@ Template.LeftSidebarSettings.events({
       Session.set('shareStatus', false);
     }
   },
-  'change #select-hotel': function (e, tmpl) {
+  'change #select-hotel': function(e, tmpl) {
     e.preventDefault();
     if (tmpl.$(e.currentTarget).val() != "none") {
       Session.set('hotelId', tmpl.$(e.currentTarget).val());

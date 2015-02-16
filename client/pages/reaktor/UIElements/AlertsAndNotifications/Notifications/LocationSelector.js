@@ -1,5 +1,5 @@
 Template.LocationSelector.helpers({
-  bits: function () {
+  bits: function() {
     return [
       'top left',
       'top right',
@@ -12,7 +12,7 @@ Template.LocationSelector.helpers({
 });
 
 Template.LocationSelector.events({
-  'click .bit': function (e, tmpl) {
+  'click .bit': function(e, tmpl) {
     var $bit = tmpl.$(e.currentTarget);
     var position = $bit.data('position').split(' ');
 

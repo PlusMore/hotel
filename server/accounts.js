@@ -1,25 +1,25 @@
 Accounts.emailTemplates.siteName = "Plus More";
 Accounts.emailTemplates.from = "noreply@plusmoretablets.com";
-Accounts.emailTemplates.enrollAccount.subject = function (user) {
-    return "Welcome to Plus More";
+Accounts.emailTemplates.enrollAccount.subject = function(user) {
+  return "Welcome to Plus More";
 };
-Accounts.emailTemplates.enrollAccount.text = function (user, url) {
+Accounts.emailTemplates.enrollAccount.text = function(user, url) {
   var spliturl = url.split('/#');
   url = Meteor.settings.apps.hotel.url + '/#' + spliturl[1];
 
-  return "To activate your account, simply click the link below:\n\n" + 
-  url;
+  return "To activate your account, simply click the link below:\n\n" +
+    url;
 };
 
-Accounts.emailTemplates.verifyEmail.text = function (user, url) {
+Accounts.emailTemplates.verifyEmail.text = function(user, url) {
   var spliturl = url.split('/#');
   url = Meteor.settings.apps.hotel.url + '/#' + spliturl[1];
-  
-  return "To verify your account email, simply click the link below.:\n\n" + 
-  url;
+
+  return "To verify your account email, simply click the link below.:\n\n" +
+    url;
 };
 
-Accounts.validateNewUser(function (user) {  
+Accounts.validateNewUser(function(user) {
   // if adding a hotel-staff, or hotel-manager then allow creation
   var isHotelStaffOrManager = false;
   var hotelIsValid = false;
@@ -29,7 +29,7 @@ Accounts.validateNewUser(function (user) {
   }
 
   if (!_.isEmpty(user.roles)) {
-    isHotelStaffOrManager = _.any(user.roles, function (role) {
+    isHotelStaffOrManager = _.any(user.roles, function(role) {
       return (role === 'hotel-staff' || role === 'hotel-manager');
     });
   }
@@ -58,17 +58,17 @@ Accounts.onCreateUser(function(options, user) {
   } else {
     throw new Meteor.Error(500, 'Account creation is forbidden.');
   }
-    
+
   if (!_.isEmpty(options.roles)) {
-    isHotelStaff = _.any(options.roles, function (role) {
+    isHotelStaff = _.any(options.roles, function(role) {
       return role === 'hotel-staff';
     });
-    isHotelManager = _.any(options.roles, function (role) {
+    isHotelManager = _.any(options.roles, function(role) {
       return role === 'hotel-manager';
     });
   }
 
-  user.roles = []; 
+  user.roles = [];
 
   if (isHotelStaff) {
     user.roles.push('hotel-staff');
@@ -76,19 +76,19 @@ Accounts.onCreateUser(function(options, user) {
 
   if (isHotelManager) {
     user.roles.push('hotel-manager');
-  } 
+  }
 
   if (!(isHotelStaff || isHotelManager)) {
     throw new Meteor.Error(500, 'Account creation is forbidden.');
   }
-  
+
   return user;
 });
 
 Accounts.validateLoginAttempt(function(attempt) {
   if (!attempt.allowed) {
     return false;
-  } 
+  }
 
   if (attempt.user) {
     if (!attempt.user.emails[0].verified) {
@@ -99,19 +99,19 @@ Accounts.validateLoginAttempt(function(attempt) {
   }
 });
 
-Accounts.onLoginFailure(function (attempt) {
+Accounts.onLoginFailure(function(attempt) {
   if (attempt.user) {
     if (!attempt.user.emails[0].verified) {
       Accounts.sendVerificationEmail(attempt.user._id);
-    } 
+    }
   }
 });
 
 Meteor.methods({
-  addHotelStaff: function (user) {
+  addHotelStaff: function(user) {
     check(user, Schema.addHotelStaff);
 
-    if (Roles.userIsInRole(Meteor.user(), ['hotel-manager','admin'])) {
+    if (Roles.userIsInRole(Meteor.user(), ['hotel-manager', 'admin'])) {
       var roles = ['hotel-staff'];
       if (user.isManager) {
         roles.push('hotel-manager');

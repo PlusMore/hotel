@@ -1,5 +1,5 @@
 Template.Navigation.helpers({
-  currentRouteClass: function (routeName) {
+  currentRouteClass: function(routeName) {
     // if page is current route, also return true 
     var currentRouter = Router.current();
 
@@ -42,13 +42,13 @@ Template.Navigation.helpers({
     return Roles.userIsInRole(Meteor.userId(), ['hotel-manager', 'admin']);
   },
   hotelRequiredClass: function() {
-    if (Session.get('hotelId')){
+    if (Session.get('hotelId')) {
       return "";
     }
     return "disabled";
   },
   hotelRequiredBadge: function() {
-    if (Session.get('hotelId')){
+    if (Session.get('hotelId')) {
       return "";
     }
     return '<span class="pull-right badge badge-danger">Hotel</span>';
@@ -61,7 +61,7 @@ Template.Navigation.events({
     e.stopImmediatePropagation();
     return false;
   },
-  'click [data-state]': function (e, tmpl) {
+  'click [data-state]': function(e, tmpl) {
     var currentState = Session.get('state');
     var state = tmpl.$(e.currentTarget).data('state');
 
@@ -79,5 +79,5 @@ Template.Navigation.events({
       Session.set('state', state);
     }
   },
-  
+
 });

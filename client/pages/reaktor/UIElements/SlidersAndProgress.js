@@ -1,3 +1,3 @@
-Template.SlidersAndProgress.rendered = function () {
+Template.SlidersAndProgress.rendered = function() {
   this.$('[data-slider]').slider();
 };

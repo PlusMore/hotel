@@ -1,6 +1,6 @@
-Template.WeatherWidget.rendered = function () {
+Template.WeatherWidget.rendered = function() {
   var icons = new Skycons({
-      "color": "#27B6AF"
+    "color": "#27B6AF"
   });
 
   icons.set("clear-day", Skycons.CLEAR_DAY);

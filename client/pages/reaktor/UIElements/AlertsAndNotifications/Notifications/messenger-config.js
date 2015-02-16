@@ -1,16 +1,16 @@
-configureMessenger = function(position, theme){
+configureMessenger = function(position, theme) {
   var currentOptions,
-      currentPosition,
-      currentTheme,
+    currentPosition,
+    currentTheme,
 
-  currentOptions = Messenger.options || undefined;
+    currentOptions = Messenger.options || undefined;
   currentTheme = currentOptions && currentOptions.theme || undefined;
 
   var classes = 'messenger-fixed';
 
   if (position && position.length > 0) {
-    for (var i=0; i < position.length; i++) {
-      classes += ' messenger-on-' + position[i];  
+    for (var i = 0; i < position.length; i++) {
+      classes += ' messenger-on-' + position[i];
     }
   } else {
     classes = currentOptions.extraClasses;
@@ -18,8 +18,14 @@ configureMessenger = function(position, theme){
 
   theme = theme || currentTheme;
 
-  $.globalMessenger({ extraClasses: classes, theme: theme });
-  Messenger.options = { extraClasses: classes, theme: theme };
+  $.globalMessenger({
+    extraClasses: classes,
+    theme: theme
+  });
+  Messenger.options = {
+    extraClasses: classes,
+    theme: theme
+  };
 };
 
 Meteor.startup(function() {
@@ -28,4 +34,3 @@ Meteor.startup(function() {
 
   configureMessenger(position, theme);
 });
-  

@@ -1,20 +1,20 @@
-function showSuccess(msg){
+function showSuccess(msg) {
   Messenger().post({
-   message: msg,
-  type: 'success',
+    message: msg,
+    type: 'success',
     showCloseButton: true
   });
 }
 
-function showError(msg){
- Messenger().post({
-   message: msg,
-  type: 'error',
+function showError(msg) {
+  Messenger().post({
+    message: msg,
+    type: 'error',
     showCloseButton: false
   });
-} 
+}
 
-function tryAgain(){
+function tryAgain() {
   var i = 0;
   Messenger().run({
     errorMessage: 'Error destroying alien planet',
@@ -34,13 +34,13 @@ function tryAgain(){
 }
 
 Template.Notifications.events({
-  'click .js-retry-message': function () {
+  'click .js-retry-message': function() {
     tryAgain();
   },
-  'click .js-error-message': function () {
+  'click .js-error-message': function() {
     showError('Houston, we have a problem.');
   },
-  'click .js-success-message': function () {
+  'click .js-success-message': function() {
     showSuccess('We have lift off!');
   }
 });

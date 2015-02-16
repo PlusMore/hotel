@@ -1,4 +1,4 @@
-Template.FormComponents.rendered = function () {
+Template.FormComponents.rendered = function() {
   var $inputs = this.$('input');
   App.customCheckbox($inputs);
 };

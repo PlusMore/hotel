@@ -1,5 +1,5 @@
 Template.Icons.helpers({
-  simpleLineIcons: function () {
+  simpleLineIcons: function() {
     return [
       'icon-user',
       'icon-user-female',
@@ -165,8 +165,7 @@ Template.Icons.helpers({
       'icon-volume-off'
     ];
   },
-  fontAwesomeIcons: function () {
-    return [
-    ];
+  fontAwesomeIcons: function() {
+    return [];
   }
 });

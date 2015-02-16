@@ -1,4 +1,4 @@
-Template.GoogleMaps.rendered = function () {
+Template.GoogleMaps.rendered = function() {
   var tmpl = this;
 
   VazcoMaps.init({}, function() {
@@ -41,8 +41,8 @@ Template.GoogleMaps.rendered = function () {
         database_id: 42,
         author: 'HPNeo'
       },
-      click: function(e){
-        if(console.log)
+      click: function(e) {
+        if (console.log)
           console.log(e);
         alert('You clicked in this marker');
       }
@@ -63,16 +63,16 @@ Template.GoogleMaps.rendered = function () {
       lng: -74.0059
     });
     tmpl.GMaps.geolocate({
-      success: function(position){
+      success: function(position) {
         tmpl.mapGeolocation.setCenter(position.coords.latitude, position.coords.longitude);
       },
-      error: function(error){
-        alert('Geolocation failed: '+error.message);
+      error: function(error) {
+        alert('Geolocation failed: ' + error.message);
       },
-      not_supported: function(){
+      not_supported: function() {
         alert("Your browser does not support geolocation");
       },
-      always: function(){
+      always: function() {
         //alert("Done!");
       }
     });
@@ -89,11 +89,20 @@ Template.GoogleMaps.rendered = function () {
       div: '#map-polylines',
       lat: -12.043333,
       lng: -77.028333,
-      click: function(e){
+      click: function(e) {
         console.log(e);
       }
     });
-    path = [[-12.044012922866312, -77.02470665341184], [-12.05449279282314, -77.03024273281858], [-12.055122327623378, -77.03039293652341], [-12.075917129727586, -77.02764635449216], [-12.07635776902266, -77.02792530422971], [-12.076819390363665, -77.02893381481931], [-12.088527520066453, -77.0241058385925], [-12.090814532191756, -77.02271108990476]];
+    path = [
+      [-12.044012922866312, -77.02470665341184],
+      [-12.05449279282314, -77.03024273281858],
+      [-12.055122327623378, -77.03039293652341],
+      [-12.075917129727586, -77.02764635449216],
+      [-12.07635776902266, -77.02792530422971],
+      [-12.076819390363665, -77.02893381481931],
+      [-12.088527520066453, -77.0241058385925],
+      [-12.090814532191756, -77.02271108990476]
+    ];
     tmpl.polylinesMap.drawPolyline({
       path: path,
       strokeColor: App.colors.primary,
@@ -122,10 +131,12 @@ Template.GoogleMaps.rendered = function () {
       lng: -77.028333
     });
 
-    var path = [[-12.040397656836609,-77.03373871559225],
-                [-12.040248585302038,-77.03993927003302],
-                [-12.050047116528843,-77.02448169303511],
-                [-12.044804866577001,-77.02154422636042]];
+    var path = [
+      [-12.040397656836609, -77.03373871559225],
+      [-12.040248585302038, -77.03993927003302],
+      [-12.050047116528843, -77.02448169303511],
+      [-12.044804866577001, -77.02154422636042]
+    ];
 
     polygon = tmpl.mapPolygon.drawPolygon({
       paths: path,
@@ -155,13 +166,18 @@ Template.GoogleMaps.rendered = function () {
       size: [$staticMap2.width(), $staticMap2.height()],
       lat: -12.043333,
       lng: -77.028333,
-      markers: [
-        {lat: -12.043333, lng: -77.028333},
-        {lat: -12.045333, lng: -77.034,
-          size: 'small'},
-        {lat: -12.045633, lng: -77.022,
-          color: 'blue'}
-      ]
+      markers: [{
+        lat: -12.043333,
+        lng: -77.028333
+      }, {
+        lat: -12.045333,
+        lng: -77.034,
+        size: 'small'
+      }, {
+        lat: -12.045633,
+        lng: -77.022,
+        color: 'blue'
+      }]
     });
 
     var img2 = $('<img/>').attr('src', url2)
@@ -169,16 +185,16 @@ Template.GoogleMaps.rendered = function () {
 
   });
 
-    
+
 };
 
 Template.GoogleMaps.events({
-  'submit #geocoding_form': function (e, tmpl) {
+  'submit #geocoding_form': function(e, tmpl) {
     e.preventDefault();
     tmpl.GMaps.geocode({
       address: $('#address').val().trim(),
-      callback: function(results, status){
-        if(status=='OK'){
+      callback: function(results, status) {
+        if (status == 'OK') {
           var latlng = results[0].geometry.location;
           tmpl.mapGeocoding.setCenter(latlng.lat(), latlng.lng());
           tmpl.mapGeocoding.addMarker({

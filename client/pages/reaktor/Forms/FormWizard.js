@@ -1,3 +1,3 @@
-Template.FormWizard.rendered = function () {
+Template.FormWizard.rendered = function() {
   this.$('#wizard').wizard();
 };

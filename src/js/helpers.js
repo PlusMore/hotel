@@ -1,5 +1,5 @@
 randomScalingFactor = function() {
-    return Math.round(Math.random() * 100)
+  return Math.round(Math.random() * 100)
 };
 
 // First, checks if it isn't implemented yet.

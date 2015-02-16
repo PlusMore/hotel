@@ -1,5 +1,5 @@
 Template.CSSAnimations.helpers({
-  animations: function () {
+  animations: function() {
     return [
       'bounce',
       'flash',
@@ -79,7 +79,7 @@ Template.CSSAnimations.helpers({
 });
 
 Template.CSSAnimations.events({
-  'click button': function (e, tmpl) {
+  'click button': function(e, tmpl) {
     var animate = tmpl.$(e.currentTarget).data('animated');
     tmpl.$(e.currentTarget).closest('.panel').addClass(animate).delay(1000).queue(function(next) {
       $(this).removeClass(animate);

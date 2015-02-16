@@ -1,5 +1,5 @@
 Template.SimpleLineIcons.helpers({
-  simpleLineIcons: function () {
+  simpleLineIcons: function() {
     return [
       'icon-user',
       'icon-user-female',

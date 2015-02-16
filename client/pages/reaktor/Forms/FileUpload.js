@@ -1,5 +1,5 @@
 Template.FileUpload.helpers({
-  uploadUrl: function () {
+  uploadUrl: function() {
     return Router.routes['upload'].path();
   }
 });

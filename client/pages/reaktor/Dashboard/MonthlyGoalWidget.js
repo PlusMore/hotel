@@ -1,4 +1,4 @@
-Template.MonthlyGoalWidget.rendered = function () {
+Template.MonthlyGoalWidget.rendered = function() {
   var opts = {
     lines: 12, // The number of lines to draw
     angle: 0, // The length of each line
@@ -8,10 +8,10 @@ Template.MonthlyGoalWidget.rendered = function () {
       strokeWidth: 0.042, // The rotation offset
       color: '#1D212A' // Fill color
     },
-    limitMax: 'false',   // If true, the pointer will not go past the end of the gauge
-    colorStart: App.colors.primaryDark,   // Colors
-    colorStop: App.colors.primary,    // just experiment with them
-    strokeColor: '#F0F3F3',   // to see which ones work best for you
+    limitMax: 'false', // If true, the pointer will not go past the end of the gauge
+    colorStart: App.colors.primaryDark, // Colors
+    colorStop: App.colors.primary, // just experiment with them
+    strokeColor: '#F0F3F3', // to see which ones work best for you
     generateGradient: true
   };
   var target = document.getElementById('gauge'); // your canvas element

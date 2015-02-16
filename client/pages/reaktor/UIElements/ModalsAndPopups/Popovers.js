@@ -1,3 +1,3 @@
-Template.Popovers.rendered = function () {
+Template.Popovers.rendered = function() {
   this.$('[data-toggle="popover"]').popover();
 };
