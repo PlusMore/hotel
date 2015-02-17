@@ -42,7 +42,7 @@
                                 View Devices
                             </a>
                         </li>
-                        <li class="{{currentRouteClass 'Devices.Configure'}}" data-state="Devices.Configure">
+                        <li class="disabled {{currentRouteClass 'Devices.Configure'}}" data-state="Devices.Configure">
                             <a href="{{pathFor 'Devices.Configure'}}" title="Configure Devices">
                                 Configure
                             </a>
@@ -106,6 +106,19 @@
                         <li class="{{currentRouteClass 'Services.ConfigValet'}}" data-state="Services.ConfigValet">
                             <a href="{{pathFor 'Services.ConfigValet'}}" title="Configure Valet Service">
                                 Valet Service
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Hotel'}} {{currentRouteClass 'Hotel'}}" data-state="Hotel" >
+                    <a href="#" title="Hotel">
+                        <i class="fa  fa-fw fa-gear"></i> Hotel Info
+                        {{{hotelRequiredBadge}}}
+                    </a>
+                    <ul class="nav-sub {{navSubStateClass 'Hotel'}}">
+                        <li class="{{currentRouteClass 'Hotel.Settings'}}" data-state="Hotel.Settings">
+                            <a href="{{pathFor 'Hotel.Settings'}}" title="Hotel Settings">
+                                Hotel Settings
                             </a>
                         </li>
                     </ul>

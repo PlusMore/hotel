@@ -14,7 +14,6 @@ Meteor.publish('userHotelData', function() {
         hotelId: 1,
         emails: 1,
         profile: 1,
-        kiosk: 1
       },
       user = Meteor.users.findOne({
         _id: userId
