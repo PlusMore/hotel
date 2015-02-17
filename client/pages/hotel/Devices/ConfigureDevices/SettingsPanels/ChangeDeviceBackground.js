@@ -1,4 +1,4 @@
-Template.HotelBackgroundSettings.events({
+Template.ChangeDeviceBackground.events({
   'click .btn-change-photo': function(e, experienceTemplate) {
     e.preventDefault();
 
