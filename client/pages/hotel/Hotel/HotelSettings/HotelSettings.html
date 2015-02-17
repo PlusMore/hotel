@@ -14,33 +14,13 @@
     {{/contentFor}}
 
     <!-- page content -->
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Edit Hotel Information</h3>
-            <div class="actions pull-right">
-              <i class="fa fa-chevron-down"></i>
-            </div>
-          </div>
-          <div class="panel-body">
-            {{#autoForm schema=editHotelSchema id="updateHotelInfo" type="method" meteormethod="updateHotelInfo" resetOnSuccess=false}}
-              {{> afFieldInput name="hotelId" type="hidden" value=hotel._id placeholder=hotel._id}}
-              <div class="row">
-                <div class="col-sm-8">
-                  {{> afQuickField name="name" value=hotel.name}}
-                </div>
-                <div class="col-sm-4">
-                  {{> afQuickField name="phone" value=hotel.phone}}
-                </div>
-              </div>
-              {{> afQuickField name="description" rows=4 value=hotel.description}}
-              <button type="submit" class="btn btn-primary">Save</button>
-            {{/autoForm}}
-          </div>
-        </div>
-      </div>
-    </div>
+    {{#with hotel}}
+    
+      {{> HotelInformationSettings}}
+
+      {{> HotelBackgroundSettings}}
+      
+    {{/with}}
     <!-- page content end -->
 
   {{/Layout}}

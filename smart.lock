@@ -1,0 +1,15 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "impicker": {}
+    },
+    "packages": {
+      "impicker": {
+        "git": "https://github.com/wulx/impicker.git",
+        "tag": "v1.2.0",
+        "commit": "29a7a52d27b2cf8447fc24946b0fdbf60c4b12a6"
+      }
+    }
+  }
+}
