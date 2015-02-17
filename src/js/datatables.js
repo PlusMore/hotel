@@ -196,6 +196,9 @@ TabularTables.ViewStaff = new Tabular.Table({
     'roles',
     'emails'
   ],
+  allow: function(userId) {
+    return Roles.userIsInRole(userId, ['hotel-manager', 'admin']);
+  },
   columns: [{
     orderable: false,
     tmpl: Meteor.isClient && Template.staffAvatarCell

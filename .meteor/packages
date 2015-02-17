@@ -35,3 +35,4 @@ email
 meteorhacks:inject-initial
 coffeescript
 dburles:collection-helpers
+emgee:libphonenumber
