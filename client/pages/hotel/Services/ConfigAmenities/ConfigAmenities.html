@@ -1,3 +1,47 @@
 <template name="ConfigAmenities">
+	{{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Account</h1>
+    {{/contentFor}}
 
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li>Manage Services</li>
+      <li class="active">Amenities</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    <div class="row">
+    	<div class="col-xs-12">
+    		<div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">What is an Amenity?</h3>
+            <div class="actions pull-right">
+              <i class="fa fa-chevron-down"></i>
+              <i data-widget-close class="fa fa-times"></i>
+            </div>
+          </div>
+          <div class="panel-body">
+            <p>
+            	An amenity is a feature or facility you have made available to your guests 
+               for their comfort or convenience. Common examples include a pool, gym, boardroom, or a complimentary breakfast.
+            </p>
+          </div>
+        </div>
+    	</div>
+    </div>
+
+    <div class="row">
+    	<div class="col-xs-12">
+    		<button class="btn btn-default btn-block">+ Add New Amenity</button><br />
+    	</div>
+    </div>
+
+    {{#each amenities}}
+			{{> HotelAmenity}}
+    {{/each}}
+
+  {{/Layout}}
 </template>
