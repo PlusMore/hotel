@@ -29,43 +29,45 @@
                 </li>
             -->
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown profile hidden-xs">
-                <a id="account-dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="meta">
-                        <span class="avatar">
-                            <img src="{{accountAvatar}}" class="img-circle" alt="">
+        {{#with user}}
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown profile hidden-xs">
+                    <a id="account-dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="meta">
+                            <span class="avatar">
+                                <img src="{{userAvatar}}" class="img-circle" alt="">
+                            </span>
+                            <span class="text">{{userFullName}}</span>
+                            <span class="caret"></span>
                         </span>
-                        <span class="text">{{accountName}}</span>
-                        <span class="caret"></span>
-                    </span>
-                </a>
-                <ul class="dropdown-menu animated fadeInRight" role="menu">
-                    <li>
-                        <a href="{{pathFor 'Account'}}">
-                            <span class="icon"><i class="fa fa-user"></i>
-                            </span>My Account</a>
-                    </li>
-                    <li>
-                        <a href="{{pathFor 'Account.Settings'}}">
-                            <span class="icon"><i class="fa fa-cog"></i>
-                            </span>Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a id="logout" href="#">
-                            <span class="icon"><i class="fa fa-sign-out"></i>
-                            </span>Logout</a>
-                    </li>
-                </ul>
-            </li>
-            <!-- Toggle Right Sidebar
-                <li class="toggle-navigation toggle-right">
-                    <button class="sidebar-toggle" id="toggle-right">
-                        <i class="fa fa-indent"></i>
-                    </button>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight" role="menu">
+                        <li>
+                            <a href="{{pathFor 'Account'}}">
+                                <span class="icon"><i class="fa fa-user"></i>
+                                </span>My Account</a>
+                        </li>
+                        <li>
+                            <a href="{{pathFor 'Account.Settings'}}">
+                                <span class="icon"><i class="fa fa-cog"></i>
+                                </span>Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a id="logout" href="#">
+                                <span class="icon"><i class="fa fa-sign-out"></i>
+                                </span>Logout</a>
+                        </li>
+                    </ul>
                 </li>
-            -->
-        </ul>
+                <!-- Toggle Right Sidebar
+                    <li class="toggle-navigation toggle-right">
+                        <button class="sidebar-toggle" id="toggle-right">
+                            <i class="fa fa-indent"></i>
+                        </button>
+                    </li>
+                -->
+            </ul>
+        {{/with}}
     </header>
 </template>

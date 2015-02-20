@@ -11,7 +11,6 @@ TabularTables.OrderHistory = new Tabular.Table({
   searching: false,
   autoWidth: true,
   pagingType: "simple",
-  order: [0, 'desc'],
   extraFields: [
     'open',
     'type',
@@ -61,7 +60,6 @@ TabularTables.OrderHistory = new Tabular.Table({
       }
     }
   }, {
-    orderable: false,
     tmpl: Meteor.isClient && Template.orderHistoryViewCell
   }]
 });
@@ -75,7 +73,6 @@ TabularTables.OpenOrders = new Tabular.Table({
   autoWidth: true,
   searching: false,
   pagingType: "simple",
-  order: [0, 'desc'],
   extraFields: [
     'open',
     'type',
@@ -136,7 +133,6 @@ TabularTables.OpenOrders = new Tabular.Table({
       }
     }
   }, {
-    orderable: false,
     tmpl: Meteor.isClient && Template.viewDetailsCell
   }],
   createdRow: function(row, data, dataIndex) {
@@ -160,7 +156,6 @@ TabularTables.ViewDevices = new Tabular.Table({
   autoWidth: true,
   searching: false,
   pagingType: "simple",
-  order: [0, 'asc'],
   extraFields: [
     'stayId'
   ],
@@ -175,7 +170,6 @@ TabularTables.ViewDevices = new Tabular.Table({
     title: "Check-out",
     tmpl: Meteor.isClient && Template.viewDevicesCheckoutCell
   }, {
-    orderable: false,
     tmpl: Meteor.isClient && Template.viewDevicesActionCell
   }],
   createdRow: function(row, data, dataIndex) {
@@ -198,7 +192,6 @@ TabularTables.ViewStaff = new Tabular.Table({
   autoWidth: true,
   searching: false,
   pagingType: "simple",
-  order: [1, 'desc'],
   extraFields: [
     'profile',
     'roles',
@@ -208,7 +201,6 @@ TabularTables.ViewStaff = new Tabular.Table({
     return Roles.userIsInRole(userId, ['hotel-manager', 'admin']);
   },
   columns: [{
-    orderable: false,
     tmpl: Meteor.isClient && Template.staffAvatarCell
   }, {
     data: "userFirstName()",
@@ -263,7 +255,6 @@ TabularTables.ViewStaff = new Tabular.Table({
     },
     tmpl: Meteor.isClient && Template.staffRoleCell
   }, {
-    orderable: false,
     tmpl: Meteor.isClient && Template.staffEditCell
   }]
 });
