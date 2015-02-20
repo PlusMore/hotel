@@ -1,7 +1,7 @@
-<template name="ConfigValet">
+<template name="ConfigBellService">
 	{{#Layout template="Page"}}
     {{#contentFor "header"}}
-      <h1>Manage Valet</h1>
+      <h1>Manage Bell Service</h1>
     {{/contentFor}}
 
     {{#contentFor "breadcrumb"}}
@@ -9,7 +9,7 @@
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
       </li>
       <li>Manage Services</li>
-      <li class="active">Valet</li>
+      <li class="active">Bell Service</li>
     {{/contentFor}}
 
     <!-- page content -->
@@ -20,7 +20,7 @@
           	<div class="pull-right">
               <div class="tgl-container" style="margin-top:-8px;">
 			          <label class="tgl">
-			            <input id="toggle-valet-switch" type="checkbox" {{isChecked}}/>
+			            <input id="toggle-bellservice-switch" type="checkbox" {{isChecked}}/>
 			            <span class="tgl_body">
 			              <span class="tgl_switch"></span>
 			              <span class="tgl_track">
@@ -32,7 +32,7 @@
 			        </div>
             </div>
             <h3 class="panel-title">
-							Valet
+							Bell Service
 	            {{#with configuration}}
 	            	<small>
 	              	Available
