@@ -20,3 +20,17 @@ Template.StaffDetailsModal.events({
     });
   }
 });
+
+AutoForm.hooks({
+  editHotelStaffForm: {
+    onSuccess: function(operation, result, template) {
+      BootstrapModalPrompt.dismiss();
+    },
+
+    // Called when any operation fails, where operation will be
+    // "validation", "insert", "update", "submit", or the method name.
+    onError: function(operation, error, template) {
+      console.log(error);
+    }
+  }
+});
