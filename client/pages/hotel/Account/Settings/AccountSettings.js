@@ -7,9 +7,9 @@ Template.AccountSettings.helpers({
 Template.AccountSettings.events({
   'click .btn-change-avatar': function(e, experienceTemplate) {
     e.preventDefault();
-
+    var userId = this._id
     filepicker.pick(function(InkBlob) {
-      Meteor.call('changeAccountAvatar', InkBlob);
+      Meteor.call('changeAccountAvatar', InkBlob, userId);
     });
   }
 });

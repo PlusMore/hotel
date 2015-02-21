@@ -43,6 +43,7 @@ Template.OrderDetailsModal.events({
   },
   'click .btn-cancel-order': function(e) {
     if (confirm("Are you sure you want to cancel this order?")) {
+      BootstrapModalPrompt.close();
       Meteor.call('cancelPatronRequest', this._id);
     }
   }

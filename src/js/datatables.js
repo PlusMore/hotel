@@ -230,7 +230,7 @@ TabularTables.ViewStaff = new Tabular.Table({
     tmpl: Meteor.isClient && Template.staffLastNameCell
   }, {
     data: "userEmail()",
-    title: "Email",
+    title: "Contact",
     render: function(val, type, doc) {
       if (type != 'display') {
         if (val) {
@@ -240,7 +240,7 @@ TabularTables.ViewStaff = new Tabular.Table({
         }
       }
     },
-    tmpl: Meteor.isClient && Template.staffEmailCell
+    tmpl: Meteor.isClient && Template.staffContactCell
   }, {
     data: "userFriendlyRole()",
     title: "Role",
