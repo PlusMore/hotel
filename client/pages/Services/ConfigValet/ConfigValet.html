@@ -19,34 +19,34 @@
           <div class="panel-heading">
           	<div class="pull-right">
               <div class="tgl-container" style="margin-top:-8px;">
-			          <label class="tgl">
-			            <input id="toggle-valet-switch" type="checkbox" {{isChecked}}/>
-			            <span class="tgl_body">
-			              <span class="tgl_switch"></span>
-			              <span class="tgl_track">
-			                <span class="tgl_bgd"></span>
-			                <span class="tgl_bgd tgl_bgd-negative"></span>
-			              </span>
-			            </span>
-			          </label>
-			        </div>
+			     <label class="tgl">
+			      <input id="toggle-valet-switch" type="checkbox" {{isChecked}}/>
+			      <span class="tgl_body">
+			       <span class="tgl_switch"></span>
+			       <span class="tgl_track">
+			        <span class="tgl_bgd"></span>
+			        <span class="tgl_bgd tgl_bgd-negative"></span>
+			       </span>
+			      </span>
+			     </label>
+			    </div>
             </div>
             <h3 class="panel-title">
 							Valet
-	            {{#with configuration}}
-	            	<small>
-	              	Available
-	              	{{#if startTime}}
-	                	{{startTime}} - {{endTime}}
-	              	{{else}}
-	                	Anytime
-	              	{{/if}}
-	            	</small>
-	            {{/with}}
+	      {{#with configuration}}
+	      	<small>
+	       	Available
+	       	{{#if startTime}}
+	        	{{startTime}} - {{endTime}}
+	       	{{else}}
+	        	Anytime
+	       	{{/if}}
+	      	</small>
+	      {{/with}}
             </h3>
           </div>
           <div class="panel-body">
-						{{#with configuration}}  
+						{{#with configuration}} 
         			{{#autoForm schema=configureServiceSchema id='configureService' doc=this type="method" meteormethod="configureService"}}
             		<div class="row">
               		<div class="col-md-12">

@@ -15,18 +15,18 @@ Template.OrderDetailsModal.helpers({
 		}
 	},
   statusButtonClass: function() {
-    if (this.status == 'requested'){
+    if (this.status === 'requested'){
       return 'btn btn-primary btn-claim-order';
     }
-    if (this.status == 'pending'){
+    if (this.status === 'pending'){
       return 'btn btn-success btn-complete-order';
     }
   },
   statusButtonText: function() {
-    if (this.status == 'requested'){
+    if (this.status === 'requested'){
       return 'Claim Order';
     }
-    if (this.status == 'pending'){
+    if (this.status === 'pending'){
       return 'Mark Complete';
     }
   }
