@@ -56,5 +56,10 @@ Template.ConfigRoomService.events({
         }
       }
     }); 
+  },
+  'click #add-menu-category': function(e) {
+    BootstrapModalPrompt.prompt({
+      dialogTemplate: Template.AddMenuCategoryModal
+    });
   }
 });
