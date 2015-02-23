@@ -15,7 +15,6 @@ Template.ConfigRoomService.helpers({
 
 Template.ConfigRoomService.rendered = function () {
   this.$('.timepicker').pickatime({
-    container: '#configure-room-service',
     onSet: function(selection) {
       var minutes = selection.select;
       var controlName = this.$node.attr('name');

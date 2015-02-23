@@ -1,0 +1,46 @@
+@import '/client/style/imports.import.less';
+
+.picker-container {
+  
+  &:after {
+    *margin-right: .3em;
+    
+    font-family: "plusmore" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    content: 'q';
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
+    color: #000;
+    position: absolute;
+    top: 15px;
+    right: 16px;
+    font-size: 18px;
+  }
+  input {
+    padding-right: 27px;  
+  }
+
+  &.with-vertical-label {
+    &:after {
+      top: 37px;
+    }
+  }
+}
+
+.picker__list-item {
+  small {
+    float: right;
+    color: #333;
+  }
+
+  &.picker__list-item--highlighted {
+    small {
+      color: #fff;
+    }
+  }
+}
