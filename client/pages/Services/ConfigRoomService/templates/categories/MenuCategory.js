@@ -16,5 +16,11 @@ Template.MenuCategory.events({
       console.log('off');
       Meteor.call('deactivateMenuCategory', this._id);
     }
+  },
+  'click #edit-menu-category': function(e) {
+    Session.set('editMenuCategoryId', this._id);
+    BootstrapModalPrompt.prompt({
+      dialogTemplate: Template.EditMenuCategoryModal
+    });
   }
 });
