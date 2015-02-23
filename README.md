@@ -1,4 +1,4 @@
-# PlusMore Hotel App for Staff and Managers
+# Hotel App for Staff and Managers
 
 
 ## Installation
