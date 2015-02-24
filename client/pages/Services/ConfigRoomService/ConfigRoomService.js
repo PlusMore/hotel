@@ -37,25 +37,7 @@ Template.ConfigRoomService.events({
     }
   },
   'click .btn-reset': function(e, tmpl) {
-    var that = this;
-    
-    bootbox.dialog({
-      message: "This will reset the availibilty of this service to it's default settings of anytime.",
-      title: "Reset Availability",
-      buttons: {
-        cancel: {
-          label: "Cancel",
-          className: "btn-cancel"
-        },
-        main: {
-          label: "Reset Availability",
-          className: "btn-default",
-          callback: function() {
-            Meteor.call('resetServiceAvailability', that._id);
-          }
-        }
-      }
-    }); 
+    Meteor.call('resetServiceAvailability', that._id);
   },
   'click #add-menu-category': function(e) {
     BootstrapModalPrompt.prompt({
