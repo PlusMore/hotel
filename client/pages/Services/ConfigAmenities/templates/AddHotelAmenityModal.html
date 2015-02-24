@@ -1,3 +1,42 @@
 <template name="AddHotelAmenityModal">
-	
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="pull-right">
+          <a href="#" class="icon icon-x" data-dismiss="modal"></a>
+        </div>
+        <h2 class="modal-title">Add Hotel Amenity</h2>
+      </div>
+      {{#autoForm collection='HotelAmenities' id='newAmenity' type='insert'}}
+      	<div class="modal-body">
+        	{{> afFieldInput name='hotelId' type='hidden' value=hotelId}} 
+        	{{> afQuickField name='name'}} 
+        	{{> afQuickField name='description' rows=3}}
+        	<div class="row">
+          	<div class="col-sm-4">
+            	{{> afQuickField name='availableAnytime' value=true}}
+          	</div>
+          	{{#if afFieldValueIs name='availableAnytime' value=false}} 
+          		{{> amenityTimePicker}} 
+          	{{/if}}
+        	</div>
+      	</div>
+      	<div class="modal-footer">
+        	<a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+        	<button type="submit" class="btn btn-default">Add Amenity</button>
+      	</div>
+      {{/autoForm}}
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</template>
+
+<template name="amenityTimePicker">
+  <div class="col-sm-4 picker-container with-vertical-label">
+    {{> afQuickField name='startTime' class='timepicker'}}
+    {{> afFieldInput name="startMinutes" type="hidden"}}
+  </div>
+  <div class="col-sm-4 picker-container with-vertical-label">
+    {{> afQuickField name='endTime' class='timepicker'}}
+    {{> afFieldInput name="endMinutes" type="hidden"}}
+  </div>  
 </template>
