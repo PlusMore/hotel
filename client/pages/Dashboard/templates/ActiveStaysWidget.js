@@ -28,7 +28,12 @@ Template.ActiveStaysWidget.rendered = function () {
     var totalDevices = Counts.get('total-devices');
     var totalActiveStays = Counts.get('total-active-stays');
     gauge.maxValue = totalDevices;
-    gauge.set(totalActiveStays);
+    if (totalActiveStays > 0) {
+      gauge.set(totalActiveStays);
+    } else {
+      // this is so stupid, but it works
+      gauge.set(0.01);
+    }
   });
   gauge.setTextField(document.getElementById("gauge-text"));
 };
