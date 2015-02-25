@@ -14,8 +14,6 @@ TabularTables.OrderHistory = new Tabular.Table({
   extraFields: [
     'open',
     'type',
-    'status',
-    'requestedDate',
     'requestedZone',
     'receivedDate',
     'receivedBy',
@@ -27,7 +25,7 @@ TabularTables.OrderHistory = new Tabular.Table({
     'reservation'
   ],
   columns: [{
-    data: "orderRequestedWhen()",
+    data: "requestedDate",
     title: "Requested",
     tmpl: Meteor.isClient && Template.orderHistoryRequestedCell,
     render: function(val, type, doc) {
@@ -49,7 +47,7 @@ TabularTables.OrderHistory = new Tabular.Table({
       }
     }
   }, {
-    data: "orderStatus()",
+    data: "status",
     title: "Status",
     tmpl: Meteor.isClient && Template.orderHistoryStatusCell,
     render: function(val, type, doc) {
@@ -76,8 +74,6 @@ TabularTables.OpenOrders = new Tabular.Table({
   extraFields: [
     'open',
     'type',
-    'status',
-    'requestedDate',
     'requestedZone',
     'receivedDate',
     'receivedBy',
@@ -89,7 +85,7 @@ TabularTables.OpenOrders = new Tabular.Table({
     'reservation'
   ],
   columns: [{
-    data: "orderRequestedWhen()",
+    data: "requestedDate",
     title: "When",
     tmpl: Meteor.isClient && Template.requestedTimeAgoCell,
     render: function(val, type, doc) {
@@ -122,7 +118,7 @@ TabularTables.OpenOrders = new Tabular.Table({
       }
     }
   }, {
-    data: "orderStatus()",
+    data: "status",
     title: "Status",
     tmpl: Meteor.isClient && Template.orderStatusCell,
     render: function(val, type, doc) {
@@ -193,7 +189,6 @@ TabularTables.ViewStaff = new Tabular.Table({
   searching: false,
   pagingType: "simple",
   extraFields: [
-    'profile',
     'roles',
     'emails'
   ],
@@ -203,7 +198,7 @@ TabularTables.ViewStaff = new Tabular.Table({
   columns: [{
     tmpl: Meteor.isClient && Template.staffAvatarCell
   }, {
-    data: "userFirstName()",
+    data: "profile.firstName",
     title: "First",
     render: function(val, type, doc) {
       if (type != 'display') {
@@ -216,7 +211,7 @@ TabularTables.ViewStaff = new Tabular.Table({
     },
     tmpl: Meteor.isClient && Template.staffFirstNameCell
   }, {
-    data: "userLastName()",
+    data: "profile.lastName",
     title: "Last",
     render: function(val, type, doc) {
       if (type != 'display') {
@@ -229,30 +224,10 @@ TabularTables.ViewStaff = new Tabular.Table({
     },
     tmpl: Meteor.isClient && Template.staffLastNameCell
   }, {
-    data: "userEmail()",
     title: "Contact",
-    render: function(val, type, doc) {
-      if (type != 'display') {
-        if (val) {
-          return val;
-        } else {
-          return '';
-        }
-      }
-    },
     tmpl: Meteor.isClient && Template.staffContactCell
   }, {
-    data: "userFriendlyRole()",
     title: "Role",
-    render: function(val, type, doc) {
-      if (type != 'display') {
-        if (val) {
-          return val;
-        } else {
-          return '';
-        }
-      }
-    },
     tmpl: Meteor.isClient && Template.staffRoleCell
   }, {
     tmpl: Meteor.isClient && Template.staffEditCell
