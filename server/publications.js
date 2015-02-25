@@ -62,6 +62,50 @@ Meteor.publish('tags', function(collectionName) {
   });
 });
 
+Meteor.publish('dashboardWidgetInfo', function(hotelId) {
+  var userId = this.userId,
+    user = Meteor.users.findOne(userId);
+
+  hotelId = hotelId || user.hotelId;
+
+  var devicesCursor = Devices.find({
+    hotelId: hotelId
+  });
+
+  var stayIds = devicesCursor.map(function(p) {
+    return p.stayId
+  });
+
+  var now = new Date();
+
+  Counts.publish(this, 'total-active-stays', Stays.find({
+    _id: {
+      $in: stayIds
+    },
+    checkInDate: {
+      $lte: now
+    },
+    checkoutDate: {
+      $gte: now
+    }
+  }), {
+    noReady: true
+  });
+
+  Counts.publish(this, 'total-devices', Devices.find({
+    hotelId: hotelId
+  }), {
+    noReady: true
+  });
+
+  Counts.publish(this, 'open-orders', Orders.find({
+    hotelId: hotelId,
+    open: true,
+    handledBy: 'hotel'
+  }));
+
+});
+
 // Devices
 Meteor.publish('devicesForHotel', function(hotelId) {
   var userId = this.userId,
@@ -267,7 +311,7 @@ Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
     fields: fields,
     dependant: [
       staysPub,
-    //  usersPub
+      //  usersPub
     ]
   }).start();
 });
