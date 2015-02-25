@@ -38,6 +38,7 @@ TabularTables.OrderHistory = new Tabular.Table({
   }, {
     data: "orderServiceType()",
     title: "Type",
+    sortable: false,
     tmpl: Meteor.isClient && Template.orderHistoryTypeCell,
     render: function(val, type, doc) {
       if (type != 'display') {
@@ -98,6 +99,7 @@ TabularTables.OpenOrders = new Tabular.Table({
   }, {
     data: "orderServiceType()",
     title: "Type",
+    sortable: false,
     tmpl: Meteor.isClient && Template.orderTypeCell,
     render: function(val, type, doc) {
       if (type != 'display') {
@@ -109,6 +111,7 @@ TabularTables.OpenOrders = new Tabular.Table({
   }, {
     data: "orderReservationColumn()",
     title: "Reservation",
+    sortable: false,
     tmpl: Meteor.isClient && Template.reservationCell,
     render: function(val, type, doc) {
       if (type != 'display') {
