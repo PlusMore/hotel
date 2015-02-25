@@ -34,17 +34,35 @@ Template.OrderDetailsModal.helpers({
 
 Template.OrderDetailsModal.events({
   'click .btn-claim-order': function(e) {
-    Meteor.call('claimPatronRequest', this._id);
+    Meteor.call('claimPatronRequest', this._id, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('You have claimed this order!');
+        }
+      });
   },
   'click .btn-complete-order': function(e) {
     if (confirm("Are you sure you want to close this order?")) {
-      Meteor.call('completePatronRequest', this._id);
+      Meteor.call('completePatronRequest', this._id, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Order Completed!');
+        }
+      });
     }
   },
   'click .btn-cancel-order': function(e) {
     if (confirm("Are you sure you want to cancel this order?")) {
       BootstrapModalPrompt.dismiss();
-      Meteor.call('cancelPatronRequest', this._id);
+      Meteor.call('cancelPatronRequest', this._id, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Order Successfully Cancelled');
+        }
+      });
     }
   }
 });

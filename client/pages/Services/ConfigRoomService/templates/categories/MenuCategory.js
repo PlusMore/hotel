@@ -8,13 +8,22 @@ Template.MenuCategory.helpers({
 
 Template.MenuCategory.events({
 	'change #toggle-category-switch': function (e, tmpl) {
-
     if (tmpl.$(e.currentTarget).prop('checked')) {
-      console.log('on');
-      Meteor.call('activateMenuCategory', this._id);
+      Meteor.call('activateMenuCategory', this._id, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Menu Category Enabled!');
+        }
+      });
     } else {
-      console.log('off');
-      Meteor.call('deactivateMenuCategory', this._id);
+      Meteor.call('deactivateMenuCategory', this._id, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.error('Menu Category Disabled');
+        }
+      });
     }
   }
 });

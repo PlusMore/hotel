@@ -21,7 +21,9 @@ Template.LeftSidebarSettings.events({
     e.preventDefault();
     if (tmpl.$(e.currentTarget).val() != "none") {
       Session.set('hotelId', tmpl.$(e.currentTarget).val());
-      Session.set('hotelName', tmpl.$(e.currentTarget).find('option:selected').text());
+      var hotelName = tmpl.$(e.currentTarget).find('option:selected').text();
+      Session.set('hotelName', hotelName);
+      Messages.success("View switched to '" + hotelName + "'");
     } else {
       Session.set('hotelId', undefined);
       Session.set('hotelName', undefined);

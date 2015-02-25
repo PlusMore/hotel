@@ -9,7 +9,13 @@ Template.AccountSettings.events({
     e.preventDefault();
     var userId = this._id
     filepicker.pick(function(InkBlob) {
-      Meteor.call('changeAccountAvatar', InkBlob, userId);
+      Meteor.call('changeAccountAvatar', InkBlob, userId, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Avatar updated!');
+        }
+      });
     });
   }
 });

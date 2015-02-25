@@ -31,11 +31,21 @@ Template.ConfigValet.helpers({
 Template.ConfigValet.events({
   'change #toggle-valet-switch': function (e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
-      console.log('on');
-      Meteor.call('activateHotelService', 'valetServices', Session.get('hotelId'));
+      Meteor.call('activateHotelService', 'valetServices', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Valet Service Enabled!');
+        }
+      });
     } else {
-      console.log('off');
-      Meteor.call('deactivateHotelService', 'valetServices', Session.get('hotelId'));
+      Meteor.call('deactivateHotelService', 'valetServices', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.error('Valet Service Disabled');
+        }
+      });
     }
   }
 });

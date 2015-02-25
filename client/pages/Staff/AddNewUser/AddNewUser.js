@@ -10,6 +10,7 @@ Template.AddNewUser.helpers({
 AutoForm.hooks({
   addHotelStaffForm: {
     onSuccess: function(operation, result, template) {
+      Messages.success('User Added Successfully!');
       Router.go('Staff.View');
     },
     onError: function(operation, error, template) {
@@ -17,7 +18,7 @@ AutoForm.hooks({
       if (error.message && error.message === 'form failed validation') {
         // autoform takes care of these
       } else {
-        Errors.throw(error);
+        Messages.error(error.message);
       }
     }
   }

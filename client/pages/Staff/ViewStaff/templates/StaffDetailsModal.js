@@ -16,7 +16,13 @@ Template.StaffDetailsModal.events({
     e.preventDefault();
     var userId = Session.get('staffDetailsId');
     filepicker.pick(function(InkBlob) {
-      Meteor.call('changeAccountAvatar', InkBlob, userId);
+      Meteor.call('changeAccountAvatar', InkBlob, userId, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('User Picture Changed!');
+        }
+      });
     });
   }
 });
@@ -24,13 +30,8 @@ Template.StaffDetailsModal.events({
 AutoForm.hooks({
   editHotelStaffForm: {
     onSuccess: function(operation, result, template) {
+      Messages.success('Changes Saved!')
       BootstrapModalPrompt.dismiss();
-    },
-
-    // Called when any operation fails, where operation will be
-    // "validation", "insert", "update", "submit", or the method name.
-    onError: function(operation, error, template) {
-      console.log(error);
     }
   }
 });

@@ -16,15 +16,31 @@ Template.EditMenuCategory.events({
 	'change #toggle-category-switch': function (e, tmpl) {
 
     if (tmpl.$(e.currentTarget).prop('checked')) {
-      console.log('on');
-      Meteor.call('activateMenuCategory', this._id);
+      Meteor.call('activateMenuCategory', this._id, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Category Enabled!');
+        }
+      });
     } else {
-      console.log('off');
-      Meteor.call('deactivateMenuCategory', this._id);
+      Meteor.call('deactivateMenuCategory', this._id, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.error('Category Disabled');
+        }
+      });
     }
   },
   'click .btn-reset-availability': function(e, tmpl) {
-    Meteor.call('resetCategoryAvailability', that._id);
+    Meteor.call('resetCategoryAvailability', that._id, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Availability Reset!');
+        }
+      });
   },
   'click #add-menu-item': function(e) {
     e.preventDefault();
@@ -68,59 +84,30 @@ AutoForm.hooks({
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "remove", or the method name.
     onSuccess: function(operation, result, template) {
-      console.log('success');
-    }, 
-
-    // Called when any operation fails, where operation will be
-    // "validation", "insert", "update", "remove", or the method name.
-    onError: function(operation, error, template) {
-      console.log('error');
-    },
-
-    // Called at the beginning and end of submission, respectively.
-    // This is the place to disable/enable buttons or the form,
-    // show/hide a "Please wait" message, etc. If these hooks are
-    // not defined, then by default the submit button is disabled
-    // during submission.
-    beginSubmit: function(formId, template) {
-      // disable button
-      // change text to 'submitting'
-      console.log('begin submit');
-    },
-    endSubmit: function(formId, template) {
-      // enable button
-      console.log('end submit');
-    }
-  },
-  configureMenuCategoryAvailability: {
-    // Called when any operation succeeds, where operation will be
-    // "insert", "update", "remove", or the method name.
-    onSuccess: function(operation, result, template) {
-      console.log('success');
+      Messages.success('Changes Saved!')
     }, 
 
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
     onError: function(operation, error, template) {
       if (operation !== 'validation') {
-        Errors.throw(error.message);
+        Messages.error(error.message);
       }
-      console.log('error');
-    },
+    }
+  },
+  configureMenuCategoryAvailability: {
+    // Called when any operation succeeds, where operation will be
+    // "insert", "update", "remove", or the method name.
+    onSuccess: function(operation, result, template) {
+      Messages.success('Availability Set!')
+    }, 
 
-    // Called at the beginning and end of submission, respectively.
-    // This is the place to disable/enable buttons or the form,
-    // show/hide a "Please wait" message, etc. If these hooks are
-    // not defined, then by default the submit button is disabled
-    // during submission.
-    beginSubmit: function(formId, template) {
-      // disable button
-      // change text to 'submitting'
-      console.log('begin submit');
-    },
-    endSubmit: function(formId, template) {
-      // enable button
-      console.log('end submit');
+    // Called when any operation fails, where operation will be
+    // "validation", "insert", "update", "remove", or the method name.
+    onError: function(operation, error, template) {
+      if (operation !== 'validation') {
+        Messages.error(error.message);
+      }
     }
   }
 });

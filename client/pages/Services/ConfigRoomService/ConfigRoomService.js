@@ -31,13 +31,31 @@ Template.ConfigRoomService.rendered = function () {
 Template.ConfigRoomService.events({
   'change #toggle-roomservice-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
-      Meteor.call('activateHotelService', 'roomService', Session.get('hotelId'));
+      Meteor.call('activateHotelService', 'roomService', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Room Service Enabled!');
+        }
+      });
     } else {
-      Meteor.call('deactivateHotelService', 'roomService', Session.get('hotelId'));
+      Meteor.call('deactivateHotelService', 'roomService', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.error('Room Service Disabled');
+        }
+      });
     }
   },
   'click .btn-reset': function(e, tmpl) {
-    Meteor.call('resetServiceAvailability', that._id);
+    Meteor.call('resetServiceAvailability', that._id, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Availability Reset');
+        }
+      });
   },
   'click #add-menu-category': function(e) {
     BootstrapModalPrompt.prompt({

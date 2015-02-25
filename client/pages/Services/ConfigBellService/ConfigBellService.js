@@ -31,11 +31,21 @@ Template.ConfigBellService.helpers({
 Template.ConfigBellService.events({
   'change #toggle-bellservice-switch': function (e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
-      console.log('on');
-      Meteor.call('activateHotelService', 'bellService', Session.get('hotelId'));
+      Meteor.call('activateHotelService', 'bellService', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Bell Service Enabled!');
+        }
+      });
     } else {
-      console.log('off');
-      Meteor.call('deactivateHotelService', 'bellService', Session.get('hotelId'));
+      Meteor.call('deactivateHotelService', 'bellService', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.error('Bell Service Disabled');
+        }
+      });
     }
   }
 });

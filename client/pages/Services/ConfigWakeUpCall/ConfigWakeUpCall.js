@@ -31,11 +31,21 @@ Template.ConfigWakeUpCall.helpers({
 Template.ConfigWakeUpCall.events({
   'change #toggle-wakeupcall-switch': function (e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
-      console.log('on');
-      Meteor.call('activateHotelService', 'wakeUpCall', Session.get('hotelId'));
+      Meteor.call('activateHotelService', 'wakeUpCall', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Wake-up Calls Enabled!');
+        }
+      });
     } else {
-      console.log('off');
-      Meteor.call('deactivateHotelService', 'wakeUpCall', Session.get('hotelId'));
+      Meteor.call('deactivateHotelService', 'wakeUpCall', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.error('Wake-up Calls Disabled');
+        }
+      });
     }
   }
 });

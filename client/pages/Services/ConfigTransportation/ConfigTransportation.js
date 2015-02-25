@@ -31,11 +31,21 @@ Template.ConfigTransportation.helpers({
 Template.ConfigTransportation.events({
   'change #toggle-transportation-switch': function (e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
-      console.log('on');
-      Meteor.call('activateHotelService', 'transportation', Session.get('hotelId'));
+      Meteor.call('activateHotelService', 'transportation', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Transportation Services Enabled!');
+        }
+      });
     } else {
-      console.log('off');
-      Meteor.call('deactivateHotelService', 'transportation', Session.get('hotelId'));
+      Meteor.call('deactivateHotelService', 'transportation', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.error('Transportation Services Disabled');
+        }
+      });
     }
   }
 });

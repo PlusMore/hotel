@@ -16,11 +16,21 @@ Template.ConfigHouseKeeping.helpers({
 Template.ConfigHouseKeeping.events({
   'change #toggle-housekeeping-switch': function (e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
-      console.log('on');
-      Meteor.call('activateHotelService', 'houseKeeping', Session.get('hotelId'));
+      Meteor.call('activateHotelService', 'houseKeeping', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.success('Housekeeping Enabled!');
+        }
+      });
     } else {
-      console.log('off');
-      Meteor.call('deactivateHotelService', 'houseKeeping', Session.get('hotelId'));
+      Meteor.call('deactivateHotelService', 'houseKeeping', Session.get('hotelId'), function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.error('Housekeeping Disabled');
+        }
+      });
     }
   }
 });
