@@ -102,7 +102,17 @@ Meteor.publish('dashboardWidgetInfo', function(hotelId) {
     hotelId: hotelId,
     open: true,
     handledBy: 'hotel'
-  }));
+  }), {
+    noReady: true
+  });
+
+  return Hotels.find({
+    _id: hotelId
+  }, {
+    fields: {
+      geo: 1
+    }
+  });
 
 });
 
