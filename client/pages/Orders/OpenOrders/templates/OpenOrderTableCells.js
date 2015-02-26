@@ -1,7 +1,7 @@
 Template.requestedTimeAgoCell.helpers({
   requestedDateTimeAgo: function() {
-    var now = Session.get('currentTime') || new Date();
-    return moment(this.requestedDate).fromNow();
+    var now = Session.get('currentTime');
+    return moment(this.requestedDate).zone(this.requestedZone).fromNow();
   }
 });
 
