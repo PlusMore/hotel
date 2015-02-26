@@ -174,10 +174,13 @@
     background-color: #fbfbfb;
     color: #373737
   }
-   .profile ul>li:first-child {
-    padding: 10px;
+  .profile ul>li:not(.divider) {
+    padding: 5px 0;
   }
-   .profile ul>li h5, .profile ul>li p {
+  .profile ul>li:first-child {
+    padding-top: 10px;
+  }
+  .profile ul>li h5, .profile ul>li p {
     font-size: @13px;
     margin: 0;
     padding: 0; 
