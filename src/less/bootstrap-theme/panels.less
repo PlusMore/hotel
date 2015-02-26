@@ -6,7 +6,7 @@
 }
 
  
-.panel>.panel-heading {
+.panel .panel-heading {
     font-weight: 400;
     text-transform: uppercase;
     padding: 14px 10px;
@@ -17,11 +17,11 @@
     font-size: @13px; 
 }
 
-.panel>.panel-footer {
+.panel .panel-footer {
     border-color: #ecedf0;
 }
 
-.panel > .panel-heading > .actions {
+.panel .panel-heading > .actions {
     position: absolute;
     right: 30px;
     top: 8px;
@@ -36,7 +36,7 @@
     }
 }
 
-.panel>.panel-footer {
+.panel .panel-footer {
     font-weight: 400;
     text-transform: uppercase;
     padding: 15px
@@ -57,7 +57,7 @@
     }
 }
 
-.panel-default>.panel-heading {
+.panel-default .panel-heading {
     border-color: #eff2f7;
     background: #fff;
     color: #767676
@@ -72,13 +72,13 @@
     color: #767676
 }
 
-.panel-default>.panel-footer {
+.panel-default .panel-footer {
     border-color: #eff2f7;
     background: #fff;
     color: #767676
 }
 
-.panel-primary>.panel-heading {
+.panel-primary .panel-heading {
     color: #fff;
     background-color: @primaryColor;
     border-color: @primaryColor;
@@ -88,46 +88,46 @@
     border-color: #1abc9c
 }
 
-.panel-primary>.panel-heading a,.panel-primary>.panel-heading a:hover {
+.panel-primary .panel-heading a,.panel-primary .panel-heading a:hover {
     color: #fff
 }
 
-.panel-solid-default>.panel-body,.panel-solid-default>.panel-footer,.panel-solid-default>.panel-heading {
+.panel-solid-default .panel-body,.panel-solid-default .panel-footer,.panel-solid-default .panel-heading {
     background: @defaultColor;
     border: none;
 }
 
-.panel-solid-primary>.panel-body,.panel-solid-primary>.panel-footer,.panel-solid-primary>.panel-heading {
+.panel-solid-primary .panel-body,.panel-solid-primary .panel-footer,.panel-solid-primary .panel-heading {
     background: @primaryColor;
     color: #fff;
     border: none
 }
 
-.panel-solid-success>.panel-body,.panel-solid-success>.panel-footer,.panel-solid-success>.panel-heading {
+.panel-solid-success .panel-body,.panel-solid-success .panel-footer,.panel-solid-success .panel-heading {
     background: @successColor;
     color: #fff;
     border: none
 }
 
-.panel-solid-warning>.panel-body,.panel-solid-warning>.panel-footer,.panel-solid-warning>.panel-heading {
+.panel-solid-warning .panel-body,.panel-solid-warning .panel-footer,.panel-solid-warning .panel-heading {
     background: @warningColor;
     color: #fff;
     border: none
 }
 
-.panel-solid-info>.panel-body,.panel-solid-info>.panel-footer,.panel-solid-info>.panel-heading {
+.panel-solid-info .panel-body,.panel-solid-info .panel-footer,.panel-solid-info .panel-heading {
     background: @infoColor;
     color: #fff;
     border: none
 }
 
-.panel-solid-danger>.panel-body,.panel-solid-danger>.panel-footer,.panel-solid-danger>.panel-heading {
+.panel-solid-danger .panel-body,.panel-solid-danger .panel-footer,.panel-solid-danger .panel-heading {
     background: @dangerColor;
     color: #fff;
     border: none
 }
 
-.panel-gradient-default>.panel-body{
+.panel-gradient-default .panel-body{
    background: @defaultColor; /* Old browsers */
     background: -moz-linear-gradient(-45deg,  @defaultColor 25%, #a4aaad 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right bottom, color-stop(25%,@defaultColor), color-stop(100%,#a4aaad)); /* Chrome,Safari4+ */
@@ -141,7 +141,7 @@
     .roundBorders(3px);
 }
 
-.panel-gradient-primary>.panel-body{
+.panel-gradient-primary .panel-body{
     background: #1abc9c; /* Old browsers */
     background: -moz-linear-gradient(-45deg, #1abc9c 25%, #87d5ab 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right bottom, color-stop(25%,#1abc9c), color-stop(100%,#87d5ab)); /* Chrome,Safari4+ */
@@ -155,7 +155,7 @@
     .roundBorders(3px);
 }
 
-.panel-gradient-success>.panel-body {
+.panel-gradient-success .panel-body {
     background: #2dcc70; /* Old browsers */
     background: -moz-linear-gradient(-45deg,  #2dcc70 25%, #27ad5f 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right bottom, color-stop(25%,#2dcc70), color-stop(100%,#27ad5f)); /* Chrome,Safari4+ */
@@ -169,7 +169,7 @@
     .roundBorders(3px);
 }
 
-.panel-gradient-warning>.panel-body{
+.panel-gradient-warning .panel-body{
     background: #f1c40f; /* Old browsers */
     background: -moz-linear-gradient(-45deg,  #f1c40f 25%, #e0af0f 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right bottom, color-stop(25%,#f1c40f), color-stop(100%,#e0af0f)); /* Chrome,Safari4+ */
@@ -183,7 +183,7 @@
     .roundBorders(3px);
 }
 
-.panel-gradient-info>.panel-body {
+.panel-gradient-info .panel-body {
     background: #3598db; /* Old browsers */
     background: -moz-linear-gradient(-45deg,  #3598db 25%, #0e7bce 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right bottom, color-stop(25%,#3598db), color-stop(100%,#0e7bce)); /* Chrome,Safari4+ */
@@ -197,19 +197,19 @@
     .roundBorders(3px);
 }
 
-.panel-gradient-info>.panel-body a:link,
-.panel-gradient-info>.panel-body a:visited{
+.panel-gradient-info .panel-body a:link,
+.panel-gradient-info .panel-body a:visited{
     color:#fff;
     text-decoration: none;
 }
 
-.panel-gradient-info>.panel-body a:hover,
-.panel-gradient-info>.panel-body a:active{
+.panel-gradient-info .panel-body a:hover,
+.panel-gradient-info .panel-body a:active{
     color:#fff;
     text-decoration: underline;
 }
 
-.panel-gradient-danger>.panel-body {
+.panel-gradient-danger .panel-body {
     background: #e84c3d; /* Old browsers */
     background: -moz-linear-gradient(-45deg,  #e84c3d 25%, #d34639 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right bottom, color-stop(25%,#e84c3d), color-stop(100%,#d34639)); /* Chrome,Safari4+ */
@@ -222,8 +222,6 @@
     border: none;
     .roundBorders(3px);
 }
-
-
 
 .widget-mini{
     position:relative;
