@@ -49,6 +49,7 @@ Template.OrderDetailsModal.events({
           Messages.error(err);
         } else {
           Messages.success('Order Completed!');
+          BootstrapModalPrompt.dismiss();
         }
       });
     }
