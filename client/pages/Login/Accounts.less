@@ -1,0 +1,157 @@
+@import '/client/style/imports.import.less';
+
+/* ==========================================================================
+   Login, Sign Up, Loacked Screen
+   ========================================================================== */
+
+#accounts-wrapper {
+    .logo {
+        color: #1d212a;
+        font-size: 2em;
+        text-transform: uppercase;
+        padding: 15px 0 0 15px;
+        display: inline-block;
+    }
+    .logo span {
+        font-weight: 700;
+    }
+    .logo img {
+        margin-top: -5px;
+    }
+    .brand {
+        text-align: center;
+        padding: 20px 0;
+    }
+}
+#accounts-wrapper .form-group i {
+    position: absolute;
+    left: 27px;
+    top: 11px;
+}
+#accounts-wrapper #email, #accounts-wrapper #password {
+    padding-left: 32px;
+}
+
+#accounts-wrapper{
+    #locked-screen {
+        .profile-pic {
+            margin: 15px 0;
+        }
+    }
+}
+
+.panel .panel-body {
+  #login-dropdown-list {
+    display: block;
+
+    & > a.dropdown-toggle {
+      display: none;
+    }
+
+    & > .dropdown-menu {
+      // reset all bootstrap and inherent css styles
+      display: block;
+      position: relative;
+      top: initial;
+      left: initial;
+      float: none;
+      margin: 0;
+      font-size: initial;
+      z-index: 0;
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      background-clip: initial;
+      min-width: initial;
+      padding: initial;
+
+      .or { text-align: center; margin: 10px 0; }
+      .hline { text-decoration: line-through; color: lightgrey; }
+      .or-text { font-weight: bold; }
+
+      // not a navbar when in the panel
+      // only looks weird on xs
+      & > .navbar-form {
+          margin: 4px 0;
+          padding: 0px 1px;
+      }
+
+      input:last-of-type {
+        margin-bottom: 10px;
+      }
+
+      & > #login-buttons-password {
+        float: none !important;
+        display: block;
+      }
+
+      & > #login-other-options {
+        // text-align: center;
+
+        & > #signup-link, & > #forgot-password-link {
+          float: none !important;
+
+          //bootstrap .btn styles
+          display: block;
+          margin-bottom: 0;
+          font-weight: normal;
+          text-align: center;
+          vertical-align: middle;
+          touch-action: manipulation;
+          cursor: pointer;
+          background-image: none;
+          border: 1px solid transparent;
+          white-space: nowrap;
+          padding: 6px 12px;
+          font-size: 14px;
+          line-height: 1.42857143;
+          border-radius: 4px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+
+          // theme button styles
+          font-family: @fontStack; 
+          font-weight: bold;
+          font-size: 12px;
+          letter-spacing: 2px;
+          padding: 9px 17px;
+          border-radius: 2px;
+          .transition(color .2s linear, background-color .2s linear);
+
+          // theme default button styles
+          color: #565656;
+          background-color: @defaultColor;
+          border: 1px solid;
+          border-color: darken(@defaultColor, 10%);
+
+          &:hover {
+              background-color: darken(@defaultColor, 10%);
+              border-color: darken(@defaultColor, 10%);
+              color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+
+#configure-login-service-dialog-modal {
+  left: 0;
+  margin-left: initial;
+}
+
+// small
+@media (min-width: 768px) {
+  #accounts-wrapper {
+    margin: 100px auto;
+  }
+}
+
+// medium
+@media (min-width: 992px) {}
+
+// large
+@media (min-width: 1200px) {}

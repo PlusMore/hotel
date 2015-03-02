@@ -1,0 +1,57 @@
+@import '/client/style/imports.import.less';
+
+.pageheader {
+    padding: 15px;
+    border-bottom: 1px solid #dce0e6;
+    border-top: 1px solid #eee;
+    background: #F6F8F8;
+    position: relative;
+
+    & > h1, & > .h1,
+    & > h2, & > .h2,
+    & > h3, & > .h3,
+    & > h4, & > .h4,
+    & > h5, & > .h5,
+    & > h6, & > .h6 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+.pageheader h2 {
+   font-weight: 300;
+    margin: 0;
+}
+.pageheader .description {
+    margin: 0;
+    margin-top: 5px;
+    color: #999;
+}
+.pageheader .breadcrumb-wrapper {
+    position: absolute;
+    top: 13px;
+    right: 25px;
+}
+.pageheader .breadcrumb-wrapper .label {
+    color: #999;
+    text-transform: uppercase;
+    font-size: @11px;
+    font-weight: normal;
+    display: inline-block;
+}
+.pageheader .breadcrumb {
+    background: none;
+    display: inline-block;
+    padding: 0;
+}
+.pageheader .breadcrumb li {
+    font-size: @12px;
+}
+.pageheader .breadcrumb li.active {
+    color: #333;
+}
+.pageheader .breadcrumb > li + li:before {
+    padding: 0 5px;
+    color: #515050;
+    font-family: FontAwesome;
+    content: "\f105";
+}

@@ -1,0 +1,561 @@
+@import '/client/style/imports.import.less';
+
+//default
+.theme-default {
+    #header {
+        .logo, button.sidebar-toggle,button#toggle-profile, .nav li.profile > a {
+            color: #1d212a;
+        }
+        background: #fff;
+        button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+            background: #f6f8f8;
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+            background: #f6f8f8;
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+//Dark theme: logo
+.theme-dark {
+    #header {
+
+        .brand{
+            background: #1D212A;
+            .logo{
+                color:#fff;
+            }
+        }
+         button.sidebar-toggle,button#toggle-profile, .nav li.profile > a {
+            color: #1d212a;
+        }
+        background: #fff;
+        button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+            background: #f6f8f8;
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+            background: #f6f8f8;
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+//Dark theme full: header,logo
+.theme-dark-full {
+    #header {
+        .brand{
+            background: #1D212A;
+            .logo{
+                color:#fff;
+            }
+        }
+        button.sidebar-toggle,button#toggle-profile, .nav li.profile > a {
+            color: #fff;
+        }
+        background: #1D212A;
+          button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+           background: lighten(#1D212A,5%)
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+           background: lighten(#1D212A,5%)
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+
+
+
+//Blue theme: logo,nav
+.theme-blue {
+    #header {
+        .brand{
+            background: @infoColor;
+            .logo{
+                color:#fff;
+            }
+        }
+       button.sidebar-toggle,button#toggle-profile, .nav li.profile > a{
+            color: #1d212a;
+       
+        }
+        background: #fff;
+        button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+            background: #f6f8f8;
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+            background: #f6f8f8;
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @infoColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @infoColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+
+//Blue theme full: header,logo,nav
+.theme-blue-full {
+    #header {
+        .brand{
+            background: @infoColor;
+            .logo{
+                color:#fff;
+            }
+        }
+         button.sidebar-toggle,button#toggle-profile, .nav li.profile > a{
+            color: #fff;
+        }
+        background: @infoColor;
+         button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+             background: lighten(@infoColor,5%)
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+            background: lighten(@infoColor,5%)
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @infoColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @infoColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+
+
+
+//Grey theme: logo,nav
+.theme-grey {
+    #header {
+        .brand{
+            background: @defaultColor;
+            .logo{
+                color:#fff;
+            }
+        }
+        button.sidebar-toggle,button#toggle-profile, .nav li.profile > a{
+            color: #1d212a;
+        }
+        background: #fff;
+        button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+            background: #f6f8f8;
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+            background: #f6f8f8;
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @defaultColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @defaultColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+
+//Grey theme full: header,logo,nav
+.theme-grey-full {
+    #header {
+        .brand{
+            background: @defaultColor;
+            .logo{
+                color:#fff;
+            }
+        }
+         button.sidebar-toggle,button#toggle-profile, .nav li.profile > a{
+            color: #fff;
+        }
+        background: @defaultColor;
+         button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+             background: lighten(@defaultColor,5%)
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+            background: lighten(@defaultColor,5%)
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @defaultColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @defaultColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+//Green theme: logo,nav
+.theme-green {
+    #header {
+        .brand{
+            background: @primaryColor;
+            .logo{
+                color:#fff;
+            }
+        }
+         button.sidebar-toggle,button#toggle-profile, .nav li.profile > a{
+            color: #1d212a;
+        }
+        background: #fff;
+         button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+            background: #f6f8f8;
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+            background: #f6f8f8;
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+//Green theme full: header,logo,nav
+.theme-green-full {
+    #header {
+        .brand{
+            background: @primaryColor;
+            .logo{
+                color:#fff;
+            }
+        }
+       button.sidebar-toggle,button#toggle-profile, .nav li.profile > a{
+            color: #fff;
+        }
+        background: @primaryColor;
+        button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+             background: lighten(@primaryColor,5%)
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+            background: lighten(@primaryColor,5%)
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+//Red theme: logo,nav
+.theme-red {
+    #header {
+        .brand{
+            background: @dangerColor;
+            .logo{
+                color:#fff;
+            }
+        }
+         button.sidebar-toggle,button#toggle-profile, .nav li.profile > a{
+            color: #1d212a;
+        }
+        background: #fff;
+        button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+            background: #f6f8f8;
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+            background: #f6f8f8;
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @dangerColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @dangerColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+
+//Red theme full: header,logo,nav
+.theme-red-full {
+    #header {
+        .brand{
+            background: @dangerColor;
+            .logo{
+                color:#fff;
+            }
+        }
+        button.sidebar-toggle,button#toggle-profile, .nav li.profile > a{
+            color: #fff;
+        }
+        background: @dangerColor;
+        button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+             background: lighten(@dangerColor,5%)
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+            background: lighten(@dangerColor,5%)
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @dangerColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @dangerColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+
+//Red theme full: header,logo,nav
+.theme-dark-blue-full {
+    #header {
+        .brand{
+            background: @primaryColor;
+            .logo{
+                color:#fff;
+            }
+        }
+        button.sidebar-toggle,button#toggle-profile, .nav li.profile > a{
+            color: #fff;
+        }
+        background: @primaryColor;
+        button.sidebar-toggle:hover, button.sidebar-toggle:active,button#toggle-profile:hover,button#toggle-profile:active {
+             background: lighten(@primaryColor,5%)
+        }
+        .nav li.profile > a:hover, .nav li.profile > a:active, .nav li.profile > a:focus {
+            background: lighten(@primaryColor,5%)
+        }
+    }
+    .sidebar-left {
+        background-color: #1d212a;
+    }
+    .sidebar-mini .sidebar-left .nav > li.active > a:focus, .sidebar-mini .sidebar-left .nav > li.active > a:hover, .sidebar-left .nav > li.active > a, .sidebar-left .nav > li.active > a:focus, .sidebar-left .nav > li.active > a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    .sidebar-left .nav > li.open > a, .sidebar-left .nav > li > a:hover {
+        color: #1d2939;
+        background-color: #ffffff;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>.nav-sub, &.sidebar-mini .sidebar-left .nav>li:hover>.nav-sub {
+        background-color: #1d212a;
+    }
+    .sidebar-profile {
+        background: #13161c;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.active>a, &.sidebar-mini .sidebar-left .nav>li.active>a:focus, &.sidebar-mini .sidebar-left .nav>li.active>a:hover, .sidebar-left .nav>li.active>a, .sidebar-left .nav>li.active>a:focus, .sidebar-left .nav>li.active>a:hover {
+        color: #fff;
+        background-color: @primaryColor;
+    }
+    &.sidebar-mini .sidebar-left .nav>li.nav-dropdown-open>a, &.sidebar-mini .sidebar-left .nav>li:hover>a {
+        color: #1d2939;
+        background-color: #fff;
+    }
+}
+

@@ -1,0 +1,44 @@
+<template name="EditMenuItemModal">
+	{{#with menuItem}}
+		
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+          <h3 class="modal-title">
+            Edit {{name}}
+            <div class="pull-right">
+              <div class="tgl-container">
+                <label class="tgl">
+                  <input id="toggle-item-switch" type="checkbox" {{isChecked}}/>
+                  <span class="tgl_body">
+                    <span class="tgl_switch"></span>
+                    <span class="tgl_track">
+                      <span class="tgl_bgd"></span>
+                      <span class="tgl_bgd tgl_bgd-negative"></span>
+                    </span>
+                  </span>
+                </label>
+              </div>
+
+            </div>
+          </h3>
+        </div>
+        {{#autoForm collection='MenuItems' id='editMenuItem' doc=this type='update'}}
+          <div class="modal-body">
+            {{> afFieldInput name='menuCategoryId' type='hidden' value=menuCategoryId}}
+            <div class="row">
+              <div class="col-xs-7">{{> afQuickField name='name'}}</div>
+              <div class="col-xs-5">{{> afQuickField name='price'}}</div>
+            </div>
+            {{> afQuickField name='description' rows=3}}
+          </div>
+          <div class="modal-footer">
+          	<a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+            <button type="submit" class="btn btn-primary">Update Item</button>
+          </div>
+        {{/autoForm}}
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+
+	{{/with}}
+</template>

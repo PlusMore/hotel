@@ -1,0 +1,190 @@
+@import '/client/style/imports.import.less';
+
+.btn{
+    font-family: @fontStack; 
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 2px;
+    padding: 9px 17px;
+    border-radius: 2px;
+    .transition(color .2s linear, background-color .2s linear);
+    
+
+    &.btn-default{
+        color: #565656;
+        background-color: @defaultColor;
+        border: 1px solid;
+        border-color: darken(@defaultColor, 10%);
+        
+        &.btn-border, &.btn-trans, &.btn-transparent{
+            border-color: darken(@defaultColor, 10%);
+        }
+
+        &.btn-3d{
+            .box-shadow(inset 0 -2px 0 darken(@defaultColor, 20%));
+        }
+
+        &:hover{
+            background-color: darken(@defaultColor, 10%);
+            border-color: darken(@defaultColor, 10%);
+            color: #000;
+        }
+    }
+
+    &.btn-primary{
+        color: #fff;
+        background-color: @primaryColor;
+        border: 1px solid;
+        border-color: @primaryColor;
+
+        &.btn-border, &.btn-trans, &.btn-transparent{
+            color: @primaryColor;
+
+            &:hover {
+                background: @primaryColor;
+                border-color: @primaryColor;
+            }
+        }
+
+        &.btn-3d{
+            .box-shadow(inset 0 -2px 0 darken(@primaryColor, 20%));
+        }
+
+        &:hover{
+            background-color: darken(@primaryColor, 10%);
+            border-color: darken(@primaryColor, 10%);
+            color: #fff;
+        }
+    }
+
+    &.btn-success{
+        color: #fff;
+        background-color: @successColor;
+        border: 1px solid;
+        border-color: @successColor;
+        
+        &.btn-border, &.btn-trans, &.btn-transparent{    
+            color: @successColor;
+
+            &:hover {
+                background: @successColor;
+                border-color: @successColor;
+            }
+        }
+
+        &.btn-3d{
+            .box-shadow(inset 0 -2px 0 darken(@successColor, 20%));
+        }
+
+        &:hover{
+            background-color: darken(@successColor, 10%);
+            border-color: darken(@successColor, 10%);
+            color: #fff;
+        }
+    }
+
+    &.btn-info{
+        color: #fff;
+        background-color: @infoColor;
+        border: 1px solid;
+        border-color: @infoColor;
+
+        &.btn-border, &.btn-trans, &.btn-transparent{
+            color: @infoColor;
+
+            &:hover {
+                background: @infoColor;
+                border-color: @infoColor;
+            }
+        }
+
+        &.btn-3d{
+            .box-shadow(inset 0 -2px 0 darken(@infoColor, 20%));
+        }
+
+        &:hover{
+            background-color: darken(@infoColor, 10%);
+            border-color: darken(@infoColor, 10%);
+            color: #fff;
+        }
+    }
+
+    &.btn-warning{
+        color: #fff;
+        background-color: @warningColor;
+        border: 1px solid;
+        border-color: @warningColor;
+
+        &.btn-border, &.btn-trans, &.btn-transparent{
+            color: @warningColor;
+
+            &:hover {
+                background: @warningColor;
+                border-color: @warningColor;
+            }
+        }
+
+        &.btn-3d{
+            .box-shadow(inset 0 -2px 0 darken(@warningColor, 20%));
+        }
+
+        &:hover{
+            background-color: darken(@warningColor, 10%);
+            border-color: darken(@warningColor, 10%);
+            color: #fff;
+        }
+    }
+
+    &.btn-danger{
+        color: #fff;
+        background-color: @dangerColor;
+        border: 1px solid;
+        border-color: @dangerColor;
+        
+        &.btn-border, &.btn-trans, &.btn-transparent{
+            color: @dangerColor;
+
+            &:hover {
+                background: @dangerColor;
+                border-color: @dangerColor;
+            }
+        }
+
+        &.btn-3d{
+            .box-shadow(inset 0 -2px 0 darken(@dangerColor, 20%));
+        }
+
+        &:hover{
+            background-color: darken(@dangerColor, 10%);
+            border-color: darken(@dangerColor, 10%);
+            color: #fff;
+        }
+    }
+
+    &.btn-lg{
+        font-size: 14px;
+        padding: 15px 22px;
+    }
+    
+    &.btn-sm{
+        padding: 7px 14px;
+    }
+
+
+    &.btn-xs{
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+
+    &.btn-border, &.btn-trans, &.btn-transparent {
+        background: transparent;
+    }
+
+    &.btn-round{
+        border-radius: 40px;
+    }
+
+    &.btn-square{
+        border-radius: 0;
+    }
+}

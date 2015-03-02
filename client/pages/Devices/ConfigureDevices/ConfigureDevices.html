@@ -1,0 +1,26 @@
+<template name="ConfigureDevices">
+
+	{{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Device Settings</h1>
+    {{/contentFor}}
+        
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li>Devices</li>
+      <li class="active">Settings</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    {{#with hotel}}
+
+      {{> ChangeDeviceBackground}}
+      
+    {{/with}}
+    <!-- page content end -->
+
+  {{/Layout}}
+
+</template>
