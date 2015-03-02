@@ -1,0 +1,34 @@
+<template name="ViewRooms">
+	{{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>View Rooms</h1>
+    {{/contentFor}}
+        
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li>Rooms</li>
+      <li class="active">View</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">View Rooms</h3>
+            <div class="actions pull-right">
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="panel-body">
+            {{> tabular table=TabularTables.ViewRooms selector=selector class="table table-condensed table-hover"}}  
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- page content end -->
+
+  {{/Layout}}
+</template>
