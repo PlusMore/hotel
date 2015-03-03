@@ -213,6 +213,40 @@ Meteor.publish('amenityDetails', function(hotelId) {
   }
 });
 
+Meteor.publish('roomsAndActiveStays', function(hotelId) {
+  if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
+
+    var now = new Date();
+
+    var staysPub = new SimplePublication({
+      subHandle: this,
+      collection: Stays,
+      selector: {
+        checkInDate: {
+          $lte: now
+        },
+        checkoutDate: {
+          $gte: now
+        }
+      },
+      foreignKey: 'stayId',
+      inverted: true
+    });
+
+    var publication = new SimplePublication({
+      subHandle: this,
+      collection: Rooms,
+      selector: {
+        hotelId: hotelId
+      },
+      dependant: [
+        staysPub
+      ]
+    }).start();
+
+  }
+});
+
 Meteor.publish('hotelMenu', function(hotelId) {
   var userId = this.userId,
     user = Meteor.users.findOne(userId);

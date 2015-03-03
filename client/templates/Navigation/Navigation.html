@@ -10,6 +10,12 @@
       </li>
 
       {{#if isHotelStaff}}
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Guest.CheckIn'}}" data-state="Guest.CheckIn">
+          <a href="{{pathFor 'Guest.CheckIn'}}" title="Guest Check-In">
+            <i class="fa  fa-fw fa-sign-in"></i> Guest Check-In
+            {{{hotelRequiredBadge}}}
+          </a>
+        </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Orders'}} {{currentRouteClass 'Orders'}}" data-state="Orders" >
           <a href="#" title="Orders">
             <i class="fa  fa-fw fa-th-list"></i> Guest Orders
