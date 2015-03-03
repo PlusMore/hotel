@@ -326,6 +326,35 @@ Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
   }).start();
 });
 
+Meteor.publish("tabular_Rooms", function(tableName, ids, fields) {
+  check(tableName, String);
+  check(ids, Array);
+  check(fields, Match.Optional(Object));
+
+  var roomsCursor = Rooms.find({
+    _id: {
+      $in: ids
+    }
+  }, {
+    fields: fields
+  });
+
+  var roomIds = roomsCursor.map(function(room) {
+    return room._id;
+  });
+
+  var devicesCursor = Devices.find({
+    roomId: {
+      $in: roomIds
+    }
+  });
+
+  return [
+    roomsCursor,
+    devicesCursor
+  ];
+});
+
 Meteor.publish('patronOrder', function(id) {
   var order = Orders.findOne(id);
   return [

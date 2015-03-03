@@ -1,3 +1,11 @@
+<template name="RoomHasDeviceCell">
+	{{#if roomHasDevice}}
+		<i class="fa fa-fw fa-check" data-toggle="tooltip" data-placement="top" title="Device Configured"></i>
+	{{else}}
+		<i class="fa fa-fw fa-times" data-toggle="tooltip" data-placement="top" title="No Device Configured"></i>
+	{{/if}}
+</template>
+
 <template name="RoomActionsCell">
 	{{#if isHotelManager}}
 		<div class="btn-group pull-right" role="group" aria-label="Room actions">
@@ -6,3 +14,4 @@
 		</div>
 	{{/if}}
 </template>
+

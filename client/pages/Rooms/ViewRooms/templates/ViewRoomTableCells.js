@@ -1,3 +1,9 @@
+Template.RoomHasDeviceCell.helpers({
+  roomHasDevice: function() {
+    return Devices.find({roomId: this._id}).count() > 0;
+  }
+});
+
 Template.RoomActionsCell.helpers({
   isHotelManager: function() {
     return Roles.userIsInRole(Meteor.userId(), ['hotel-manager', 'admin']);
