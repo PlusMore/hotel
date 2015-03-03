@@ -73,7 +73,7 @@ Meteor.publish('dashboardWidgetInfo', function(hotelId) {
   });
 
   var stayIds = devicesCursor.map(function(p) {
-    return p.stayId
+    return p.stayId;
   });
 
   var now = new Date();

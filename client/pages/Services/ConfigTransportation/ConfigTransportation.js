@@ -1,4 +1,4 @@
-Template.ConfigTransportation.rendered = function () {
+Template.ConfigTransportation.rendered = function() {
   this.$('.timepicker').pickatime({
     onSet: function(selection) {
       var minutes = selection.select;
@@ -29,7 +29,7 @@ Template.ConfigTransportation.helpers({
 });
 
 Template.ConfigTransportation.events({
-  'change #toggle-transportation-switch': function (e, tmpl) {
+  'change #toggle-transportation-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
       Meteor.call('activateHotelService', 'transportation', Session.get('hotelId'), function(err, res) {
         if (err) {

@@ -1,4 +1,4 @@
-Template.OpenOrders.rendered = function () {
+Template.OpenOrders.rendered = function() {
   this.$('table').parent().addClass('table-responsive');
 };
 

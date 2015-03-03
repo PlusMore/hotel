@@ -1,4 +1,4 @@
-Template.ConfigValet.rendered = function () {
+Template.ConfigValet.rendered = function() {
   this.$('.timepicker').pickatime({
     onSet: function(selection) {
       var minutes = selection.select;
@@ -29,7 +29,7 @@ Template.ConfigValet.helpers({
 });
 
 Template.ConfigValet.events({
-  'change #toggle-valet-switch': function (e, tmpl) {
+  'change #toggle-valet-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
       Meteor.call('activateHotelService', 'valetServices', Session.get('hotelId'), function(err, res) {
         if (err) {

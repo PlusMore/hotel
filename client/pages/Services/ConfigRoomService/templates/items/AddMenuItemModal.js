@@ -1,5 +1,5 @@
 Template.AddMenuItemModal.helpers({
-	menuCategoryId: function() {
+  menuCategoryId: function() {
     return Session.get('editMenuCategoryId');
   }
 });
@@ -11,7 +11,7 @@ AutoForm.hooks({
     onSuccess: function(operation, result, template) {
       Messages.success('Created New Menu Item!');
       BootstrapModalPrompt.dismiss();
-    }, 
+    },
 
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.

@@ -1,4 +1,4 @@
-Template.ConfigBellService.rendered = function () {
+Template.ConfigBellService.rendered = function() {
   this.$('.timepicker').pickatime({
     onSet: function(selection) {
       var minutes = selection.select;
@@ -29,7 +29,7 @@ Template.ConfigBellService.helpers({
 });
 
 Template.ConfigBellService.events({
-  'change #toggle-bellservice-switch': function (e, tmpl) {
+  'change #toggle-bellservice-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
       Meteor.call('activateHotelService', 'bellService', Session.get('hotelId'), function(err, res) {
         if (err) {
