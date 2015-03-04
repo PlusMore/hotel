@@ -1,0 +1,49 @@
+<template name="OrderDetailsModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-title" id="order-details">Order Details</h3>
+      </div>
+      {{#with order}}
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <p><strong>Status: </strong>{{orderStatus}}</p>
+              <p><strong>Requested: </strong>{{orderRequestedWhen}}</p>
+              <p><strong>By: </strong>{{orderGuestName}} {{orderDeviceLocation}}</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Received: </strong>{{orderReceivedWhen}}</p>
+              <p><strong>By: </strong>{{orderReceivedBy}}</p>
+              {{#unless open}}
+                <p><strong>Closed: </strong>{{orderClosedWhen}}</p>
+                <p><strong>By: </strong>{{orderClosedBy}}</p>
+              {{/unless}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <h2 class="text-center">{{orderServiceType}}</h2>
+              {{> UI.dynamic template=typeDetailsTemplate}}
+            </div>
+          </div>
+        </div>
+
+        {{#if open}}
+          <div class="modal-footer">
+            <div class="row">
+              <div class="col-md-6">
+                 <button type="button" class="btn-block btn btn-default btn-cancel-order">Cancel Order</button>
+              </div>
+              <div class="col-md-6">
+                <button type="button" class="btn-block {{statusButtonClass}}">{{statusButtonText}}</button>
+              </div>
+            </div>
+          </div>
+        {{/if}}
+        
+      {{/with}}
+    </div>
+  </div>
+</template>

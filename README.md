@@ -1,69 +1,58 @@
-# Plus More
+# Hotel App for Staff and Managers
+
 
 ## Installation
 
-If you already have Meteor and [Meteorite](https://github.com/oortcloud/meteorite/), Plus More is ready to go. Just clone it locally, run it with `mrt`, and start coding!
-
-If not, here are the full instructions:
-
 ```
-curl https://install.meteor.com | /bin/sh
-npm install -g meteorite
-git clone https://github.com/patrickleet/plus-more.git plusmore
-cd plusmore
-mrt
+// clone project
+git clone https://github.com/PlusMore/hotel.git
+cd hotel
+make start (ensure mongodb plusmore is running first)
 ```
 
-## Features
 
-- Client-side routing
-- Publications/subscriptions
-- Basic permissions
-- Common templates
+## Page Layout
+```
+    {{#Layout template="Page"}}
+        {{#contentFor "header"}}
+          <h1>Page Title</h1>
+        {{/contentFor}}
 
-## Principles
+        {{#contentFor "breadcrumb"}}
+            <li>
+                <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+            </li>
+            <li>Section</li>
+            <li class="active">Page Title</li>
+        {{/contentFor}}
 
-Void adopts a modular approach, where code is broken down in different files rather than all kept in one place. It also uses the “template/mapper” pattern, where the `item.html` template has a similarly named `item.js` JavaScript file that holds its helper code.
+        <!-- page content -->
+        
+        <!-- page content end -->
 
-Void uses the `Items` collection as an example, but you would probably replace this with your own collection name (`Posts`, `Sales`, `Projects`, etc.) and change the file and variables names accordingly.
+    {{/Layout}}
+```
 
-## File Structure
 
-- **client**
-	- **CSS**
-	- **helpers**
-		- handlebars.js
-		- router.js
-	- **views**
-		- **common**
-			- footer.html
-			- header.html
-			- layout.html
-			- loading.html
-			- notFound.html
-		- **items**
-			- item.html
-			- item.js
-			- items.html
-		- **pages**
-			- homepage.html
-	- main.html
-	- main.js
-- **collections**
-	- items.js
-- **lib**
-	- helpers.js
-	- permissions.js
-- **packages**
-	- iron-router
-	- sample-package
-- **public**
-- **server**
-	- fixtures.js
-	- publications.js
+## Branching Model
+We follow this(http://nvie.com/posts/a-successful-git-branching-model/), but use pull requests instead of -no-ff merges. This is for peer code review and easy to find info on Github. 
 
-## Other Boilerplates
+With maintaining a qa-copy, dev-copy, an production copy, this just makes things easier, and having a common resource reduces the learning curve as some devs are already familiar with the pattern.
 
-- [meteor-boilerplate](https://github.com/matteodem/meteor-boilerplate) by matteodem
-- [meteor-jw-opinionated-skeleton](https://github.com/jamesdwilson/meteor-jw-opinionated-skeleton) by jamesdwilson (CoffeeScript)
-- [meteor-boilerplate](https://github.com/BeDifferential/meteor-boilerplate) by BeDifferential (CoffeeScript)
+
+## Versioning
+How do you know what version number you should be updating to?
+
+http://semver.org/
+
+MAJOR version when you make incompatible API changes,
+MINOR version when you add functionality in a backwards-compatible manner, and
+PATCH version when you make backwards-compatible bug fixes.
+
+In an application, this generally means more of the following: 
+MAJOR version when we decide it's time because the application changes in a significant way,
+MINOR version when you add a feature, and
+PATCH version when you make bug fixes.
+
+Major version needs the most explanation. An example of when we might do it is if we were to make device into a thin wrapper for iframes, and separate different pages into multiple apps. Another reason might be to align with a business strategy. 
+

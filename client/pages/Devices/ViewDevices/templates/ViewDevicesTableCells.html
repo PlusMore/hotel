@@ -1,0 +1,27 @@
+<template name="viewDevicesLocationCell">
+	<h3>{{location}}</h3>
+</template>
+
+<template name="viewDevicesCheckinCell">
+	{{#if deviceHasActiveStay}}
+		<h3>{{deviceStay.stayCheckInDate}} <small>{{deviceStay.stayCheckInTime}}</small></h3>
+	{{else}}
+		<h3>-</h3>
+	{{/if}}
+</template>
+
+<template name="viewDevicesCheckoutCell">
+	{{#if deviceHasActiveStay}}
+		<h3>{{deviceStay.stayCheckOutDate}} <small>{{deviceStay.stayCheckOutTime}}</small></h3>
+	{{else}}
+		<h3>-</h3>
+	{{/if}}
+</template>
+
+<template name="viewDevicesActionCell">
+	{{#if isHotelManager}}
+		<div class="del-device actions pull-right">
+      <i class="fa fa-times"></i>
+    </div>
+	{{/if}}
+</template>

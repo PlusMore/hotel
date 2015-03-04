@@ -1,0 +1,9 @@
+{
+  "name": "HotelReaktor",
+  "version": "0.0.1",
+  "dependencies": {
+    "messenger": "~1.4.1",
+    "gauge.js": "~1.2.1"
+  },
+  "private": true
+}

@@ -1,0 +1,54 @@
+<template name="AddNewUser">
+	{{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Add New Staff</h1>
+    {{/contentFor}}
+        
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li>Staff</li>
+      <li class="active">Add New User</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Enter User Details</h3>
+            <div class="actions pull-right">
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="panel-body">
+            {{#autoForm schema=addHotelStaffSchema id="addHotelStaffForm" type="method" meteormethod="addHotelStaff"}}
+	            {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+	            <div class="row">
+	            	<div class="col-sm-6">
+	            		{{> afQuickField name='firstName'}}
+	            	</div>
+	            	<div class="col-sm-6">
+	            		{{> afQuickField name='lastName'}}
+	            	</div>
+	            </div>
+	            {{> afQuickField name='email'}}
+	            <div class="row">
+	            	<div class="col-sm-6">
+	            		{{> afQuickField name='phone' placeholder="xxx-xxx-xxxx"}}
+	            	</div>
+	            	<div class="col-sm-6">
+	            		{{> afQuickField name='isManager'}}
+	            	</div>
+	            </div>
+	            <button type="submit" class="btn btn-primary">Create User</button>
+	          {{/autoForm}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- page content end -->
+
+  {{/Layout}}
+</template>

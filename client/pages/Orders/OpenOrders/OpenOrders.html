@@ -1,0 +1,36 @@
+<template name="OpenOrders">
+
+	{{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Open Orders</h1>
+    {{/contentFor}}
+        
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li>Orders</li>
+      <li class="active">Open</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Open Orders</h3>
+            <div class="actions pull-right">
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="panel-body">
+            {{> tabular table=TabularTables.OpenOrders selector=selector class="table table-condensed table-hover"}}  
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- page content end -->
+
+  {{/Layout}}
+
+</template>
