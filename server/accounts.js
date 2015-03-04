@@ -117,9 +117,9 @@ Meteor.methods({
         roles.push('hotel-manager');
       }
 
-      var parsedNumber = LibPhoneNumber.phoneUtil.parse(user.phone, user.countryCode || "US");
-      var format = LibPhoneNumber.PhoneNumberFormat;
-      user.phone = LibPhoneNumber.phoneUtil.format(parsedNumber, format.National);
+      // var parsedNumber = LibPhoneNumber.phoneUtil.parse(user.phone, user.countryCode || "US");
+      // var format = LibPhoneNumber.PhoneNumberFormat;
+      // user.phone = LibPhoneNumber.phoneUtil.format(parsedNumber, format.National);
 
       var profile = {
         firstName: user.firstName,
