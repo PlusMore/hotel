@@ -1,0 +1,37 @@
+<template name="GuestCheckInModal">
+	<div class="modal-dialog">
+    <div class="modal-content">
+    	
+	    <div class="modal-header">
+	      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	      <h3 class="modal-title" id="staff-details">Guest Check-In</h3>
+	    </div>
+
+	    {{#autoForm id="guestCheckInModalForm" schema=guestCheckInSchema type="method" meteormethod="checkInGuest"}}
+        {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+        <div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							{{> afQuickField name='guestFirstName'}} 
+						</div>
+						<div class="col-sm-6">
+							{{> afQuickField name='guestLastName'}} 
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							{{> afQuickField name='roomId' options=roomOptions}} 
+						</div>
+						<div class="col-sm-6">
+							{{> afQuickField name='checkoutDate'}}
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Check-In Guest</button>
+				</div>
+      {{/autoForm}}
+      
+    </div>
+  </div>
+</template>
