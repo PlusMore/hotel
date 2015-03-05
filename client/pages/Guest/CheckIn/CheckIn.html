@@ -1,0 +1,54 @@
+<template name="CheckIn">
+	{{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Guest Check-In</h1>
+    {{/contentFor}}
+
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li>Guest</li>
+      <li class="active">Check-In</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    <div class="row">
+    	<div class="col-xs-12">
+    		<div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Guest Check-in</h3>
+            <div class="actions pull-right">
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+          {{#autoForm id="guestCheckInForm" schema=guestCheckInSchema type="method" meteormethod="checkInGuest"}}
+          	{{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+            <div class="panel-body">
+							<div class="row">
+								<div class="col-sm-6">
+									{{> afQuickField name='guestFirstName'}} 
+								</div>
+								<div class="col-sm-6">
+									{{> afQuickField name='guestLastName'}} 
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									{{> afQuickField name='roomId' options=roomOptions}} 
+								</div>
+								<div class="col-sm-6">
+									{{> afQuickField name='checkoutDate'}}
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<button type="submit" class="btn btn-primary">Check-In Guest</button>
+						</div>
+          {{/autoForm}}
+        </div>
+    	</div>
+    </div>
+
+  {{/Layout}}
+</template>

@@ -1,5 +1,5 @@
 Template.ConfigRoomService.helpers({
-	isChecked: function() {
+  isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''
     // if not configured, return ''
     if (!this.configuration) {
@@ -13,7 +13,7 @@ Template.ConfigRoomService.helpers({
   }
 });
 
-Template.ConfigRoomService.rendered = function () {
+Template.ConfigRoomService.rendered = function() {
   this.$('.timepicker').pickatime({
     onSet: function(selection) {
       var minutes = selection.select;
@@ -50,12 +50,12 @@ Template.ConfigRoomService.events({
   },
   'click .btn-reset': function(e, tmpl) {
     Meteor.call('resetServiceAvailability', that._id, function(err, res) {
-        if (err) {
-          Messages.error(err);
-        } else {
-          Messages.success('Availability Reset');
-        }
-      });
+      if (err) {
+        Messages.error(err);
+      } else {
+        Messages.success('Availability Reset');
+      }
+    });
   },
   'click #add-menu-category': function(e) {
     BootstrapModalPrompt.prompt({

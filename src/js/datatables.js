@@ -185,6 +185,30 @@ TabularTables.ViewDevices = new Tabular.Table({
 });
 
 
+TabularTables.ViewRooms = new Tabular.Table({
+  name: "ViewRooms",
+  collection: Rooms,
+  pub: "tabular_Rooms",
+  autoWidth: true,
+  searching: false,
+  pagingType: "simple",
+  extraFields: ['hotelId','stayId'],
+  columns: [
+  /*{
+    title: "Device?",
+    tmpl: Meteor.isClient && Template.RoomHasDeviceCell
+  }, */{
+    data: "name",
+    title: "Room"
+  }, {
+    title: "Stay",
+    tmpl: Meteor.isClient && Template.RoomActiveStayCell
+  }, {
+    tmpl: Meteor.isClient && Template.RoomActionsCell
+  }]
+});
+
+
 TabularTables.ViewStaff = new Tabular.Table({
   name: "ViewStaff",
   collection: Meteor.users,

@@ -34,19 +34,19 @@ messages = function() {
       message: msg,
       type: 'success',
       showCloseButton: true
-    })
-  }
+    });
+  };
   var showError = function(msg) {
     Messenger().post({
       message: msg,
       type: 'error',
       showCloseButton: true
-    })
-  }
+    });
+  };
   return {
     success: showSuccess,
     error: showError
-  }
+  };
 };
 
 Meteor.startup(function() {

@@ -73,7 +73,7 @@ Meteor.publish('dashboardWidgetInfo', function(hotelId) {
   });
 
   var stayIds = devicesCursor.map(function(p) {
-    return p.stayId
+    return p.stayId;
   });
 
   var now = new Date();
@@ -213,6 +213,40 @@ Meteor.publish('amenityDetails', function(hotelId) {
   }
 });
 
+Meteor.publish('roomsAndActiveStays', function(hotelId) {
+  if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
+
+    var now = new Date();
+
+    var staysPub = new SimplePublication({
+      subHandle: this,
+      collection: Stays,
+      selector: {
+        checkInDate: {
+          $lte: now
+        },
+        checkoutDate: {
+          $gte: now
+        }
+      },
+      foreignKey: 'stayId',
+      inverted: true
+    });
+
+    var publication = new SimplePublication({
+      subHandle: this,
+      collection: Rooms,
+      selector: {
+        hotelId: hotelId
+      },
+      dependant: [
+        staysPub
+      ]
+    }).start();
+
+  }
+});
+
 Meteor.publish('hotelMenu', function(hotelId) {
   var userId = this.userId,
     user = Meteor.users.findOne(userId);
@@ -324,6 +358,54 @@ Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
       //  usersPub
     ]
   }).start();
+});
+
+Meteor.publish("tabular_Rooms", function(tableName, ids, fields) {
+  check(tableName, String);
+  check(ids, Array);
+  check(fields, Match.Optional(Object));
+
+  var roomsCursor = Rooms.find({
+    _id: {
+      $in: ids
+    }
+  }, {
+    fields: fields
+  });
+
+  var roomIds = roomsCursor.map(function(room) {
+    return room._id;
+  });
+
+  var stayIds = roomsCursor.map(function(room) {
+    return room.stayId;
+  });
+
+  var devicesCursor = Devices.find({
+    roomId: {
+      $in: roomIds
+    }
+  });
+
+  var now = new Date();
+
+  var staysCursor = Stays.find({
+    _id: {
+      $in: stayIds
+    },
+    checkInDate: {
+      $lte: now
+    },
+    checkoutDate: {
+      $gte: now
+    }
+  });
+
+  return [
+    staysCursor,
+    roomsCursor,
+    devicesCursor
+  ];
 });
 
 Meteor.publish('patronOrder', function(id) {
