@@ -10,7 +10,7 @@ Template.HotelAmenity.helpers({
 Template.HotelAmenity.events({
   'click #remove-amenity': function (e) {
   	e.preventDefault();
-    if (confirm('Are you sure you want to delete?')) {
+    if (confirm('Are you sure you want to delete this amenity? All descriptions and details will be lost.')) {
       Meteor.call('removeAmenity', this._id, function (err, res){
         if (err) {
           Messages.error(err);
