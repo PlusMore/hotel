@@ -5,6 +5,9 @@
 
 <template name="orderTypeCell">
 	<h3>{{orderServiceType}}</h3>
+	{{#if orderHasRequestedForDate}}
+		<h3><small>{{orderRequestedForWhen}}</small></h3>
+	{{/if}}
 </template>
 
 <template name="reservationCell">
