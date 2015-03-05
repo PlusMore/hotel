@@ -1,6 +1,19 @@
 Template.RoomHasDeviceCell.helpers({
   roomHasDevice: function() {
-    return Devices.find({roomId: this._id}).count() > 0;
+    return Devices.find({
+      roomId: this._id
+    }).count() > 0;
+  }
+});
+
+Template.RoomActiveStayCell.helpers({
+  stayOverview: function() {
+    var stay = Stays.findOne(this.stayId);
+    if (stay) {
+      var checkInWhen = moment(stay.checkInDate).zone(stay.zone);
+      var checkOutWhen = moment(stay.checkoutDate).zone(stay.zone);
+      return checkInWhen.format('MM/DD/YYYY, h:mm a') + ' - ' + checkOutWhen.format('MM/DD/YYYY');
+    }
   }
 });
 
@@ -17,10 +30,4 @@ Template.RoomActionsCell.events({
       dialogTemplate: Template.EditRoomModal
     });
   },
-  'click #delete-room': function(e) {
-    if (confirm("Are you sure you'd like to delete this room?")) {
-      Meteor.call('removeRoom', this._id);
-      Messages.success(this.name + ' Deleted');
-    }
-  }
 });

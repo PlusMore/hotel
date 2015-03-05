@@ -377,13 +377,32 @@ Meteor.publish("tabular_Rooms", function(tableName, ids, fields) {
     return room._id;
   });
 
+  var stayIds = roomsCursor.map(function(room) {
+    return room.stayId;
+  });
+
   var devicesCursor = Devices.find({
     roomId: {
       $in: roomIds
     }
   });
 
+  var now = new Date();
+
+  var staysCursor = Stays.find({
+    _id: {
+      $in: stayIds
+    },
+    checkInDate: {
+      $lte: now
+    },
+    checkoutDate: {
+      $gte: now
+    }
+  });
+
   return [
+    staysCursor,
     roomsCursor,
     devicesCursor
   ];

@@ -7,7 +7,3 @@ Template.ViewRooms.helpers({
     };
   }
 });
-
-Template.ViewRooms.rendered = function() {
-  this.$('table').parent().addClass('table-responsive');
-};

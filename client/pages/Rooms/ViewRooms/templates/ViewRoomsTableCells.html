@@ -1,3 +1,7 @@
+<template name="RoomActiveStayCell">
+	<p>{{stayOverview}}</p>
+</template>
+
 <template name="RoomHasDeviceCell">
 	{{#if roomHasDevice}}
 		<i class="fa fa-fw fa-check" data-toggle="tooltip" data-placement="top" title="Device Configured"></i>
@@ -8,10 +12,7 @@
 
 <template name="RoomActionsCell">
 	{{#if isHotelManager}}
-		<div class="btn-group pull-right" role="group" aria-label="Room actions">
-			<button id="edit-room" class="btn btn-info btn-sm">Edit</button>
-			<button id="delete-room" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></button>
-		</div>
+		<button id="edit-room" type="button" class="btn btn-info btn-sm pull-right">Edit</button>
 	{{/if}}
 </template>
 

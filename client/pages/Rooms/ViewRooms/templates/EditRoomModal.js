@@ -7,6 +7,15 @@ Template.EditRoomModal.helpers({
   }
 });
 
+Template.EditRoomModal.events({
+  'click #delete-room': function(e) {
+    if (confirm("Are you sure you'd like to delete this room?")) {
+      Meteor.call('removeRoom', Session.get('editRoomId'));
+      Messages.success('Room Deleted');
+    }
+  }
+});
+
 Schema.editRoomSchema = new SimpleSchema({
   roomId: {
     type: String
