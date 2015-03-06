@@ -6,14 +6,16 @@ Template.RoomHasDeviceCell.helpers({
   }
 });
 
-Template.RoomActiveStayCell.helpers({
-  stayOverview: function() {
-    var stay = Stays.findOne(this.stayId);
-    if (stay) {
-      var checkInWhen = moment(stay.checkInDate).zone(stay.zone);
-      var checkOutWhen = moment(stay.checkoutDate).zone(stay.zone);
-      return checkInWhen.format('MM/DD/YYYY, h:mm a') + ' - ' + checkOutWhen.format('MM/DD/YYYY');
-    }
+
+
+Template.RoomActiveStayCell.events({
+  'click #view-stay-details': function(e) {
+    e.preventDefault();
+    var room = Rooms.findOne(this._id);
+    Session.set('viewStayId', this.stayId);
+    BootstrapModalPrompt.prompt({
+      dialogTemplate: Template.StayDetailsModal
+    });
   }
 });
 

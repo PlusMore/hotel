@@ -192,7 +192,7 @@ TabularTables.ViewRooms = new Tabular.Table({
   autoWidth: true,
   searching: false,
   pagingType: "simple",
-  extraFields: ['hotelId','stayId'],
+  extraFields: ['hotelId'],
   columns: [
   /*{
     title: "Device?",
@@ -202,6 +202,7 @@ TabularTables.ViewRooms = new Tabular.Table({
     title: "Room"
   }, {
     title: "Stay",
+    data: "stayId",
     tmpl: Meteor.isClient && Template.RoomActiveStayCell
   }, {
     tmpl: Meteor.isClient && Template.RoomActionsCell
