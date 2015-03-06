@@ -6,9 +6,11 @@
       <div class="panel-body widget-gauge">
           <canvas width="160" height="100" id="gauge" class=""></canvas>
           <div class="goal-wrapper">
-          	<span id="gauge-text" class="gauge-value pull-left">0</span>
-          	<span class="gauge-value pull-left">&nbsp;Stays</span>
-            <span id="goal-text" class="goal-value pull-right"><a href="{{pathFor 'Rooms.View'}}">{{getPublishedCount 'total-devices'}} Rooms</a></span>
+            <a href="{{pathFor 'Stays.Current'}}">
+            	<span id="gauge-text" class="gauge-value pull-left">0</span>
+            	<span class="gauge-value pull-left">&nbsp;Stays</span>
+            </a>
+            <span id="goal-text" class="goal-value pull-right"><a href="{{pathFor 'Rooms.View'}}">{{getPublishedCount 'total-rooms'}} Rooms</a></span>
           </div>
       </div>
   </div>

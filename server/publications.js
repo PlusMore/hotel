@@ -68,20 +68,10 @@ Meteor.publish('dashboardWidgetInfo', function(hotelId) {
 
   hotelId = hotelId || user.hotelId;
 
-  var devicesCursor = Devices.find({
-    hotelId: hotelId
-  });
-
-  var stayIds = devicesCursor.map(function(p) {
-    return p.stayId;
-  });
-
   var now = new Date();
 
   Counts.publish(this, 'total-active-stays', Stays.find({
-    _id: {
-      $in: stayIds
-    },
+    hotelId: hotelId,
     checkInDate: {
       $lte: now
     },
@@ -92,7 +82,7 @@ Meteor.publish('dashboardWidgetInfo', function(hotelId) {
     noReady: true
   });
 
-  Counts.publish(this, 'total-devices', Devices.find({
+  Counts.publish(this, 'total-rooms', Rooms.find({
     hotelId: hotelId
   }), {
     noReady: true
@@ -405,6 +395,35 @@ Meteor.publish("tabular_Rooms", function(tableName, ids, fields) {
     staysCursor,
     roomsCursor,
     devicesCursor
+  ];
+});
+
+Meteor.publish("tabular_CurrentStays", function(tableName, ids, fields) {
+  check(tableName, String);
+  check(ids, Array);
+  check(fields, Match.Optional(Object));
+
+  var staysCursor = Stays.find({
+    _id: {
+      $in: ids
+    }
+  }, {
+    fields: fields
+  });
+
+  var staysIds = staysCursor.map(function(stay) {
+    return stay._id;
+  });
+
+  var roomsCursor = Rooms.find({
+    stayId: {
+      $in: staysIds
+    }
+  });
+
+  return [
+    staysCursor,
+    roomsCursor
   ];
 });
 

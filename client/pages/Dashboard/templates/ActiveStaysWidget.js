@@ -25,7 +25,7 @@ Template.ActiveStaysWidget.rendered = function () {
   var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
   gauge.animationSpeed = 32; // set animation speed (32 is default value)
   self.autorun(function() {
-    var totalDevices = Counts.get('total-devices');
+    var totalDevices = Counts.get('total-rooms');
     var totalActiveStays = Counts.get('total-active-stays');
     gauge.maxValue = totalDevices;
     if (totalActiveStays > 0) {

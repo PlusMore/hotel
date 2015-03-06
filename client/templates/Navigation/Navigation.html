@@ -35,7 +35,7 @@
           </ul>
         </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Rooms'}} {{currentRouteClass 'Rooms'}}" data-state="Rooms" >
-          <a href="#" title="Devices">
+          <a href="#" title="Rooms">
             <i class="fa  fa-fw fa-key"></i> Rooms
             {{{hotelRequiredBadge}}}
           </a>
@@ -52,6 +52,24 @@
                 </a>
               </li>
             {{/if}}
+          </ul>
+        </li>
+        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Stays'}} {{currentRouteClass 'Stays'}}" data-state="Stays" >
+          <a href="#" title="Stays">
+            <i class="fa  fa-fw fa-calendar"></i> Stays
+            {{{hotelRequiredBadge}}}
+          </a>
+          <ul class="nav-sub {{navSubStateClass 'Stays.Current'}}">
+            <li class="{{currentRouteClass 'Stays.Current'}}" data-state="Stays.Current">
+              <a href="{{pathFor 'Stays.Current'}}" title="Current Stays">
+                Current Stays
+              </a>
+            </li>
+            <li class="{{currentRouteClass 'Stays.History'}}" data-state="Stays.History">
+              <a href="{{pathFor 'Stays.History'}}" title="Stays History">
+                Stays History
+              </a>
+            </li>
           </ul>
         </li>
       {{/if}}

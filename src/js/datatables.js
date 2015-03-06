@@ -192,23 +192,51 @@ TabularTables.ViewRooms = new Tabular.Table({
   autoWidth: true,
   searching: false,
   pagingType: "simple",
-  extraFields: ['hotelId'],
   columns: [
-  /*{
-    title: "Device?",
-    tmpl: Meteor.isClient && Template.RoomHasDeviceCell
-  }, */{
-    data: "name",
-    title: "Room"
-  }, {
-    title: "Stay",
-    data: "stayId",
-    tmpl: Meteor.isClient && Template.RoomActiveStayCell
-  }, {
-    tmpl: Meteor.isClient && Template.RoomActionsCell
-  }]
+    /*{
+      title: "Device?",
+      tmpl: Meteor.isClient && Template.RoomHasDeviceCell
+    }, */
+    {
+      data: "name",
+      title: "Room"
+    }, {
+      title: "Stay",
+      data: "stayId",
+      tmpl: Meteor.isClient && Template.RoomActiveStayCell
+    }, {
+      tmpl: Meteor.isClient && Template.RoomActionsCell
+    }
+  ]
 });
 
+TabularTables.Stays = new Tabular.Table({
+  name: "Stays",
+  collection: Stays,
+  autoWidth: true,
+  searching: false,
+  pagingType: "simple",
+  extraFields: ['checkInDate', 'checkoutDate', 'zone', 'guestFirstName', 'guestLastName'],
+  columns: [{
+    title: "Room",
+    data: "roomName",
+    render: function(val, type, doc) {
+      if (val) {
+        return val;
+      } else {
+        return 'N/A';
+      }
+    }
+  }, {
+    title: "Check-In",
+    tmpl: Meteor.isClient && Template.StayCheckInCell
+  }, {
+    title: "Check-Out",
+    tmpl: Meteor.isClient && Template.StayCheckOutCell
+  }, {
+    tmpl: Meteor.isClient && Template.ViewStayCell
+  }]
+});
 
 TabularTables.ViewStaff = new Tabular.Table({
   name: "ViewStaff",
