@@ -398,35 +398,6 @@ Meteor.publish("tabular_Rooms", function(tableName, ids, fields) {
   ];
 });
 
-Meteor.publish("tabular_CurrentStays", function(tableName, ids, fields) {
-  check(tableName, String);
-  check(ids, Array);
-  check(fields, Match.Optional(Object));
-
-  var staysCursor = Stays.find({
-    _id: {
-      $in: ids
-    }
-  }, {
-    fields: fields
-  });
-
-  var staysIds = staysCursor.map(function(stay) {
-    return stay._id;
-  });
-
-  var roomsCursor = Rooms.find({
-    stayId: {
-      $in: staysIds
-    }
-  });
-
-  return [
-    staysCursor,
-    roomsCursor
-  ];
-});
-
 Meteor.publish('patronOrder', function(id) {
   var order = Orders.findOne(id);
   return [
