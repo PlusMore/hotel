@@ -1,7 +1,7 @@
-Accounts.emailTemplates.siteName = "Plus More";
+Accounts.emailTemplates.siteName = "PlusMore";
 Accounts.emailTemplates.from = "noreply@plusmoretablets.com";
 Accounts.emailTemplates.enrollAccount.subject = function(user) {
-  return "Welcome to Plus More";
+  return "Welcome to PlusMore";
 };
 Accounts.emailTemplates.enrollAccount.text = function(user, url) {
   var spliturl = url.split('/#');
@@ -104,73 +104,5 @@ Accounts.onLoginFailure(function(attempt) {
     if (!attempt.user.emails[0].verified) {
       Accounts.sendVerificationEmail(attempt.user._id);
     }
-  }
-});
-
-Meteor.methods({
-  addHotelStaff: function(user) {
-    check(user, Schema.addHotelStaff);
-
-    if (Roles.userIsInRole(Meteor.user(), ['hotel-manager', 'admin'])) {
-      var roles = ['hotel-staff'];
-      if (user.isManager) {
-        roles.push('hotel-manager');
-      }
-
-      // var parsedNumber = LibPhoneNumber.phoneUtil.parse(user.phone, user.countryCode || "US");
-      // var format = LibPhoneNumber.PhoneNumberFormat;
-      // user.phone = LibPhoneNumber.phoneUtil.format(parsedNumber, format.National);
-
-      var profile = {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        phone: user.phone
-      };
-
-      var userId = Accounts.createUser({
-        email: user.email,
-        roles: roles,
-        password: Meteor.uuid(),
-        hotelId: user.hotelId,
-        profile: profile
-      });
-
-      Accounts.sendEnrollmentEmail(userId, user.email);
-      return {
-        userId: userId,
-        hotelId: user.hotelId
-      };
-    }
-  },
-  editHotelStaff: function(doc) {
-    check(doc, Schema.addHotelStaff);
-
-    var userId = doc.userId;
-
-    if (!Roles.userIsInRole(userId, ['admin', 'device'])) {
-      var roles = ['hotel-staff'];
-      if (doc.isManager) {
-        roles.push('hotel-manager');
-      }
-    } else {
-      throw new Meteor.Error(500, 'This form can not be used to update device users or admin information');
-    }
-    if (doc.phone) {
-      var parsedNumber = LibPhoneNumber.phoneUtil.parse(doc.phone, doc.countryCode || "US");
-      var format = LibPhoneNumber.PhoneNumberFormat;
-      doc.phone = LibPhoneNumber.phoneUtil.format(parsedNumber, format.National);
-    }
-
-    Meteor.users.update({
-      _id: userId
-    }, {
-      $set: {
-        "profile.firstName": doc.firstName,
-        "profile.lastName": doc.lastName,
-        "profile.phone": doc.phone,
-        roles: roles
-      }
-    });
-
   }
 });
