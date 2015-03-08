@@ -23,6 +23,7 @@ Accounts.validateNewUser(function(user) {
   // if adding a hotel-staff, or hotel-manager then allow creation
   var isHotelStaffOrManager = false;
   var hotelIsValid = false;
+  var userIsGuest = false;
 
   if (user.hotelId) {
     hotelIsValid = !!Hotels.findOne(user.hotelId);
@@ -32,54 +33,66 @@ Accounts.validateNewUser(function(user) {
     isHotelStaffOrManager = _.any(user.roles, function(role) {
       return (role === 'hotel-staff' || role === 'hotel-manager');
     });
+    userIsGuest = _.any(user.roles, function(role) {
+      return (role === 'guest');
+    });
   }
 
-  if (hotelIsValid && isHotelStaffOrManager) {
+  if (hotelIsValid && isHotelStaffOrManager || userIsGuest) {
     return true;
   }
 });
 
 
 Accounts.onCreateUser(function(options, user) {
-  // We still want the default hook's 'profile' behavior.
-  if (options.profile)
+  if (options.roles == 'guest') {
+    //create user as guest, not staff
     user.profile = options.profile;
+    user.roles = [];
+    user.roles.push('guest');
 
-  var hotelIsValid = false;
-  var isHotelStaff = false;
-  var isHotelManager = false;
-
-  if (options.hotelId) {
-    hotelIsValid = !!Hotels.findOne(options.hotelId);
-  }
-
-  if (hotelIsValid) {
-    user.hotelId = options.hotelId;
   } else {
-    throw new Meteor.Error(500, 'Account creation is forbidden.');
-  }
+    // We still want the default hook's 'profile' behavior.
+    if (options.profile)
+      user.profile = options.profile;
 
-  if (!_.isEmpty(options.roles)) {
-    isHotelStaff = _.any(options.roles, function(role) {
-      return role === 'hotel-staff';
-    });
-    isHotelManager = _.any(options.roles, function(role) {
-      return role === 'hotel-manager';
-    });
-  }
+    var hotelIsValid = false;
+    var isHotelStaff = false;
+    var isHotelManager = false;
 
-  user.roles = [];
+    if (options.hotelId) {
+      hotelIsValid = !!Hotels.findOne(options.hotelId);
+    }
 
-  if (isHotelStaff) {
-    user.roles.push('hotel-staff');
-  }
+    if (hotelIsValid) {
+      user.hotelId = options.hotelId;
+    } else {
+      throw new Meteor.Error(500, 'Account creation is forbidden.');
+    }
 
-  if (isHotelManager) {
-    user.roles.push('hotel-manager');
-  }
+    if (!_.isEmpty(options.roles)) {
+      isHotelStaff = _.any(options.roles, function(role) {
+        return role === 'hotel-staff';
+      });
+      isHotelManager = _.any(options.roles, function(role) {
+        return role === 'hotel-manager';
+      });
+    }
 
-  if (!(isHotelStaff || isHotelManager)) {
-    throw new Meteor.Error(500, 'Account creation is forbidden.');
+    user.roles = [];
+
+    if (isHotelStaff) {
+      user.roles.push('hotel-staff');
+    }
+
+    if (isHotelManager) {
+      user.roles.push('hotel-manager');
+    }
+
+    if (!(isHotelStaff || isHotelManager)) {
+      throw new Meteor.Error(500, 'Account creation is forbidden.');
+    }
+
   }
 
   return user;
@@ -147,19 +160,19 @@ Meteor.methods({
 
     var userId = doc.userId;
 
-    if (!Roles.userIsInRole(userId, ['admin', 'device'])) {
+    if (!Roles.userIsInRole(userId, ['admin', 'guest'])) {
       var roles = ['hotel-staff'];
       if (doc.isManager) {
         roles.push('hotel-manager');
       }
     } else {
-      throw new Meteor.Error(500, 'This form can not be used to update device users or admin information');
+      throw new Meteor.Error(500, 'This form can not be used to update guest users or admin information');
     }
-    if (doc.phone) {
-      var parsedNumber = LibPhoneNumber.phoneUtil.parse(doc.phone, doc.countryCode || "US");
-      var format = LibPhoneNumber.PhoneNumberFormat;
-      doc.phone = LibPhoneNumber.phoneUtil.format(parsedNumber, format.National);
-    }
+    //if (doc.phone) {
+    //  var parsedNumber = LibPhoneNumber.phoneUtil.parse(doc.phone, doc.countryCode || "US");
+    //  var format = LibPhoneNumber.PhoneNumberFormat;
+    //  doc.phone = LibPhoneNumber.phoneUtil.format(parsedNumber, format.National);
+    //}
 
     Meteor.users.update({
       _id: userId
@@ -172,5 +185,31 @@ Meteor.methods({
       }
     });
 
+  },
+  guestUserExists: function(email) {
+    // is guest a previous user
+    var user = Meteor.users.findOne({
+      'emails.address': email
+    });
+    if (user) {
+      return user._id;
+    } else {
+      return false;
+    }
+  },
+  createGuestUser: function(userDetails) {
+    check(userDetails.email, String);
+    check(userDetails.profile.firstName, String);
+    check(userDetails.profile.lastName, String);
+
+    var roles = ['guest'];
+
+    userDetails.roles = roles;
+
+    var userId = Accounts.createUser(userDetails);
+
+    Accounts.sendEnrollmentEmail(userId, userDetails.email);
+
+    return userId;
   }
 });
