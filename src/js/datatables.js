@@ -156,7 +156,7 @@ TabularTables.ViewDevices = new Tabular.Table({
   searching: false,
   pagingType: "simple",
   extraFields: [
-    'stayId'
+    'roomId'
   ],
   columns: [{
     data: "location",

@@ -1,18 +1,18 @@
 <template name="viewDevicesLocationCell">
-	<h3>{{location}}</h3>
+	<h3>{{#with deviceGetRoom}}{{name}}{{else}}No Room{{/with}}</h3>
 </template>
 
 <template name="viewDevicesCheckinCell">
-	{{#if deviceHasActiveStay}}
-		<h3>{{deviceStay.stayCheckInDate}} <small>{{deviceStay.stayCheckInTime}}</small></h3>
+	{{#if deviceGetRoom.roomHasActiveStay}}
+		<h3>{{deviceGetRoom.roomGetStay.stayCheckInDate}} <small>{{deviceGetRoom.roomGetStay.stayCheckInTime}}</small></h3>
 	{{else}}
 		<h3>-</h3>
 	{{/if}}
 </template>
 
 <template name="viewDevicesCheckoutCell">
-	{{#if deviceHasActiveStay}}
-		<h3>{{deviceStay.stayCheckOutDate}} <small>{{deviceStay.stayCheckOutTime}}</small></h3>
+	{{#if deviceGetRoom.roomHasActiveStay}}
+		<h3>{{deviceGetRoom.roomGetStay.stayCheckOutDate}} <small>{{deviceGetRoom.roomGetStay.stayCheckOutTime}}</small></h3>
 	{{else}}
 		<h3>-</h3>
 	{{/if}}
