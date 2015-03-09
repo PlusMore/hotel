@@ -201,7 +201,8 @@ Meteor.methods({
         email: doc.guestEmail,
         profile: {
           firstName: doc.guestFirstName,
-          lastName: doc.guestLastName
+          lastName: doc.guestLastName,
+          phone: doc.guestPhone
         },
         roles: ['guest']
       }
