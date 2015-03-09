@@ -112,11 +112,9 @@ Meteor.methods({
     check(user, Schema.addHotelStaff);
 
     if (Roles.userIsInRole(Meteor.user(), ['hotel-manager', 'admin'])) {
-      var roles = [];
+      var roles = ['hotel-staff'];
       if (user.isManager) {
         roles.push('hotel-manager');
-      } else {
-        roles.push('hotel-staff');
       }
 
       // var parsedNumber = LibPhoneNumber.phoneUtil.parse(user.phone, user.countryCode || "US");
@@ -135,7 +133,6 @@ Meteor.methods({
         password: Meteor.uuid(),
         hotelId: user.hotelId,
         profile: profile,
-        roles: roles
       });
 
       Accounts.sendEnrollmentEmail(userId, user.email);
@@ -151,15 +148,12 @@ Meteor.methods({
     var userId = doc.userId;
 
     if (!Roles.userIsInRole(userId, ['admin', 'device'])) {
-      roles = [];
+      roles = ['hotel-staff'];
       if (doc.isManager) {
         roles.push('hotel-manager');
-        console.log('switch to manager');
-      } else {
-        roles.push('hotel-staff');
       }
     } else {
-      throw new Meteor.Error(500, 'This form can not be used to update device users or admin information');
+      throw new Meteor.Error(500, 'This form can not be used to update device users or admin users');
     }
     //if (doc.phone) {
     //  var parsedNumber = LibPhoneNumber.phoneUtil.parse(doc.phone, doc.countryCode || "US");
