@@ -213,10 +213,11 @@ TabularTables.ViewRooms = new Tabular.Table({
 TabularTables.Stays = new Tabular.Table({
   name: "Stays",
   collection: Stays,
+  pub: "tabular_Stays",
   autoWidth: true,
   searching: false,
   pagingType: "simple",
-  extraFields: ['checkInDate', 'checkoutDate', 'zone', 'guestFirstName', 'guestLastName'],
+  extraFields: ['checkInDate', 'checkoutDate', 'zone', 'guestId'],
   columns: [{
     title: "Room",
     data: "roomName",

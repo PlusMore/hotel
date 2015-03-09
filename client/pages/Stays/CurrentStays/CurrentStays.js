@@ -10,6 +10,9 @@ Template.CurrentStays.helpers({
       },
       checkoutDate: {
         $gte: now
+      },
+      zone: {
+        $exists: true
       }
     };
   }

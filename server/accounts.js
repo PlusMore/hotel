@@ -184,32 +184,59 @@ Meteor.methods({
         roles: roles
       }
     });
-
   },
-  guestUserExists: function(email) {
+  checkInGuest: function(doc) {
+    check(doc, Schema.GuestCheckIn);
+
     // is guest a previous user
     var user = Meteor.users.findOne({
-      'emails.address': email
+      'emails.address': doc.guestEmail
     });
     if (user) {
-      return user._id;
+      console.log('user exists');
+      doc.guestId = user._id;
     } else {
-      return false;
+      // create account for new guest
+      console.log('user does not exist');
+      var accountOptions = {
+        email: doc.guestEmail,
+        profile: {
+          firstName: doc.guestFirstName,
+          lastName: doc.guestLastName
+        },
+        roles: ['guest']
+      }
+
+      var userId = Accounts.createUser(accountOptions);
+
+      Accounts.sendEnrollmentEmail(userId, accountOptions.email);
+
+      doc.guestId = userId;
     }
-  },
-  createGuestUser: function(userDetails) {
-    check(userDetails.email, String);
-    check(userDetails.profile.firstName, String);
-    check(userDetails.profile.lastName, String);
 
-    var roles = ['guest'];
+    var room = Rooms.findOne(doc.roomId);
 
-    userDetails.roles = roles;
+    if (!room) {
+      throw new Meteor.Error(500, 'Not a valid room');
+    }
 
-    var userId = Accounts.createUser(userDetails);
+    var stay = {
+      hotelId: doc.hotelId,
+      guestId: doc.guestId,
+      zone: doc.zone,
+      roomName: room.name,
+      checkInDate: new Date(),
+      checkoutDate: doc.checkoutDate
+    }
 
-    Accounts.sendEnrollmentEmail(userId, userDetails.email);
+    var stayId = Stays.insert(stay);
 
-    return userId;
+    Rooms.update(room._id, {
+      $set: {
+        stayId: stayId
+      }
+    });
+
+    return room.name;
   }
 });

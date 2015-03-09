@@ -77,6 +77,9 @@ Meteor.publish('dashboardWidgetInfo', function(hotelId) {
     },
     checkoutDate: {
       $gte: now
+    },
+    zone: {
+      $exists: true
     }
   }), {
     noReady: true
@@ -324,16 +327,6 @@ Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
     inverted: true
   });
 
-  // Can't get user dependant to work because the user IDs in Stay
-  // are in an array. Simple-publish documentation lacking.
-  //var usersPub = new SimplePublication({
-  //  subHandle: this,
-  //  collection: Meteor.users,
-  //  foreignKey: "users.0",
-  //  inverted: true,
-  //  dependant: staysPub
-  //});
-
   var publication = new SimplePublication({
     subHandle: this,
     collection: Devices,
@@ -346,6 +339,33 @@ Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
     dependant: [
       staysPub,
       //  usersPub
+    ]
+  }).start();
+});
+
+Meteor.publish("tabular_Stays", function(tableName, ids, fields) {
+  check(tableName, String);
+  check(ids, Array);
+  check(fields, Match.Optional(Object));
+
+  var usersPub = new SimplePublication({
+    subHandle: this,
+    collection: Meteor.users,
+    foreignKey: 'guestId',
+    inverted: true
+  });
+
+  var publication = new SimplePublication({
+    subHandle: this,
+    collection: Stays,
+    selector: {
+      _id: {
+        $in: ids
+      }
+    },
+    fields: fields,
+    dependant: [
+      usersPub
     ]
   }).start();
 });
@@ -391,10 +411,21 @@ Meteor.publish("tabular_Rooms", function(tableName, ids, fields) {
     }
   });
 
+  var guestIds = staysCursor.map(function(stay) {
+    return stay.guestId;
+  });
+
+  var usersCursor = Meteor.users.find({
+    _id: {
+      $in: guestIds
+    }
+  });
+
   return [
     staysCursor,
     roomsCursor,
-    devicesCursor
+    devicesCursor,
+    usersCursor
   ];
 });
 

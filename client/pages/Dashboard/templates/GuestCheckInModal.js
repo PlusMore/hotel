@@ -10,18 +10,16 @@ Template.GuestCheckInModal.helpers({
     var roomOptions = [];
     if (rooms) {
       _.each(rooms, function(room) {
-        var active = '';
-        if (room.roomHasActiveStay()) {
-          active = ' (has active stay)';
+        if (!room.roomHasActiveStay()) {
+          roomOptions.push({
+            label: room.name,
+            value: room._id
+          });
         }
-        roomOptions.push({
-          label: room.name + active,
-          value: room._id
-        })
-      })
+      });
       return roomOptions;
     }
-  },
+  }
 });
 
 Template.GuestCheckInModal.rendered = function() {
@@ -52,24 +50,6 @@ AutoForm.hooks({
         //return false; (synchronous, cancel)
         //this.result(doc); (asynchronous)
         //this.result(false); (asynchronous, cancel)
-        Meteor.call('guestUserExists', doc.guestEmail, function(err, guestUserExists) {
-          if (guestUserExists) {
-            doc.guestId = guestUserExists;
-            console.log('this guest already exists');
-          } else {
-            console.log('creating new user for guest');
-            var accountOptions = {
-              email: doc.guestEmail,
-              profile: {
-                firstName: doc.guestFirstName,
-                lastName: doc.guestLastName
-              }
-            }
-            var createdGuestId = Meteor.call('createGuestUser', accountOptions);
-            doc.guestId = createdGuestId;
-          }
-        });
-
         var checkoutDate = Session.get('checkoutDate');
         doc.checkoutDate = checkoutDate.date;
         doc.zone = checkoutDate.zone;
