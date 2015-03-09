@@ -33,14 +33,16 @@ messages = function() {
     Messenger().post({
       message: msg,
       type: 'success',
-      showCloseButton: true
+      showCloseButton: true,
+      hideAfter: 3
     })
   }
   var showError = function(msg) {
     Messenger().post({
       message: msg,
       type: 'error',
-      showCloseButton: true
+      showCloseButton: true,
+      hideAfter: 3
     })
   }
   return {
