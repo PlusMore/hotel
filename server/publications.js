@@ -386,58 +386,39 @@ Meteor.publish("tabular_Rooms", function(tableName, ids, fields) {
   check(ids, Array);
   check(fields, Match.Optional(Object));
 
-  var roomsCursor = Rooms.find({
-    _id: {
-      $in: ids
-    }
-  }, {
-    fields: fields
+  // users by guestId in stay
+  var usersPub = new SimplePublication({
+    subHandle: this,
+    collection: Meteor.users,
+    foreignKey: 'guestId',
+    inverted: true
   });
 
-  var roomIds = roomsCursor.map(function(room) {
-    return room._id;
+  // stays by stayId in room
+  var staysPub = new SimplePublication({
+    subHandle: this,
+    collection: Stays,
+    foreignKey: 'stayId',
+    inverted: true,
+    dependant: [
+      usersPub
+    ]
   });
 
-  var stayIds = roomsCursor.map(function(room) {
-    return room.stayId;
-  });
-
-  var devicesCursor = Devices.find({
-    roomId: {
-      $in: roomIds
-    }
-  });
-
-  var now = new Date();
-
-  var staysCursor = Stays.find({
-    _id: {
-      $in: stayIds
+  var publication = new SimplePublication({
+    subHandle: this,
+    collection: Rooms,
+    selector: {
+      _id: {
+        $in: ids
+      }
     },
-    checkInDate: {
-      $lte: now
-    },
-    checkoutDate: {
-      $gte: now
-    }
-  });
+    fields: fields,
+    dependant: [
+      staysPub
+    ]
+  }).start();
 
-  var guestIds = staysCursor.map(function(stay) {
-    return stay.guestId;
-  });
-
-  var usersCursor = Meteor.users.find({
-    _id: {
-      $in: guestIds
-    }
-  });
-
-  return [
-    staysCursor,
-    roomsCursor,
-    devicesCursor,
-    usersCursor
-  ];
 });
 
 Meteor.publish('patronOrder', function(id) {

@@ -193,10 +193,6 @@ TabularTables.ViewRooms = new Tabular.Table({
   searching: false,
   pagingType: "simple",
   columns: [
-    /*{
-      title: "Device?",
-      tmpl: Meteor.isClient && Template.RoomHasDeviceCell
-    }, */
     {
       data: "name",
       title: "Room"
