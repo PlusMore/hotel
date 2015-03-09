@@ -23,6 +23,7 @@ Accounts.validateNewUser(function(user) {
   // if adding a hotel-staff, or hotel-manager then allow creation
   var isHotelStaffOrManager = false;
   var hotelIsValid = false;
+  // added ability to validate guest
   var userIsGuest = false;
 
   if (user.hotelId) {
@@ -193,11 +194,9 @@ Meteor.methods({
       'emails.address': doc.guestEmail
     });
     if (user) {
-      console.log('user exists');
       doc.guestId = user._id;
     } else {
       // create account for new guest
-      console.log('user does not exist');
       var accountOptions = {
         email: doc.guestEmail,
         profile: {

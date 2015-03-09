@@ -10,16 +10,18 @@ Template.CheckIn.helpers({
     var roomOptions = [];
     if (rooms) {
       _.each(rooms, function(room) {
-        if (!room.roomHasActiveStay()) {
-          roomOptions.push({
-            label: room.name,
-            value: room._id
-          });
+        var active = '';
+        if (room.roomHasActiveStay()) {
+          active = ' (has active stay)';
         }
+        roomOptions.push({
+          label: room.name + active,
+          value: room._id
+        });
       });
       return roomOptions;
     }
-  },
+  }
 });
 
 Template.CheckIn.rendered = function() {
@@ -50,11 +52,14 @@ AutoForm.hooks({
         //return false; (synchronous, cancel)
         //this.result(doc); (asynchronous)
         //this.result(false); (asynchronous, cancel)
-
-        var checkoutDate = Session.get('checkoutDate');
-        doc.checkoutDate = checkoutDate.date;
-        doc.zone = checkoutDate.zone;
-        return doc;
+        var room = Rooms.findOne(doc.roomId);
+        if (room.roomHasActiveStay() && confirm('This room has an active stay. Are you sure you want to check a guest in to this room?')) {
+          var checkoutDate = Session.get('checkoutDate');
+          doc.checkoutDate = checkoutDate.date;
+          doc.zone = checkoutDate.zone;
+          return doc;
+        }
+        return false;
       }
     },
     // Called when any operation succeeds, where operation will be
