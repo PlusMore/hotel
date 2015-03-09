@@ -11,8 +11,8 @@
 
       {{#if isHotelStaff}}
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Guest.CheckIn'}}" data-state="Guest.CheckIn">
-          <a href="{{pathFor 'Guest.CheckIn'}}" title="Guest Check-In">
-            <i class="fa  fa-fw fa-sign-in"></i> Guest Check-In
+          <a href="{{pathFor 'Guest.CheckIn'}}" title="Check-In Guest">
+            <i class="fa  fa-fw fa-sign-in"></i> Check-In Guest
             {{{hotelRequiredBadge}}}
           </a>
         </li>
@@ -47,8 +47,8 @@
             </li>
             {{#if isHotelManager}}
               <li class="{{currentRouteClass 'Rooms.Configure'}}" data-state="Rooms.Configure">
-                <a href="{{pathFor 'Rooms.Configure'}}" title="Configure Rooms">
-                  Configure
+                <a href="{{pathFor 'Rooms.Configure'}}" title="Add Rooms">
+                  + Add Rooms
                 </a>
               </li>
             {{/if}}
@@ -87,15 +87,15 @@
               </a>
             </li>
             <li class="{{currentRouteClass 'Devices.Configure'}}" data-state="Devices.Configure">
-              <a href="{{pathFor 'Devices.Configure'}}" title="Configure Devices">
-                Configure
+              <a href="{{pathFor 'Devices.Configure'}}" title="Change Background">
+                Change Background
               </a>
             </li>
           </ul>
         </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Staff'}} {{currentRouteClass 'Staff'}}" data-state="Staff" >
           <a href="#" title="Staff">
-            <i class="fa  fa-fw fa-user"></i> Manage Staff
+            <i class="fa  fa-fw fa-user"></i> Your Staff
             {{{hotelRequiredBadge}}}
           </a>
           <ul class="nav-sub {{navSubStateClass 'Staff'}}">
@@ -113,7 +113,7 @@
         </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Services'}} {{currentRouteClass 'Services'}}" data-state="Services" >
           <a href="#" title="Services">
-            <i class="fa  fa-fw fa-bell"></i> Manage Services
+            <i class="fa  fa-fw fa-bell"></i> Guest Services
             {{{hotelRequiredBadge}}}
           </a>
           <ul class="nav-sub {{navSubStateClass 'Services'}}">
