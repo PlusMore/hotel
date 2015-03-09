@@ -52,8 +52,17 @@ AutoForm.hooks({
         //return false; (synchronous, cancel)
         //this.result(doc); (asynchronous)
         //this.result(false); (asynchronous, cancel)
+        if (!Session.get('checkoutDate')) {
+          Messages.error('Please select a check out date');
+          return false;
+        }
         var room = Rooms.findOne(doc.roomId);
         if (room.roomHasActiveStay() && confirm('This room has an active stay. Are you sure you want to check a guest in to this room?')) {
+          var checkoutDate = Session.get('checkoutDate');
+          doc.checkoutDate = checkoutDate.date;
+          doc.zone = checkoutDate.zone;
+          return doc;
+        } else if (!room.roomHasActiveStay()) {
           var checkoutDate = Session.get('checkoutDate');
           doc.checkoutDate = checkoutDate.date;
           doc.zone = checkoutDate.zone;
@@ -66,6 +75,7 @@ AutoForm.hooks({
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result, template) {
       BootstrapModalPrompt.dismiss();
+      Session.set('checkoutDate', undefined);
       Messages.success('Guest successfully checked in to ' + result);
     },
 
