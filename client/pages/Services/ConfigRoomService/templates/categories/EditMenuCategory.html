@@ -36,7 +36,7 @@
               Name and Description
             </h3>
           </div>
-          {{#autoForm collection='MenuCategories' id='editMenuCategory' doc=this type="update"}}
+          {{#autoForm schema=menuCategoryDescriptionSchema collection='MenuCategories' id='editMenuCategory' doc=this type="update"}}
           	<div class="panel-body">
             	<div class="row">
                 <div class="col-md-12">
@@ -59,6 +59,14 @@
           <div class="panel-heading">
             <h3 class="panel-title">
               {{name}} Availability
+              <small>
+                Available
+                {{#if startTime}}
+                  {{startTime}} - {{endTime}}
+                {{else}}
+                  Anytime
+                {{/if}}
+              </small>
             </h3>
           </div>
           {{#autoForm schema=menuCategoryAvailabilitySchema id='configureMenuCategoryAvailability' doc=this type="method" meteormethod="configureMenuCategoryAvailability"}}

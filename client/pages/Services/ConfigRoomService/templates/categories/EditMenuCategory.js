@@ -34,7 +34,7 @@ Template.EditMenuCategory.events({
     }
   },
   'click .btn-reset-availability': function(e, tmpl) {
-    Meteor.call('resetCategoryAvailability', that._id, function(err, res) {
+    Meteor.call('resetCategoryAvailability', this._id, function(err, res) {
         if (err) {
           Messages.error(err);
         } else {
