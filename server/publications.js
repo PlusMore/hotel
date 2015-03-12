@@ -63,11 +63,6 @@ Meteor.publish('tags', function(collectionName) {
 });
 
 Meteor.publish('dashboardWidgetInfo', function(hotelId) {
-  var userId = this.userId,
-    user = Meteor.users.findOne(userId);
-
-  hotelId = hotelId || user.hotelId;
-
   var now = new Date();
 
   Counts.publish(this, 'total-active-stays', Stays.find({
@@ -82,13 +77,15 @@ Meteor.publish('dashboardWidgetInfo', function(hotelId) {
       $exists: true
     }
   }), {
-    noReady: true
+    noReady: true,
+    nonReactive: true
   });
 
   Counts.publish(this, 'total-rooms', Rooms.find({
     hotelId: hotelId
   }), {
-    noReady: true
+    noReady: true,
+    nonReactive: true
   });
 
   Counts.publish(this, 'open-orders', Orders.find({
