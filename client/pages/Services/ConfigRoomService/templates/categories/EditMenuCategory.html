@@ -36,7 +36,7 @@
               Name and Description
             </h3>
           </div>
-          {{#autoForm schema=menuCategoryDescriptionSchema collection='MenuCategories' id='editMenuCategory' doc=this type="update"}}
+          {{#autoForm schema=menuCategoryDescriptionSchema collection='MenuCategories' id='editMenuCategory' doc=this type="update" resetOnSuccess=false}}
           	<div class="panel-body">
             	<div class="row">
                 <div class="col-md-12">
@@ -69,7 +69,7 @@
               </small>
             </h3>
           </div>
-          {{#autoForm schema=menuCategoryAvailabilitySchema id='configureMenuCategoryAvailability' doc=this type="method" meteormethod="configureMenuCategoryAvailability"}}
+          {{#autoForm schema=menuCategoryAvailabilitySchema id='configureMenuCategoryAvailability' doc=this type="method" meteormethod="configureMenuCategoryAvailability" resetOnSuccess=false}}
           	<div class="panel-body">
             	<div class="row">
                 <div class="col-md-12">
