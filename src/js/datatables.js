@@ -213,7 +213,7 @@ TabularTables.Stays = new Tabular.Table({
   autoWidth: true,
   searching: false,
   pagingType: "simple",
-  extraFields: ['checkInDate', 'checkoutDate', 'zone', 'guestId'],
+  extraFields: ['checkInDate', 'checkoutDate', 'zone', 'guestId','users'],
   columns: [{
     title: "Room",
     data: "roomName",

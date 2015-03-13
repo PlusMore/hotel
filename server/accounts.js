@@ -234,9 +234,13 @@ Meteor.methods({
       throw new Meteor.Error(500, 'Not a valid room');
     }
 
+    var users = [];
+    users.push(doc.guestId);
+
     var stay = {
       hotelId: doc.hotelId,
       guestId: doc.guestId,
+      users: users,
       zone: doc.zone,
       roomName: room.name,
       checkInDate: new Date(),
@@ -246,6 +250,12 @@ Meteor.methods({
     var stayId = Stays.insert(stay);
 
     Rooms.update(room._id, {
+      $set: {
+        stayId: stayId
+      }
+    });
+
+    Meteor.users.update(doc.guestId, {
       $set: {
         stayId: stayId
       }

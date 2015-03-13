@@ -10,10 +10,6 @@
 					<div class="row">
             <div class="col-xs-12">
               <h2 class="text-center">{{stayGuest.userFirstName}} {{stayGuest.userLastName}} - {{roomName}}</h2>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
               <h3 class="text-center"><a href="{{stayGuest.userEmail}}">{{stayGuest.userEmail}}</a></h3>
             </div>
           </div>
@@ -22,8 +18,18 @@
           		<p><strong>Checked In: </strong>{{stayCheckInDate}} {{stayCheckInTime}}</p>
           	</div>
           	<div class="col-sm-6">
-          		<p><strong>Checkout Date: </strong>{{stayCheckOutDate}}</p>
+          		<p class='pull-right'><strong>Checkout Date: </strong>{{stayCheckOutDate}}</p>
           	</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <h3 class="text-center">Users in Stay</h3>
+            </div>
+            {{#each users}}
+              <div class="col-xs-12">
+                <p><strong>{{userFirstName}} {{userLastName}}</strong> - <a href="{{userEmail}}">{{userEmail}}</a> {{userPhone}}</p>
+              </div>
+            {{/each}}
           </div>
 		    </div>
 		    <div class="modal-footer">

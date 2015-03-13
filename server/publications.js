@@ -277,6 +277,16 @@ Meteor.publish('menuItem', function(id) {
   }
 });
 
+Meteor.publish('usersForStayId', function(stayId) {
+  var stay = Stays.findOne(stayId);
+
+  return Meteor.users.find({
+    _id: {
+      $in: stay.users
+    }
+  });
+});
+
 Meteor.publish("tabular_Orders", function(tableName, ids, fields) {
   check(tableName, String);
   check(ids, Array);
