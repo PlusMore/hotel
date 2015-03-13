@@ -1,4 +1,4 @@
-Template.ConfigBellService.rendered = function () {
+Template.bellServiceTimepicker.rendered = function () {
   this.$('.timepicker').pickatime({
     onSet: function(selection) {
       var minutes = selection.select;

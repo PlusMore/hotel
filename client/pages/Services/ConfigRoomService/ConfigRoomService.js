@@ -13,7 +13,7 @@ Template.ConfigRoomService.helpers({
   }
 });
 
-Template.ConfigRoomService.rendered = function () {
+Template.roomServiceTimepicker.rendered = function () {
   this.$('.timepicker').pickatime({
     onSet: function(selection) {
       var minutes = selection.select;
