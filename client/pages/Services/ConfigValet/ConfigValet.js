@@ -1,4 +1,4 @@
-Template.ConfigValet.rendered = function () {
+Template.valetTimepicker.rendered = function () {
   this.$('.timepicker').pickatime({
     onSet: function(selection) {
       var minutes = selection.select;
