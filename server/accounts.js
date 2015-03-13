@@ -5,18 +5,32 @@ Accounts.emailTemplates.enrollAccount.subject = function(user) {
 };
 Accounts.emailTemplates.enrollAccount.text = function(user, url) {
   var spliturl = url.split('/#');
-  url = Meteor.settings.apps.hotel.url + '/#' + spliturl[1];
+  debugger;
+  var appUrl = Meteor.settings.apps.hotel.url;
+
+  if (Roles.userIsInRole(user, ['guest'])) {
+    appUrl = Meteor.settings.apps.device.url;
+  }
+
+  appUrl += '/#' + spliturl[1];
 
   return "To activate your account, simply click the link below:\n\n" +
-    url;
+    appUrl;
 };
 
 Accounts.emailTemplates.verifyEmail.text = function(user, url) {
   var spliturl = url.split('/#');
-  url = Meteor.settings.apps.hotel.url + '/#' + spliturl[1];
+
+  var appUrl = Meteor.settings.apps.hotel.url;
+
+  if (Roles.userIsInRole(user, ['guest'])) {
+    appUrl = Meteor.settings.apps.device.url;
+  }
+
+  appUrl += '/#' + spliturl[1];
 
   return "To verify your account email, simply click the link below.:\n\n" +
-    url;
+    appUrl;
 };
 
 Accounts.validateNewUser(function(user) {

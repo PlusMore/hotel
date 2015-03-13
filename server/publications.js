@@ -410,6 +410,11 @@ Meteor.publish("tabular_Rooms", function(tableName, ids, fields) {
         $in: ids
       }
     },
+    options: {
+      $sort: {
+        name: 1
+      }
+    },
     fields: fields,
     dependant: [
       staysPub

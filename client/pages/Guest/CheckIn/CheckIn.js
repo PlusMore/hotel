@@ -6,7 +6,9 @@ Template.CheckIn.helpers({
     return Session.get('hotelId');
   },
   roomOptions: function() {
-    var rooms = Rooms.find().fetch();
+    var roomsCursor = Rooms.find({}, {$sort: {name: 1}});
+    var stays = Stays.find();
+    var rooms = roomsCursor.fetch();
     var roomOptions = [];
     if (rooms) {
       _.each(rooms, function(room) {
