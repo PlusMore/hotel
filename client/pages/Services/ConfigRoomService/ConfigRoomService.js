@@ -49,7 +49,7 @@ Template.ConfigRoomService.events({
     }
   },
   'click .btn-reset': function(e, tmpl) {
-    Meteor.call('resetServiceAvailability', that._id, function(err, res) {
+    Meteor.call('resetServiceAvailability', this._id, function(err, res) {
         if (err) {
           Messages.error(err);
         } else {
