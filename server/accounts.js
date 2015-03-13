@@ -132,7 +132,7 @@ Meteor.methods({
         roles: roles,
         password: Meteor.uuid(),
         hotelId: user.hotelId,
-        profile: profile,
+        profile: profile
       });
 
       Accounts.sendEnrollmentEmail(userId, user.email);
