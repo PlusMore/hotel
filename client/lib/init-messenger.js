@@ -55,6 +55,10 @@ Meteor.startup(function() {
   var position = ['top', 'right'];
   var theme = 'air';
 
+  if (ResponsiveHelpers.isXs()) {
+    var position = ['top'];
+  }
+
   configureMessenger(position, theme);
 
   Messages = new messages();
