@@ -1,17 +1,14 @@
 Template.AddMenuCategoryModal.helpers({
 	hotelId: function() {
 		return Session.get('hotelId');
-	}
+	},
+  menuCategorySchema: function() {
+    return Schema.MenuCategory;
+  }
 });
 
 AutoForm.hooks({
   newMenuCategory: {
-    before: {
-      insert: function(doc) {
-        doc.active = false;
-        return doc;
-      }
-    },
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "remove", or the method name.
     onSuccess: function(operation, result, template) {
