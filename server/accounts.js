@@ -244,7 +244,8 @@ Meteor.methods({
       zone: doc.zone,
       roomName: room.name,
       checkInDate: new Date(),
-      checkoutDate: doc.checkoutDate
+      checkoutDate: doc.checkoutDate,
+      active: true
     }
 
     var stayId = Stays.insert(stay);
