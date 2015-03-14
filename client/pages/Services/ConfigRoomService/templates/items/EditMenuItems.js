@@ -28,5 +28,17 @@ Template.EditMenuItems.events({
     BootstrapModalPrompt.prompt({
       dialogTemplate: Template.EditMenuItemModal
     });
+  },
+  'click #remove-menu-item': function(e) {
+    e.preventDefault();
+    if (confirm('Are you sure?')) {
+      Meteor.call('removeMenuItem', this._id, function(err, res) {
+        if (err) {
+          Messages.error(err);
+        } else {
+          Messages.error('Menu Item Deleted');
+        }
+      });
+    }
   }
 });

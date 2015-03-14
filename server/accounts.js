@@ -175,13 +175,13 @@ Meteor.methods({
 
     var userId = doc.userId;
 
-    if (!Roles.userIsInRole(userId, ['admin', 'guest'])) {
+    if (!Roles.userIsInRole(userId, ['admin', 'device'])) {
       var roles = ['hotel-staff'];
       if (doc.isManager) {
         roles.push('hotel-manager');
       }
     } else {
-      throw new Meteor.Error(500, 'This form can not be used to update guest users or admin information');
+      throw new Meteor.Error(500, 'This form can not be used to update device users or admin users');
     }
     //if (doc.phone) {
     //  var parsedNumber = LibPhoneNumber.phoneUtil.parse(doc.phone, doc.countryCode || "US");

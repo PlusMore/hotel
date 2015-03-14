@@ -1,4 +1,4 @@
-Template.ConfigWakeUpCall.rendered = function() {
+Template.wakeUpCallTimepicker.rendered = function () {
   this.$('.timepicker').pickatime({
     onSet: function(selection) {
       var minutes = selection.select;

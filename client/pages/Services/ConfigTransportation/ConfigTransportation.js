@@ -1,4 +1,4 @@
-Template.ConfigTransportation.rendered = function() {
+Template.transportationTimepicker.rendered = function () {
   this.$('.timepicker').pickatime({
     onSet: function(selection) {
       var minutes = selection.select;

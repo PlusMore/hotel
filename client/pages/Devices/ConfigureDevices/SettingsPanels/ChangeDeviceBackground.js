@@ -5,7 +5,7 @@ Template.ChangeDeviceBackground.events({
     var hotelId = Meteor.user().hotelId || Session.get('hotelId');
 
     filepicker.pick(function(InkBlob) {
-      Meteor.call('changeHotelPhoto', InkBlob, hotelI, function(err, res) {
+      Meteor.call('changeHotelPhoto', InkBlob, hotelId, function(err, res) {
         if (err) {
           Messages.error(err);
         } else {

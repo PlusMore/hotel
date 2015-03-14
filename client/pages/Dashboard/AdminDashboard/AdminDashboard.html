@@ -1,3 +1,22 @@
 <template name="AdminDashboard">
+	{{#Layout template="Page"}}
+	
+    {{#contentFor "header"}}
+      <h1>Admin Dashboard</h1>
+      <p class="description">All the hotels, at a glance!</p>
+    {{/contentFor}}
 
+    {{#contentFor "breadcrumb"}}
+      <li>Dashboard</li>
+      <li class="active">Admin</li>
+    {{/contentFor}}
+
+
+    <h2 class="text-center">Welcome!</h2>
+    <h3 class="text-center">There's gonna be some really cool widgets for you here soon, but for now select a hotel from the dropdown menu to the left to get started</h3>
+
+    
+
+    
+  {{/Layout}}
 </template>
