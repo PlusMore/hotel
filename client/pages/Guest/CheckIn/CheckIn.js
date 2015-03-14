@@ -27,6 +27,7 @@ Template.CheckIn.helpers({
 });
 
 Template.CheckIn.rendered = function() {
+  Session.set('checkoutDate', undefined);
   // Set up datepicker
   this.$('[name=checkoutDate]').pickadate({
     clear: false,

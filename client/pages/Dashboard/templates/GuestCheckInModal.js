@@ -5,28 +5,19 @@ Template.GuestCheckInModal.helpers({
   hotelId: function() {
     return Session.get('hotelId');
   },
-  roomOptions: function() {
-    var roomsCursor = Rooms.find({}, {$sort: {name: 1}});
-    var stays = Stays.find();
-    var rooms = roomsCursor.fetch();
-    var roomOptions = [];
-    if (rooms) {
-      _.each(rooms, function(room) {
-        var active = '';
-        if (room.roomHasActiveStay()) {
-          active = ' (has active stay)';
-        }
-        roomOptions.push({
-          label: room.name + active,
-          value: room._id
-        });
-      });
-      return roomOptions;
-    }
+  roomOptions: function () {
+    return Rooms.find({}, {$sort: {name: 1}}).map(function (room) {
+      var active = '';
+      if (room.roomHasActiveStay()) {
+        active = ' (has active stay)';
+      }
+      return {label: room.name + active, value: room._id};
+    });
   }
 });
 
 Template.GuestCheckInModal.rendered = function() {
+  Session.set('checkoutDate', undefined);
   // Set up datepicker
   this.$('[name=checkoutDate]').pickadate({
     clear: false,
