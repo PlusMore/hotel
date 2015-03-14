@@ -203,20 +203,18 @@ Meteor.publish('amenityDetails', function(hotelId) {
   }
 });
 
-Meteor.publish('roomsAndActiveStays', function(hotelId) {
+Meteor.publish('roomsAndActiveStays', function(hotelId, currentTime) {
   if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
-
-    var now = new Date();
 
     var staysPub = new SimplePublication({
       subHandle: this,
       collection: Stays,
       selector: {
         checkInDate: {
-          $lte: now
+          $lte: currentTime
         },
         checkoutDate: {
-          $gte: now
+          $gte: currentTime
         }
       },
       foreignKey: 'stayId',
