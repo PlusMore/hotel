@@ -1,5 +1,8 @@
 <template name="viewDevicesLocationCell">
 	<h3>{{#with deviceGetRoom}}{{name}}{{else}}No Room{{/with}}</h3>
+	{{#if isInRole 'admin'}}
+		<h4>{{location}} (Deprecated)</h4>
+	{{/if}}
 </template>
 
 <template name="viewDevicesCheckinCell">
