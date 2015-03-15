@@ -35,7 +35,7 @@ Template.ConfigHouseKeeping.events({
   }
 });
 
-Template.ConfigHouseKeeping.rendered = function () {
+Template.houseKeepingTimepicker.rendered = function () {
   this.$('.timepicker').pickatime({
     onSet: function(selection) {
       var minutes = selection.select;

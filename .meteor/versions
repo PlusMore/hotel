@@ -68,8 +68,10 @@ nemo64:bootstrap-data@3.3.1_1
 npm-bcrypt@0.7.7
 observe-sequence@1.0.4
 ordered-dict@1.0.2
+patrickleet:enquire@2.2.0_1
 plusmore:pickadate-default-theme@3.3.1
 plusmore:plus-more-icons@1.0.0
+plusmore:reactive-responsive-helpers@1.0.0
 random@1.0.2
 reactive-dict@1.0.5
 reactive-var@1.0.4
@@ -83,6 +85,7 @@ sha@1.0.2
 spacebars@1.0.5
 spacebars-compiler@1.0.4
 srp@1.0.2
+standard-app-packages@1.0.4
 stylus@1.0.6
 templating@1.0.11
 theduke:bootstrap-modal-prompt@0.0.3

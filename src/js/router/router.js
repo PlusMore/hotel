@@ -18,13 +18,19 @@ Router.route('/', function() {
   this.render('Dashboard', {});
 }, {
   name: 'Dashboard',
-  controller: "HotelRequiredController",
   waitOn: function() {
     hotelId = Session.get('hotelId');
     if (hotelId) {
       return [
         Meteor.subscribe('dashboardWidgetInfo', hotelId)
       ];
+    }
+  },
+  onBeforeAction: function() {
+    if (Session.get('hotelId')) {
+      this.next();
+    } else {
+      this.render('AdminDashboard');
     }
   }
 });

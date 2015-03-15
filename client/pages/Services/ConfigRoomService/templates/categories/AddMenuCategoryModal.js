@@ -1,7 +1,10 @@
 Template.AddMenuCategoryModal.helpers({
 	hotelId: function() {
 		return Session.get('hotelId');
-	}
+	},
+  menuCategorySchema: function() {
+    return Schema.MenuCategory;
+  }
 });
 
 AutoForm.hooks({
