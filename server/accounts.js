@@ -242,7 +242,8 @@ Meteor.methods({
       guestId: doc.guestId,
       users: users,
       zone: doc.zone,
-      roomName: room.name,
+      roomId: room._id,
+      roomName: room.name, // Used frequently in UI, so denormalized
       checkInDate: new Date(),
       checkoutDate: doc.checkoutDate,
       active: true
