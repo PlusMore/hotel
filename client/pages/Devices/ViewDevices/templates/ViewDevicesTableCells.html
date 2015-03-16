@@ -14,9 +14,9 @@
 <template name="viewDevicesCheckinCell">
   {{#if room.roomHasActiveStay}}<!-- collection helper -->
     <h3>
-      {{room.roomGetStay.stayCheckInDate}}<!-- collection helper -->
+      {{room.stay.stayCheckInDate}}<!-- collection helper -->
       <small>
-        {{room.roomGetStay.stayCheckInTime}}<!-- collection helper -->
+        {{room.stay.stayCheckInTime}}<!-- collection helper -->
       </small>
     </h3>
   {{else}}
@@ -26,8 +26,8 @@
 
 <template name="viewDevicesCheckoutCell">
   {{#if room.roomHasActiveStay}}<!-- collection helper -->
-    <h3>{{room.roomGetStay.stayCheckOutDate}}<!-- collection helper -->
-      <small>{{room.roomGetStay.stayCheckOutTime}}</small><!-- collection helper -->
+    <h3>{{room.stay.stayCheckOutDate}}<!-- collection helper -->
+      <small>{{room.stay.stayCheckOutTime}}</small><!-- collection helper -->
     </h3>
   {{else}}
     <h3>-</h3>
