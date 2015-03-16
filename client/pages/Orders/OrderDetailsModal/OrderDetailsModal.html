@@ -9,7 +9,7 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-md-6">
-              <p><strong>Status: </strong>{{orderStatus}}</p>
+              <p><strong>Status: </strong>{{friendlyStatus}}</p><!-- collection helper -->
               <p><strong>Requested: </strong>{{orderRequestedWhen}}</p>
               <p><strong>By: </strong>{{orderGuestName}} {{orderDeviceLocation}}</p>
             </div>
@@ -45,7 +45,7 @@
             </div>
           </div>
         {{/if}}
-        
+
       {{/with}}
     </div>
   </div>
