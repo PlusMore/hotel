@@ -5,7 +5,7 @@ Accounts.emailTemplates.enrollAccount.subject = function(user) {
 };
 Accounts.emailTemplates.enrollAccount.text = function(user, url) {
   var spliturl = url.split('/#');
-  debugger;
+
   var appUrl = Meteor.settings.apps.hotel.url;
 
   if (Roles.userIsInRole(user, ['guest'])) {
