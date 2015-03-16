@@ -22,7 +22,7 @@
               {{#autoForm schema=hotelStaffSchema id="editHotelStaffForm" type="method" meteormethod="editHotelStaff" resetOnSuccess=false}}
                 {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
                 {{> afFieldInput name='userId' type='hidden' value=_id}}
-                {{> afFieldInput name='email' type='hidden' value=userEmail}}
+                {{> afFieldInput name='email' type='hidden' value=email}}<!-- collection helper -->
                 {{> afQuickField name='firstName' value=firstName}}<!-- collection helper -->
                 {{> afQuickField name='lastName' value=lastName}}<!-- collection helper -->
                 {{> afQuickField name='phone' placeholder="xxx-xxx-xxxx" value=userPhone}}
