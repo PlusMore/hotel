@@ -23,8 +23,8 @@
                 {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
                 {{> afFieldInput name='userId' type='hidden' value=_id}}
                 {{> afFieldInput name='email' type='hidden' value=userEmail}}
-                {{> afQuickField name='firstName' value=userFirstName}}
-                {{> afQuickField name='lastName' value=userLastName}}
+                {{> afQuickField name='firstName' value=firstName}}<!-- collection helper -->
+                {{> afQuickField name='lastName' value=lastName}}<!-- collection helper -->
                 {{> afQuickField name='phone' placeholder="xxx-xxx-xxxx" value=userPhone}}
                 {{> afQuickField name='isManager' value=userIsManager}}
 

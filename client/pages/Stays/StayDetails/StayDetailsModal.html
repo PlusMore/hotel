@@ -9,7 +9,7 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-xs-12">
-              <h2 class="text-center">{{stayGuest.userFirstName}} {{stayGuest.userLastName}} - {{roomName}}</h2>
+              <h2 class="text-center">{{stayGuest.fullName}} - {{roomName}}</h2><!-- collection helper -->
               <h3 class="text-center"><a href="{{stayGuest.userEmail}}">{{stayGuest.userEmail}}</a></h3>
             </div>
           </div>
@@ -27,7 +27,7 @@
             </div>
             {{#each users}}
               <div class="col-xs-12">
-                <p><strong>{{userFirstName}} {{userLastName}}</strong> - <a href="{{userEmail}}">{{userEmail}}</a> {{userPhone}}</p>
+                <p><strong>{{fullName}}</strong> - <a href="{{userEmail}}">{{userEmail}}</a> {{userPhone}}</p><!-- collection helper -->
               </div>
             {{/each}}
           </div>
