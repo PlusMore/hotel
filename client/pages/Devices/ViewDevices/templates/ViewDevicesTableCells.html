@@ -1,30 +1,43 @@
 <template name="viewDevicesLocationCell">
-	<h3>{{#with deviceGetRoom}}{{name}}{{else}}No Room{{/with}}</h3>
-	{{#if isInRole 'admin'}}
-		<h4>{{location}} (Deprecated)</h4>
-	{{/if}}
+  <h3>
+  	{{#with deviceGetRoom}}
+  		{{name}}
+  	{{else}}
+  		No Room
+  	{{/with}}
+  </h3> 
+  {{#if isInRole 'admin'}}
+  	<h4>{{location}} (Deprecated)</h4> 
+  {{/if}}
 </template>
 
 <template name="viewDevicesCheckinCell">
-	{{#if deviceGetRoom.roomHasActiveStay}}
-		<h3>{{deviceGetRoom.roomGetStay.stayCheckInDate}} <small>{{deviceGetRoom.roomGetStay.stayCheckInTime}}</small></h3>
-	{{else}}
-		<h3>-</h3>
-	{{/if}}
+  {{#if deviceGetRoom.roomHasActiveStay}}
+  	<h3>
+  		{{deviceGetRoom.roomGetStay.stayCheckInDate}} 
+  		<small>
+  			{{deviceGetRoom.roomGetStay.stayCheckInTime}}
+  		</small>
+  	</h3>
+  {{else}}
+  	<h3>-</h3> 
+  {{/if}}
 </template>
 
 <template name="viewDevicesCheckoutCell">
-	{{#if deviceGetRoom.roomHasActiveStay}}
-		<h3>{{deviceGetRoom.roomGetStay.stayCheckOutDate}} <small>{{deviceGetRoom.roomGetStay.stayCheckOutTime}}</small></h3>
-	{{else}}
-		<h3>-</h3>
-	{{/if}}
+  {{#if deviceGetRoom.roomHasActiveStay}}
+  	<h3>{{deviceGetRoom.roomGetStay.stayCheckOutDate}} 
+  		<small>{{deviceGetRoom.roomGetStay.stayCheckOutTime}}</small>
+  	</h3>
+  {{else}}
+  	<h3>-</h3> 
+  {{/if}}
 </template>
 
 <template name="viewDevicesActionCell">
-	{{#if isHotelManager}}
-		<div class="del-device actions pull-right">
-      <i class="fa fa-times"></i>
-    </div>
-	{{/if}}
+  {{#if isHotelManager}}
+  	<div class="del-device actions pull-right">
+    	<i class="fa fa-times"></i>
+  	</div>
+  {{/if}}
 </template>

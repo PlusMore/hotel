@@ -1,5 +1,5 @@
 <template name="AddNewUser">
-	{{#Layout template="Page"}}
+  {{#Layout template="Page"}}
     {{#contentFor "header"}}
       <h1>Add New Staff</h1>
     {{/contentFor}}
@@ -26,26 +26,26 @@
           </div>
           <div class="panel-body">
             {{#autoForm schema=addHotelStaffSchema id="addHotelStaffForm" type="method" meteormethod="addHotelStaff"}}
-	            {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
-	            <div class="row">
-	            	<div class="col-sm-6">
-	            		{{> afQuickField name='firstName'}}
-	            	</div>
-	            	<div class="col-sm-6">
-	            		{{> afQuickField name='lastName'}}
-	            	</div>
-	            </div>
-	            {{> afQuickField name='email'}}
-	            <div class="row">
-	            	<div class="col-sm-6">
-	            		{{> afQuickField name='phone' placeholder="xxx-xxx-xxxx"}}
-	            	</div>
-	            	<div class="col-sm-6">
-	            		{{> afQuickField name='isManager'}}
-	            	</div>
-	            </div>
-	            <button type="submit" class="btn btn-primary">Create User</button>
-	          {{/autoForm}}
+              {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+              <div class="row">
+                <div class="col-sm-6">
+                  {{> afQuickField name='firstName'}}
+                </div>
+                <div class="col-sm-6">
+                  {{> afQuickField name='lastName'}}
+                </div>
+              </div>
+              {{> afQuickField name='email'}}
+              <div class="row">
+                <div class="col-sm-6">
+                  {{> afQuickField name='phone' placeholder="xxx-xxx-xxxx"}}
+                </div>
+                <div class="col-sm-6">
+                  {{> afQuickField name='isManager'}}
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Create User</button>
+            {{/autoForm}}
           </div>
         </div>
       </div>
