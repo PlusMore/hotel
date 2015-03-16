@@ -1,6 +1,6 @@
 <template name="viewDevicesLocationCell">
   <h3>
-    {{#with deviceGetRoom}}
+    {{#with room}}<!-- collection helper -->
       {{name}}
     {{else}}
       No Room
@@ -12,11 +12,11 @@
 </template>
 
 <template name="viewDevicesCheckinCell">
-  {{#if deviceGetRoom.roomHasActiveStay}}
+  {{#if room.roomHasActiveStay}}<!-- collection helper -->
     <h3>
-      {{deviceGetRoom.roomGetStay.stayCheckInDate}}
+      {{room.roomGetStay.stayCheckInDate}}<!-- collection helper -->
       <small>
-        {{deviceGetRoom.roomGetStay.stayCheckInTime}}
+        {{room.roomGetStay.stayCheckInTime}}<!-- collection helper -->
       </small>
     </h3>
   {{else}}
@@ -25,9 +25,9 @@
 </template>
 
 <template name="viewDevicesCheckoutCell">
-  {{#if deviceGetRoom.roomHasActiveStay}}
-    <h3>{{deviceGetRoom.roomGetStay.stayCheckOutDate}}
-      <small>{{deviceGetRoom.roomGetStay.stayCheckOutTime}}</small>
+  {{#if room.roomHasActiveStay}}<!-- collection helper -->
+    <h3>{{room.roomGetStay.stayCheckOutDate}}<!-- collection helper -->
+      <small>{{room.roomGetStay.stayCheckOutTime}}</small><!-- collection helper -->
     </h3>
   {{else}}
     <h3>-</h3>
