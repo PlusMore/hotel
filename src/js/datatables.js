@@ -109,17 +109,9 @@ TabularTables.OpenOrders = new Tabular.Table({
       }
     }
   }, {
-    data: "orderReservationColumn()",
     title: "Reservation",
     sortable: false,
-    tmpl: Meteor.isClient && Template.reservationCell,
-    render: function(val, type, doc) {
-      if (type != 'display') {
-        if (val) {
-          return val;
-        }
-      }
-    }
+    tmpl: Meteor.isClient && Template.reservationCell
   }, {
     data: "status",
     title: "Status",
