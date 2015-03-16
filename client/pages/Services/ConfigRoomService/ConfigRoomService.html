@@ -1,5 +1,5 @@
 <template name="ConfigRoomService">
-	{{#Layout template="Page"}}
+  {{#Layout template="Page"}}
     {{#contentFor "header"}}
       <h1>Manage Room Service</h1>
     {{/contentFor}}
@@ -57,7 +57,7 @@
                     </p>
                   </div>
                 </div>
-                
+
                 {{> roomServiceTimepicker}}
 
                 <div class="row">
@@ -81,7 +81,7 @@
         </div>
       </div>
     </div>
-    
+
     {{#if configuration.active}}
 
       <div class="row">
@@ -110,6 +110,6 @@
     <div class="col-sm-6 picker-container with-vertical-label">
       {{> afQuickField name='endTime' class='timepicker'}}
       {{> afFieldInput name="endMinutes" type="hidden"}}
-    </div>  
+    </div>
   </div>
 </template>
