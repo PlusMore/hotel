@@ -12,7 +12,7 @@
 </template>
 
 <template name="viewDevicesCheckinCell">
-  {{#if room.roomHasActiveStay}}<!-- collection helper -->
+  {{#if room.stay.isActive}}<!-- collection helper -->
     <h3>
       {{room.stay.stayCheckInDate}}<!-- collection helper -->
       <small>
@@ -25,7 +25,7 @@
 </template>
 
 <template name="viewDevicesCheckoutCell">
-  {{#if room.roomHasActiveStay}}<!-- collection helper -->
+  {{#if room.stay.isActive}}<!-- collection helper -->
     <h3>{{room.stay.stayCheckOutDate}}<!-- collection helper -->
       <small>{{room.stay.stayCheckOutTime}}</small><!-- collection helper -->
     </h3>
