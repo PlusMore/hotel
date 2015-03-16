@@ -1,7 +1,7 @@
-Accounts.emailTemplates.siteName = "Plus More";
-Accounts.emailTemplates.from = "Plus More <noreply@plusmoretablets.com>";
+Accounts.emailTemplates.siteName = "PlusMore";
+Accounts.emailTemplates.from = "PlusMore <noreply@plusmoretablets.com>";
 Accounts.emailTemplates.enrollAccount.subject = function(user) {
-  return "Welcome to Plus More, " + user.profile.firstName + "!";
+  return "Welcome to PlusMore, " + user.profile.firstName + "!";
 };
 Accounts.emailTemplates.enrollAccount.text = function(user, url) {
   var spliturl = url.split('/#');
