@@ -60,7 +60,7 @@ Accounts.validateNewUser(function(user) {
 
 
 Accounts.onCreateUser(function(options, user) {
-  if (options.roles == 'guest') {
+  if (_.contains(options.roles, 'guest', 0)) {
     //create user as guest, not staff
     user.profile = options.profile;
     user.roles = [];
