@@ -36,7 +36,7 @@ TabularTables.OrderHistory = new Tabular.Table({
       }
     }
   }, {
-    data: "orderServiceType()",
+    data: "friendlyServiceType()",
     title: "Type",
     sortable: false,
     tmpl: Meteor.isClient && Template.orderHistoryTypeCell,
@@ -97,7 +97,7 @@ TabularTables.OpenOrders = new Tabular.Table({
       }
     }
   }, {
-    data: "orderServiceType()",
+    data: "friendlyServiceType()",
     title: "Type",
     sortable: false,
     tmpl: Meteor.isClient && Template.orderTypeCell,
