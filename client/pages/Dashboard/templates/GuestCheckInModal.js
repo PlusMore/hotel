@@ -8,7 +8,7 @@ Template.GuestCheckInModal.helpers({
   roomOptions: function () {
     return Rooms.find({}, {$sort: {name: 1}}).map(function (room) {
       var active = '';
-      if (room.stay.isActive()) {
+      if (room.stay() && room.stay().isActive()) {
         active = ' (has active stay)';
       }
       return {label: room.name + active, value: room._id};
@@ -50,12 +50,12 @@ AutoForm.hooks({
           return false;
         }
         var room = Rooms.findOne(doc.roomId);
-        if (room.stay.isActive() && confirm('This room has an active stay. Are you sure you want to check a guest in to this room?')) {
+        if (room.stay() && room.stay().isActive() && confirm('This room has an active stay. Are you sure you want to check a guest in to this room?')) {
           var checkoutDate = Session.get('checkoutDate');
           doc.checkoutDate = checkoutDate.date;
           doc.zone = checkoutDate.zone;
           return doc;
-        } else if (!room.stay.isActive()) {
+        } else if (!room.stay() || !room.stay().isActive()) {
           var checkoutDate = Session.get('checkoutDate');
           doc.checkoutDate = checkoutDate.date;
           doc.zone = checkoutDate.zone;

@@ -1,4 +1,4 @@
-Template.404.events({
+Template.NotFound.events({
   'click #go-back': function(e) {
     history.back();
   }
