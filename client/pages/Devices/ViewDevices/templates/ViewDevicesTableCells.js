@@ -1,7 +1,7 @@
 Template.viewDevicesActionCell.helpers({
-	isHotelManager: function() {
-		return Roles.userIsInRole(Meteor.userId(), ['content-manager', 'admin']);
-	}
+  isHotelManager: function() {
+    return Roles.userIsInRole(Meteor.userId(), ['content-manager', 'admin']);
+  }
 });
 
 Template.viewDevicesActionCell.events({

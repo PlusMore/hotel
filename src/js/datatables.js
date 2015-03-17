@@ -36,7 +36,7 @@ TabularTables.OrderHistory = new Tabular.Table({
       }
     }
   }, {
-    data: "orderServiceType()",
+    data: "friendlyServiceType()",
     title: "Type",
     sortable: false,
     tmpl: Meteor.isClient && Template.orderHistoryTypeCell,
@@ -97,7 +97,7 @@ TabularTables.OpenOrders = new Tabular.Table({
       }
     }
   }, {
-    data: "orderServiceType()",
+    data: "friendlyServiceType()",
     title: "Type",
     sortable: false,
     tmpl: Meteor.isClient && Template.orderTypeCell,
@@ -109,17 +109,9 @@ TabularTables.OpenOrders = new Tabular.Table({
       }
     }
   }, {
-    data: "orderReservationColumn()",
     title: "Reservation",
     sortable: false,
-    tmpl: Meteor.isClient && Template.reservationCell,
-    render: function(val, type, doc) {
-      if (type != 'display') {
-        if (val) {
-          return val;
-        }
-      }
-    }
+    tmpl: Meteor.isClient && Template.reservationCell
   }, {
     data: "status",
     title: "Status",
@@ -156,7 +148,7 @@ TabularTables.ViewDevices = new Tabular.Table({
   searching: false,
   pagingType: "simple",
   extraFields: [
-    'stayId'
+    'roomId'
   ],
   columns: [{
     data: "location",
@@ -184,6 +176,56 @@ TabularTables.ViewDevices = new Tabular.Table({
   }
 });
 
+
+TabularTables.ViewRooms = new Tabular.Table({
+  name: "ViewRooms",
+  collection: Rooms,
+  pub: "tabular_Rooms",
+  autoWidth: true,
+  searching: false,
+  pagingType: "simple",
+  columns: [
+    {
+      data: "name",
+      title: "Room"
+    }, {
+      title: "Stay",
+      data: "stayId",
+      tmpl: Meteor.isClient && Template.RoomActiveStayCell
+    }, {
+      tmpl: Meteor.isClient && Template.RoomActionsCell
+    }
+  ]
+});
+
+TabularTables.Stays = new Tabular.Table({
+  name: "Stays",
+  collection: Stays,
+  pub: "tabular_Stays",
+  autoWidth: true,
+  searching: false,
+  pagingType: "simple",
+  extraFields: ['checkInDate', 'checkoutDate', 'zone', 'guestId','users'],
+  columns: [{
+    title: "Room",
+    data: "roomName",
+    render: function(val, type, doc) {
+      if (val) {
+        return val;
+      } else {
+        return 'N/A';
+      }
+    }
+  }, {
+    title: "Check-In",
+    tmpl: Meteor.isClient && Template.StayCheckInCell
+  }, {
+    title: "Check-Out",
+    tmpl: Meteor.isClient && Template.StayCheckOutCell
+  }, {
+    tmpl: Meteor.isClient && Template.ViewStayCell
+  }]
+});
 
 TabularTables.ViewStaff = new Tabular.Table({
   name: "ViewStaff",

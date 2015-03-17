@@ -1,10 +1,10 @@
 <template name="HotelSettings">
 
-	{{#Layout template="Page"}}
+  {{#Layout template="Page"}}
     {{#contentFor "header"}}
       <h1>Hotel Settings</h1>
     {{/contentFor}}
-        
+
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
@@ -15,7 +15,7 @@
 
     <!-- page content -->
     {{#with hotel}}
-    
+
       {{> HotelInformationSettings}}
 
     {{/with}}

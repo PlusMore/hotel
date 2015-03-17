@@ -1,0 +1,21 @@
+<template name="EditRoomModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-title" id="staff-details">Edit Room Details</h3>
+      </div>
+        {{#autoForm schema=editRoomSchema doc=room id="editRoomForm" type="method" meteormethod="editRoom"}}
+          <div class="modal-body">
+            {{> afFieldInput name='hotelId' type='hidden'}}
+            {{> afFieldInput name='roomId' value=room._id type='hidden'}}
+            {{> afQuickField name='name'}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="delete-room" class="btn btn-lg btn-danger">Delete</button>
+            <button type="submit" class="btn btn-lg btn-primary">Save</button>
+          </div>
+        {{/autoForm}}
+    </div>
+  </div>
+</template>

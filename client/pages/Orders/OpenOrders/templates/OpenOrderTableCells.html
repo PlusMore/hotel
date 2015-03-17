@@ -1,28 +1,28 @@
 <template name="requestedTimeAgoCell">
-	<h3>{{requestedDateTimeAgo}}</h3>
-	<h3><small>{{orderRequestedWhen}}</small></h3>
+  <h3>{{requestedDateTimeAgo}}</h3>
+  <h3><small>{{requestedWhen}}</small></h3>
 </template>
 
 <template name="orderTypeCell">
-	<h3>{{orderServiceType}}</h3>
-	{{#if orderHasRequestedForDate}}
-		<h3><small>{{orderRequestedForWhen}}</small></h3>
-	{{/if}}
+  <h3>{{friendlyServiceType}}</h3><!-- collection helper -->
+  {{#if hasRequestedForDate}}<!-- collection helper -->
+    <h3><small>{{requestedForWhen}}</small></h3><!-- collection helper -->
+  {{/if}}
 </template>
 
 <template name="reservationCell">
-	<h3>{{orderGuestName}}</h3>
-	<h3><small>{{orderDeviceLocation}}</small></h3>
+  <h3>{{orderedBy.fullName}}</h3>
+  <h3><small>{{device.location}}</small></h3>
 </template>
 
 <template name="orderStatusCell">
-	<h3>{{orderStatus}}</h3>
-	{{#if orderIsPending}}
-		<h3><small>{{orderReceivedBy}}</small></h3>
-		<h3><small>{{orderReceivedWhen}}</small></h3>
-	{{/if}}
+  <h3>{{friendlyStatus}}</h3><!-- collection helper -->
+  {{#if isPending}}<!-- collection helper -->
+    <h3><small>{{receivedBy}}</small></h3><!-- collection helper -->
+    <h3><small>{{receivedWhen}}</small></h3>
+  {{/if}}
 </template>
 
 <template name="viewDetailsCell">
-	<button type="button" class="btn btn-info btn-sm" id="view-order-details">View Order</button>
+  <button type="button" class="btn btn-info btn-sm" id="view-order-details">View Order</button>
 </template>

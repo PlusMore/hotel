@@ -1,4 +1,4 @@
-Template.ViewDevices.rendered = function () {
+Template.ViewDevices.rendered = function() {
   this.$('table').parent().addClass('table-responsive');
 };
 

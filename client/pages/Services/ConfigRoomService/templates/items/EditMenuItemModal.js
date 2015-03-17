@@ -36,7 +36,7 @@ AutoForm.hooks({
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "remove", or the method name.
     onSuccess: function(operation, result, template) {
-      Messages.success('Item Edited!')
+      Messages.success('Item Edited!');
       BootstrapModalPrompt.dismiss();
     },
 

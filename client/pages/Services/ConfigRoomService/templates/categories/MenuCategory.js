@@ -1,5 +1,5 @@
 Template.MenuCategory.helpers({
-	isChecked: function() {
+  isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''
     // if not configured, return ''
     return this.active ? 'checked' : '';
@@ -7,7 +7,7 @@ Template.MenuCategory.helpers({
 });
 
 Template.MenuCategory.events({
-	'change #toggle-category-switch': function (e, tmpl) {
+  'change #toggle-category-switch': function (e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
       Meteor.call('activateMenuCategory', this._id, function(err, res) {
         if (err) {

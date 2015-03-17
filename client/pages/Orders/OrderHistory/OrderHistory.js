@@ -1,4 +1,4 @@
-Template.OrderHistory.rendered = function () {
+Template.OrderHistory.rendered = function() {
   this.$('table').parent().addClass('table-responsive');
 };
 

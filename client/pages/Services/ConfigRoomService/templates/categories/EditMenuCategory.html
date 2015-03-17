@@ -1,20 +1,20 @@
 <template name="EditMenuCategory">
-	{{#with menuCategory}}
-		{{#Layout template="Page"}}
-	    {{#contentFor "header"}}
-	      <h1>Edit {{name}} Category</h1>
-	    {{/contentFor}}
+  {{#with menuCategory}}
+    {{#Layout template="Page"}}
+      {{#contentFor "header"}}
+        <h1>Edit {{name}} Category</h1>
+      {{/contentFor}}
 
-	    {{#contentFor "breadcrumb"}}
-	      <li>
-	        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
-	      </li>
-	      <li><a href="{{pathFor 'Services.ConfigRoomService'}}">Room Service</a></li>
-	      <li class="active">Edit {{name}} Category</li>
-	    {{/contentFor}}
+      {{#contentFor "breadcrumb"}}
+        <li>
+          <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+        </li>
+        <li><a href="{{pathFor 'Services.ConfigRoomService'}}">Room Service</a></li>
+        <li class="active">Edit {{name}} Category</li>
+      {{/contentFor}}
 
-	    <!-- page content -->
-	   <div class="row">
+      <!-- page content -->
+     <div class="row">
       <div class="col-xs-12">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -37,18 +37,18 @@
             </h3>
           </div>
           {{#autoForm schema=menuCategoryDescriptionSchema collection='MenuCategories' id='editMenuCategory' doc=this type="update" resetOnSuccess=false}}
-          	<div class="panel-body">
-            	<div class="row">
+            <div class="panel-body">
+              <div class="row">
                 <div class="col-md-12">
                   {{> afQuickField name='name'}}
                   {{> afQuickField name='description' rows=3}}
                 </div>
               </div>
-          	</div>
-          	<div class="panel-footer">
-          		<button type="submit" class="btn btn-primary">Update Menu Category</button>
-          	</div>
-					{{/autoForm}}
+            </div>
+            <div class="panel-footer">
+              <button type="submit" class="btn btn-primary">Update Menu Category</button>
+            </div>
+          {{/autoForm}}
         </div>
       </div>
     </div>
@@ -70,8 +70,8 @@
             </h3>
           </div>
           {{#autoForm schema=menuCategoryAvailabilitySchema id='configureMenuCategoryAvailability' doc=this type="method" meteormethod="configureMenuCategoryAvailability" resetOnSuccess=false}}
-          	<div class="panel-body">
-            	<div class="row">
+            <div class="panel-body">
+              <div class="row">
                 <div class="col-md-12">
                   <p>
                     The default configuration for this category is to be available whenever room service is available. You may optionally configure start and end times for this category by selecting times below.
@@ -87,19 +87,19 @@
                 <div class="col-md-6 picker-container with-vertical-label">
                   {{> afQuickField name='endTime' class='timepicker'}}
                   {{> afFieldInput name="endMinutes" type="hidden"}}
-                </div>  
+                </div>
               </div>
-          	</div>
-          	<div class="panel-footer">
-          		<a href="#" class="btn btn-reset btn-default btn-reset-availability">Reset</a>
+            </div>
+            <div class="panel-footer">
+              <a href="#" class="btn btn-reset btn-default btn-reset-availability">Reset</a>
               <button type="submit" class="btn btn-primary">Update Availability</button>
-          	</div>
-					{{/autoForm}}
+            </div>
+          {{/autoForm}}
         </div>
       </div>
     </div>
 
-		<div class="row">
+    <div class="row">
       <div class="col-xs-12">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -107,18 +107,18 @@
               {{name}} Menu Items
             </h3>
           </div>
-          	<div class="panel-body">
-            	<div class="row">
-								{{> EditMenuItems}}
+            <div class="panel-body">
+              <div class="row">
+                {{> EditMenuItems}}
               </div>
-          	</div>
-          	<div class="panel-footer">
-          		<a href="#" class='btn btn-primary' id='add-menu-item'>Add Menu Item</a>
-          	</div>
+            </div>
+            <div class="panel-footer">
+              <a href="#" class='btn btn-primary' id='add-menu-item'>Add Menu Item</a>
+            </div>
         </div>
       </div>
     </div>
 
-	  {{/Layout}}
-	{{/with}}
+    {{/Layout}}
+  {{/with}}
 </template>
