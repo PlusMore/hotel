@@ -203,6 +203,19 @@ Meteor.methods({
   checkInGuest: function(doc) {
     check(doc, Schema.GuestCheckIn);
 
+    // if a stay is being overwritten, change that stay's checkout date to now
+    // change active boolean to false (even though it's not used yet)
+    if (!!doc.currentStayId) {
+      var now = new Date();
+      Stays.update(doc.currentStayId, {
+        $set: {
+          checkoutDate: now,
+          active: false
+        }
+      });
+      console.log('overwrite stay')
+    }
+
     // is guest a previous user
     var user = Meteor.users.findOne({
       'emails.address': doc.guestEmail
