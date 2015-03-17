@@ -62,30 +62,15 @@ Meteor.publish('tags', function(collectionName) {
   });
 });
 
-Meteor.publish('dashboardWidgetInfo', function(hotelId) {
-  var now = new Date();
-
-  Counts.publish(this, 'total-active-stays', Stays.find({
-    hotelId: hotelId,
-    checkInDate: {
-      $lte: now
-    },
-    checkoutDate: {
-      $gte: now
-    },
-    zone: {
-      $exists: true
-    }
-  }), {
-    noReady: true,
-    nonReactive: true
-  });
+Meteor.publish('dashboardWidgetInfo', function(hotelId, currentTime) {
+  if (!currentTime) {
+    var currentTime = new Date();
+  }
 
   Counts.publish(this, 'total-rooms', Rooms.find({
     hotelId: hotelId
   }), {
-    noReady: true,
-    nonReactive: true
+    noReady: true
   });
 
   Counts.publish(this, 'open-orders', Orders.find({
@@ -204,6 +189,10 @@ Meteor.publish('amenityDetails', function(hotelId) {
 });
 
 Meteor.publish('roomsAndActiveStays', function(hotelId, currentTime) {
+  if (!currentTime) {
+    var currentTime = new Date();
+  }
+
   if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
 
     var staysPub = new SimplePublication({
