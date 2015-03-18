@@ -1,6 +1,6 @@
 <template name="orderHistoryRequestedCell">
-  <h3>{{requestedWhen}}</h3><!-- collection helper -->
-  <h3><small>{{orderedBy.fullName}} {{device.location}}</small></h3><!-- collection helper -->
+  <h3>{{formattedRequestedWhen}}</h3><!-- collection helper -->
+  <h3><small>{{orderedByFullName}} {{room.name}}</small></h3><!-- collection helper -->
 </template>
 
 <template name="orderHistoryTypeCell">
@@ -9,8 +9,8 @@
 
 <template name="orderHistoryStatusCell">
   <h3>{{friendlyStatus}}</h3><!-- collection helper -->
-  <h3><small>{{closedWhen}}</small></h3><!-- collection helper -->
-  <h3><small>{{closedBy}}</small></h3><!-- collection helper -->
+  <h3><small>{{formattedClosedWhen}}</small></h3><!-- collection helper -->
+  <h3><small>{{closedByFullName}}</small></h3><!-- collection helper -->
 </template>
 
 <template name="orderHistoryViewCell">
