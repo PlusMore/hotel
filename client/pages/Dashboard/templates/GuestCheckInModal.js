@@ -54,6 +54,7 @@ AutoForm.hooks({
           var checkoutDate = Session.get('checkoutDate');
           doc.checkoutDate = checkoutDate.date;
           doc.zone = checkoutDate.zone;
+          doc.currentStayId = room.stayId;
           return doc;
         } else if (!room.stay() || !room.stay().isActive()) {
           var checkoutDate = Session.get('checkoutDate');
