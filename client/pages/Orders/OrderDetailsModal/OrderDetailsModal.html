@@ -15,10 +15,10 @@
             </div>
             <div class="col-md-6">
               <p><strong>Received: </strong>{{receivedWhen}}</p><!-- collection helper -->
-              <p><strong>By: </strong>{{receivedBy}}</p><!-- collection helper -->
+              <p><strong>By: </strong>{{receivedBy.fullName}}</p><!-- collection helper -->
               {{#unless open}}
                 <p><strong>Closed: </strong>{{closedWhen}}</p><!-- collection helper -->
-                <p><strong>By: </strong>{{closedBy}}</p>
+                <p><strong>By: </strong>{{closedBy.fullName}}</p><!-- collection helper -->
               {{/unless}}
             </div>
           </div>
