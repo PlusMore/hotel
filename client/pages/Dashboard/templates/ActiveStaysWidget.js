@@ -26,7 +26,7 @@ Template.ActiveStaysWidget.rendered = function () {
   gauge.animationSpeed = 32; // set animation speed (32 is default value)
   self.autorun(function() {
     var totalRooms = Counts.get('total-rooms');
-    var totalActiveStays = Stays.find().count();
+    var totalActiveStays = Counts.get('total-active-stays');
     gauge.maxValue = totalRooms;
     if (totalActiveStays > 0) {
       gauge.set(totalActiveStays);
