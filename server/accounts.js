@@ -213,7 +213,7 @@ Meteor.methods({
           active: false
         }
       });
-      console.log('overwrite stay')
+      console.log('overwrite stay');
     }
 
     // is guest a previous user
