@@ -10,15 +10,15 @@
           <div class="row">
             <div class="col-md-6">
               <p><strong>Status: </strong>{{friendlyStatus}}</p><!-- collection helper -->
-              <p><strong>Requested: </strong>{{requestedWhen}}</p>
-              <p><strong>By: </strong>{{orderedBy.fullName}} {{device.location}}</p><!-- collection helper -->
+              <p><strong>Requested: </strong>{{formattedRequestedWhen}}</p>
+              <p><strong>By: </strong>{{orderedByFullName}} {{room.name}}</p><!-- collection helper -->
             </div>
             <div class="col-md-6">
-              <p><strong>Received: </strong>{{receivedWhen}}</p><!-- collection helper -->
-              <p><strong>By: </strong>{{receivedBy.fullName}}</p><!-- collection helper -->
+              <p><strong>Received: </strong>{{formattedReceivedWhen}}</p><!-- collection helper -->
+              <p><strong>By: </strong>{{receivedByFullName}}</p><!-- collection helper -->
               {{#unless open}}
-                <p><strong>Closed: </strong>{{closedWhen}}</p><!-- collection helper -->
-                <p><strong>By: </strong>{{closedBy.fullName}}</p><!-- collection helper -->
+                <p><strong>Closed: </strong>{{formattedClosedWhen}}</p><!-- collection helper -->
+                <p><strong>By: </strong>{{closedByFullName}}</p>
               {{/unless}}
             </div>
           </div>
@@ -26,7 +26,7 @@
             <div class="col-xs-12">
               <h2 class="text-center">{{friendlyServiceType}}</h2><!-- collection helper -->
               {{#if hasRequestedForDate}}<!-- collection helper -->
-                <h3 class="text-center">{{requestedForWhen}}</h3><!-- collection helper -->
+                <h3 class="text-center">{{formattedRequestedForWhen}}</h3><!-- collection helper -->
               {{/if}}
               {{> UI.dynamic template=typeDetailsTemplate}}
             </div>

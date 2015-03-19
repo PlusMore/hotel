@@ -279,34 +279,37 @@ Meteor.publish("tabular_Orders", function(tableName, ids, fields) {
   check(ids, Array);
   check(fields, Match.Optional(Object));
 
-  var devicesPub = new SimplePublication({
-    subHandle: this,
-    collection: Devices,
-    foreignKey: 'deviceId',
-    inverted: true
-  });
+  var ordersCursor = Orders.find({_id: {$in: ids}},fields);
 
-  var usersPub = new SimplePublication({
-    subHandle: this,
-    collection: Meteor.users,
-    foreignKey: ['userId', 'receivedBy', 'completedBy', 'cancelledBy'],
-    inverted: true
-  });
+  var userIds = [];
+  var roomIds = [];
 
-  var publication = new SimplePublication({
-    subHandle: this,
-    collection: Orders,
-    selector: {
-      _id: {
-        $in: ids
-      }
-    },
-    fields: fields,
-    dependant: [
-      devicesPub,
-      usersPub
-    ]
-  }).start();
+  ordersCursor.map(function(order){
+    if (!_.contains(userIds,order.userId)){
+      userIds.push(order.userId);
+    }
+    if (!_.contains(userIds,order.receivedBy)){
+      userIds.push(order.receivedBy);
+    }
+    if (!_.contains(userIds,order.cancelledBy)){
+      userIds.push(order.cancelledBy);
+    }
+    if (!_.contains(userIds,order.completedBy)){
+      userIds.push(order.completedBy);
+    }
+    if (!_.contains(roomIds,order.roomId)){
+      roomIds.push(order.roomId);
+    }
+  })
+
+  var usersCursor = Meteor.users.find({_id: {$in: userIds}});
+  var roomsCursor = Rooms.find({_id: {$in: roomIds}});
+
+  return [
+    ordersCursor,
+    usersCursor,
+    roomsCursor
+  ];
 });
 
 Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
@@ -343,7 +346,8 @@ Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
     },
     fields: fields,
     dependant: [
-      roomsPub
+      roomsPub,
+      staysPub
     ]
   }).start();
 });
@@ -414,7 +418,8 @@ Meteor.publish("tabular_Rooms", function(tableName, ids, fields) {
     },
     fields: fields,
     dependant: [
-      staysPub
+      staysPub,
+      usersPub
     ]
   }).start();
 

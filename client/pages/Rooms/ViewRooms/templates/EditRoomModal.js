@@ -12,6 +12,7 @@ Template.EditRoomModal.events({
     if (confirm("Are you sure you'd like to delete this room?")) {
       Meteor.call('removeRoom', Session.get('editRoomId'));
       Messages.success('Room Deleted');
+      BootstrapModalPrompt.dismiss();
     }
   }
 });
