@@ -1,5 +1,7 @@
 Template.ManageTeams.helpers({
-
+  teams: function() {
+    return Teams.find();
+  }
 });
 
 Template.ManageTeams.events({

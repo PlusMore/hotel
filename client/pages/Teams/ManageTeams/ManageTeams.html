@@ -3,7 +3,7 @@
     {{#contentFor "header"}}
       <h1>Manage Teams</h1>
     {{/contentFor}}
-        
+
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
@@ -36,28 +36,11 @@
 
     <div class="row">
       {{#each teams}}
-        <div class="col-md-6">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">{{name}}</h3>  
-              <div class="actions pull-right">
-                <i class="fa fa-chevron-down"></i>
-              </div>
-            </div>
-            <div class="panel-body">
-              <h4>{{description}}</h4>
-              <ul>
-                {{#each teamMembers}}
-                  <li>{{userFullName}}</li>
-                {{/each}}
-              </ul>
-            </div>
-          </div>
-        </div>
+        {{> Team}}
       {{/each}}
     </div>
 
-    
+
     <!-- page content end -->
 
   {{/Layout}}

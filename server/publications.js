@@ -62,6 +62,10 @@ Meteor.publish('tags', function(collectionName) {
   });
 });
 
+Meteor.publish('teams', function(hotelId) {
+  return Teams.find({hotelId: hotelId});
+});
+
 Meteor.publish('dashboardWidgetInfo', function(hotelId) {
   var userId = this.userId,
     user = Meteor.users.findOne(userId);
