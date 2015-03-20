@@ -16,7 +16,7 @@ Template.Team.helpers({
     var staffOptions = [];
     _.each(userIds, function(userId) {
       staffOptions.push({
-        label: Meteor.users.findOne(userId).userFullName(),
+        label: Meteor.users.findOne(userId).fullName(),
         value: userId
       });
     });
