@@ -29,7 +29,7 @@ Template.ConfigTransportation.helpers({
 });
 
 Template.ConfigTransportation.events({
-  'change #toggle-transportation-switch': function (e, tmpl) {
+  'change #toggle-transportation-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
       Meteor.call('activateHotelService', 'transportation', Session.get('hotelId'), function(err, res) {
         if (err) {

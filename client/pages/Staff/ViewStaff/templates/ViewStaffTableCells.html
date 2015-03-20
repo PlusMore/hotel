@@ -1,26 +1,26 @@
 <template name="staffAvatarCell">
-	<span class="avatar">
-    <img src="{{userAvatar}}" class="img-circle" alt="">
+  <span class="avatar">
+    <img src="{{avatar}}" class="img-circle" alt=""> <!-- collection helper -->
   </span>
 </template>
 
 <template name="staffFirstNameCell">
-	<h3 class="text-center">{{userFirstName}}</h3>
+  <h3 class="text-center">{{firstName}}</h3> <!-- collection helper -->
 </template>
 
 <template name="staffLastNameCell">
-	<h3 class="text-center">{{userLastName}}</h3>
+  <h3 class="text-center">{{lastName}}</h3> <!-- collection helper -->
 </template>
 
 <template name="staffContactCell">
-	<h3>{{userEmail}}</h3>
-	<h4>{{userPhone}}</h4>
+  <h3>{{email}}</h3><!-- collection helper -->
+  <h4>{{phone}}</h4><!-- collection helper -->
 </template>
 
 <template name="staffRoleCell">
-	<h3 class="text-center">{{userFriendlyRole}}</h3>
+  <h3 class="text-center">{{friendlyRole}}</h3><!-- collection helper -->
 </template>
 
 <template name="staffEditCell">
-	<button id="edit-staff-details" type="button" class="btn btn-info btn-sm">Edit</button>
+  <button id="edit-staff-details" type="button" class="btn btn-info btn-sm">Edit</button>
 </template>

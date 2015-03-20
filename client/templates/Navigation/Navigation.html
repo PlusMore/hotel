@@ -10,6 +10,12 @@
       </li>
 
       {{#if isHotelStaff}}
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Guest.CheckIn'}}" data-state="Guest.CheckIn">
+          <a href="{{pathFor 'Guest.CheckIn'}}" title="Check-In Guest">
+            <i class="fa  fa-fw fa-sign-in"></i> Check-In Guest
+            {{{hotelRequiredBadge}}}
+          </a>
+        </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Orders'}} {{currentRouteClass 'Orders'}}" data-state="Orders" >
           <a href="#" title="Orders">
             <i class="fa  fa-fw fa-th-list"></i> Guest Orders
@@ -24,6 +30,44 @@
             <li class="{{currentRouteClass 'Orders.History'}}" data-state="Orders.History">
               <a href="{{pathFor 'Orders.History'}}" title="Orders History">
                 Order History
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Rooms'}} {{currentRouteClass 'Rooms'}}" data-state="Rooms" >
+          <a href="#" title="Rooms">
+            <i class="fa  fa-fw fa-key"></i> Rooms
+            {{{hotelRequiredBadge}}}
+          </a>
+          <ul class="nav-sub {{navSubStateClass 'Rooms.View'}}">
+            <li class="{{currentRouteClass 'Rooms.View'}}" data-state="Rooms.View">
+              <a href="{{pathFor 'Rooms.View'}}" title="View Rooms">
+                View Rooms
+              </a>
+            </li>
+            {{#if isHotelManager}}
+              <li class="{{currentRouteClass 'Rooms.Configure'}}" data-state="Rooms.Configure">
+                <a href="{{pathFor 'Rooms.Configure'}}" title="Add Rooms">
+                  + Add Rooms
+                </a>
+              </li>
+            {{/if}}
+          </ul>
+        </li>
+        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Stays'}} {{currentRouteClass 'Stays'}}" data-state="Stays" >
+          <a href="#" title="Stays">
+            <i class="fa  fa-fw fa-calendar"></i> Stays
+            {{{hotelRequiredBadge}}}
+          </a>
+          <ul class="nav-sub {{navSubStateClass 'Stays.Current'}}">
+            <li class="{{currentRouteClass 'Stays.Current'}}" data-state="Stays.Current">
+              <a href="{{pathFor 'Stays.Current'}}" title="Current Stays">
+                Current Stays
+              </a>
+            </li>
+            <li class="{{currentRouteClass 'Stays.History'}}" data-state="Stays.History">
+              <a href="{{pathFor 'Stays.History'}}" title="Stays History">
+                Stays History
               </a>
             </li>
           </ul>
@@ -43,15 +87,15 @@
               </a>
             </li>
             <li class="{{currentRouteClass 'Devices.Configure'}}" data-state="Devices.Configure">
-              <a href="{{pathFor 'Devices.Configure'}}" title="Configure Devices">
-                Configure
+              <a href="{{pathFor 'Devices.Configure'}}" title="Change Background">
+                Change Background
               </a>
             </li>
           </ul>
         </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Staff'}} {{currentRouteClass 'Staff'}}" data-state="Staff" >
           <a href="#" title="Staff">
-            <i class="fa  fa-fw fa-user"></i> Manage Staff
+            <i class="fa  fa-fw fa-user"></i> Your Staff
             {{{hotelRequiredBadge}}}
           </a>
           <ul class="nav-sub {{navSubStateClass 'Staff'}}">
@@ -75,7 +119,7 @@
       </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Services'}} {{currentRouteClass 'Services'}}" data-state="Services" >
           <a href="#" title="Services">
-            <i class="fa  fa-fw fa-bell"></i> Manage Services
+            <i class="fa  fa-fw fa-bell"></i> Guest Services
             {{{hotelRequiredBadge}}}
           </a>
           <ul class="nav-sub {{navSubStateClass 'Services'}}">

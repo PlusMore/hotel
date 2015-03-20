@@ -29,7 +29,7 @@ Template.ConfigWakeUpCall.helpers({
 });
 
 Template.ConfigWakeUpCall.events({
-  'change #toggle-wakeupcall-switch': function (e, tmpl) {
+  'change #toggle-wakeupcall-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
       Meteor.call('activateHotelService', 'wakeUpCall', Session.get('hotelId'), function(err, res) {
         if (err) {

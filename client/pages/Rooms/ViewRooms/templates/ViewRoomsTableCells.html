@@ -1,0 +1,18 @@
+<template name="RoomActiveStayCell">
+  <a id="view-stay-details" href="#">{{stay.dateRange}}</a><!-- collection helper -->
+</template>
+
+<template name="RoomHasDeviceCell">
+  {{#if roomHasDevice}}
+    <i class="fa fa-fw fa-check" data-toggle="tooltip" data-placement="top" title="Device Configured"></i>
+  {{else}}
+    <i class="fa fa-fw fa-times" data-toggle="tooltip" data-placement="top" title="No Device Configured"></i>
+  {{/if}}
+</template>
+
+<template name="RoomActionsCell">
+  {{#if isHotelManager}}
+    <button id="edit-room" type="button" class="btn btn-info btn-sm pull-right">Edit</button>
+  {{/if}}
+</template>
+

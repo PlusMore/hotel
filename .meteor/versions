@@ -5,11 +5,12 @@ aldeed:autoform@4.2.2
 aldeed:collection2@2.3.2
 aldeed:simple-schema@1.3.0
 aldeed:tabular@1.0.6
-anti:fake@0.4.1
+aldeed:template-extension@3.4.1
 anti:i18n@0.4.3
 application-configuration@1.0.4
 autoupdate@1.1.5
 awatson1978:dropzone@1.0.2
+babrahams:editable-json@0.3.9
 base64@1.0.2
 binary-heap@1.0.2
 blaze@2.0.4
@@ -21,6 +22,7 @@ coffeescript@1.0.5
 copleykj:simple-publish@1.0.4
 cwaring:modernizr@0.0.2
 dburles:collection-helpers@1.0.2
+dburles:mongo-collection-instances@0.3.3
 ddp@1.0.14
 deps@1.0.6
 ejson@1.0.5
@@ -29,6 +31,7 @@ fastclick@1.0.2
 follower-livedata@1.0.3
 fortawesome:fontawesome@4.2.0_2
 geojson-utils@1.0.2
+gwendall:session-json@0.1.7
 handlebars@1.0.2
 html-tools@1.0.3
 htmljs@1.0.3
@@ -45,6 +48,7 @@ iron:router@1.0.7
 iron:url@1.0.7
 jquery@1.11.3
 json@1.0.2
+lai:collection-extensions@0.1.3
 launch-screen@1.0.1
 less@1.0.12
 livedata@1.0.12
@@ -59,6 +63,7 @@ mobile-status-bar@1.0.2
 momentjs:moment@2.9.0
 mongo@1.0.11
 mquandalle:bower@1.3.12
+msavin:mongol@1.0.2
 nahue:simple-line-icons@1.0.0
 natestrauser:animate-css@3.1.2
 natestrauser:filepicker-plus@1.2.3

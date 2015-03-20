@@ -17,8 +17,8 @@ Template.HotelAmenity.events({
         if (err) {
           Messages.error(err);
         } else {
-          return true;
           Messages.success('Amenity Removed');
+          return true;
         }
       });
     }
@@ -33,6 +33,7 @@ Template.HotelAmenity.events({
         Messages.error('Amenity Detail Removed');
       }
     });
+
   },
   'click #edit-amenity': function(e) {
     e.preventDefault();

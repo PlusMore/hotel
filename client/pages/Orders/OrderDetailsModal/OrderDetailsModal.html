@@ -9,24 +9,24 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-md-6">
-              <p><strong>Status: </strong>{{orderStatus}}</p>
-              <p><strong>Requested: </strong>{{orderRequestedWhen}}</p>
-              <p><strong>By: </strong>{{orderGuestName}} {{orderDeviceLocation}}</p>
+              <p><strong>Status: </strong>{{friendlyStatus}}</p><!-- collection helper -->
+              <p><strong>Requested: </strong>{{formattedRequestedWhen}}</p>
+              <p><strong>By: </strong>{{orderedByFullName}} {{room.name}}</p><!-- collection helper -->
             </div>
             <div class="col-md-6">
-              <p><strong>Received: </strong>{{orderReceivedWhen}}</p>
-              <p><strong>By: </strong>{{orderReceivedBy}}</p>
+              <p><strong>Received: </strong>{{formattedReceivedWhen}}</p><!-- collection helper -->
+              <p><strong>By: </strong>{{receivedByFullName}}</p><!-- collection helper -->
               {{#unless open}}
-                <p><strong>Closed: </strong>{{orderClosedWhen}}</p>
-                <p><strong>By: </strong>{{orderClosedBy}}</p>
+                <p><strong>Closed: </strong>{{formattedClosedWhen}}</p><!-- collection helper -->
+                <p><strong>By: </strong>{{closedByFullName}}</p>
               {{/unless}}
             </div>
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <h2 class="text-center">{{orderServiceType}}</h2>
-              {{#if orderHasRequestedForDate}}
-                <h3 class="text-center">{{orderRequestedForWhen}}</h3>
+              <h2 class="text-center">{{friendlyServiceType}}</h2><!-- collection helper -->
+              {{#if hasRequestedForDate}}<!-- collection helper -->
+                <h3 class="text-center">{{formattedRequestedForWhen}}</h3><!-- collection helper -->
               {{/if}}
               {{> UI.dynamic template=typeDetailsTemplate}}
             </div>
@@ -45,7 +45,7 @@
             </div>
           </div>
         {{/if}}
-        
+
       {{/with}}
     </div>
   </div>

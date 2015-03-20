@@ -1,0 +1,69 @@
+<template name="ConfigureRooms">
+  {{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Configure Rooms</h1>
+    {{/contentFor}}
+        
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li>
+        <a href="{{pathFor 'Rooms.View'}}">Rooms</a>
+      </li>
+      <li class="active">Configure</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Add Rooms</h3>
+            <div class="actions pull-right">
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+
+            <div class="panel-body">
+              <div class="tab-wrapper tab-primary">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#multiple-room-form" data-toggle="tab">Room Wizard</a></li>
+                  <li><a href="#single-room-form" data-toggle="tab">One-by-One</a></li>     
+                </ul>
+                <div class="tab-content">
+
+                  <div class="tab-pane active" id="multiple-room-form">
+                    <p>This form lets you make many rooms at once. For example, setting the start room number to '200', the end room number to '250', and then hitting save will create 50 rooms named from 'Room 200' to 'Room 250'</p>
+                    {{#autoForm schema=multipleRoomSchema id="multipleRoomForm" type="method" meteormethod="insertMultipleRooms"}}
+                      {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+                      <div class="row">
+                        <div class="col-sm-6">
+                          {{> afQuickField name='startNum' placeholder="101"}}
+                        </div>
+                        <div class="col-sm-6">
+                          {{> afQuickField name='endNum' placeholder="150"}}
+                        </div>
+                      </div>
+                      <button id="multi-room-submit" type="submit" class="btn btn-primary">Create Rooms</button>
+                    {{/autoForm}}
+                  </div>
+
+                  <div class="tab-pane" id="single-room-form">
+                    {{#autoForm collection="Rooms" id="singleRoomForm" type="insert"}}
+                      {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+                      {{> afQuickField name='name' placeholder="(Room 117, Ole Grande Suite, etc)"}}
+                      <button type="submit" class="btn btn-primary">Create Room</button>
+                    {{/autoForm}}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- page content end -->
+
+  {{/Layout}}
+</template>

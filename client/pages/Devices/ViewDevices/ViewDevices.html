@@ -1,9 +1,9 @@
 <template name="ViewDevices">
-	{{#Layout template="Page"}}
+  {{#Layout template="Page"}}
     {{#contentFor "header"}}
       <h1>View Devices</h1>
     {{/contentFor}}
-        
+
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="panel-body">
-            {{> tabular table=TabularTables.ViewDevices selector=selector class="table table-condensed table-hover"}}  
+            {{> tabular table=TabularTables.ViewDevices selector=selector class="table table-condensed table-hover"}}
           </div>
         </div>
       </div>

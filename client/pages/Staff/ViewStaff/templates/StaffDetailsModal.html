@@ -1,43 +1,43 @@
 <template name="StaffDetailsModal">
-	<div class="modal-dialog">
+  <div class="modal-dialog">
     <div class="modal-content">
-    	{{#with staffMember}}
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	        <h3 class="modal-title" id="staff-details">Edit User Details</h3>
-	      </div>
+      {{#with staffMember}}
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 class="modal-title" id="staff-details">Edit User Details</h3>
+        </div>
 
-	      <div class="modal-body">
-	      	<div class="row">
-	      		<div class="col-sm-3">
-	      			<div class="profile-pic text-center">
-			          <img src="{{userAvatar}}" alt="" class="img-circle">
-			        </div><br />
-			        <div class="text-center">
-			        	<button class="btn btn-default btn-change-avatar">Change</button>
-			        </div>
-	      		</div>
-	      		<div class="col-sm-9">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="profile-pic text-center">
+                <img src="{{avatar}}" alt="" class="img-circle"><!-- collection helper -->
+              </div><br />
+              <div class="text-center">
+                <button class="btn btn-default btn-change-avatar">Change</button>
+              </div>
+            </div>
+            <div class="col-sm-9">
 
-	      			{{#autoForm schema=hotelStaffSchema id="editHotelStaffForm" type="method" meteormethod="editHotelStaff" resetOnSuccess=false}}
-		            {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
-		            {{> afFieldInput name='userId' type='hidden' value=_id}}
-		            {{> afFieldInput name='email' type='hidden' value=userEmail}}
-		            {{> afQuickField name='firstName' value=userFirstName}}
-		           	{{> afQuickField name='lastName' value=userLastName}}
-		         		{{> afQuickField name='phone' placeholder="xxx-xxx-xxxx" value=userPhone}}
-		         		{{> afQuickField name='isManager' value=userIsManager}}
+              {{#autoForm schema=hotelStaffSchema id="editHotelStaffForm" type="method" meteormethod="editHotelStaff" resetOnSuccess=false}}
+                {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+                {{> afFieldInput name='userId' type='hidden' value=_id}}
+                {{> afFieldInput name='email' type='hidden' value=email}}<!-- collection helper -->
+                {{> afQuickField name='firstName' value=firstName}}<!-- collection helper -->
+                {{> afQuickField name='lastName' value=lastName}}<!-- collection helper -->
+                {{> afQuickField name='phone' placeholder="xxx-xxx-xxxx" value=phone}}<!-- collection helper -->
+                {{> afQuickField name='isManager' value=isManager}}<!-- collection helper -->
 
-								<div class="modal-footer">
-	        				<button type="submit" class="btn btn-lg btn-primary">Save</button>
-	      				</div>
-		          {{/autoForm}}
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-lg btn-primary">Save</button>
+                </div>
+              {{/autoForm}}
 
-	      		</div>
-	      	</div>
-	      </div>
-  
-    	{{/with}}
+            </div>
+          </div>
+        </div>
+
+      {{/with}}
     </div>
   </div>
 </template>
