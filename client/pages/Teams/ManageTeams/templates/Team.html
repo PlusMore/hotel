@@ -5,6 +5,7 @@
         <h3 class="panel-title">{{name}}</h3>
         <div class="actions pull-right">
           <i class="fa fa-chevron-down"></i>
+          <i class="fa fa-times" id="remove-team"></i>
         </div>
       </div>
       <div class="panel-body">
@@ -14,10 +15,10 @@
             <ul>
               {{#if hasMembers}}<!-- collection helper -->
                 {{#each teamMembers}}
-                  <li>{{fullName}}</li>
+                  <li><p>{{fullName}} <a href="#" class="fa fa-times" id="remove-member-from-team"></a></p></li>
                 {{/each}}
               {{else}}
-                <li><em>This team is empty...</em></li>
+                <li><p><em>This team is empty...</em></p></li>
               {{/if}}
             </ul>
           </div>
