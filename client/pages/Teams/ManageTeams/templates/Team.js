@@ -1,16 +1,9 @@
 Template.Team.helpers({
-  teamMembers: function() {
-    return Meteor.users.find({
-      _id: {
-        $in: this.members
-      }
-    });
-  },
   addUserToTeamSchema: function() {
     return Schema.userForTeam;
   },
   staffOptions: function() {
-    var members = Teams.findOne(this._id).members;
+    var memberIds = Teams.findOne(this._id).memberIds;
     var usersCursor = Meteor.users.find({
       hotelId: Session.get('hotelId')
     }, {
@@ -21,7 +14,7 @@ Template.Team.helpers({
     var users = usersCursor.fetch();
     var userIds = _.pluck(users, '_id');
     if (this.hasMembers()) {
-      userIds = _.difference(userIds, members);
+      userIds = _.difference(userIds, memberIds);
     }
     var staffOptions = [];
     _.each(userIds, function(userId) {

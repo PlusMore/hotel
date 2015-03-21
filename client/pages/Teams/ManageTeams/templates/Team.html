@@ -14,7 +14,7 @@
             <h4>{{description}}</h4>
             <ul>
               {{#if hasMembers}}<!-- collection helper -->
-                {{#each teamMembers}}
+                {{#each teamMembers}}<!-- collection helper -->
                   <li><p>{{fullName}} <a href="#" class="fa fa-times" id="remove-member-from-team"></a></p></li>
                 {{/each}}
               {{else}}
