@@ -66,6 +66,10 @@ Meteor.publish('teams', function(hotelId) {
   return Teams.find({hotelId: hotelId});
 });
 
+Meteor.publish('kiosks', function(hotelId) {
+  return HotelKiosks.find({hotelId: hotelId});
+})
+
 Meteor.publish('dashboardWidgetInfo', function(hotelId) {
   var now = new Date();
 

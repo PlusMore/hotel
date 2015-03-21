@@ -1,0 +1,40 @@
+<template name="Kiosk">
+  <div class="col-sm-6 col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{name}}</h3>
+        <div class="actions pull-right">
+          <i class="fa fa-chevron-down"></i>
+          <i class="fa fa-times" id="remove-kiosk"></i>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12">
+            <h4>{{description}}</h4>
+            <ul>
+              {{#if hasTeams}}<!-- collection helper -->
+                {{#each teams}}<!-- collection helper -->
+                  <li><p>{{name}} <a href="#" class="fa fa-times" id="remove-team-from-kiosk"></a></p></li>
+                {{/each}}
+              {{else}}
+                <li><p><em>This Kiosk is empty...</em></p></li>
+              {{/if}}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-xs-12">
+            {{#autoForm schema=addTeamToKioskSchema id="addTeamToKioskForm" type="method" meteormethod="addTeamToKiosk"}}
+              {{> afFieldInput name='kioskId' type='hidden' value=kioskId}}
+              {{> afFieldInput label=false type="select" name='teamId' options=teamOptions}}
+              <button type="submit" class="btn btn-default btn-block">Add Team</button>
+            {{/autoForm}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
