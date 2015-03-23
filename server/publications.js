@@ -70,6 +70,10 @@ Meteor.publish('kiosks', function(hotelId) {
   return HotelKiosks.find({hotelId: hotelId});
 })
 
+Meteor.publish('teamDetails', function(teamId) {
+  return Teams.find({_id: teamId});
+});
+
 Meteor.publish('dashboardWidgetInfo', function(hotelId) {
   var now = new Date();
 
@@ -289,6 +293,16 @@ Meteor.publish('usersForStayId', function(stayId) {
   return Meteor.users.find({
     _id: {
       $in: stay.users
+    }
+  });
+});
+
+Meteor.publish('usersForTeamId', function(teamId) {
+  var team = Teams.findOne(teamId);
+
+  return Meteor.users.find({
+    _id: {
+      $in: team.memberIds
     }
   });
 });
