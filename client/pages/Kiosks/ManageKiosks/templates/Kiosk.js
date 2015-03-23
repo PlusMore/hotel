@@ -51,6 +51,13 @@ Template.Kiosk.events({
     } else {
       return false;
     }
+  },
+  'click #edit-kiosk': function(e) {
+    e.preventDefault();
+    Session.set('editKioskId', this._id);
+    BootstrapModalPrompt.prompt({
+      dialogTemplate: Template.EditKioskModal
+    });
   }
 });
 
