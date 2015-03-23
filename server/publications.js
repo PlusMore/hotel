@@ -28,6 +28,9 @@ Meteor.publish('userHotelData', function() {
         }),
         Hotels.find({
           _id: hotelId
+        }),
+        Teams.find({
+          hotelId: hotelId
         })
       ];
     } else {

@@ -1,63 +1,36 @@
 <template name="LeftSidebarSettings">
-  {{#if isAdmin}}
-    <h5 class="sidebar-header">Admin Settings</h5>
-    <div class="setting-list">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group">
-            <select class="form-control input-sm" id='select-hotel'>
-              <option value="none">-- Select Hotel View --</option>
-              {{#each hotels}}
-                <option value="{{_id}}">{{name}}</option>
-              {{/each}}
-            </select>
-            <small class="pull-right">{{currentHotelOrNone}}</small>
+  {{#with user}}
+    {{#if isAdmin}}
+      <h5 class="sidebar-header">Admin Settings</h5>
+      <div class="setting-list">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <select class="form-control input-sm" id='select-hotel'>
+                <option value="none">-- Select Hotel View --</option>
+                {{#each hotels}}
+                  <option value="{{_id}}">{{name}}</option>
+                {{/each}}
+              </select>
+              <small class="pull-right">{{currentHotelOrNone}}</small>
+            </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        
+    {{/if}}
+    {{#if isInAnyTeams}}
+      <h5 class="sidebar-header">Teams</h5>
+      <div class="setting-list">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul class='list-unstyled'>
+              {{#each memberOfTeams}}
+                <li><small><strong>{{name}}</strong></small></li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  {{/if}}
-</template>
-
-<template name="LeftSidebarSettings_">
-  <h5 class="sidebar-header">Sidebar Settings</h5>
-  <div class="setting-list">
-    <div class="row">
-        <div class="col-xs-8">
-            <label for="share-status-switch" class="control-label">Share your status</label>
-        </div>
-        <div class="col-xs-4 tgl-container">
-          <label class="tgl">
-            <input id="share-status-switch" type="checkbox" {{shareStatus}}/>
-            <span class="tgl_body">
-              <span class="tgl_switch"></span>
-              <span class="tgl_track">
-                <span class="tgl_bgd"></span>
-                <span class="tgl_bgd tgl_bgd-negative"></span>
-              </span>
-            </span>
-          </label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-8">
-            <label for="push-notifications-switch" class="control-label">Push Notifications</label>
-        </div>
-        <div class="col-xs-4 tgl-container">
-          <label class="tgl">
-            <input id="push-notifications-switch" type="checkbox" {{pushNotifications}}/>
-            <span class="tgl_body">
-              <span class="tgl_switch"></span>
-              <span class="tgl_track">
-                <span class="tgl_bgd"></span>
-                <span class="tgl_bgd tgl_bgd-negative"></span>
-              </span>
-            </span>
-          </label>
-        </div>
-    </div>
-  </div>
+    {{/if}}
+  {{/with}}
 </template>
