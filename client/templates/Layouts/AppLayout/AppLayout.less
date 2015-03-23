@@ -1,10 +1,20 @@
 @import '/client/style/imports.import.less';
 
+#ios-status-bar {
+    background: @primaryColor;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 20px;
+    z-index: 100;
+}
+
 #main-wrapper {
-    .transition(all, .5s, ease-in-out); 
+    .transition(all, .5s, ease-in-out);
     overflow: hidden;
 }
-.main-content-wrapper { 
+.main-content-wrapper {
     margin-right: 0;
     padding-top: 60px;
     background: #F0F3F3;
@@ -13,7 +23,7 @@
         padding: 15px 15px 0 15px;
         width: 100%;
         min-height: 85vh;
-        
+
         & .h1 {
             margin: 0;
             padding: 0px 10px 40px 10px;
