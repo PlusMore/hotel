@@ -1,0 +1,44 @@
+Template.PreregisterStay.helpers({
+  preregisterSchema: function() {
+    return Schema.PreregisteredStay;
+  },
+  hotelId: function() {
+    return Session.get('hotelId');
+  },
+  pickadateOptions: function() {
+    return {
+      min: new Date()
+    };
+  }
+});
+
+AutoForm.hooks({
+  preregisterStayForm: {
+    before: {
+      preregisterStay: function(doc, template) {
+        //return doc; (synchronous)
+        //return false; (synchronous, cancel)
+        //this.result(doc); (asynchronous)
+        //this.result(false); (asynchronous, cancel)
+        if (doc.checkoutDate <= doc.preReg.checkInDate) {
+          Messages.error('Check-out date must be after Check-in date');
+          return false;
+        }
+        return doc;
+      }
+    },
+    // Called when any operation succeeds, where operation will be
+    // "insert", "update", "submit", or the method name.
+    onSuccess: function(operation, result, template) {
+      Messages.success('Successfully pre-registered stay!');
+    },
+
+    // Called when any operation fails, where operation will be
+    // "validation", "insert", "update", "submit", or the method name.
+    onError: function(operation, error, template) {
+      if (operation !== "validation") {
+        Messages.error(error.message);
+      }
+    },
+  }
+});
