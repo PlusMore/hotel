@@ -16,7 +16,6 @@ natestrauser:animate-css
 cwaring:modernizr
 awatson1978:dropzone
 aldeed:tabular
-anti:fake
 iron:layout
 ian:accounts-ui-bootstrap-3
 accounts-password
@@ -36,3 +35,6 @@ theduke:bootstrap-modal-prompt
 plusmore:plus-more-icons
 tmeasday:publish-counts
 selaias:meteor-simpleweather
+plusmore:reactive-responsive-helpers
+msavin:mongol
+force-ssl

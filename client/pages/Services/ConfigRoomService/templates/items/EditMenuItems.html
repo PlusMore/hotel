@@ -1,11 +1,14 @@
 <template name="EditMenuItems">
-	{{#if hasMenuItems}}
+  {{#if hasMenuItems}}
     {{#each menuItemsForCategory}}
-      <div class="col-md-6">
+      <div class="col-xs-11 col-md-5">
         <a id="edit-menu-item" href="#" class="list-item editable {{enabledClass}}">
           {{name}} {{isActive}}
           <small class='pull-right'>${{price}}</small>
         </a>
+      </div>
+      <div class="col-xs-1 col-md-1">
+        <small><a href="#" class="fa fa-times" id="remove-menu-item"></a></small>
       </div>
     {{/each}}
   {{else}}

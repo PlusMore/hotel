@@ -1,5 +1,5 @@
 Template.ConfigHouseKeeping.helpers({
-	isChecked: function() {
+  isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''
     // if not configured, return ''
     if (!this.configuration) {
@@ -14,7 +14,7 @@ Template.ConfigHouseKeeping.helpers({
 });
 
 Template.ConfigHouseKeeping.events({
-  'change #toggle-housekeeping-switch': function (e, tmpl) {
+  'change #toggle-housekeeping-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
       Meteor.call('activateHotelService', 'houseKeeping', Session.get('hotelId'), function(err, res) {
         if (err) {
@@ -35,7 +35,7 @@ Template.ConfigHouseKeeping.events({
   }
 });
 
-Template.ConfigHouseKeeping.rendered = function () {
+Template.houseKeepingTimepicker.rendered = function () {
   this.$('.timepicker').pickatime({
     onSet: function(selection) {
       var minutes = selection.select;

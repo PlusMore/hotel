@@ -1,8 +1,8 @@
 Template.StaffDetailsModal.helpers({
-	staffMember: function() {
-		var userId = Session.get('staffDetailsId');
-		return Meteor.users.findOne(userId);
-	},
+  staffMember: function() {
+    var userId = Session.get('staffDetailsId');
+    return Meteor.users.findOne(userId);
+  },
   hotelStaffSchema: function() {
     return Schema.addHotelStaff;
   },
@@ -30,7 +30,7 @@ Template.StaffDetailsModal.events({
 AutoForm.hooks({
   editHotelStaffForm: {
     onSuccess: function(operation, result, template) {
-      Messages.success('Changes Saved!')
+      Messages.success('Changes Saved!');
       BootstrapModalPrompt.dismiss();
     }
   }

@@ -1,5 +1,5 @@
 <template name="AddMenuCategoryModal">
-	<div class="modal-dialog">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <div class="pull-right">
@@ -7,7 +7,7 @@
         </div>
         <h2 class="modal-title">Add Menu Category</h2>
       </div>
-      {{#autoForm collection='MenuCategories' id='newMenuCategory' type='insert'}}
+      {{#autoForm schema=menuCategorySchema collection='MenuCategories' id='newMenuCategory' type='insert'}}
         <div class="modal-body">
           {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
           {{> afQuickField name='name'}}

@@ -33,14 +33,16 @@ messages = function() {
     Messenger().post({
       message: msg,
       type: 'success',
-      showCloseButton: true
+      showCloseButton: true,
+      hideAfter: 3
     })
   }
   var showError = function(msg) {
     Messenger().post({
       message: msg,
       type: 'error',
-      showCloseButton: true
+      showCloseButton: true,
+      hideAfter: 3
     })
   }
   return {
@@ -52,6 +54,10 @@ messages = function() {
 Meteor.startup(function() {
   var position = ['top', 'right'];
   var theme = 'air';
+
+  if (ResponsiveHelpers.isXs()) {
+    var position = ['top'];
+  }
 
   configureMessenger(position, theme);
 

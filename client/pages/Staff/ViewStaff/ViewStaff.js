@@ -1,4 +1,4 @@
-Template.ViewStaff.rendered = function () {
+Template.ViewStaff.rendered = function() {
   this.$('table').parent().addClass('table-responsive');
 };
 

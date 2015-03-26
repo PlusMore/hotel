@@ -1,28 +1,44 @@
-Accounts.emailTemplates.siteName = "Plus More";
-Accounts.emailTemplates.from = "noreply@plusmoretablets.com";
+Accounts.emailTemplates.siteName = "PlusMore";
+Accounts.emailTemplates.from = "PlusMore <noreply@plusmoretablets.com>";
 Accounts.emailTemplates.enrollAccount.subject = function(user) {
-  return "Welcome to Plus More";
+  return "Welcome to PlusMore, " + user.profile.firstName + "!";
 };
 Accounts.emailTemplates.enrollAccount.text = function(user, url) {
   var spliturl = url.split('/#');
-  url = Meteor.settings.apps.hotel.url + '/#' + spliturl[1];
+
+  var appUrl = Meteor.settings.apps.hotel.url;
+
+  if (Roles.userIsInRole(user, ['guest'])) {
+    appUrl = Meteor.settings.apps.device.url;
+  }
+
+  appUrl += '/#' + spliturl[1];
 
   return "To activate your account, simply click the link below:\n\n" +
-    url;
+    appUrl;
 };
 
 Accounts.emailTemplates.verifyEmail.text = function(user, url) {
   var spliturl = url.split('/#');
-  url = Meteor.settings.apps.hotel.url + '/#' + spliturl[1];
+
+  var appUrl = Meteor.settings.apps.hotel.url;
+
+  if (Roles.userIsInRole(user, ['guest'])) {
+    appUrl = Meteor.settings.apps.device.url;
+  }
+
+  appUrl += '/#' + spliturl[1];
 
   return "To verify your account email, simply click the link below.:\n\n" +
-    url;
+    appUrl;
 };
 
 Accounts.validateNewUser(function(user) {
   // if adding a hotel-staff, or hotel-manager then allow creation
   var isHotelStaffOrManager = false;
   var hotelIsValid = false;
+  // added ability to validate guest
+  var userIsGuest = false;
 
   if (user.hotelId) {
     hotelIsValid = !!Hotels.findOne(user.hotelId);
@@ -32,54 +48,66 @@ Accounts.validateNewUser(function(user) {
     isHotelStaffOrManager = _.any(user.roles, function(role) {
       return (role === 'hotel-staff' || role === 'hotel-manager');
     });
+    userIsGuest = _.any(user.roles, function(role) {
+      return (role === 'guest');
+    });
   }
 
-  if (hotelIsValid && isHotelStaffOrManager) {
+  if (hotelIsValid && isHotelStaffOrManager || userIsGuest) {
     return true;
   }
 });
 
 
 Accounts.onCreateUser(function(options, user) {
-  // We still want the default hook's 'profile' behavior.
-  if (options.profile)
+  if (_.contains(options.roles, 'guest', 0)) {
+    //create user as guest, not staff
     user.profile = options.profile;
+    user.roles = [];
+    user.roles.push('guest');
 
-  var hotelIsValid = false;
-  var isHotelStaff = false;
-  var isHotelManager = false;
-
-  if (options.hotelId) {
-    hotelIsValid = !!Hotels.findOne(options.hotelId);
-  }
-
-  if (hotelIsValid) {
-    user.hotelId = options.hotelId;
   } else {
-    throw new Meteor.Error(500, 'Account creation is forbidden.');
-  }
+    // We still want the default hook's 'profile' behavior.
+    if (options.profile)
+      user.profile = options.profile;
 
-  if (!_.isEmpty(options.roles)) {
-    isHotelStaff = _.any(options.roles, function(role) {
-      return role === 'hotel-staff';
-    });
-    isHotelManager = _.any(options.roles, function(role) {
-      return role === 'hotel-manager';
-    });
-  }
+    var hotelIsValid = false;
+    var isHotelStaff = false;
+    var isHotelManager = false;
 
-  user.roles = [];
+    if (options.hotelId) {
+      hotelIsValid = !!Hotels.findOne(options.hotelId);
+    }
 
-  if (isHotelStaff) {
-    user.roles.push('hotel-staff');
-  }
+    if (hotelIsValid) {
+      user.hotelId = options.hotelId;
+    } else {
+      throw new Meteor.Error(500, 'Account creation is forbidden.');
+    }
 
-  if (isHotelManager) {
-    user.roles.push('hotel-manager');
-  }
+    if (!_.isEmpty(options.roles)) {
+      isHotelStaff = _.any(options.roles, function(role) {
+        return role === 'hotel-staff';
+      });
+      isHotelManager = _.any(options.roles, function(role) {
+        return role === 'hotel-manager';
+      });
+    }
 
-  if (!(isHotelStaff || isHotelManager)) {
-    throw new Meteor.Error(500, 'Account creation is forbidden.');
+    user.roles = [];
+
+    if (isHotelStaff) {
+      user.roles.push('hotel-staff');
+    }
+
+    if (isHotelManager) {
+      user.roles.push('hotel-manager');
+    }
+
+    if (!(isHotelStaff || isHotelManager)) {
+      throw new Meteor.Error(500, 'Account creation is forbidden.');
+    }
+
   }
 
   return user;
@@ -153,13 +181,13 @@ Meteor.methods({
         roles.push('hotel-manager');
       }
     } else {
-      throw new Meteor.Error(500, 'This form can not be used to update device users or admin information');
+      throw new Meteor.Error(500, 'This form can not be used to update device users or admin users');
     }
-    if (doc.phone) {
-      var parsedNumber = LibPhoneNumber.phoneUtil.parse(doc.phone, doc.countryCode || "US");
-      var format = LibPhoneNumber.PhoneNumberFormat;
-      doc.phone = LibPhoneNumber.phoneUtil.format(parsedNumber, format.National);
-    }
+    //if (doc.phone) {
+    //  var parsedNumber = LibPhoneNumber.phoneUtil.parse(doc.phone, doc.countryCode || "US");
+    //  var format = LibPhoneNumber.PhoneNumberFormat;
+    //  doc.phone = LibPhoneNumber.phoneUtil.format(parsedNumber, format.National);
+    //}
 
     Meteor.users.update({
       _id: userId
@@ -171,6 +199,83 @@ Meteor.methods({
         roles: roles
       }
     });
+  },
+  checkInGuest: function(doc) {
+    check(doc, Schema.GuestCheckIn);
 
+    // if a stay is being overwritten, change that stay's checkout date to now
+    // change active boolean to false (even though it's not used yet)
+    if (!!doc.currentStayId) {
+      var now = new Date();
+      Stays.update(doc.currentStayId, {
+        $set: {
+          checkoutDate: now,
+          active: false
+        }
+      });
+      console.log('overwrite stay');
+    }
+
+    // is guest a previous user
+    var user = Meteor.users.findOne({
+      'emails.address': doc.guestEmail
+    });
+    if (user) {
+      doc.guestId = user._id;
+    } else {
+      // create account for new guest
+      var accountOptions = {
+        email: doc.guestEmail,
+        profile: {
+          firstName: doc.guestFirstName,
+          lastName: doc.guestLastName,
+          phone: doc.guestPhone
+        },
+        roles: ['guest']
+      }
+
+      var userId = Accounts.createUser(accountOptions);
+
+      Accounts.sendEnrollmentEmail(userId, accountOptions.email);
+
+      doc.guestId = userId;
+    }
+
+    var room = Rooms.findOne(doc.roomId);
+
+    if (!room) {
+      throw new Meteor.Error(500, 'Not a valid room');
+    }
+
+    var users = [];
+    users.push(doc.guestId);
+
+    var stay = {
+      hotelId: doc.hotelId,
+      guestId: doc.guestId,
+      users: users,
+      zone: doc.zone,
+      roomId: room._id,
+      roomName: room.name, // Used frequently in UI, so denormalized
+      checkInDate: new Date(),
+      checkoutDate: doc.checkoutDate,
+      active: true
+    }
+
+    var stayId = Stays.insert(stay);
+
+    Rooms.update(room._id, {
+      $set: {
+        stayId: stayId
+      }
+    });
+
+    Meteor.users.update(doc.guestId, {
+      $set: {
+        stayId: stayId
+      }
+    });
+
+    return room.name;
   }
 });

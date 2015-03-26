@@ -1,12 +1,10 @@
 Template.TransportationServiceDetails.helpers({
-	transportationType: function () {
+  transportationType: function() {
     switch (this.service.options.transportationType) {
-      case 'taxi': 
+      case 'taxi':
         return 'Taxi';
-        break;
-      case 'limo': 
+      case 'limo':
         return 'Limo';
-        break;
     }
   }
 });

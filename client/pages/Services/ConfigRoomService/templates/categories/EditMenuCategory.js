@@ -1,11 +1,11 @@
 Template.EditMenuCategory.helpers({
-	menuCategoryAvailabilitySchema: function() {
+  menuCategoryAvailabilitySchema: function() {
     return Schema.menuCategoryAvailability;
   },
   menuCategoryDescriptionSchema: function() {
     return Schema.menuCategoryDescriptionSchema;
   },
-	isChecked: function() {
+  isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''
     // if not configured, return ''
     return this.active ? 'checked' : '';
@@ -13,7 +13,7 @@ Template.EditMenuCategory.helpers({
 });
 
 Template.EditMenuCategory.events({
-	'change #toggle-category-switch': function (e, tmpl) {
+  'change #toggle-category-switch': function (e, tmpl) {
 
     if (tmpl.$(e.currentTarget).prop('checked')) {
       Meteor.call('activateMenuCategory', this._id, function(err, res) {
@@ -34,7 +34,7 @@ Template.EditMenuCategory.events({
     }
   },
   'click .btn-reset-availability': function(e, tmpl) {
-    Meteor.call('resetCategoryAvailability', that._id, function(err, res) {
+    Meteor.call('resetCategoryAvailability', this._id, function(err, res) {
         if (err) {
           Messages.error(err);
         } else {
@@ -85,7 +85,7 @@ AutoForm.hooks({
     // "insert", "update", "remove", or the method name.
     onSuccess: function(operation, result, template) {
       Messages.success('Changes Saved!')
-    }, 
+    },
 
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
@@ -100,7 +100,7 @@ AutoForm.hooks({
     // "insert", "update", "remove", or the method name.
     onSuccess: function(operation, result, template) {
       Messages.success('Availability Set!')
-    }, 
+    },
 
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.

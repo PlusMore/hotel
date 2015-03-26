@@ -9,11 +9,13 @@
     </div>
     <!--logo end-->
     <ul class="nav navbar-nav navbar-left">
-      <li class="toggle-navigation toggle-left">
-        <button class="sidebar-toggle" id="toggle-left">
-          <i class="fa fa-bars"></i>
-        </button>
-      </li>
+      {{#visibleXs}}
+        <li class="toggle-navigation toggle-left">
+          <button class="sidebar-toggle" id="toggle-left">
+            <i class="fa fa-bars"></i>
+          </button>
+        </li>
+      {{/visibleXs}}
       <!-- Toggle Left Sidebar Profile
         <li class="toggle-profile hidden-xs">
           <button type="button" class="btn btn-default" id="toggle-profile">
@@ -35,9 +37,9 @@
           <a id="account-dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="meta">
               <span class="avatar">
-                <img src="{{userAvatar}}" class="img-circle" alt="">
+                <img src="{{avatar}}" class="img-circle" alt=""><!-- collection helper -->
               </span>
-              <span class="text">{{userFullName}}</span>
+              <span class="text">{{fullName}}</span>
               <span class="caret"></span>
             </span>
           </a>

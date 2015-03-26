@@ -1,5 +1,5 @@
 <template name="ConfigBellService">
-	{{#Layout template="Page"}}
+  {{#Layout template="Page"}}
     {{#contentFor "header"}}
       <h1>Manage Bell Service</h1>
     {{/contentFor}}
@@ -14,79 +14,85 @@
 
     <!-- page content -->
     <div class="row">
-    	<div class="col-xs-12">
-    		<div class="panel panel-default">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
           <div class="panel-heading">
-          	<div class="pull-right">
+            <div class="pull-right">
               <div class="tgl-container" style="margin-top:-8px;">
-			          <label class="tgl">
-			            <input id="toggle-bellservice-switch" type="checkbox" {{isChecked}}/>
-			            <span class="tgl_body">
-			              <span class="tgl_switch"></span>
-			              <span class="tgl_track">
-			                <span class="tgl_bgd"></span>
-			                <span class="tgl_bgd tgl_bgd-negative"></span>
-			              </span>
-			            </span>
-			          </label>
-			        </div>
+                <label class="tgl">
+                  <input id="toggle-bellservice-switch" type="checkbox" {{isChecked}}/>
+                  <span class="tgl_body">
+                    <span class="tgl_switch"></span>
+                    <span class="tgl_track">
+                      <span class="tgl_bgd"></span>
+                      <span class="tgl_bgd tgl_bgd-negative"></span>
+                    </span>
+                  </span>
+                </label>
+              </div>
             </div>
             <h3 class="panel-title">
-							Bell Service
-	            {{#with configuration}}
-	            	<small>
-	              	Available
-	              	{{#if startTime}}
-	                	{{startTime}} - {{endTime}}
-	              	{{else}}
-	                	Anytime
-	              	{{/if}}
-	            	</small>
-	            {{/with}}
+              Bell Service
+              {{#with configuration}}
+                <small>
+                  Available
+                  {{#if startTime}}
+                    {{startTime}} - {{endTime}}
+                  {{else}}
+                    Anytime
+                  {{/if}}
+                </small>
+              {{/with}}
             </h3>
           </div>
-          <div class="panel-body">
-						{{#with configuration}}  
-        			{{#autoForm schema=configureServiceSchema id='configureService' doc=this type="method" meteormethod="configureService"}}
-            		<div class="row">
-              		<div class="col-md-12">
-                		<h4>Availablity</h4>
-                		<p>
-                  		The default configuration for this service is to be available 24/7. You may optionally configure start and end times for this service by selecting times below.
-                		</p>
-              		</div>
-            		</div>
-            		<div class="row">
-              		{{> afFieldInput name='_id' type='hidden'}}
-              		<div class="col-sm-6 picker-container with-vertical-label">
-                		{{> afQuickField name='startTime' class='timepicker'}}
-                		{{> afFieldInput name="startMinutes" type="hidden"}}
-              		</div>
-              		<div class="col-sm-6 picker-container with-vertical-label">
-                		{{> afQuickField name='endTime' class='timepicker'}}
-                		{{> afFieldInput name="endMinutes" type="hidden"}}
-              		</div>  
-            		</div>
-            		<div class="row">
-              		<div class="col-md-12">
-                		<h4>Allow Tips</h4>
-                		<p>
-                  		Would you like PlusMore to allow guests to tip for this service?
-                		</p>
-              		</div>
-            		</div>
-		            <div class="row">
-		              <div class="col-md-6">
-		                {{> afQuickField name='allowTips'}}
-		              </div>
-		            </div>
-            		<button type="submit" class="btn btn-primary">Update Availability</button>
-        			{{/autoForm}}
-      			{{/with}}
-          </div>
+          {{#with configuration}}
+            <div class="panel-body">
+              {{#autoForm schema=configureServiceSchema id='configureService' doc=this type="method" meteormethod="configureService" resetOnSuccess=false}}
+                {{> afFieldInput name='_id' type='hidden'}}
+                <div class="row">
+                  <div class="col-md-12">
+                    <h4>Availablity</h4>
+                    <p>
+                      The default configuration for this service is to be available 24/7. You may optionally configure start and end times for this service by selecting times below.
+                    </p>
+                  </div>
+                </div>
+
+                {{> bellServiceTimepicker}}
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <h4>Allow Tips</h4>
+                    <p>
+                      Would you like PlusMore to allow guests to tip for this service?
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    {{> afQuickField name='allowTips'}}
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Availability</button>
+              {{/autoForm}}
+            </div>
+          {{/with}}
         </div>
-    	</div>
+      </div>
     </div>
 
   {{/Layout}}
+</template>
+
+<template name="bellServiceTimepicker">
+  <div class="row">
+    <div class="col-sm-6 picker-container with-vertical-label">
+      {{> afQuickField name='startTime' class='timepicker'}}
+      {{> afFieldInput name="startMinutes" type="hidden"}}
+    </div>
+    <div class="col-sm-6 picker-container with-vertical-label">
+      {{> afQuickField name='endTime' class='timepicker'}}
+      {{> afFieldInput name="endMinutes" type="hidden"}}
+    </div>
+  </div>
 </template>

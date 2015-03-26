@@ -63,39 +63,29 @@ Meteor.publish('tags', function(collectionName) {
 });
 
 Meteor.publish('dashboardWidgetInfo', function(hotelId) {
-  var userId = this.userId,
-    user = Meteor.users.findOne(userId);
-
-  hotelId = hotelId || user.hotelId;
-
-  var devicesCursor = Devices.find({
-    hotelId: hotelId
-  });
-
-  var stayIds = devicesCursor.map(function(p) {
-    return p.stayId
-  });
-
   var now = new Date();
 
   Counts.publish(this, 'total-active-stays', Stays.find({
-    _id: {
-      $in: stayIds
-    },
+    hotelId: hotelId,
     checkInDate: {
       $lte: now
     },
     checkoutDate: {
       $gte: now
+    },
+    zone: {
+      $exists: true
     }
   }), {
-    noReady: true
+    noReady: true,
+    nonReactive: true
   });
 
-  Counts.publish(this, 'total-devices', Devices.find({
+  Counts.publish(this, 'total-rooms', Rooms.find({
     hotelId: hotelId
   }), {
-    noReady: true
+    noReady: true,
+    nonReactive: true
   });
 
   Counts.publish(this, 'open-orders', Orders.find({
@@ -213,6 +203,38 @@ Meteor.publish('amenityDetails', function(hotelId) {
   }
 });
 
+Meteor.publish('roomsAndActiveStays', function(hotelId, currentTime) {
+  if (Roles.userIsInRole(this.userId, ['hotel-manager', 'admin'])) {
+
+    var staysPub = new SimplePublication({
+      subHandle: this,
+      collection: Stays,
+      selector: {
+        checkInDate: {
+          $lte: currentTime
+        },
+        checkoutDate: {
+          $gte: currentTime
+        }
+      },
+      foreignKey: 'stayId',
+      inverted: true
+    });
+
+    var publication = new SimplePublication({
+      subHandle: this,
+      collection: Rooms,
+      selector: {
+        hotelId: hotelId
+      },
+      dependant: [
+        staysPub
+      ]
+    }).start();
+
+  }
+});
+
 Meteor.publish('hotelMenu', function(hotelId) {
   var userId = this.userId,
     user = Meteor.users.findOne(userId);
@@ -253,39 +275,52 @@ Meteor.publish('menuItem', function(id) {
   }
 });
 
+Meteor.publish('usersForStayId', function(stayId) {
+  var stay = Stays.findOne(stayId);
+
+  return Meteor.users.find({
+    _id: {
+      $in: stay.users
+    }
+  });
+});
+
 Meteor.publish("tabular_Orders", function(tableName, ids, fields) {
   check(tableName, String);
   check(ids, Array);
   check(fields, Match.Optional(Object));
 
-  var devicesPub = new SimplePublication({
-    subHandle: this,
-    collection: Devices,
-    foreignKey: 'deviceId',
-    inverted: true
-  });
+  var ordersCursor = Orders.find({_id: {$in: ids}},fields);
 
-  var usersPub = new SimplePublication({
-    subHandle: this,
-    collection: Meteor.users,
-    foreignKey: ['userId', 'receivedBy', 'completedBy', 'cancelledBy'],
-    inverted: true
-  });
+  var userIds = [];
+  var roomIds = [];
 
-  var publication = new SimplePublication({
-    subHandle: this,
-    collection: Orders,
-    selector: {
-      _id: {
-        $in: ids
-      }
-    },
-    fields: fields,
-    dependant: [
-      devicesPub,
-      usersPub
-    ]
-  }).start();
+  ordersCursor.map(function(order){
+    if (!_.contains(userIds,order.userId)){
+      userIds.push(order.userId);
+    }
+    if (!_.contains(userIds,order.receivedBy)){
+      userIds.push(order.receivedBy);
+    }
+    if (!_.contains(userIds,order.cancelledBy)){
+      userIds.push(order.cancelledBy);
+    }
+    if (!_.contains(userIds,order.completedBy)){
+      userIds.push(order.completedBy);
+    }
+    if (!_.contains(roomIds,order.roomId)){
+      roomIds.push(order.roomId);
+    }
+  })
+
+  var usersCursor = Meteor.users.find({_id: {$in: userIds}});
+  var roomsCursor = Rooms.find({_id: {$in: roomIds}});
+
+  return [
+    ordersCursor,
+    usersCursor,
+    roomsCursor
+  ];
 });
 
 Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
@@ -293,6 +328,7 @@ Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
   check(ids, Array);
   check(fields, Match.Optional(Object));
 
+  // get stays that match room stayIds
   var staysPub = new SimplePublication({
     subHandle: this,
     collection: Stays,
@@ -300,15 +336,16 @@ Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
     inverted: true
   });
 
-  // Can't get user dependant to work because the user IDs in Stay
-  // are in an array. Simple-publish documentation lacking.
-  //var usersPub = new SimplePublication({
-  //  subHandle: this,
-  //  collection: Meteor.users,
-  //  foreignKey: "users.0",
-  //  inverted: true,
-  //  dependant: staysPub
-  //});
+  // get rooms that match device roomIds
+  var roomsPub = new SimplePublication({
+    subHandle: this,
+    collection: Rooms,
+    foreignKey: 'roomId',
+    inverted: true,
+    dependant: [
+      staysPub
+    ]
+  });
 
   var publication = new SimplePublication({
     subHandle: this,
@@ -320,10 +357,83 @@ Meteor.publish("tabular_Devices", function(tableName, ids, fields) {
     },
     fields: fields,
     dependant: [
-      staysPub,
-      //  usersPub
+      roomsPub,
+      staysPub
     ]
   }).start();
+});
+
+Meteor.publish("tabular_Stays", function(tableName, ids, fields) {
+  check(tableName, String);
+  check(ids, Array);
+  check(fields, Match.Optional(Object));
+
+  var usersPub = new SimplePublication({
+    subHandle: this,
+    collection: Meteor.users,
+    foreignKey: 'guestId',
+    inverted: true
+  });
+
+  var publication = new SimplePublication({
+    subHandle: this,
+    collection: Stays,
+    selector: {
+      _id: {
+        $in: ids
+      }
+    },
+    fields: fields,
+    dependant: [
+      usersPub
+    ]
+  }).start();
+});
+
+Meteor.publish("tabular_Rooms", function(tableName, ids, fields) {
+  check(tableName, String);
+  check(ids, Array);
+  check(fields, Match.Optional(Object));
+
+  // users by guestId in stay
+  var usersPub = new SimplePublication({
+    subHandle: this,
+    collection: Meteor.users,
+    foreignKey: 'guestId',
+    inverted: true
+  });
+
+  // stays by stayId in room
+  var staysPub = new SimplePublication({
+    subHandle: this,
+    collection: Stays,
+    foreignKey: 'stayId',
+    inverted: true,
+    dependant: [
+      usersPub
+    ]
+  });
+
+  var publication = new SimplePublication({
+    subHandle: this,
+    collection: Rooms,
+    selector: {
+      _id: {
+        $in: ids
+      }
+    },
+    options: {
+      $sort: {
+        name: 1
+      }
+    },
+    fields: fields,
+    dependant: [
+      staysPub,
+      usersPub
+    ]
+  }).start();
+
 });
 
 Meteor.publish('patronOrder', function(id) {
