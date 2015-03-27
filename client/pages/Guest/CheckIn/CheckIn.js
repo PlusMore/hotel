@@ -6,7 +6,11 @@ Template.CheckIn.helpers({
     return Session.get('hotelId');
   },
   roomOptions: function() {
-    var roomsCursor = Rooms.find({}, {$sort: {name: 1}});
+    var roomsCursor = Rooms.find({}, {
+      $sort: {
+        name: 1
+      }
+    });
     var stays = Stays.find();
     var rooms = roomsCursor.fetch();
     var roomOptions = [];
@@ -23,8 +27,30 @@ Template.CheckIn.helpers({
       });
       return roomOptions;
     }
+  },
+  preregisteredStays: function() {
+    var startDay = moment().startOf('day').toDate();
+    var endDay = moment().add(1, 'days').toDate();
+    return Stays.find({
+      active: false,
+      preReg: {
+        $exists: true
+      },
+      "preReg.startDate": {
+        $gte: startDay,
+        $lte: endDay
+      }
+    });
   }
 });
+
+Template.CheckIn.created = function() {
+  var instance = this;
+
+  instance.autorun(function() {
+    var sub = Meteor.subscribe('preregisteredStaysForToday', Session.get('hotelId'));
+  });
+};
 
 Template.CheckIn.rendered = function() {
   Session.set('checkoutDate', undefined);
@@ -46,6 +72,39 @@ Template.CheckIn.rendered = function() {
     }
   });
 };
+
+Template.CheckIn.events({
+  'change #select-prereg-stay': function(e, tmpl) {
+    e.preventDefault();
+    if (tmpl.$(e.currentTarget).val() != "none") {
+      //preregistered stay selected, load stay details
+      var stayId = tmpl.$(e.currentTarget).val();
+      var stay = Stays.findOne(stayId);
+      tmpl.$('#preregId').val(stayId);
+      tmpl.$('#guestLastName').val(stay.preReg.guestLastName);
+      tmpl.$('#guestLastName').prop('readonly', true); // disable field
+      var setPicker = {
+        select: stay.preReg.endDate
+      };
+      tmpl.$('[name=checkoutDate]').pickadate('set', setPicker);
+      if (stay.preReg.guestEmail) {
+        tmpl.$('#guestEmail').val(stay.preReg.guestEmail);
+      }
+      if (stay.preReg.guestPhone) {
+        tmpl.$('#guestPhone').val(stay.preReg.guestPhone);
+      }
+    } else {
+      // preregister stay deselected, clear fields
+      tmpl.$('#preregId').val('');
+      tmpl.$('#guestLastName').val('');
+      tmpl.$('#guestLastName').prop('readonly', false);
+      tmpl.$('#guestPhone').val('');
+      tmpl.$('#guestEmail').val('');
+      tmpl.$('[name=checkoutDate]').pickadate('set', 'clear');
+      Session.set('checkoutDate', undefined);
+    }
+  }
+});
 
 AutoForm.hooks({
   guestCheckInForm: {

@@ -250,19 +250,41 @@ Meteor.methods({
     var users = [];
     users.push(doc.guestId);
 
-    var stay = {
-      hotelId: doc.hotelId,
-      guestId: doc.guestId,
-      users: users,
-      zone: doc.zone,
-      roomId: room._id,
-      roomName: room.name, // Used frequently in UI, so denormalized
-      checkInDate: new Date(),
-      checkoutDate: doc.checkoutDate,
-      active: true
-    }
+    // if stay was preregistered
+    if (doc.preregId) {
+      Stays.update({
+        _id: doc.preregId
+      }, {
+        $set: {
+          guestId: doc.guestId,
+          users: users,
+          roomId: room._id,
+          roomName: room.name, // Used frequently in UI, so denormalized
+          checkInDate: new Date(),
+          checkoutDate: doc.checkoutDate,
+          active: true,
+          zone: doc.zone
+        }
+      });
 
-    var stayId = Stays.insert(stay);
+      var stayId = doc.preregId;
+
+      // stay is new
+    } else {
+      var stay = {
+        hotelId: doc.hotelId,
+        guestId: doc.guestId,
+        users: users,
+        zone: doc.zone,
+        roomId: room._id,
+        roomName: room.name, // Used frequently in UI, so denormalized
+        checkInDate: new Date(),
+        checkoutDate: doc.checkoutDate,
+        active: true
+      }
+
+      var stayId = Stays.insert(stay);
+    }
 
     Rooms.update(room._id, {
       $set: {

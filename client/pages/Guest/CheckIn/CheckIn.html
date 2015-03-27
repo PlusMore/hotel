@@ -24,29 +24,42 @@
           </div>
           {{#autoForm id="guestCheckInForm" schema=guestCheckInSchema type="method" meteormethod="checkInGuest"}}
             {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+            {{> afFieldInput name='preregId' type='hidden' id="preregId"}}
             <div class="panel-body">
               <div class="row">
-                <div class="col-sm-6">
-                  {{> afQuickField name='guestFirstName'}} 
-                </div>
-                <div class="col-sm-6">
-                  {{> afQuickField name='guestLastName'}} 
-                </div>
-              </div>
-              <div class="row">
                 <div class="col-xs-12">
-                  {{> afQuickField name='guestEmail'}} 
-                </div>
-                <div class="col-xs-12">
-                  {{> afQuickField name='guestPhone' placeholder='xxx-xxx-xxxx'}}
+                  <div class="form-group">
+                    <select class="form-control" id='select-prereg-stay'>
+                      <option value="none">-- Select Preregistered Stay (Optional) --</option>
+                      {{#each preregisteredStays}}
+                        <option value="{{_id}}">{{preReg.guestLastName}} ({{formattedStartDate}} - {{formattedEndDate}})</option>
+                      {{/each}}
+                    </select>
+                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-6">
-                  {{> afQuickField name='roomId' options=roomOptions}} 
+                  {{> afQuickField name='guestFirstName'}}
                 </div>
                 <div class="col-sm-6">
-                  {{> afQuickField name='checkoutDate'}}
+                  {{> afQuickField name='guestLastName' id="guestLastName"}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  {{> afQuickField name='guestEmail' id="guestEmail"}}
+                </div>
+                <div class="col-xs-12">
+                  {{> afQuickField name='guestPhone' placeholder='xxx-xxx-xxxx' id="guestPhone"}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  {{> afQuickField name='roomId' options=roomOptions}}
+                </div>
+                <div class="col-sm-6">
+                  {{> afQuickField name='checkoutDate' id="checkoutDate"}}
                 </div>
               </div>
             </div>
