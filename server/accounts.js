@@ -201,7 +201,6 @@ Meteor.methods({
     });
   },
   checkInGuest: function(doc) {
-    debugger;
     check(doc, Schema.GuestCheckIn);
 
     // if a stay is being overwritten, change that stay's checkout date to now
