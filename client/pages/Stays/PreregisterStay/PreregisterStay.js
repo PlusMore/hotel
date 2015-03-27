@@ -20,7 +20,7 @@ AutoForm.hooks({
         //return false; (synchronous, cancel)
         //this.result(doc); (asynchronous)
         //this.result(false); (asynchronous, cancel)
-        if (doc.checkoutDate <= doc.preReg.checkInDate) {
+        if (doc.preReg.endDate <= doc.preReg.startDate) {
           Messages.error('Check-out date must be after Check-in date');
           return false;
         }
