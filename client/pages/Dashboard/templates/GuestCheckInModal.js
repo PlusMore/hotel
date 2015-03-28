@@ -54,16 +54,15 @@ Template.GuestCheckInModal.created = function() {
 
 Template.GuestCheckInModal.rendered = function() {
   Session.set('checkoutDate', undefined);
+  var hotel = Hotels.findOne(Session.get('hotelId'));
   // Set up datepicker
   this.$('[name=checkoutDate]').pickadate({
     clear: false,
-    min: moment({
-      hour: 12,
-      minute: 0
-    }).add(1, 'days').toDate(),
+    min: moment().add(1, 'days').toDate().setMinutes(hotel.departureMinutes()),
     onSet: function(date) {
       if (date.select) {
-        var selectedDate = moment(date.select).hour(12).minute(0).second(0).toDate();
+        var selectedDate = moment(date.select).toDate();
+        selectedDate.setMinutes(hotel.departureMinutes());
         Session.set('checkoutDate', {
           date: selectedDate,
           zone: moment(selectedDate).zone()
