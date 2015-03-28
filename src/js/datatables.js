@@ -208,6 +208,9 @@ TabularTables.Stays = new Tabular.Table({
   searching: false,
   pagingType: "simple",
   extraFields: ['checkInDate', 'checkoutDate', 'zone', 'guestId','users'],
+  language: {
+    emptyTable: "There are no stays to display."
+  },
   columns: [{
     title: "Room",
     data: "roomName",
