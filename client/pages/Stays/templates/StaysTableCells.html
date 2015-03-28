@@ -1,6 +1,6 @@
 <template name="StayRoomCell">
   {{#unless isPrereg}} <!-- collection helper -->
-    <p>{{roomName}}</p><!-- collection helper -->
+    <p>{{#if roomName}}{{roomName}}{{else}}N/A{{/if}}</p><!-- collection helper -->
   {{else}}
     <p>N/A ({{preReg.guestLastName}})</p> <!-- collection helper -->
   {{/unless}}
