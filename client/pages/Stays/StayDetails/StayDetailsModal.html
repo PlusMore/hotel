@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 class="modal-title" id="staff-details">{{#if isPrereg}}Pre-registered {{/if}}Stay Details</h3>
+          <h3 class="modal-title">{{#if isPrereg}}Pre-registered {{/if}}Stay Details</h3>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -50,7 +50,30 @@
           {{/unless}}
         </div>
         <div class="modal-footer">
-          <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+          {{#if isActive}}
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#stay-editor">Edit</button>
+          {{/if}}
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        <div class="collapse out" id="stay-editor">
+          {{#autoForm id="changeCheckoutDate" doc=this schema=changeCheckoutSchema type="method" meteormethod="changeCheckoutDate" resetOnSuccess=false}}
+            {{> afFieldInput name='_id' type='hidden'}}
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-sm-6 picker-container with-vertical-label">
+                  {{> afQuickField name='checkoutDate' type="pickadate" pickadateOptions=pickadateOptions}}
+                </div>
+                <div class="col-sm-6 picker-container with-vertical-label">
+                  {{> afQuickField name='checkoutTime' class='timepicker' value=checkOutTime}} <!--collection helper -->
+                  {{> afFieldInput name="checkoutMinutes" type="hidden" value=checkOutMinutes}} <!-- collection helper -->
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#stay-editor">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          {{/autoForm}}
         </div>
       </div>
     </div>
