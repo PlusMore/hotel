@@ -1,14 +1,15 @@
-<template name="ViewStays">
+<template name="StayHistory">
   {{#Layout template="Page"}}
     {{#contentFor "header"}}
-      <h1>Stays</h1>
+      <h1>Stay History</h1>
     {{/contentFor}}
 
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
       </li>
-      <li class="active">Stays</li>
+      <li><a href="{{pathFor 'Stays.View'}}">Stays</a></li>
+      <li class="active">History</li>
     {{/contentFor}}
 
     <!-- page content -->
@@ -16,7 +17,7 @@
       <div class="col-md-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">View Stays</h3>
+            <h3 class="panel-title">Stay History</h3>
             <div class="actions pull-right">
               <i class="fa fa-chevron-down"></i>
             </div>
@@ -25,9 +26,9 @@
             <div class="row">
               <div class="col-xs-12">
                 <div class="btn-group btn-group-sm pull-right" role="group" aria-label="View Options">
-                  <a href="{{pathFor 'Stays.View'}}" class="btn btn-default active">Current</a>
+                  <a href="{{pathFor 'Stays.View'}}" class="btn btn-default">Current</a>
                   <a href="{{pathFor 'Stays.Preregistered'}}" class="btn btn-default">Preregistered</a>
-                  <a href="{{pathFor 'Stays.History'}}" class="btn btn-default">History</a>
+                  <a href="{{pathFor 'Stays.History'}}" class="btn btn-default active">History</a>
                 </div>
                 {{#if forceReRender}}
                   {{> tabular table=TabularTables.Stays selector=selector class="table table-condensed table-hover"}}

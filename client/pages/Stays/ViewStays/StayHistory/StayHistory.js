@@ -1,15 +1,12 @@
-Template.ViewStays.helpers({
+Template.StayHistory.helpers({
   selector: function() {
     var hotelId = Session.get('hotelId');
     var now = Session.get('currentTime');
 
     return {
       hotelId: hotelId,
-      checkInDate: {
-        $lte: now
-      },
       checkoutDate: {
-        $gte: now
+        $lte: now
       },
       zone: {
         $exists: true
