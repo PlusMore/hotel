@@ -3,7 +3,7 @@
     {{#contentFor "header"}}
       <h1>View Rooms</h1>
     {{/contentFor}}
-        
+
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
@@ -22,7 +22,10 @@
             </div>
           </div>
           <div class="panel-body">
-            {{> tabular table=TabularTables.ViewRooms selector=selector class="table table-condensed table-hover"}}  
+            {{#if currentUser.isManager}} <!-- collection helper -->
+              <a href="{{pathFor 'Rooms.Configure'}}" class="btn btn-sm btn-primary pull-right">Add/Edit Rooms</a>
+            {{/if}}
+            {{> tabular table=TabularTables.ViewRooms selector=selector class="table table-condensed table-hover"}}
           </div>
         </div>
       </div>

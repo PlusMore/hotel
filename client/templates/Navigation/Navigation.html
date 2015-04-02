@@ -22,25 +22,11 @@
             {{{hotelRequiredBadge}}}
           </a>
         </li>
-        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Rooms'}} {{currentRouteClass 'Rooms'}}" data-state="Rooms" >
-          <a href="#" title="Rooms">
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Rooms'}}" data-state="Rooms">
+          <a href="{{pathFor 'Rooms.View'}}" title="View Rooms">
             <i class="fa  fa-fw fa-key"></i> Rooms
             {{{hotelRequiredBadge}}}
           </a>
-          <ul class="nav-sub {{navSubStateClass 'Rooms.View'}}">
-            <li class="{{currentRouteClass 'Rooms.View'}}" data-state="Rooms.View">
-              <a href="{{pathFor 'Rooms.View'}}" title="View Rooms">
-                View Rooms
-              </a>
-            </li>
-            {{#if isHotelManager}}
-              <li class="{{currentRouteClass 'Rooms.Configure'}}" data-state="Rooms.Configure">
-                <a href="{{pathFor 'Rooms.Configure'}}" title="Add Rooms">
-                  + Add Rooms
-                </a>
-              </li>
-            {{/if}}
-          </ul>
         </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Stays'}} {{currentRouteClass 'Stays'}}" data-state="Stays" >
           <a href="#" title="Stays">
