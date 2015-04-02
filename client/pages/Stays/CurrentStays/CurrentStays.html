@@ -3,7 +3,7 @@
     {{#contentFor "header"}}
       <h1>Current Stays</h1>
     {{/contentFor}}
-        
+
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
@@ -23,7 +23,11 @@
             </div>
           </div>
           <div class="panel-body">
-            {{> tabular table=TabularTables.Stays selector=selector class="table table-condensed table-hover"}}  
+            <div class="btn-group btn-group-sm pull-right" role="group" aria-label="View Options">
+              <a href="{{pathFor 'Stays.Current'}}" class="btn btn-default active">Current</a>
+              <a href="{{pathFor 'Stays.History'}}" class="btn btn-default">History</a>
+            </div>
+            {{> tabular table=TabularTables.Stays selector=selector class="table table-condensed table-hover"}}
           </div>
         </div>
       </div>
