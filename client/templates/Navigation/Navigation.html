@@ -10,29 +10,17 @@
       </li>
 
       {{#if isHotelStaff}}
-        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Guest.CheckIn'}}" data-state="Guest.CheckIn">
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Guest.CheckIn'}}" data-state="Guest">
           <a href="{{pathFor 'Guest.CheckIn'}}" title="Check-In Guest">
             <i class="fa  fa-fw fa-sign-in"></i> Check-In Guest
             {{{hotelRequiredBadge}}}
           </a>
         </li>
-        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Orders'}} {{currentRouteClass 'Orders'}}" data-state="Orders" >
-          <a href="#" title="Orders">
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Orders'}}" data-state="Orders">
+          <a href="{{pathFor 'Orders.Open'}}" title="Guest Orders">
             <i class="fa  fa-fw fa-th-list"></i> Guest Orders
             {{{hotelRequiredBadge}}}
           </a>
-          <ul class="nav-sub {{navSubStateClass 'Orders'}}">
-            <li class="{{currentRouteClass 'Orders.Open'}}" data-state="Orders.Open">
-              <a href="{{pathFor 'Orders.Open'}}" title="Open Orders">
-                Open Orders
-              </a>
-            </li>
-            <li class="{{currentRouteClass 'Orders.History'}}" data-state="Orders.History">
-              <a href="{{pathFor 'Orders.History'}}" title="Orders History">
-                Order History
-              </a>
-            </li>
-          </ul>
         </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Rooms'}} {{currentRouteClass 'Rooms'}}" data-state="Rooms" >
           <a href="#" title="Rooms">
