@@ -16,6 +16,22 @@ Template.StayDetailsModal.helpers({
   }
 });
 
+Template.StayDetailsModal.events({
+  'click #checkout-guest': function(e) {
+    e.preventDefault();
+    if (confirm("Are you sure you wish to end this stay?")) {
+      Meteor.call('endStay', this._id, function(err) {
+        if (err) {
+          Messages.error(err.message);
+        } else {
+          Messages.success("Successfully ended Stay");
+          BootstrapModalPrompt.dismiss();
+        }
+      });
+    }
+  }
+});
+
 Template.StayDetailsModal.created = function() {
   var instance = this;
 
@@ -26,7 +42,11 @@ Template.StayDetailsModal.created = function() {
   instance.users = function() {
     var stay = Stays.findOne(Session.get('viewStayId'));
     if (stay && stay.users) {
-      return Meteor.users.find({_id: {$in: stay.users}});
+      return Meteor.users.find({
+        _id: {
+          $in: stay.users
+        }
+      });
     }
   }
 };
