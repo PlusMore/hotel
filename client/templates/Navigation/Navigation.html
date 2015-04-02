@@ -49,23 +49,11 @@
       {{/if}}
 
       {{#if isHotelManager}}
-        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Devices'}} {{currentRouteClass 'Devices'}}" data-state="Devices" >
-          <a href="#" title="Devices">
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Devices'}}" data-state="Devices">
+          <a href="{{pathFor 'Devices.View'}}" title="View Devices">
             <i class="fa  fa-fw fa-map-marker"></i> Devices
             {{{hotelRequiredBadge}}}
           </a>
-          <ul class="nav-sub {{navSubStateClass 'Devices'}}">
-            <li class="{{currentRouteClass 'Devices.View'}}" data-state="Devices.View">
-              <a href="{{pathFor 'Devices.View'}}" title="View Devices">
-                View Devices
-              </a>
-            </li>
-            <li class="{{currentRouteClass 'Devices.Configure'}}" data-state="Devices.Configure">
-              <a href="{{pathFor 'Devices.Configure'}}" title="Change Background">
-                Change Background
-              </a>
-            </li>
-          </ul>
         </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Staff'}} {{currentRouteClass 'Staff'}}" data-state="Staff" >
           <a href="#" title="Staff">
