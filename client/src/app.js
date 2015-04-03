@@ -10,7 +10,7 @@ App = function() {
   // if the user is using ios we want to know so we can adjust the header to account for the top bar
   var iOS = function() {
     var iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
-    var standalone = ("standalone" in window.navigator) && !window.navigator.standalone;
+    var standalone = ("standalone" in window.navigator) && window.navigator.standalone;
     Session.set('iOS-standalone', iOS && standalone);
   };
 
@@ -65,6 +65,7 @@ App = function() {
   return {
     colors: colors,
     customCheckbox: customCheckbox,
-    maskInputs: maskInputs
+    maskInputs: maskInputs,
+    ios: iOS
   };
 }();
