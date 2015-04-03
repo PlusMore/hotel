@@ -43,6 +43,7 @@ AutoForm.hooks({
           Messages.error(error);
         } else {
           Messages.success('You have successfully created Rooms!');
+          Router.go('Rooms.View');
         }
       }
     },
