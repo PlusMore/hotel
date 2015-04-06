@@ -12,7 +12,7 @@ mquandalle:bower
 momentjs:moment
 fortawesome:fontawesome@4.3.0
 nahue:simple-line-icons
-natestrauser:animate-css
+natestrauser:animate-css@3.2.6
 cwaring:modernizr@3.0.0_1
 awatson1978:dropzone
 aldeed:tabular@1.1.0
