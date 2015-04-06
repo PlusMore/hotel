@@ -7,7 +7,7 @@
 meteor-platform
 iron:router
 less
-nemo64:bootstrap
+nemo64:bootstrap@3.3.4_1
 mquandalle:bower
 momentjs:moment
 fortawesome:fontawesome@4.3.0
