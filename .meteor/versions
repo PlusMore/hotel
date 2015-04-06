@@ -10,7 +10,7 @@ anti:i18n@0.4.3
 application-configuration@1.0.4
 autoupdate@1.1.5
 awatson1978:dropzone@1.0.2
-babrahams:editable-json@0.3.11
+babrahams:editable-json@0.3.12
 base64@1.0.2
 binary-heap@1.0.2
 blaze@2.0.4
@@ -58,13 +58,14 @@ logging@1.0.6
 meteor@1.1.4
 meteor-platform@1.2.1
 meteorhacks:inject-initial@1.0.2
+meteortoys:toykit@0.2.2
 minifiers@1.1.3
 minimongo@1.0.6
 mobile-status-bar@1.0.2
 momentjs:moment@2.9.0
 mongo@1.0.11
 mquandalle:bower@1.3.12
-msavin:mongol@1.0.2
+msavin:mongol@1.0.12
 nahue:simple-line-icons@1.0.0
 natestrauser:animate-css@3.1.2
 natestrauser:filepicker-plus@1.2.3
