@@ -1,0 +1,47 @@
+<template name="ManageTeams">
+	{{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Manage Teams</h1>
+    {{/contentFor}}
+
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li class="active">Teams</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Staff Teams</h3>
+            <div class="actions pull-right">
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="panel-body">
+            <h4>Teams allow you to group your staff members together based on their department or role. A staff member can be placed in more than one team and will receive notifications for each team it is a member of.</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <button id="create-new-team" class="btn btn-primary btn-block">+ Create New Team</button><br />
+      </div>
+    </div>
+
+    <div class="row">
+      {{#each teams}}
+        {{> Team}}
+      {{/each}}
+    </div>
+
+
+    <!-- page content end -->
+
+  {{/Layout}}
+</template>

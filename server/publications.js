@@ -28,6 +28,9 @@ Meteor.publish('userHotelData', function() {
         }),
         Hotels.find({
           _id: hotelId
+        }),
+        Teams.find({
+          hotelId: hotelId
         })
       ];
     } else {
@@ -59,6 +62,22 @@ Meteor.publish('hotelsAdminSelect', function() {
 Meteor.publish('tags', function(collectionName) {
   return Meteor.tags.find({
     collection: collectionName
+  });
+});
+
+Meteor.publish('teams', function(hotelId) {
+  return Teams.find({
+    hotelId: hotelId
+  });
+});
+
+Meteor.publish('kiosks', function(hotelId) {
+  return HotelKiosks.find({hotelId: hotelId});
+})
+
+Meteor.publish('teamDetails', function(teamId) {
+  return Teams.find({
+    _id: teamId
   });
 });
 
@@ -285,36 +304,64 @@ Meteor.publish('usersForStayId', function(stayId) {
   });
 });
 
+Meteor.publish('usersForTeamId', function(teamId) {
+  var team = Teams.findOne(teamId);
+
+  if (team && team.membersId && team.membersId.length > 0) {
+    return Meteor.users.find({
+      _id: {
+        $in: team.memberIds
+      }
+    });
+  }
+});
+
+Meteor.publish('teamsForUserId', function(userId) {
+  return Teams.find({memberIds: userId});
+});
+
 Meteor.publish("tabular_Orders", function(tableName, ids, fields) {
   check(tableName, String);
   check(ids, Array);
   check(fields, Match.Optional(Object));
 
-  var ordersCursor = Orders.find({_id: {$in: ids}},fields);
+  var ordersCursor = Orders.find({
+    _id: {
+      $in: ids
+    }
+  }, fields);
 
   var userIds = [];
   var roomIds = [];
 
-  ordersCursor.map(function(order){
-    if (!_.contains(userIds,order.userId)){
+  ordersCursor.map(function(order) {
+    if (!_.contains(userIds, order.userId)) {
       userIds.push(order.userId);
     }
-    if (!_.contains(userIds,order.receivedBy)){
+    if (!_.contains(userIds, order.receivedBy)) {
       userIds.push(order.receivedBy);
     }
-    if (!_.contains(userIds,order.cancelledBy)){
+    if (!_.contains(userIds, order.cancelledBy)) {
       userIds.push(order.cancelledBy);
     }
-    if (!_.contains(userIds,order.completedBy)){
+    if (!_.contains(userIds, order.completedBy)) {
       userIds.push(order.completedBy);
     }
-    if (!_.contains(roomIds,order.roomId)){
+    if (!_.contains(roomIds, order.roomId)) {
       roomIds.push(order.roomId);
     }
   })
 
-  var usersCursor = Meteor.users.find({_id: {$in: userIds}});
-  var roomsCursor = Rooms.find({_id: {$in: roomIds}});
+  var usersCursor = Meteor.users.find({
+    _id: {
+      $in: userIds
+    }
+  });
+  var roomsCursor = Rooms.find({
+    _id: {
+      $in: roomIds
+    }
+  });
 
   return [
     ordersCursor,

@@ -25,7 +25,15 @@
               <div class="col-md-9">
                 <div class="profile-info">
                   <h1>{{fullName}} <small>{{hotel.name}}</small></h1> <!-- collection helper -->
-                  <span class="text-muted">{{friendlyRole}} - <a href="{{userEmail}}">{{email}}</a></span><!-- collection helper -->
+                  <p><span class="text-muted">{{friendlyRole}} - <a href="{{userEmail}}">{{email}}</a></span></p><br /><!-- collection helper -->
+                  {{#if isInAnyTeams}}
+                    <h2>Member of the following teams:</h2>
+                    <ul>
+                      {{#each memberOfTeams}}
+                        <li>{{name}}</li>
+                      {{/each}}
+                    </ul>
+                  {{/if}}
                 </div>
               </div>
             </div>

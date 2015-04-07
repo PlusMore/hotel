@@ -111,6 +111,18 @@
             </li>
           </ul>
         </li>
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Teams'}}" data-state="Teams">
+          <a href="{{pathFor 'Teams.Manage'}}" title="Teams">
+            <i class="fa  fa-fw fa-group"></i> Manage Teams
+            {{{hotelRequiredBadge}}}
+          </a>
+        </li>
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Kiosks'}}" data-state="Kiosks">
+          <a href="{{pathFor 'Kiosks.Manage'}}" title="Kiosks">
+            <i class="fa  fa-fw fa-sitemap"></i> Manage Kiosks
+            {{{hotelRequiredBadge}}}
+          </a>
+        </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Services'}} {{currentRouteClass 'Services'}}" data-state="Services" >
           <a href="#" title="Services">
             <i class="fa  fa-fw fa-bell"></i> Guest Services

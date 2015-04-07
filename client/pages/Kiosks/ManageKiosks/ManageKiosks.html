@@ -1,0 +1,47 @@
+<template name="ManageKiosks">
+	{{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Manage Kiosks</h1>
+    {{/contentFor}}
+
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li class="active">Kiosks</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Hotel Kiosks</h3>
+            <div class="actions pull-right">
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+          <div class="panel-body">
+            <h4>Kiosks allow Teams to use the same computer or device.</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <button id="create-new-kiosk" class="btn btn-primary btn-block">+ Create New Kiosk</button><br />
+      </div>
+    </div>
+
+    <div class="row">
+      {{#each kiosks}}
+        {{> Kiosk}}
+      {{/each}}
+    </div>
+
+
+    <!-- page content end -->
+
+  {{/Layout}}
+</template>
