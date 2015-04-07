@@ -28,6 +28,9 @@ Meteor.publish('userHotelData', function() {
         }),
         Hotels.find({
           _id: hotelId
+        }),
+        Teams.find({
+          hotelId: hotelId
         })
       ];
     } else {
@@ -311,6 +314,10 @@ Meteor.publish('usersForTeamId', function(teamId) {
       }
     });
   }
+});
+
+Meteor.publish('teamsForUserId', function(userId) {
+  return Teams.find({memberIds: userId});
 });
 
 Meteor.publish("tabular_Orders", function(tableName, ids, fields) {

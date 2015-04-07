@@ -20,7 +20,7 @@ Meteor.startup(function() {
 
 Meteor.startup(function() {
   Deps.autorun(function() {
-    // make reactive by getting hotel cursor   
+    // make reactive by getting hotel cursor
     var hotels = Hotels.find();
     var user = Meteor.user();
 
