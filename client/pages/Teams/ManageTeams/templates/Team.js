@@ -51,6 +51,13 @@ Template.Team.events({
     } else {
       return false;
     }
+  },
+  'click #edit-team': function(e) {
+    e.preventDefault();
+    Session.set('updateTeamId', this._id);
+    BootstrapModalPrompt.prompt({
+      dialogTemplate: Template.EditTeamModal
+    });
   }
 });
 
