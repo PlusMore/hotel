@@ -20,6 +20,7 @@ Template.GuestCheckInModal.rendered = function() {
   Session.set('checkoutDate', undefined);
   // Set up datepicker
   this.$('[name=checkoutDate]').pickadate({
+    container: $("#main-wrapper"),
     clear: false,
     min: moment({
       hour: 12,
