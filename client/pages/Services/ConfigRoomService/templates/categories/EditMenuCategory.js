@@ -64,6 +64,7 @@ Template.EditMenuCategory.rendered = function () {
   }
 
   this.$('.timepicker').pickatime({
+    container: $("#main-wrapper"),
     min: startTime.toDate(),
     max: endTime.toDate(),
     onSet: function(selection) {
