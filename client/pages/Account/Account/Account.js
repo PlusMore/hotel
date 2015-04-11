@@ -17,5 +17,11 @@ Template.Account.events({
         }
       });
     });
+  },
+  'click #edit-account': function(e) {
+    e.preventDefault();
+    BootstrapModalPrompt.prompt({
+      dialogTemplate: Template.EditAccountModal
+    });
   }
 });
