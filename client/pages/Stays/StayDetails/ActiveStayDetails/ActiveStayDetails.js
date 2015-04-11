@@ -4,6 +4,7 @@ Template.ActiveStayDetails.helpers({
   },
   pickadateOptions: function() {
     return {
+      container: $("#main-wrapper"),
       // can not change checkout date before todays date or checkInDate
       min: Math.max(this.checkInDate, new Date())
     };
@@ -50,6 +51,7 @@ Template.ActiveStayDetails.created = function() {
 
 Template.ActiveStayDetails.rendered = function() {
   this.$('.timepicker').pickatime({
+    container: $("#main-wrapper"),
     onSet: function(selection) {
       var minutes = selection.select;
       var controlName = this.$node.attr('name');

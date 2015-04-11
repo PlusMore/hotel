@@ -7,6 +7,7 @@ Template.PreregisterStay.helpers({
   },
   pickadateOptions: function() {
     return {
+      container: $("#main-wrapper"),
       min: new Date()
     };
   }

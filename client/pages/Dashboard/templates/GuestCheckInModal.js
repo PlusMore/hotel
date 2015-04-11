@@ -57,6 +57,7 @@ Template.GuestCheckInModal.rendered = function() {
   var hotel = Hotels.findOne(Session.get('hotelId'));
   // Set up datepicker
   this.$('[name=checkoutDate]').pickadate({
+    container: $("#main-wrapper"),
     clear: false,
     min: moment().add(1, 'days').toDate().setMinutes(hotel.departureMinutes()),
     onSet: function(date) {
