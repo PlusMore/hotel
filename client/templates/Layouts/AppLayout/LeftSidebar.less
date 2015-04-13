@@ -252,7 +252,10 @@
     background-color: transparent;
 }
 .sidebar+.main-content-wrapper {
-    width: 100%
+    width: 100%;
+    transition-property: transform;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
 }
 .sidebar-mini .sidebar {
     .sidebar-profile {
@@ -295,7 +298,7 @@
         left: 0;
     }
     .sidebar-opened .sidebar-left+.main-content-wrapper {
-        left: 240px;
+        transform: translateX(240px);
         overflow: hidden;
     }
     .sidebar-opened {
