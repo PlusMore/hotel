@@ -16,7 +16,7 @@ Template.PreregisterStay.helpers({
 AutoForm.hooks({
   preregisterStayForm: {
     before: {
-      preregisterStay: function(doc, template) {
+      method: function(doc, template) {
         //return doc; (synchronous)
         //return false; (synchronous, cancel)
         //this.result(doc); (asynchronous)
@@ -30,13 +30,13 @@ AutoForm.hooks({
     },
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "submit", or the method name.
-    onSuccess: function(operation, result, template) {
+    onSuccess: function(operation, result) {
       Messages.success('Successfully pre-registered stay!');
     },
 
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "submit", or the method name.
-    onError: function(operation, error, template) {
+    onError: function(operation, error) {
       if (operation !== "validation") {
         Messages.error(error.message);
       }
