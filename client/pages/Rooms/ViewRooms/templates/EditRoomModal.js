@@ -32,11 +32,11 @@ Schema.editRoomSchema = new SimpleSchema({
 
 AutoForm.hooks({
   editRoomForm: {
-    onSuccess: function(operation, result, template) {
+    onSuccess: function(operation, result) {
       Messages.success('Updated room successfully!');
       BootstrapModalPrompt.dismiss();
     },
-    onError: function(operation, error, template) {
+    onError: function(operation, error) {
       Messages.error(error.message);
     }
   }

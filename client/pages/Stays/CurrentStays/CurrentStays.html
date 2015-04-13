@@ -1,16 +1,15 @@
-<template name="OrderHistory">
-
+<template name="CurrentStays">
   {{#Layout template="Page"}}
     {{#contentFor "header"}}
-      <h1>Order History</h1>
+      <h1>Current Stays</h1>
     {{/contentFor}}
 
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
       </li>
-      <li>Orders</li>
-      <li class="active">History</li>
+      <li>Stays</li>
+      <li class="active">Current</li>
     {{/contentFor}}
 
     <!-- page content -->
@@ -18,17 +17,17 @@
       <div class="col-md-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Order History</h3>
+            <h3 class="panel-title">Current Stays</h3>
             <div class="actions pull-right">
               <i class="fa fa-chevron-down"></i>
             </div>
           </div>
           <div class="panel-body">
             <div class="btn-group btn-group-sm pull-right" role="group" aria-label="View Options">
-              <a href="{{pathFor 'Orders.Open'}}" class="btn btn-default">Open</a>
-              <a href="{{pathFor 'Orders.History'}}" class="btn btn-default active">History</a>
+              <a href="{{pathFor 'Stays.Current'}}" class="btn btn-default active">Current</a>
+              <a href="{{pathFor 'Stays.History'}}" class="btn btn-default">History</a>
             </div>
-            {{> tabular table=TabularTables.OrderHistory selector=selector class="table table-condensed table-hover"}}
+            {{> tabular table=TabularTables.Stays selector=selector class="table table-condensed table-hover"}}
           </div>
         </div>
       </div>
@@ -36,5 +35,4 @@
     <!-- page content end -->
 
   {{/Layout}}
-
 </template>

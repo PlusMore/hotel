@@ -11,6 +11,7 @@ TabularTables.OrderHistory = new Tabular.Table({
   searching: false,
   autoWidth: true,
   pagingType: "simple",
+  order: [[0, 'desc']],
   extraFields: [
     'open',
     'type',
@@ -72,7 +73,13 @@ TabularTables.OpenOrders = new Tabular.Table({
   pub: "tabular_Orders",
   autoWidth: true,
   searching: false,
-  pagingType: "simple",
+  pageLength: 10000,
+  lengthChange: false,
+  order: [0, 'desc'],
+  // https://datatables.net/reference/option/dom
+  // removing 'p' removes pagination buttons
+  // see link for ways to manipulate datatable appearance
+  dom: 'lfrti',
   extraFields: [
     'open',
     'type',

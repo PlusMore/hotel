@@ -7,8 +7,8 @@
 meteor-platform
 iron:router
 less
-nemo64:bootstrap
-mquandalle:bower
+nemo64:bootstrap@3.3.4_1
+mquandalle:bower@1.3.12
 momentjs:moment
 fortawesome:fontawesome
 nahue:simple-line-icons
@@ -21,7 +21,7 @@ ian:accounts-ui-bootstrap-3
 accounts-password
 aldeed:simple-schema
 alanning:roles
-aldeed:autoform
+aldeed:autoform@5.1.2
 aldeed:collection2
 underscore
 copleykj:simple-publish
@@ -40,3 +40,4 @@ msavin:mongol
 force-ssl
 robertlowe:autoform-pickadate
 reactive-var
+meteorhacks:kadira
