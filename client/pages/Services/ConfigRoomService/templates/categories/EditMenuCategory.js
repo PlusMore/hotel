@@ -84,13 +84,13 @@ AutoForm.hooks({
   editMenuCategory: {
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "remove", or the method name.
-    onSuccess: function(operation, result, template) {
+    onSuccess: function(operation, result) {
       Messages.success('Changes Saved!')
     },
 
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
-    onError: function(operation, error, template) {
+    onError: function(operation, error) {
       if (operation !== 'validation') {
         Messages.error(error.message);
       }
@@ -99,13 +99,13 @@ AutoForm.hooks({
   configureMenuCategoryAvailability: {
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "remove", or the method name.
-    onSuccess: function(operation, result, template) {
+    onSuccess: function(operation, result) {
       Messages.success('Availability Set!')
     },
 
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
-    onError: function(operation, error, template) {
+    onError: function(operation, error) {
       if (operation !== 'validation') {
         Messages.error(error.message);
       }

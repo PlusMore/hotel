@@ -31,10 +31,10 @@ Schema.hotelInfo = new SimpleSchema({
 
 AutoForm.hooks({
   updateHotelInfo: {
-    onSuccess: function(operation, result, template) {
+    onSuccess: function(operation, result) {
       Messages.success('Changes Saved!');
     },
-    onError: function(operation, error, template) {
+    onError: function(operation, error) {
       console.log(error);
       if (error.message && error.message === 'form failed validation') {
         // autoform takes care of these
