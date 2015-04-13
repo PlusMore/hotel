@@ -62,6 +62,9 @@ minimongo@1.0.8
 mobile-status-bar@1.0.3
 momentjs:moment@2.9.0
 mongo@1.1.0
+meteorhacks:kadira@2.20.1
+meteorhacks:meteorx@1.3.1
+mongo-livedata@1.0.7
 mquandalle:bower@1.3.12
 msavin:mongol@1.0.12
 nahue:simple-line-icons@1.0.0
