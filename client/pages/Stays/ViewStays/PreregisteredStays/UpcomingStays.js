@@ -1,4 +1,4 @@
-Template.PreregisteredStays.helpers({
+Template.UpcomingStays.helpers({
   selector: function() {
     var hotelId = Session.get('hotelId');
     var now = Session.get('currentTime');
