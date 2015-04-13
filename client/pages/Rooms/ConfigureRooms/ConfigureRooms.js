@@ -29,7 +29,7 @@ Schema.multipleRoomSchema = new SimpleSchema({
 AutoForm.hooks({
   multipleRoomForm: {
     before: {
-      "insertMultipleRooms": function(doc, template) {
+      method: function(doc) {
         if (doc.startNum > doc.endNum) {
           Messages.error('The starting room number must be less than the ending room number');
           return false;
@@ -38,7 +38,7 @@ AutoForm.hooks({
       }
     },
     after: {
-      "insertMultipleRooms": function(error, result, template) {
+      method: function(error, result, template) {
         if (error) {
           Messages.error(error);
         } else {
