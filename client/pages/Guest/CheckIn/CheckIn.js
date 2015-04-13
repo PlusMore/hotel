@@ -52,7 +52,7 @@ Template.CheckIn.rendered = function() {
 AutoForm.hooks({
   guestCheckInForm: {
     before: {
-      checkInGuest: function(doc, template) {
+      method: function(doc) {
         //return doc; (synchronous)
         //return false; (synchronous, cancel)
         //this.result(doc); (asynchronous)
