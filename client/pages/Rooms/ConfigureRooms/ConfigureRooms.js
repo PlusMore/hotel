@@ -38,7 +38,7 @@ AutoForm.hooks({
       }
     },
     after: {
-      method: function(error, result, template) {
+      method: function(error, result) {
         if (error) {
           Messages.error(error);
         } else {
@@ -46,17 +46,17 @@ AutoForm.hooks({
         }
       }
     },
-    beginSubmit: function(formId, template) {
+    beginSubmit: function(formId) {
       document.getElementById("multi-room-submit").disabled = true;
     },
-    endSubmit: function(formId, template) {
+    endSubmit: function(formId) {
       document.getElementById("multi-room-submit").disabled = false;
     }
   },
   singleRoomForm: {
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "submit", or the method name.
-    onSuccess: function(operation, result, template) {
+    onSuccess: function(operation, result) {
       Messages.success('Created room successfully!');
     }
   }

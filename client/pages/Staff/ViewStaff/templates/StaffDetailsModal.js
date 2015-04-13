@@ -29,7 +29,7 @@ Template.StaffDetailsModal.events({
 
 AutoForm.hooks({
   editHotelStaffForm: {
-    onSuccess: function(operation, result, template) {
+    onSuccess: function(operation, result) {
       Messages.success('Changes Saved!');
       BootstrapModalPrompt.dismiss();
     }

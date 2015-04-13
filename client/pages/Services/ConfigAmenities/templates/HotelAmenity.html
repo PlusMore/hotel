@@ -30,7 +30,7 @@
               </ul>
             </div>
             <div class="col-xs-12">
-              {{#autoForm collection="AmenityDetails" type="insert"}}
+              {{#autoForm collection="AmenityDetails" id="insertAmenityDetail" type="insert"}}
                 {{> afFieldInput name="hotelId" type="hidden" value=hotelId}}
                 {{> afFieldInput name="amenityId" type="hidden" value=_id}}
                 {{> afQuickField name="detail" label=false placeholder="Type here to add details..."}}
