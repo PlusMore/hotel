@@ -222,6 +222,9 @@ Meteor.methods({
     });
     if (user) {
       doc.guestId = user._id;
+
+      // send an email here
+      console.log('Existing guest checked in, should send email here');
     } else {
       // create account for new guest
       var accountOptions = {
@@ -249,6 +252,17 @@ Meteor.methods({
 
     var users = [];
     users.push(doc.guestId);
+
+    // if there are active stays for the user, clear them
+    // could probably be a better solution
+    // but I don't know what at this point.
+    var activeStays = Stays.find({
+      users: doc.guestId,
+      active: true
+    });
+    activeStays.forEach(function (stay) {
+      Stays.update(stay._id, {$set: {active: false}});
+    });
 
     var stay = {
       hotelId: doc.hotelId,
