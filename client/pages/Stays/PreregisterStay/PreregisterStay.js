@@ -16,7 +16,7 @@ Template.PreregisterStay.helpers({
 AutoForm.hooks({
   preregisterStayForm: {
     before: {
-      method: function(doc, template) {
+      method: function(doc) {
         //return doc; (synchronous)
         //return false; (synchronous, cancel)
         //this.result(doc); (asynchronous)

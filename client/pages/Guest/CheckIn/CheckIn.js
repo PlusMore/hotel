@@ -110,10 +110,6 @@ AutoForm.hooks({
   guestCheckInForm: {
     before: {
       method: function(doc) {
-        //return doc; (synchronous)
-        //return false; (synchronous, cancel)
-        //this.result(doc); (asynchronous)
-        //this.result(false); (asynchronous, cancel)
         if (!Session.get('checkoutDate')) {
           Messages.error('Please select a check out date');
           return false;
