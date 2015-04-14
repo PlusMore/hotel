@@ -6,7 +6,7 @@ All publications-related code.
 
 /+ ---------------------------------------------------- */
 
-Meteor.publish('userHotelData', function() {
+Meteor.publish('userHotelData', function(hotelId) {
   var userId = this.userId;
 
   if (userId) {
@@ -18,7 +18,7 @@ Meteor.publish('userHotelData', function() {
       user = Meteor.users.findOne({
         _id: userId
       }),
-      hotelId = user && user.hotelId || null;
+      hotelId = user && user.hotelId || hotelId;
     if (hotelId) {
       return [
         Meteor.users.find({
