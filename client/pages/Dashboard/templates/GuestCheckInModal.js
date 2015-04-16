@@ -59,10 +59,10 @@ Template.GuestCheckInModal.rendered = function() {
   this.$('[name=checkoutDate]').pickadate({
     container: $("#main-wrapper"),
     clear: false,
-    min: moment().add(1, 'days').toDate().setMinutes(hotel.departureMinutes()),
+    min: moment().add(1, 'days').toDate(),
     onSet: function(date) {
       if (date.select) {
-        var selectedDate = moment(date.select).toDate();
+        var selectedDate = moment(date.select).startOf('day').toDate();
         selectedDate.setMinutes(hotel.departureMinutes());
         Session.set('checkoutDate', {
           date: selectedDate,
