@@ -1,25 +1,25 @@
 <template name="StayRoomCell">
-  {{#unless isPrereg}} <!-- collection helper -->
-    <p>{{#if roomName}}{{roomName}}{{else}}N/A{{/if}}</p><!-- collection helper -->
-  {{else}}
+  {{#if isPrereg}} <!-- collection helper -->
     <p>N/A ({{preReg.guestLastName}})</p> <!-- collection helper -->
-  {{/unless}}
+  {{else}}
+    <p>{{#if roomName}}{{roomName}}{{else}}N/A{{/if}} ({{primaryGuest.lastName}})</p><!-- collection helper -->
+  {{/if}}
 </template>
 
 <template name="StayCheckInCell">
-  {{#unless isPrereg}} <!-- collection helper -->
-    <p>{{formattedCheckInDate}} {{formattedCheckInTime}}</p><!-- collection helper -->
-  {{else}}
+  {{#if isPrereg}} <!-- collection helper -->
     <p>{{formattedStartDate}}</p> <!-- collection helper -->
-  {{/unless}}
+  {{else}}
+    <p>{{friendlyCheckInDate}}</p><!-- collection helper -->
+  {{/if}}
 </template>
 
 <template name="StayCheckOutCell">
-  {{#unless isPrereg}} <!-- collection helper -->
-    <p>{{formattedCheckOutDate}} {{formattedCheckOutTime}}</p><!-- collection helper -->
-  {{else}}
+  {{#if isPrereg}} <!-- collection helper -->
     <p>{{formattedEndDate}}</p><!-- collection helper-->
-  {{/unless}}
+  {{else}}
+    <p>{{friendlyCheckOutDate}}</p><!-- collection helper -->
+  {{/if}}
 </template>
 
 <template name="ViewStayCell">
