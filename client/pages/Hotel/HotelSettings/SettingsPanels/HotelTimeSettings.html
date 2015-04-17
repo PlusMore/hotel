@@ -9,6 +9,9 @@
           </div>
         </div>
         <div class="panel-body">
+          <p>
+            Changing the default arrival and departure times will only affect stays that begin after these changes have been made.
+          </p>
           {{#autoForm id="updateHotelTimesForm" schema=defaultHotelTimesSchema doc=this type="method" meteormethod="setHotelArrivalAndDepartureTimes" resetOnSuccess=false}}
             {{> afFieldInput name='_id' type='hidden'}}
             <div class="row">
