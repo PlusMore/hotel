@@ -6,7 +6,7 @@ All publications-related code.
 
 /+ ---------------------------------------------------- */
 
-Meteor.publish('userHotelData', function() {
+Meteor.publish('userHotelData', function(hotelId) {
   var userId = this.userId;
 
   if (userId) {
@@ -18,7 +18,7 @@ Meteor.publish('userHotelData', function() {
       user = Meteor.users.findOne({
         _id: userId
       }),
-      hotelId = user && user.hotelId || null;
+      hotelId = user && user.hotelId || hotelId;
     if (hotelId) {
       return [
         Meteor.users.find({
@@ -247,6 +247,22 @@ Meteor.publish('roomsAndActiveStays', function(hotelId, currentTime) {
   }
 });
 
+Meteor.publish('preregisteredStaysForToday', function(hotelId) {
+  var startDay = moment().startOf('day').toDate();
+  var endDay = moment().add(1, 'days').toDate();
+  return Stays.find({
+    hotelId: hotelId,
+    active: false,
+    preReg: {
+      $exists: true
+    },
+    "preReg.startDate": {
+      $gte: startDay,
+      $lte: endDay
+    }
+  });
+});
+
 Meteor.publish('hotelMenu', function(hotelId) {
   var userId = this.userId,
     user = Meteor.users.findOne(userId);
@@ -290,11 +306,15 @@ Meteor.publish('menuItem', function(id) {
 Meteor.publish('usersForStayId', function(stayId) {
   var stay = Stays.findOne(stayId);
 
-  return Meteor.users.find({
-    _id: {
-      $in: stay.users
-    }
-  });
+  if (stay.users) {
+    return Meteor.users.find({
+      _id: {
+        $in: stay.users
+      }
+    });
+  } else {
+    return null;
+  }
 });
 
 Meteor.publish("tabular_Orders", function(tableName, ids, fields) {
@@ -302,31 +322,43 @@ Meteor.publish("tabular_Orders", function(tableName, ids, fields) {
   check(ids, Array);
   check(fields, Match.Optional(Object));
 
-  var ordersCursor = Orders.find({_id: {$in: ids}},fields);
+  var ordersCursor = Orders.find({
+    _id: {
+      $in: ids
+    }
+  }, fields);
 
   var userIds = [];
   var roomIds = [];
 
-  ordersCursor.map(function(order){
-    if (!_.contains(userIds,order.userId)){
+  ordersCursor.map(function(order) {
+    if (!_.contains(userIds, order.userId)) {
       userIds.push(order.userId);
     }
-    if (!_.contains(userIds,order.receivedBy)){
+    if (!_.contains(userIds, order.receivedBy)) {
       userIds.push(order.receivedBy);
     }
-    if (!_.contains(userIds,order.cancelledBy)){
+    if (!_.contains(userIds, order.cancelledBy)) {
       userIds.push(order.cancelledBy);
     }
-    if (!_.contains(userIds,order.completedBy)){
+    if (!_.contains(userIds, order.completedBy)) {
       userIds.push(order.completedBy);
     }
-    if (!_.contains(roomIds,order.roomId)){
+    if (!_.contains(roomIds, order.roomId)) {
       roomIds.push(order.roomId);
     }
   })
 
-  var usersCursor = Meteor.users.find({_id: {$in: userIds}});
-  var roomsCursor = Rooms.find({_id: {$in: roomIds}});
+  var usersCursor = Meteor.users.find({
+    _id: {
+      $in: userIds
+    }
+  });
+  var roomsCursor = Rooms.find({
+    _id: {
+      $in: roomIds
+    }
+  });
 
   return [
     ordersCursor,

@@ -1,8 +1,8 @@
-Template.CurrentStays.helpers({
+Template.ViewStays.helpers({
   selector: function() {
-    var user = Meteor.user();
-    var hotelId = Session.get('hotelId') || user.hotelId;
+    var hotelId = Session.get('hotelId');
     var now = Session.get('currentTime');
+
     return {
       hotelId: hotelId,
       checkInDate: {

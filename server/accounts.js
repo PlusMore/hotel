@@ -223,6 +223,21 @@ Meteor.methods({
     if (user) {
       doc.guestId = user._id;
 
+      // if there are active stays for the user, clear them
+      // could probably be a better solution
+      // but I don't know what at this point.
+      var activeStays = Stays.find({
+        users: doc.guestId,
+        active: true
+      });
+      activeStays.forEach(function(activeStay) {
+        Stays.update(activeStay._id, {
+          $set: {
+            active: false
+          }
+        });
+      });
+
       // send an email here
       console.log('Existing guest checked in, should send email here');
     } else {
@@ -253,30 +268,41 @@ Meteor.methods({
     var users = [];
     users.push(doc.guestId);
 
-    // if there are active stays for the user, clear them
-    // could probably be a better solution
-    // but I don't know what at this point.
-    var activeStays = Stays.find({
-      users: doc.guestId,
-      active: true
-    });
-    activeStays.forEach(function (stay) {
-      Stays.update(stay._id, {$set: {active: false}});
-    });
+    // if stay was preregistered
+    if (doc.preregId) {
+      Stays.update({
+        _id: doc.preregId
+      }, {
+        $set: {
+          guestId: doc.guestId,
+          users: users,
+          roomId: room._id,
+          roomName: room.name, // Used frequently in UI, so denormalized
+          checkInDate: new Date(),
+          checkoutDate: doc.checkoutDate,
+          active: true,
+          zone: doc.zone
+        }
+      });
 
-    var stay = {
-      hotelId: doc.hotelId,
-      guestId: doc.guestId,
-      users: users,
-      zone: doc.zone,
-      roomId: room._id,
-      roomName: room.name, // Used frequently in UI, so denormalized
-      checkInDate: new Date(),
-      checkoutDate: doc.checkoutDate,
-      active: true
+      var stayId = doc.preregId;
+
+      // stay is new
+    } else {
+      var stay = {
+        hotelId: doc.hotelId,
+        guestId: doc.guestId,
+        users: users,
+        zone: doc.zone,
+        roomId: room._id,
+        roomName: room.name, // Used frequently in UI, so denormalized
+        checkInDate: new Date(),
+        checkoutDate: doc.checkoutDate,
+        active: true
+      }
+
+      var stayId = Stays.insert(stay);
     }
-
-    var stayId = Stays.insert(stay);
 
     Rooms.update(room._id, {
       $set: {
