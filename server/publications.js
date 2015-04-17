@@ -148,6 +148,18 @@ Meteor.publish('hotel', function(id) {
   return Hotels.find(id);
 });
 
+Meteor.publish('roomNames', function(hotelId) {
+  return Rooms.find({
+    hotelId: hotelId
+  }, {
+    fields: {
+      _id: 1,
+      hotelId: 1,
+      name: 1
+    }
+  });
+});
+
 Meteor.publish('hotelUsers', function(hotelId) {
   var userId = this.userId,
     user = Meteor.users.findOne(userId);
