@@ -54,6 +54,15 @@ AutoForm.hooks({
     }
   },
   singleRoomForm: {
+    before: {
+      insert: function(doc) {
+        if (Rooms.find({hotelId: doc.hotelId, name: doc.name}).count() > 0) {
+          Messages.error('A room with this name (' + doc.name + ') already exists');
+          return false;
+        }
+        return doc;
+      }
+    },
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result) {
