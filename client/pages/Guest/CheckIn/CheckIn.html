@@ -32,7 +32,7 @@
                     <select class="form-control" id='select-prereg-stay'>
                       <option value="none">-- Select Preregistered Stay (Optional) --</option>
                       {{#each preregisteredStays}}
-                        <option value="{{_id}}">{{preReg.guestLastName}} ({{formattedStartDate}} - {{formattedEndDate}})</option>
+                        <option value="{{_id}}">{{preReg.guestLastName}} ({{friendlyStartDate}} - {{friendlyEndDate}})</option>
                       {{/each}}
                     </select>
                   </div>
