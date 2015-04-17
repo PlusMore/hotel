@@ -2,7 +2,7 @@ subscriptions = {};
 
 Meteor.startup(function() {
   // Subscribe to hotel data when a hotel ID is available
-  Deps.autorun(function() {
+  Tracker.autorun(function() {
     var user = Meteor.user();
     var hotelId = Session.get('hotelId');
 
@@ -20,7 +20,7 @@ Meteor.startup(function() {
 });
 
 Meteor.startup(function() {
-  Deps.autorun(function() {
+  Tracker.autorun(function() {
     // make reactive by getting hotel cursor
     var hotels = Hotels.find();
     var user = Meteor.user();
