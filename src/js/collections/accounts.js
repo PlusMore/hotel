@@ -1,35 +1,3 @@
-Schema.addHotelStaff = new SimpleSchema({
-  hotelId: {
-    type: String
-  },
-  firstName: {
-    type: String,
-    label: "First Name"
-  },
-  lastName: {
-    type: String,
-    label: "Last Name"
-  },
-  email: {
-    type: String,
-    label: "E-mail address"
-  },
-  phone: {
-    type: String,
-    label: "Phone Number (Optional)",
-    optional: true,
-    min: 7
-  },
-  isManager: {
-    type: Boolean,
-    label: "Is this user a Manager?",
-  },
-  userId: {
-    type: String,
-    optional: true
-  }
-});
-
 Meteor.users.helpers({
   avatar: function() {
     return this.profile && this.profile.avatarUrl && this.profile.avatarUrl + "/convert?w=160&h=160&fit=crop&align=faces" || "/img/profile.jpg";

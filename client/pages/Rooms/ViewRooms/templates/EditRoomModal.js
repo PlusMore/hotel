@@ -17,19 +17,6 @@ Template.EditRoomModal.events({
   }
 });
 
-Schema.editRoomSchema = new SimpleSchema({
-  roomId: {
-    type: String
-  },
-  name: {
-    type: String,
-    label: "Name"
-  },
-  hotelId: {
-    type: String
-  }
-});
-
 AutoForm.hooks({
   editRoomForm: {
     onSuccess: function(operation, result) {
