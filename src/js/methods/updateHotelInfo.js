@@ -12,7 +12,7 @@ Meteor.methods({
         }
       });
     } else {
-      Errors.throw('You do not have proper access to this functionality.');
+      throw new Meteor.Error(403, 'You do not have the required permissions');
     }
   }
 });

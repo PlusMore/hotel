@@ -7,7 +7,7 @@ Meteor.methods({
     if (menuItem) {
       MenuItems.remove(menuItemId);
     } else {
-      throw new Meteor.Error(500, 'Not a valid Menu Item.');
+      throw new Meteor.Error(500, 'Not a valid Menu Item');
     }
   }
 });

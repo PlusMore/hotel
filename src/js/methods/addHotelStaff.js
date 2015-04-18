@@ -8,10 +8,6 @@ Meteor.methods({
         roles.push('hotel-manager');
       }
 
-      // var parsedNumber = LibPhoneNumber.phoneUtil.parse(user.phone, user.countryCode || "US");
-      // var format = LibPhoneNumber.PhoneNumberFormat;
-      // user.phone = LibPhoneNumber.phoneUtil.format(parsedNumber, format.National);
-
       var profile = {
         firstName: user.firstName,
         lastName: user.lastName,
@@ -32,5 +28,7 @@ Meteor.methods({
         hotelId: user.hotelId
       };
     }
+  } else {
+    throw new Meteor.Error(500, 'You do not have the required permissions');
   }
 });

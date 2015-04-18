@@ -12,11 +12,6 @@ Meteor.methods({
     } else {
       throw new Meteor.Error(500, 'This form can not be used to update device users or admin users');
     }
-    //if (doc.phone) {
-    //  var parsedNumber = LibPhoneNumber.phoneUtil.parse(doc.phone, doc.countryCode || "US");
-    //  var format = LibPhoneNumber.PhoneNumberFormat;
-    //  doc.phone = LibPhoneNumber.phoneUtil.format(parsedNumber, format.National);
-    //}
 
     Meteor.users.update({
       _id: userId

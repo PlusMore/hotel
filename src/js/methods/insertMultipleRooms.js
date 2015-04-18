@@ -14,7 +14,7 @@ Meteor.methods({
           name: room
         }).count() > 0) {
 
-        throw new Meteor.Error('You have attempted to create a room (' + room + ') that already exists. No rooms were created.');
+        throw new Meteor.Error(403, 'You have attempted to create a room (' + room + ') that already exists. No rooms were created.');
       }
     });
 
