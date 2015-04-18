@@ -26,9 +26,3 @@ Schema.AmenityDetail = new SimpleSchema({
 });
 
 AmenityDetails.attachSchema(Schema.AmenityDetail);
-
-Meteor.methods({
-  removeAmenityDetail: function(detailId) {
-    return AmenityDetails.remove(detailId);
-  }
-});
