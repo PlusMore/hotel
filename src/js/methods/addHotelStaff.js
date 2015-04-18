@@ -27,8 +27,8 @@ Meteor.methods({
         userId: userId,
         hotelId: user.hotelId
       };
+    } else {
+      throw new Meteor.Error(500, 'You do not have the required permissions');
     }
-  } else {
-    throw new Meteor.Error(500, 'You do not have the required permissions');
   }
 });
