@@ -56,7 +56,10 @@ AutoForm.hooks({
   singleRoomForm: {
     before: {
       insert: function(doc) {
-        if (Rooms.find({hotelId: doc.hotelId, name: doc.name}).count() > 0) {
+        if (Rooms.find({
+            hotelId: doc.hotelId,
+            name: doc.name
+          }).count() > 0) {
           Messages.error('A room with this name (' + doc.name + ') already exists');
           return false;
         }

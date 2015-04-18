@@ -24,7 +24,7 @@ Schema.HotelTimesSchema = new SimpleSchema({
   },
 });
 
-Template.HotelTimeSettings.rendered = function () {
+Template.HotelTimeSettings.rendered = function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {

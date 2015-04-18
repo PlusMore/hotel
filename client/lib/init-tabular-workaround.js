@@ -6,16 +6,16 @@ var timeoutHandle, waiting = new ReactiveVar('false');
 
 forceReRender = function() {
 
-    timeoutHandle && Meteor.clearTimeout(timeoutHandle);
+  timeoutHandle && Meteor.clearTimeout(timeoutHandle);
 
-    waiting.set(true);
+  waiting.set(true);
 
-    timeoutHandle = Meteor.setTimeout(function() {
-        waiting.set(false);
-        timeoutHandle = null;
-    }, 100); // Wait for 100 ms
+  timeoutHandle = Meteor.setTimeout(function() {
+    waiting.set(false);
+    timeoutHandle = null;
+  }, 100); // Wait for 100 ms
 };
 
 Template.registerHelper('forceReRender', function() {
-    return !waiting.get();
+  return !waiting.get();
 });

@@ -1,4 +1,4 @@
-Template.bellServiceTimepicker.rendered = function () {
+Template.bellServiceTimepicker.rendered = function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {

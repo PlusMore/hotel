@@ -1,4 +1,4 @@
-Template.transportationTimepicker.rendered = function () {
+Template.transportationTimepicker.rendered = function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
