@@ -1,6 +1,6 @@
 Meteor.methods({
   addHotelStaff: function(user) {
-    check(user, Schema.addHotelStaff);
+    check(user, Schema.HotelStaff);
 
     if (Roles.userIsInRole(Meteor.user(), ['hotel-manager', 'admin'])) {
       var roles = ['hotel-staff'];

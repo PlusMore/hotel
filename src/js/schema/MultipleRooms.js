@@ -1,4 +1,4 @@
-Schema.multipleRoomSchema = new SimpleSchema({
+Schema.MultipleRooms = new SimpleSchema({
   startNum: {
     type: Number,
     label: "Starting Room Number",

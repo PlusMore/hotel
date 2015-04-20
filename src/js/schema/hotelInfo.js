@@ -1,4 +1,4 @@
-Schema.hotelInfo = new SimpleSchema({
+Schema.HotelInfo = new SimpleSchema({
   hotelId: {
     type: String,
     optional: false

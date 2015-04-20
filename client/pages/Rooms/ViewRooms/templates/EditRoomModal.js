@@ -3,7 +3,7 @@ Template.EditRoomModal.helpers({
     return Rooms.findOne(Session.get('editRoomId'));
   },
   editRoomSchema: function() {
-    return Schema.editRoomSchema;
+    return Schema.RoomName;
   }
 });
 

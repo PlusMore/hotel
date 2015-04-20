@@ -9,7 +9,7 @@ Template.ConfigHouseKeeping.helpers({
     }
   },
   configureServiceSchema: function() {
-    return Schema.configureService;
+    return Schema.ServiceConfiguration;
   }
 });
 

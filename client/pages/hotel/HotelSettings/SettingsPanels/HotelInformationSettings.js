@@ -1,6 +1,6 @@
 Template.HotelInformationSettings.helpers({
   editHotelSchema: function() {
-    return Schema.hotelInfo;
+    return Schema.HotelInfo;
   }
 });
 

@@ -25,7 +25,7 @@ Template.ConfigBellService.helpers({
     }
   },
   configureServiceSchema: function() {
-    return Schema.configureService;
+    return Schema.ServiceConfiguration;
   }
 });
 

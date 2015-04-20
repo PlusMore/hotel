@@ -1,6 +1,6 @@
 Template.ConfigureRooms.helpers({
   multipleRoomSchema: function() {
-    return Schema.multipleRoomSchema;
+    return Schema.MultipleRooms;
   },
   singleRoomSchema: function() {
     return Schema.Room;

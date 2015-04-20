@@ -1,4 +1,4 @@
-Schema.configureService = new SimpleSchema({
+Schema.ServiceConfiguration = new SimpleSchema({
   _id: {
     type: String
   },

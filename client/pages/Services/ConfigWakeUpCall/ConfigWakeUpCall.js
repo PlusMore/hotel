@@ -25,7 +25,7 @@ Template.ConfigWakeUpCall.helpers({
     }
   },
   configureServiceSchema: function() {
-    return Schema.configureService;
+    return Schema.ServiceConfiguration;
   }
 });
 

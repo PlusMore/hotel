@@ -1,4 +1,4 @@
-Schema.menuCategoryDescriptionSchema = new SimpleSchema({
+Schema.MenuCategoryDescription = new SimpleSchema({
   _id: {
     type: String
   },

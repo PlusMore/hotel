@@ -1,4 +1,4 @@
-Schema.addHotelStaff = new SimpleSchema({
+Schema.HotelStaff = new SimpleSchema({
   hotelId: {
     type: String
   },

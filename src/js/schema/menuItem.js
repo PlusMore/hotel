@@ -1,4 +1,4 @@
-Schema.menuItem = new SimpleSchema({
+Schema.MenuItem = new SimpleSchema({
   name: {
     type: String,
     label: "Item Name",
@@ -24,4 +24,4 @@ Schema.menuItem = new SimpleSchema({
   }
 });
 
-MenuItems.attachSchema(Schema.menuItem);
+MenuItems.attachSchema(Schema.MenuItem);

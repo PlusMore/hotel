@@ -1,9 +1,9 @@
 Template.EditMenuCategory.helpers({
   menuCategoryAvailabilitySchema: function() {
-    return Schema.menuCategoryAvailability;
+    return Schema.MenuCategoryAvailability;
   },
   menuCategoryDescriptionSchema: function() {
-    return Schema.menuCategoryDescriptionSchema;
+    return Schema.MenuCategoryDescription;
   },
   isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''

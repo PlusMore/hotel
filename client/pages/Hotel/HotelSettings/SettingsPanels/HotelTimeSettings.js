@@ -1,6 +1,6 @@
 Template.HotelTimeSettings.helpers({
   defaultHotelTimesSchema: function() {
-    return Schema.HotelTimesSchema;
+    return Schema.HotelTimes;
   }
 });
 

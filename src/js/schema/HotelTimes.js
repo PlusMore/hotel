@@ -1,4 +1,4 @@
-Schema.HotelTimesSchema = new SimpleSchema({
+Schema.HotelTimes = new SimpleSchema({
   _id: {
     type: String
   },

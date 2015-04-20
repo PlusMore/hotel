@@ -1,4 +1,4 @@
-Schema.editRoomSchema = new SimpleSchema({
+Schema.RoomName = new SimpleSchema({
   roomId: {
     type: String
   },

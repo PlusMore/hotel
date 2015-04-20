@@ -1,6 +1,6 @@
 Meteor.methods({
   editHotelStaff: function(doc) {
-    check(doc, Schema.addHotelStaff);
+    check(doc, Schema.HotelStaff);
 
     var userId = doc.userId;
 
