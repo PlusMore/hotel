@@ -17,12 +17,12 @@ Meteor.methods({
       var userId = Accounts.createUser({
         email: user.email,
         roles: roles,
-        password: Meteor.uuid(),
         hotelId: user.hotelId,
         profile: profile
       });
 
       Accounts.sendEnrollmentEmail(userId, user.email);
+
       return {
         userId: userId,
         hotelId: user.hotelId
