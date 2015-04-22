@@ -1,30 +1,10 @@
 Template.HotelTimeSettings.helpers({
   defaultHotelTimesSchema: function() {
-    return Schema.HotelTimesSchema;
+    return Schema.HotelTimes;
   }
 });
 
-Schema.HotelTimesSchema = new SimpleSchema({
-  _id: {
-    type: String
-  },
-  arrivalTime: {
-    type: String,
-    label: 'Arrival Time'
-  },
-  departureTime: {
-    type: String,
-    label: 'Departure Time'
-  },
-  arrivalMinutes: {
-    type: Number
-  },
-  departureMinutes: {
-    type: Number
-  },
-});
-
-Template.HotelTimeSettings.rendered = function () {
+Template.HotelTimeSettings.rendered = function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {

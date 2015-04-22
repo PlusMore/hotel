@@ -4,7 +4,7 @@ Template.StaffDetailsModal.helpers({
     return Meteor.users.findOne(userId);
   },
   hotelStaffSchema: function() {
-    return Schema.addHotelStaff;
+    return Schema.HotelStaff;
   },
   hotelId: function() {
     return Meteor.user().hotelId || Session.get('hotelId');

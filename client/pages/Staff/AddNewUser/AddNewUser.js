@@ -1,6 +1,6 @@
 Template.AddNewUser.helpers({
   addHotelStaffSchema: function() {
-    return Schema.addHotelStaff;
+    return Schema.HotelStaff;
   },
   hotelId: function() {
     return Meteor.user().hotelId || Session.get('hotelId');

@@ -1,9 +1,9 @@
 Template.EditMenuCategory.helpers({
   menuCategoryAvailabilitySchema: function() {
-    return Schema.menuCategoryAvailability;
+    return Schema.MenuCategoryAvailability;
   },
   menuCategoryDescriptionSchema: function() {
-    return Schema.menuCategoryDescriptionSchema;
+    return Schema.MenuCategoryDescription;
   },
   isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''
@@ -13,7 +13,7 @@ Template.EditMenuCategory.helpers({
 });
 
 Template.EditMenuCategory.events({
-  'change #toggle-category-switch': function (e, tmpl) {
+  'change #toggle-category-switch': function(e, tmpl) {
 
     if (tmpl.$(e.currentTarget).prop('checked')) {
       Meteor.call('activateMenuCategory', this._id, function(err, res) {
@@ -35,12 +35,12 @@ Template.EditMenuCategory.events({
   },
   'click .btn-reset-availability': function(e, tmpl) {
     Meteor.call('resetCategoryAvailability', this._id, function(err, res) {
-        if (err) {
-          Messages.error(err);
-        } else {
-          Messages.success('Availability Reset!');
-        }
-      });
+      if (err) {
+        Messages.error(err);
+      } else {
+        Messages.success('Availability Reset!');
+      }
+    });
   },
   'click #add-menu-item': function(e) {
     e.preventDefault();
@@ -51,7 +51,7 @@ Template.EditMenuCategory.events({
   }
 });
 
-Template.EditMenuCategory.rendered = function () {
+Template.EditMenuCategory.rendered = function() {
   var roomServiceConfiguartion = this.data.serviceConfiguration;
 
   var startTime = moment().startOf('day');

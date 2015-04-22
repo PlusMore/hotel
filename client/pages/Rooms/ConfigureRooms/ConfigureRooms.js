@@ -1,28 +1,12 @@
 Template.ConfigureRooms.helpers({
   multipleRoomSchema: function() {
-    return Schema.multipleRoomSchema;
+    return Schema.MultipleRooms;
   },
   singleRoomSchema: function() {
     return Schema.Room;
   },
   hotelId: function() {
     return Session.get('hotelId');
-  }
-});
-
-Schema.multipleRoomSchema = new SimpleSchema({
-  startNum: {
-    type: Number,
-    label: "Starting Room Number",
-    min: 0
-  },
-  endNum: {
-    type: Number,
-    label: "Ending Room Number",
-    min: 1
-  },
-  hotelId: {
-    type: String
   }
 });
 
@@ -56,7 +40,10 @@ AutoForm.hooks({
   singleRoomForm: {
     before: {
       insert: function(doc) {
-        if (Rooms.find({hotelId: doc.hotelId, name: doc.name}).count() > 0) {
+        if (Rooms.find({
+            hotelId: doc.hotelId,
+            name: doc.name
+          }).count() > 0) {
           Messages.error('A room with this name (' + doc.name + ') already exists');
           return false;
         }

@@ -9,11 +9,11 @@ Template.ConfigRoomService.helpers({
     }
   },
   configureServiceSchema: function() {
-    return Schema.configureService;
+    return Schema.ServiceConfiguration;
   }
 });
 
-Template.roomServiceTimepicker.rendered = function () {
+Template.roomServiceTimepicker.rendered = function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {

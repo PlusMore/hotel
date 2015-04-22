@@ -3,7 +3,7 @@ Template.EditRoomModal.helpers({
     return Rooms.findOne(Session.get('editRoomId'));
   },
   editRoomSchema: function() {
-    return Schema.editRoomSchema;
+    return Schema.RoomName;
   }
 });
 
@@ -14,19 +14,6 @@ Template.EditRoomModal.events({
       Messages.success('Room Deleted');
       BootstrapModalPrompt.dismiss();
     }
-  }
-});
-
-Schema.editRoomSchema = new SimpleSchema({
-  roomId: {
-    type: String
-  },
-  name: {
-    type: String,
-    label: "Name"
-  },
-  hotelId: {
-    type: String
   }
 });
 

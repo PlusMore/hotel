@@ -9,7 +9,7 @@ Template.ConfigHouseKeeping.helpers({
     }
   },
   configureServiceSchema: function() {
-    return Schema.configureService;
+    return Schema.ServiceConfiguration;
   }
 });
 
@@ -35,7 +35,7 @@ Template.ConfigHouseKeeping.events({
   }
 });
 
-Template.houseKeepingTimepicker.rendered = function () {
+Template.houseKeepingTimepicker.rendered = function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {

@@ -1,211 +1,211 @@
 @import '/client/style/imports.import.less';
 
 .form-control {
-    border: 2px solid #e8ebed;
-    border-radius: 2px;
-    box-shadow: none;
-    height: 37px;
-    padding: 8px 12px 9px 12px; 
+  border: 2px solid #e8ebed;
+  border-radius: 2px;
+  box-shadow: none;
+  height: 37px;
+  padding: 8px 12px 9px 12px;
 }
 .form-control:focus {
-    background: #fff;
-    border-color:@primaryColor;
-    box-shadow: none; 
-} 
+  background: #fff;
+  border-color:@primaryColor;
+  box-shadow: none;
+}
 .form-horizontal .has-feedback .form-control-feedback {
   position: absolute;
   right: 15px;
   top: 12px;
 }
 select.input-sm, select.form-group-sm .form-control{
-    height:auto;
+  height:auto;
 }
-label.error {  
-    color: #fff;
-    background: @dangerColor;
-    border: solid thin #fff;
-    padding: 3px 5px;
-    width: 100%;
+label.error {
+  color: #fff;
+  background: @dangerColor;
+  border: solid thin #fff;
+  padding: 3px 5px;
+  width: 100%;
 }
 label.valid {
-    color: #fff;
-    background: @successColor;
-    border: solid thin #fff;
-    padding: 3px 5px;
+  color: #fff;
+  background: @successColor;
+  border: solid thin #fff;
+  padding: 3px 5px;
 }
 
 //wizard
 .wizard {
-    position: relative;
-    overflow: hidden;
-    background-color: #f9f9f9;
-    border: 1px solid #d4d4d4;
-    .roundBorders(4px);
-    *zoom: 1;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  position: relative;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  border: 1px solid #d4d4d4;
+  .roundBorders(4px);
+  *zoom: 1;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
 }
 .wizard:before, .wizard:after {
-    display: table;
-    line-height: 0;
-    content:"";
+  display: table;
+  line-height: 0;
+  content:"";
 }
 .wizard:after {
-    clear: both;
+  clear: both;
 }
 .wizard ul {
-    width: 4000px;
-    padding: 0;
-    margin: 0;
-    list-style: none outside none;
+  width: 4000px;
+  padding: 0;
+  margin: 0;
+  list-style: none outside none;
 }
 .wizard ul.previous-disabled li.complete {
-    cursor: default;
+  cursor: default;
 }
 .wizard ul.previous-disabled li.complete:hover {
-    color: #468847;
-    cursor: default;
-    background: #f3f4f5;
+  color: #468847;
+  cursor: default;
+  background: #f3f4f5;
 }
 .wizard ul.previous-disabled li.complete:hover .chevron:before {
-    border-left-color: #f3f4f5;
+  border-left-color: #f3f4f5;
 }
 .wizard ul li {
-    position: relative;
-    float: left;
-    height: 46px;
-    padding: 0 20px 0 30px;
-    margin: 0;
-    font-size: 16px;
-    line-height: 46px;
-    color: #999999;
-    cursor: default;
-    background: #ededed;
+  position: relative;
+  float: left;
+  height: 46px;
+  padding: 0 20px 0 30px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 46px;
+  color: #999999;
+  cursor: default;
+  background: #ededed;
 }
 .wizard ul li .chevron {
-    position: absolute;
-    top: 0;
-    right: -14px;
-    z-index: 1;
-    display: block;
-    border: 24px solid transparent;
-    border-right: 0;
-    border-left: 14px solid #d4d4d4;
+  position: absolute;
+  top: 0;
+  right: -14px;
+  z-index: 1;
+  display: block;
+  border: 24px solid transparent;
+  border-right: 0;
+  border-left: 14px solid #d4d4d4;
 }
 .wizard ul li .chevron:before {
-    position: absolute; 
-    top: -24px;
-    right: 1px;
-    display: block;
-    border: 24px solid transparent;
-    border-right: 0;
-    border-left: 14px solid #ededed;
-    content:"";
+  position: absolute;
+  top: -24px;
+  right: 1px;
+  display: block;
+  border: 24px solid transparent;
+  border-right: 0;
+  border-left: 14px solid #ededed;
+  content:"";
 }
 .wizard > ul.steps > li.complete {
-    color: @primaryColor;
-    background: #f3f4f5;
+  color: @primaryColor;
+  background: #f3f4f5;
 }
 .wizard ul li.complete:hover {
-    cursor: pointer;
-    background: #e1f2ef;
+  cursor: pointer;
+  background: #e1f2ef;
 }
 .wizard ul li.complete:hover .chevron:before {
-    border-left: 14px solid #e1f2ef;
+  border-left: 14px solid #e1f2ef;
 }
 .wizard ul li.complete .chevron:before {
-    border-left: 14px solid #f3f4f5;
+  border-left: 14px solid #f3f4f5;
 }
 .wizard ul li.active {
-    color:@primaryColor;
-    background: #fff;
+  color:@primaryColor;
+  background: #fff;
 }
 .wizard ul li.active .chevron:before {
-    border-left: 14px solid #fff;
+  border-left: 14px solid #fff;
 }
 .wizard ul li .badge {
-    margin-right: 8px;
-    border-radius: 30px;
+  margin-right: 8px;
+  border-radius: 30px;
 }
 .wizard ul li:first-child {
-    padding-left: 20px;
-    .roundBorders( 4px 0 0 4px);
+  padding-left: 20px;
+  .roundBorders( 4px 0 0 4px);
 }
 .wizard .actions {
-    position: initial;
-    z-index: 1000;
-    float: right;
-    padding-right: 15px;
-    padding-left: 15px;
-    line-height: 46px;
-    vertical-align: middle;
-    background-color: #e5e5e5;
-    border-left: 1px solid #d4d4d4;
+  position: initial;
+  z-index: 1000;
+  float: right;
+  padding-right: 15px;
+  padding-left: 15px;
+  line-height: 46px;
+  vertical-align: middle;
+  background-color: #e5e5e5;
+  border-left: 1px solid #d4d4d4;
 }
 .wizard .actions a {
-    margin-right: 8px;
-    font-size: 12px;
-    line-height: 45px;
+  margin-right: 8px;
+  font-size: 12px;
+  line-height: 45px;
 }
 .wizard .actions .btn-prev i {
-    margin-right: 5px;
-    // color:#fff;
+  margin-right: 5px;
+  // color:#fff;
 }
 .wizard .actions .btn-next i {
-    margin-left: 5px;
-    // color:#fff;
+  margin-left: 5px;
+  // color:#fff;
 }
 .wizard .actions .btn-prev[disabled] i {
-    color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.75);
 }
 .step-content .step-pane {
-    display: none;
+  display: none;
 }
 .step-content .active {
-    display: block;
+  display: block;
 }
 .step-content .active .btn-group .active {
-    display: inline-block;
+  display: inline-block;
 }
 .wizard .steps .badge.badge-info {
-    background-color: @primaryColor;
+  background-color: @primaryColor;
 }
 .wizard .steps .badge.badge-success {
-    background-color: @primaryColor;
+  background-color: @primaryColor;
 }
 .form-group .title {
-    text-align: right;
+  text-align: right;
 }
 
 //angular multi-file upload
 .drop-box {
-    background: #F8F8F8;
-    border: 5px dashed #DDD;
-    height: 205px; 
-    text-align: center;
-    padding-top: 25px;
-    margin-left: 20px;
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  height: 205px;
+  text-align: center;
+  padding-top: 25px;
+  margin-left: 20px;
 }
 
 .up-buttons {
-    float: left;
+  float: left;
 }
 
 .drop-box.dragover {
-    border: 5px dashed blue;
+  border: 5px dashed blue;
 }
 
 .drop-box.dragover-err {
-    border: 5px dashed red;
+  border: 5px dashed red;
 }
 
 //angular wizard
 .ng-wizard{
-    margin:10px 0;
-    h2{
-        margin:15px 0;
-    }
+  margin:10px 0;
+  h2{
+    margin:15px 0;
+  }
 }
 .rc-nav-wizard > li {
   float: left;
@@ -213,7 +213,7 @@ label.valid {
 }
 
 .rc-nav-wizard > li + li {
-  margin-left: 2px; 
+  margin-left: 2px;
 }
 
 .rc-nav-wizard > li > a {

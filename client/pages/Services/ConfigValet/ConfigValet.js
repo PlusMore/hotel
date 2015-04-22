@@ -1,4 +1,4 @@
-Template.valetTimepicker.rendered = function () {
+Template.valetTimepicker.rendered = function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -25,7 +25,7 @@ Template.ConfigValet.helpers({
     }
   },
   configureServiceSchema: function() {
-    return Schema.configureService;
+    return Schema.ServiceConfiguration;
   }
 });
 

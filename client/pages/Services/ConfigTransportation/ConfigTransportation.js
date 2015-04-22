@@ -1,4 +1,4 @@
-Template.transportationTimepicker.rendered = function () {
+Template.transportationTimepicker.rendered = function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -25,7 +25,7 @@ Template.ConfigTransportation.helpers({
     }
   },
   configureServiceSchema: function() {
-    return Schema.configureService;
+    return Schema.ServiceConfiguration;
   }
 });
 

@@ -1,4 +1,4 @@
-Template.wakeUpCallTimepicker.rendered = function () {
+Template.wakeUpCallTimepicker.rendered = function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -25,7 +25,7 @@ Template.ConfigWakeUpCall.helpers({
     }
   },
   configureServiceSchema: function() {
-    return Schema.configureService;
+    return Schema.ServiceConfiguration;
   }
 });
 
