@@ -306,7 +306,7 @@ Meteor.publish('menuItem', function(id) {
 Meteor.publish('usersForStayId', function(stayId) {
   var stay = Stays.findOne(stayId);
 
-  if (stay.users) {
+  if (stay && stay.users) {
     return Meteor.users.find({
       _id: {
         $in: stay.users
