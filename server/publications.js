@@ -278,11 +278,15 @@ Meteor.publish('menuItem', function(id) {
 Meteor.publish('usersForStayId', function(stayId) {
   var stay = Stays.findOne(stayId);
 
-  return Meteor.users.find({
-    _id: {
-      $in: stay.users
-    }
-  });
+  if (stay && stay.users) {
+    return Meteor.users.find({
+      _id: {
+        $in: stay.users
+      }
+    });
+  } else {
+    return null;
+  }
 });
 
 Meteor.publish("tabular_Orders", function(tableName, ids, fields) {
