@@ -214,17 +214,14 @@ TabularTables.Stays = new Tabular.Table({
   autoWidth: true,
   searching: false,
   pagingType: "simple",
-  extraFields: ['checkInDate', 'checkoutDate', 'zone', 'guestId','users'],
+  extraFields: ['checkInDate', 'checkoutDate', 'zone', 'guestId','users','preReg', 'active'],
+  language: {
+    emptyTable: "There are no stays to display."
+  },
   columns: [{
     title: "Room",
     data: "roomName",
-    render: function(val, type, doc) {
-      if (val) {
-        return val;
-      } else {
-        return 'N/A';
-      }
-    }
+    tmpl: Meteor.isClient && Template.StayRoomCell
   }, {
     title: "Check-In",
     tmpl: Meteor.isClient && Template.StayCheckInCell

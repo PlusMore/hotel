@@ -5,30 +5,65 @@ Template.GuestCheckInModal.helpers({
   hotelId: function() {
     return Session.get('hotelId');
   },
-  roomOptions: function () {
-    return Rooms.find({}, {$sort: {name: 1}}).map(function (room) {
-      var active = '';
-      if (room.stay() && room.stay().isActive()) {
-        active = ' (has active stay)';
+  roomOptions: function() {
+    var roomsCursor = Rooms.find({}, {
+      $sort: {
+        name: 1
       }
-      return {label: room.name + active, value: room._id};
+    });
+    var stays = Stays.find();
+    var rooms = roomsCursor.fetch();
+    var roomOptions = [];
+    if (rooms) {
+      _.each(rooms, function(room) {
+        var active = '';
+        if (room.stay() && room.stay().isActive()) {
+          active = ' (has active stay)';
+        }
+        roomOptions.push({
+          label: room.name + active,
+          value: room._id
+        });
+      });
+      return roomOptions;
+    }
+  },
+  preregisteredStays: function() {
+    var startDay = moment().startOf('day').toDate();
+    var endDay = moment().add(1, 'days').toDate();
+    return Stays.find({
+      active: false,
+      preReg: {
+        $exists: true
+      },
+      "preReg.startDate": {
+        $gte: startDay,
+        $lte: endDay
+      }
     });
   }
 });
 
+Template.GuestCheckInModal.created = function() {
+  var instance = this;
+
+  instance.autorun(function() {
+    var sub = Meteor.subscribe('preregisteredStaysForToday', Session.get('hotelId'));
+  });
+};
+
 Template.GuestCheckInModal.rendered = function() {
   Session.set('checkoutDate', undefined);
+  var hotel = Hotels.findOne(Session.get('hotelId'));
   // Set up datepicker
   this.$('[name=checkoutDate]').pickadate({
     container: $("#main-wrapper"),
     clear: false,
-    min: moment({
-      hour: 12,
-      minute: 0
-    }).add(1, 'days').toDate(),
+    min: moment().add(1, 'days').toDate(),
     onSet: function(date) {
       if (date.select) {
-        var selectedDate = moment(date.select).hour(12).minute(0).second(0).toDate();
+        var selectedDate = moment(date.select).startOf('day').toDate();
+        selectedDate.setMinutes(hotel.departureMinutes());
         Session.set('checkoutDate', {
           date: selectedDate,
           zone: moment(selectedDate).zone()
@@ -37,6 +72,39 @@ Template.GuestCheckInModal.rendered = function() {
     }
   });
 };
+
+Template.GuestCheckInModal.events({
+  'change #select-prereg-stay': function(e, tmpl) {
+    e.preventDefault();
+    if (tmpl.$(e.currentTarget).val() != "none") {
+      //preregistered stay selected, load stay details
+      var stayId = tmpl.$(e.currentTarget).val();
+      var stay = Stays.findOne(stayId);
+      tmpl.$('#preregId').val(stayId);
+      tmpl.$('#guestLastName').val(stay.preReg.guestLastName);
+      tmpl.$('#guestLastName').prop('readonly', true); // disable field
+      var setPicker = {
+        select: stay.preReg.endDate
+      };
+      tmpl.$('[name=checkoutDate]').pickadate('set', setPicker);
+      if (stay.preReg.guestEmail) {
+        tmpl.$('#guestEmail').val(stay.preReg.guestEmail);
+      }
+      if (stay.preReg.guestPhone) {
+        tmpl.$('#guestPhone').val(stay.preReg.guestPhone);
+      }
+    } else {
+      // preregister stay deselected, clear fields
+      tmpl.$('#preregId').val('');
+      tmpl.$('#guestLastName').val('');
+      tmpl.$('#guestLastName').prop('readonly', false);
+      tmpl.$('#guestPhone').val('');
+      tmpl.$('#guestEmail').val('');
+      tmpl.$('[name=checkoutDate]').pickadate('set', 'clear');
+      Session.set('checkoutDate', undefined);
+    }
+  }
+});
 
 AutoForm.hooks({
   guestCheckInModalForm: {

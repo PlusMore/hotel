@@ -1,0 +1,62 @@
+<template name="PreregisterStay">
+  {{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1><a href="{{pathFor 'Stays.View'}}" class="fa  fa-mail-reply"></a> Pre-Register Stay</h1>
+    {{/contentFor}}
+
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li>Stays</li>
+      <li class="active">Pre-Register Stay</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Pre-Register Stay</h3>
+            <div class="actions pull-right">
+              <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+          {{#autoForm schema=preregisterSchema id="preregisterStayForm" type="method" meteormethod="preregisterStay"}}
+            {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+            <div class="panel-body">
+              <p>Pre-registering a stay will make it easier to check-in guests on the day of their arrival.</p>
+              <div class="row">
+                <div class="col-sm-6">
+                  {{> afQuickField name='preReg.guestLastName'}}
+                </div>
+                <div class="col-sm-6">
+                  {{> afQuickField name='preReg.guestPhone'}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  {{> afQuickField name='preReg.guestEmail'}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  {{> afQuickField name='preReg.startDate' type="pickadate" pickadateOptions=pickadateOptions}}
+                </div>
+                <div class="col-sm-6">
+                  {{> afQuickField name='preReg.endDate' type="pickadate" pickadateOptions=pickadateOptions}}
+                </div>
+              </div>
+
+            </div>
+            <div class="panel-footer">
+              <button type="submit" class="btn btn-primary">Pre-Register Stay</button>
+            </div>
+          {{/autoForm}}
+        </div>
+      </div>
+    </div>
+    <!-- page content end -->
+
+  {{/Layout}}
+</template>
