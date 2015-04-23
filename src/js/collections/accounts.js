@@ -40,5 +40,8 @@ Meteor.users.helpers({
   },
   isManager: function() {
     return Roles.userIsInRole(this._id, ['hotel-manager', 'admin']);
+  },
+  isAdmin: function() {
+    return Roles.userIsInRole(this._id, ['admin']);
   }
 });

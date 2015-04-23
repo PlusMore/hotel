@@ -1,0 +1,21 @@
+<template name="AdminHotelSelect">
+  <div class="setting-list">
+    <div class="row">
+      <div class="col-xs-12">
+        {{#if Template.subscriptionsReady}}
+          <div class="form-group">
+            <select class="form-control input-sm" id='select-hotel'>
+              <option value="none">-- Select Hotel View --</option>
+              {{#each hotels}}
+                <option value="{{_id}}">{{name}}</option>
+              {{/each}}
+            </select>
+            <small class="pull-right">{{currentHotelOrNone}}</small>
+          </div>
+        {{else}}
+          <p>Loading...</p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>
