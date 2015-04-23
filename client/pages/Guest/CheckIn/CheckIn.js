@@ -1,4 +1,4 @@
-Template.CheckIn.helpers({
+Template.GuestCheckInPanelForm.helpers({
   guestCheckInSchema: function() {
     return Schema.GuestCheckIn;
   },
@@ -44,15 +44,18 @@ Template.CheckIn.helpers({
   }
 });
 
-Template.CheckIn.created = function() {
-  var instance = this;
+Template.CheckIn.onCreated(function() {
+  var self = this;
+  var now = Session.get('currentTime');
 
-  instance.autorun(function() {
-    var sub = Meteor.subscribe('preregisteredStaysForToday', Session.get('hotelId'));
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('preregisteredStaysForToday', hotel);
+    self.subscribe('roomsAndActiveStays', hotel, now);
   });
-};
+})
 
-Template.CheckIn.rendered = function() {
+Template.GuestCheckInPanelForm.rendered = function() {
   Session.set('checkoutDate', undefined);
   var hotel = Hotels.findOne(Session.get('hotelId'));
   // Set up datepicker
@@ -73,7 +76,7 @@ Template.CheckIn.rendered = function() {
   });
 };
 
-Template.CheckIn.events({
+Template.GuestCheckInPanelForm.events({
   'change #select-prereg-stay': function(e, tmpl) {
     e.preventDefault();
     if (tmpl.$(e.currentTarget).val() != "none") {

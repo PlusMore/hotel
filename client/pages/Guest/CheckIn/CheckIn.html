@@ -3,7 +3,6 @@
     {{#contentFor "header"}}
       <h1>Guest Check-In</h1>
     {{/contentFor}}
-
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
@@ -22,54 +21,63 @@
               <i class="fa fa-chevron-down"></i>
             </div>
           </div>
-          {{#autoForm id="guestCheckInForm" schema=guestCheckInSchema type="method" meteormethod="checkInGuest"}}
-            {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
-            {{> afFieldInput name='preregId' type='hidden' id="preregId"}}
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="form-group">
-                    <select class="form-control" id='select-prereg-stay'>
-                      <option value="none">-- Select Preregistered Stay (Optional) --</option>
-                      {{#each preregisteredStays}}
-                        <option value="{{_id}}">{{preReg.guestLastName}} ({{friendlyStartDate}} - {{friendlyEndDate}})</option>
-                      {{/each}}
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  {{> afQuickField name='guestFirstName'}}
-                </div>
-                <div class="col-sm-6">
-                  {{> afQuickField name='guestLastName' id="guestLastName"}}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-12">
-                  {{> afQuickField name='guestEmail' id="guestEmail"}}
-                </div>
-                <div class="col-xs-12">
-                  {{> afQuickField name='guestPhone' placeholder='xxx-xxx-xxxx' id="guestPhone"}}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  {{> afQuickField name='roomId' options=roomOptions}}
-                </div>
-                <div class="col-sm-6">
-                  {{> afQuickField name='checkoutDate' id="checkoutDate"}}
-                </div>
-              </div>
+          {{#if Template.subscriptionsReady}}
+            {{> GuestCheckInPanelForm}}
+          {{else}}
+            <div class="panel-body" style="min-height: 200px">
+              {{> spinner}}
             </div>
-            <div class="panel-footer">
-              <button type="submit" class="btn btn-primary">Check-In Guest</button>
-            </div>
-          {{/autoForm}}
+          {{/if}}
         </div>
       </div>
     </div>
 
   {{/Layout}}
+</template>
+
+<template name="GuestCheckInPanelForm">
+  {{#autoForm id="guestCheckInForm" schema=guestCheckInSchema type="method" meteormethod="checkInGuest"}}
+    {{> afFieldInput name='hotelId' type='hidden' value=hotelId}} {{> afFieldInput name='preregId' type='hidden' id="preregId"}}
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <select class="form-control" id='select-prereg-stay'>
+              <option value="none">-- Select Preregistered Stay (Optional) --</option>
+              {{#each preregisteredStays}}
+                <option value="{{_id}}">{{preReg.guestLastName}} ({{friendlyStartDate}} - {{friendlyEndDate}})</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          {{> afQuickField name='guestFirstName'}}
+        </div>
+        <div class="col-sm-6">
+          {{> afQuickField name='guestLastName' id="guestLastName"}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          {{> afQuickField name='guestEmail' id="guestEmail"}}
+        </div>
+        <div class="col-xs-12">
+          {{> afQuickField name='guestPhone' placeholder='xxx-xxx-xxxx' id="guestPhone"}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          {{> afQuickField name='roomId' options=roomOptions}}
+        </div>
+        <div class="col-sm-6">
+          {{> afQuickField name='checkoutDate' id="checkoutDate"}}
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button type="submit" class="btn btn-primary">Check-In Guest</button>
+    </div>
+  {{/autoForm}}
 </template>

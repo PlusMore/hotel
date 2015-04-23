@@ -18,17 +18,6 @@ Router.route('/', function() {
   this.render('Dashboard', {});
 }, {
   name: 'Dashboard',
-  waitOn: function() {
-    var hotelId = Session.get('hotelId');
-    if (hotelId) {
-      return [
-        Meteor.subscribe('dashboardWidgetInfo', hotelId)
-      ];
-    }
-  },
-  subscriptions: function() {
-    this.subscribe('roomsAndActiveStays', Session.get('hotelId'), Session.get('currentTime'));
-  },
   onBeforeAction: function() {
     if (Session.get('hotelId')) {
       this.next();
@@ -49,10 +38,7 @@ Router.route('/guest/check-in', function() {
   this.render('CheckIn', {});
 }, {
   name: "Guest.CheckIn",
-  controller: "HotelRequiredController",
-  subscriptions: function() {
-    this.subscribe('roomsAndActiveStays', Session.get('hotelId'), Session.get('currentTime'));
-  }
+  controller: "HotelRequiredController"
 });
 
 // ORDERS

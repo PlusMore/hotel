@@ -1,4 +1,4 @@
-Template.WeatherWidget.rendered = function() {
+Template.WeatherInfo.rendered = function() {
   var hotel = Hotels.findOne(Session.get('hotelId'));
 
   var options = {
@@ -22,3 +22,11 @@ Template.WeatherWidget.rendered = function() {
   Weather.options = options;
   Weather.load();
 };
+
+Template.WeatherWidget.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('hotelGeo', Session.get('hotelId'));
+  })
+});
