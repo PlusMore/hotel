@@ -13,9 +13,7 @@
     {{/contentFor}}
 
     <!-- page content -->
-    {{#unless Template.subscriptionsReady}}
-      {{> spinner}}
-    {{else}}
+    {{#if Template.subscriptionsReady}}
       <div class="row">
         <div class="col-xs-12">
           <div class="panel panel-default">
@@ -44,8 +42,9 @@
       {{#each amenities}}
         {{> HotelAmenity}}
       {{/each}}
-
-    {{/unless}}
+    {{else}}
+      {{> spinner}}
+    {{/if}}
 
   {{/Layout}}
 </template>
