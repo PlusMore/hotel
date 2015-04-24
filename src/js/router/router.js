@@ -163,12 +163,6 @@ Router.route('/config-services/room-service', function() {
 }, {
   name: "Services.ConfigRoomService",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
-      Meteor.subscribe('hotelMenu', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({

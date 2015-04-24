@@ -13,6 +13,15 @@ Template.ConfigRoomService.helpers({
   }
 });
 
+Template.ConfigRoomService.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('hotelService', 'roomService', hotel);
+    self.subscribe('hotelMenu', hotel);
+  });
+});
+
 Template.roomServiceTimepicker.rendered = function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
