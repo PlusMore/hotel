@@ -208,11 +208,6 @@ Router.route('/config-services/transportation', function() {
 }, {
   name: "Services.ConfigTransportation",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotelService', 'transportation', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({
@@ -228,11 +223,6 @@ Router.route('/config-services/wake-up-call', function() {
 }, {
   name: "Services.ConfigWakeUpCall",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotelService', 'wakeUpCall', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({
@@ -248,11 +238,6 @@ Router.route('/config-services/bell-service', function() {
 }, {
   name: "Services.ConfigBellService",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotelService', 'bellService', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({
@@ -268,11 +253,6 @@ Router.route('/config-services/valet', function() {
 }, {
   name: "Services.ConfigValet",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotelService', 'valetServices', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({

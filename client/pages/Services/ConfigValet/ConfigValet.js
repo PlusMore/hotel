@@ -14,6 +14,14 @@ Template.valetTimepicker.rendered = function() {
   });
 };
 
+Template.ConfigValet.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('hotelService', 'valetServices', hotel);
+  });
+});
+
 Template.ConfigValet.helpers({
   isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''
