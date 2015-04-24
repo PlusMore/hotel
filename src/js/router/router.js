@@ -155,13 +155,7 @@ Router.route('/config-services/amenities', function() {
   this.render('ConfigAmenities', {});
 }, {
   name: "Services.ConfigAmenities",
-  controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotelAmenities', Session.get('hotelId')),
-      Meteor.subscribe('amenityDetails', Session.get('hotelId'))
-    ];
-  }
+  controller: "HotelRequiredController"
 });
 
 Router.route('/config-services/room-service', function() {
