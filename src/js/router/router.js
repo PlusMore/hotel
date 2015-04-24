@@ -68,10 +68,7 @@ Router.route('/devices/config', function() {
   this.render('ConfigureDevices', {});
 }, {
   name: "Devices.Configure",
-  controller: "HotelRequiredController",
-  waitOn: function() {
-    return Meteor.subscribe('hotel', Session.get('hotelId'));
-  }
+  controller: "HotelRequiredController"
 });
 
 // ROOMS
@@ -88,10 +85,7 @@ Router.route('/rooms/config', function() {
   name: "Rooms.Configure",
   controller: "HotelRequiredController",
   waitOn: function() {
-    return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
-      Meteor.subscribe('roomNames', Session.get('hotelId'))
-    ];
+    return  Meteor.subscribe('roomNames', Session.get('hotelId'));
   }
 });
 
@@ -141,10 +135,7 @@ Router.route('/hotel/settings', function() {
   this.render('HotelSettings', {});
 }, {
   name: "Hotel.Settings",
-  controller: "HotelRequiredController",
-  waitOn: function() {
-    return Meteor.subscribe('hotel', Session.get('hotelId'));
-  }
+  controller: "HotelRequiredController"
 });
 
 // STAFF
@@ -170,7 +161,6 @@ Router.route('/config-services/amenities', function() {
   controller: "HotelRequiredController",
   waitOn: function() {
     return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
       Meteor.subscribe('hotelAmenities', Session.get('hotelId')),
       Meteor.subscribe('amenityDetails', Session.get('hotelId'))
     ];
@@ -184,7 +174,6 @@ Router.route('/config-services/room-service', function() {
   controller: "HotelRequiredController",
   waitOn: function() {
     return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
       Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
       Meteor.subscribe('hotelMenu', Session.get('hotelId'))
     ];
@@ -205,7 +194,6 @@ Router.route('/config-services/room-service/edit-menu-category/:_id', function()
   name: "Services.ConfigRoomService.EditMenuCategory",
   waitOn: function() {
     return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
       Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
       Meteor.subscribe('hotelMenu', Session.get('hotelId'))
     ];
@@ -228,7 +216,6 @@ Router.route('/config-services/house-keeping', function() {
   controller: "HotelRequiredController",
   waitOn: function() {
     return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
       Meteor.subscribe('hotelService', 'houseKeeping', Session.get('hotelId'))
     ];
   },
@@ -249,7 +236,6 @@ Router.route('/config-services/transportation', function() {
   controller: "HotelRequiredController",
   waitOn: function() {
     return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
       Meteor.subscribe('hotelService', 'transportation', Session.get('hotelId'))
     ];
   },
@@ -270,7 +256,6 @@ Router.route('/config-services/wake-up-call', function() {
   controller: "HotelRequiredController",
   waitOn: function() {
     return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
       Meteor.subscribe('hotelService', 'wakeUpCall', Session.get('hotelId'))
     ];
   },
@@ -291,7 +276,6 @@ Router.route('/config-services/bell-service', function() {
   controller: "HotelRequiredController",
   waitOn: function() {
     return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
       Meteor.subscribe('hotelService', 'bellService', Session.get('hotelId'))
     ];
   },
@@ -312,7 +296,6 @@ Router.route('/config-services/valet', function() {
   controller: "HotelRequiredController",
   waitOn: function() {
     return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
       Meteor.subscribe('hotelService', 'valetServices', Session.get('hotelId'))
     ];
   },
