@@ -83,10 +83,7 @@ Router.route('/rooms/config', function() {
   this.render('ConfigureRooms', {});
 }, {
   name: "Rooms.Configure",
-  controller: "HotelRequiredController",
-  waitOn: function() {
-    return  Meteor.subscribe('roomNames', Session.get('hotelId'));
-  }
+  controller: "HotelRequiredController"
 });
 
 // STAYS
