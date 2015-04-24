@@ -177,12 +177,6 @@ Router.route('/config-services/room-service/edit-menu-category/:_id', function()
   this.render('EditMenuCategory', {});
 }, {
   name: "Services.ConfigRoomService.EditMenuCategory",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
-      Meteor.subscribe('hotelMenu', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       serviceConfiguration: HotelServices.findOne({
