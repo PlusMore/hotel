@@ -193,11 +193,6 @@ Router.route('/config-services/house-keeping', function() {
 }, {
   name: "Services.ConfigHouseKeeping",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotelService', 'houseKeeping', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({

@@ -13,6 +13,14 @@ Template.ConfigHouseKeeping.helpers({
   }
 });
 
+Template.ConfigHouseKeeping.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('hotelService', 'houseKeeping', hotel);
+  });
+});
+
 Template.ConfigHouseKeeping.events({
   'change #toggle-housekeeping-switch': function(e, tmpl) {
     if (tmpl.$(e.currentTarget).prop('checked')) {
