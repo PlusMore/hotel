@@ -1,6 +1,22 @@
 <template name="LeftSidebarSettings">
-  {{#if currentUser.isAdmin}}
-    <h5 class="sidebar-header">Admin Settings</h5>
-    {{> AdminHotelSelect}}
-  {{/if}}
+  {{#with currentUser}}
+    {{#if isAdmin}}
+      <h5 class="sidebar-header">Admin Settings</h5>
+      {{> AdminHotelSelect}}
+    {{/if}}
+    {{#if isInAnyGroups}}
+      <h5 class="sidebar-header">Groups</h5>
+      <div class="setting-list">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul class='list-unstyled'>
+              {{#each memberOfGroups}}
+                <li><small><strong>{{name}}</strong></small></li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  {{/with}}
 </template>

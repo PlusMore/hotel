@@ -1,7 +1,5 @@
-Template.Account.helpers({
-  user: function() {
-    return Meteor.user();
-  }
+Template.Account.onCreated(function() {
+  this.subscribe('groups', Session.get('hotelId'));
 });
 
 Template.Account.events({

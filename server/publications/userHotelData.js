@@ -20,6 +20,9 @@ Meteor.publish('userHotelData', function(hotelId) {
         }),
         Hotels.find({
           _id: hotelId
+        }),
+        Groups.find({
+          hotelId: hotelId
         })
       ];
     } else {

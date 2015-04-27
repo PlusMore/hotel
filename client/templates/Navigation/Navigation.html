@@ -43,11 +43,23 @@
             {{{hotelRequiredBadge}}}
           </a>
         </li>
-        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Staff'}}" data-state="Staff">
-          <a href="{{pathFor 'Staff.View'}}" title="View Staff">
-            <i class="fa  fa-fw fa-user"></i> Staff
+        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Staff'}} {{currentRouteClass 'Staff'}}" data-state="Staff" >
+          <a href="#" title="Staff">
+            <i class="fa  fa-fw fa-group"></i> Staff
             {{{hotelRequiredBadge}}}
           </a>
+          <ul class="nav-sub {{navSubStateClass 'Staff'}}">
+            <li class="{{currentRouteClass 'Staff.View'}}" data-state="Staff.View">
+              <a href="{{pathFor 'Staff.View'}}" title="View Staff">
+                View Staff
+              </a>
+            </li>
+            <li class="{{currentRouteClass 'Staff.Groups'}}" data-state="Staff.Groups">
+              <a href="{{pathFor 'Staff.Groups'}}" title="Manage Groups">
+                Manage Groups
+              </a>
+            </li>
+          </ul>
         </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Services'}} {{currentRouteClass 'Services'}}" data-state="Services" >
           <a href="#" title="Services">

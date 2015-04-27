@@ -7,6 +7,9 @@ Template.AdminHotelSelect.helpers({
       return "Selected: " + Session.get('hotelName');
     }
     return "Selected: None";
+  },
+  user: function() {
+    return Meteor.user();
   }
 });
 

@@ -43,5 +43,15 @@ Meteor.users.helpers({
   },
   isAdmin: function() {
     return Roles.userIsInRole(this._id, ['admin']);
+  },
+  isInGroup: function(groupId) {
+    var memberIds = Groups.findOne(groupId).memberIds;
+    return _.contains(memberIds, this._id);
+  },
+  isInAnyGroups: function() {
+    return Groups.find({memberIds: this._id}).count() > 0;
+  },
+  memberOfGroups: function() {
+    return Groups.find({memberIds: this._id});
   }
 });

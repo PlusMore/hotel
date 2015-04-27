@@ -138,6 +138,13 @@ Router.route('/staff/add', function() {
   controller: "HotelRequiredController"
 });
 
+Router.route('/staff/groups', function() {
+  this.render('ManageGroups', {});
+}, {
+  name: "Staff.Groups",
+  controller: "HotelRequiredController"
+});
+
 // SERVICES
 Router.route('/config-services/amenities', function() {
   this.render('ConfigAmenities', {});
