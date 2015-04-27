@@ -4,6 +4,16 @@ Template.ManageGroups.helpers({
   }
 });
 
+Template.ManageGroups.onCreated(function() {
+  var self = this;
+
+  self.autorun(function() {
+    var hotelId = Session.get('hotelId');
+    self.subscribe('groups', hotelId);
+    self.subscribe('hotelUsers', hotelId);
+  });
+});
+
 Template.ManageGroups.events({
 	'click #create-new-group': function(e) {
 		e.preventDefault();

@@ -180,13 +180,7 @@ Router.route('/staff/groups', function() {
   this.render('ManageGroups', {});
 }, {
   name: "Staff.Groups",
-  controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('groups', Session.get('hotelId')),
-      Meteor.subscribe('hotelUsers', Session.get('hotelId'))
-    ];
-  }
+  controller: "HotelRequiredController"
 });
 
 // SERVICES
