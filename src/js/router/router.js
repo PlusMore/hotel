@@ -121,33 +121,21 @@ Router.route('/stays/', function() {
   this.render('ViewStays', {});
 }, {
   name: "Stays.View",
-  controller: "HotelRequiredController",
-  onBeforeAction: function() {
-    forceReRender();
-    this.next();
-  }
+  controller: "HotelRequiredController"
 });
 
 Router.route('/stays/history', function() {
   this.render('StayHistory', {});
 }, {
   name: "Stays.History",
-  controller: "HotelRequiredController",
-  onBeforeAction: function() {
-    forceReRender();
-    this.next();
-  }
+  controller: "HotelRequiredController"
 });
 
 Router.route('/stays/upcoming', function() {
   this.render('UpcomingStays', {});
 }, {
   name: "Stays.Upcoming",
-  controller: "HotelRequiredController",
-  onBeforeAction: function() {
-    forceReRender();
-    this.next();
-  }
+  controller: "HotelRequiredController"
 });
 
 // HOTEL
