@@ -46,10 +46,10 @@ Template.GuestCheckInModal.helpers({
 
 Template.GuestCheckInModal.onCreated(function() {
   var self = this;
+  var now = Session.get('currentTime');
 
   self.autorun(function() {
     var hotel = Session.get('hotelId');
-    var now = Session.get('currentTime');
     self.subscribe('preregisteredStaysForToday', hotel);
     self.subscribe('roomsAndActiveStays', hotel, now);
   });
