@@ -18,17 +18,6 @@ Router.route('/', function() {
   this.render('Dashboard', {});
 }, {
   name: 'Dashboard',
-  waitOn: function() {
-    var hotelId = Session.get('hotelId');
-    if (hotelId) {
-      return [
-        Meteor.subscribe('dashboardWidgetInfo', hotelId)
-      ];
-    }
-  },
-  subscriptions: function() {
-    this.subscribe('roomsAndActiveStays', Session.get('hotelId'), Session.get('currentTime'));
-  },
   onBeforeAction: function() {
     if (Session.get('hotelId')) {
       this.next();
@@ -49,10 +38,7 @@ Router.route('/guest/check-in', function() {
   this.render('CheckIn', {});
 }, {
   name: "Guest.CheckIn",
-  controller: "HotelRequiredController",
-  subscriptions: function() {
-    this.subscribe('roomsAndActiveStays', Session.get('hotelId'), Session.get('currentTime'));
-  }
+  controller: "HotelRequiredController"
 });
 
 // ORDERS
@@ -82,10 +68,7 @@ Router.route('/devices/config', function() {
   this.render('ConfigureDevices', {});
 }, {
   name: "Devices.Configure",
-  controller: "HotelRequiredController",
-  waitOn: function() {
-    return Meteor.subscribe('hotel', Session.get('hotelId'));
-  }
+  controller: "HotelRequiredController"
 });
 
 // ROOMS
@@ -100,13 +83,7 @@ Router.route('/rooms/config', function() {
   this.render('ConfigureRooms', {});
 }, {
   name: "Rooms.Configure",
-  controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
-      Meteor.subscribe('roomNames', Session.get('hotelId'))
-    ];
-  }
+  controller: "HotelRequiredController"
 });
 
 // STAYS
@@ -121,33 +98,21 @@ Router.route('/stays/', function() {
   this.render('ViewStays', {});
 }, {
   name: "Stays.View",
-  controller: "HotelRequiredController",
-  onBeforeAction: function() {
-    forceReRender();
-    this.next();
-  }
+  controller: "HotelRequiredController"
 });
 
 Router.route('/stays/history', function() {
   this.render('StayHistory', {});
 }, {
   name: "Stays.History",
-  controller: "HotelRequiredController",
-  onBeforeAction: function() {
-    forceReRender();
-    this.next();
-  }
+  controller: "HotelRequiredController"
 });
 
 Router.route('/stays/upcoming', function() {
   this.render('UpcomingStays', {});
 }, {
   name: "Stays.Upcoming",
-  controller: "HotelRequiredController",
-  onBeforeAction: function() {
-    forceReRender();
-    this.next();
-  }
+  controller: "HotelRequiredController"
 });
 
 // HOTEL
@@ -155,10 +120,7 @@ Router.route('/hotel/settings', function() {
   this.render('HotelSettings', {});
 }, {
   name: "Hotel.Settings",
-  controller: "HotelRequiredController",
-  waitOn: function() {
-    return Meteor.subscribe('hotel', Session.get('hotelId'));
-  }
+  controller: "HotelRequiredController"
 });
 
 // STAFF
@@ -188,14 +150,7 @@ Router.route('/config-services/amenities', function() {
   this.render('ConfigAmenities', {});
 }, {
   name: "Services.ConfigAmenities",
-  controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
-      Meteor.subscribe('hotelAmenities', Session.get('hotelId')),
-      Meteor.subscribe('amenityDetails', Session.get('hotelId'))
-    ];
-  }
+  controller: "HotelRequiredController"
 });
 
 Router.route('/config-services/room-service', function() {
@@ -203,13 +158,6 @@ Router.route('/config-services/room-service', function() {
 }, {
   name: "Services.ConfigRoomService",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
-      Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
-      Meteor.subscribe('hotelMenu', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({
@@ -224,13 +172,6 @@ Router.route('/config-services/room-service/edit-menu-category/:_id', function()
   this.render('EditMenuCategory', {});
 }, {
   name: "Services.ConfigRoomService.EditMenuCategory",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
-      Meteor.subscribe('hotelService', 'roomService', Session.get('hotelId')),
-      Meteor.subscribe('hotelMenu', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       serviceConfiguration: HotelServices.findOne({
@@ -247,12 +188,6 @@ Router.route('/config-services/house-keeping', function() {
 }, {
   name: "Services.ConfigHouseKeeping",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
-      Meteor.subscribe('hotelService', 'houseKeeping', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({
@@ -268,12 +203,6 @@ Router.route('/config-services/transportation', function() {
 }, {
   name: "Services.ConfigTransportation",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
-      Meteor.subscribe('hotelService', 'transportation', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({
@@ -289,12 +218,6 @@ Router.route('/config-services/wake-up-call', function() {
 }, {
   name: "Services.ConfigWakeUpCall",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
-      Meteor.subscribe('hotelService', 'wakeUpCall', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({
@@ -310,12 +233,6 @@ Router.route('/config-services/bell-service', function() {
 }, {
   name: "Services.ConfigBellService",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
-      Meteor.subscribe('hotelService', 'bellService', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({
@@ -331,12 +248,6 @@ Router.route('/config-services/valet', function() {
 }, {
   name: "Services.ConfigValet",
   controller: "HotelRequiredController",
-  waitOn: function() {
-    return [
-      Meteor.subscribe('hotel', Session.get('hotelId')),
-      Meteor.subscribe('hotelService', 'valetServices', Session.get('hotelId'))
-    ];
-  },
   data: function() {
     return {
       configuration: HotelServices.findOne({

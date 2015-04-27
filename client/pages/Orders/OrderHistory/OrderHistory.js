@@ -1,7 +1,3 @@
-Template.OrderHistory.rendered = function() {
-  this.$('table').parent().addClass('table-responsive');
-};
-
 Template.OrderHistory.helpers({
   selector: function() {
     var user = Meteor.user();
@@ -12,4 +8,9 @@ Template.OrderHistory.helpers({
       handledBy: 'hotel'
     };
   }
+});
+
+Template.OrderHistory.onCreated(function() {
+  // this prevents weirdness due to tabular's nonreactive selector
+  forceReRender();
 });

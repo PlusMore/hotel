@@ -13,6 +13,7 @@
     {{/contentFor}}
 
     <!-- page content -->
+    {{#if Template.subscriptionsReady}}
     <div class="row">
       <div class="col-xs-12">
         <div class="panel panel-default">
@@ -80,6 +81,9 @@
         </div>
       </div>
     </div>
+    {{else}}
+      {{> spinner}}
+    {{/if}}
 
   {{/Layout}}
 </template>

@@ -1,22 +1,8 @@
 <template name="LeftSidebarSettings">
-  {{#with user}}
+  {{#with currentUser}}
     {{#if isAdmin}}
       <h5 class="sidebar-header">Admin Settings</h5>
-      <div class="setting-list">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-group">
-              <select class="form-control input-sm" id='select-hotel'>
-                <option value="none">-- Select Hotel View --</option>
-                {{#each hotels}}
-                  <option value="{{_id}}">{{name}}</option>
-                {{/each}}
-              </select>
-              <small class="pull-right">{{currentHotelOrNone}}</small>
-            </div>
-          </div>
-        </div>
-      </div>
+      {{> AdminHotelSelect}}
     {{/if}}
     {{#if isInAnyGroups}}
       <h5 class="sidebar-header">Groups</h5>

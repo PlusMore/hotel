@@ -5,13 +5,23 @@
         <h3 class="panel-title">Current Occupancy</h3>
       </div>
       <div class="panel-body widget-gauge">
-        <canvas width="160" height="100" id="gauge" class=""></canvas>
-        <div class="goal-wrapper">
-          <span id="gauge-text" class="gauge-value pull-left">0</span>
-          <span class="gauge-value pull-left">&nbsp;Stays</span>
-          <span id="goal-text" class="goal-value pull-right"><a href="{{pathFor 'Rooms.View'}}">{{getPublishedCount 'total-rooms'}} Rooms</a></span>
-        </div>
+        {{#if Template.subscriptionsReady}}
+          {{> ActiveStaysGauge}}
+          <div class="goal-wrapper">
+            <span id="gauge-text" class="gauge-value pull-left">0</span>
+            <span class="gauge-value pull-left">&nbsp;Stays</span>
+            <span id="goal-text" class="goal-value pull-right"><a href="{{pathFor 'Rooms.View'}}">{{getPublishedCount 'total-rooms'}} Rooms</a></span>
+          </div>
+        {{else}}
+          <div style="min-height: 136px">
+            {{> spinner}}
+          </div>
+        {{/if}}
       </div>
     </div>
   </a>
+</template>
+
+<template name="ActiveStaysGauge">
+  <canvas width="160" height="100" id="gauge" class=""></canvas>
 </template>

@@ -1,12 +1,6 @@
-Template.LeftSidebarSettings.helpers({
-  isAdmin: function() {
-    return Roles.userIsInRole(Meteor.user(), 'admin');
-  },
+Template.AdminHotelSelect.helpers({
   hotels: function() {
-    if (Roles.userIsInRole(Meteor.user(), 'admin')) {
-      Meteor.subscribe('hotelsAdminSelect');
-      return Hotels.find();
-    }
+    return Hotels.find({}, {sort: {name: 1}});
   },
   currentHotelOrNone: function() {
     if (Session.get('hotelName')) {
@@ -19,7 +13,11 @@ Template.LeftSidebarSettings.helpers({
   }
 });
 
-Template.LeftSidebarSettings.events({
+Template.AdminHotelSelect.onCreated(function() {
+  this.subscribe('hotelsAdminSelect');
+});
+
+Template.AdminHotelSelect.events({
   'change #select-hotel': function(e, tmpl) {
     e.preventDefault();
     if (tmpl.$(e.currentTarget).val() != "none") {

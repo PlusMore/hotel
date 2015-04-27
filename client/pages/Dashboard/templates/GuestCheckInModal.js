@@ -44,13 +44,16 @@ Template.GuestCheckInModal.helpers({
   }
 });
 
-Template.GuestCheckInModal.created = function() {
-  var instance = this;
+Template.GuestCheckInModal.onCreated(function() {
+  var self = this;
+  var now = Session.get('currentTime');
 
-  instance.autorun(function() {
-    var sub = Meteor.subscribe('preregisteredStaysForToday', Session.get('hotelId'));
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('preregisteredStaysForToday', hotel);
+    self.subscribe('roomsAndActiveStays', hotel, now);
   });
-};
+})
 
 Template.GuestCheckInModal.rendered = function() {
   Session.set('checkoutDate', undefined);

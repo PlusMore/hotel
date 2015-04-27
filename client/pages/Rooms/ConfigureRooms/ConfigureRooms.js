@@ -10,6 +10,15 @@ Template.ConfigureRooms.helpers({
   }
 });
 
+Template.ConfigureRooms.onCreated(function() {
+  var self = this;
+
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('roomNames', Session.get('hotelId'));
+  })
+});
+
 AutoForm.hooks({
   multipleRoomForm: {
     before: {
