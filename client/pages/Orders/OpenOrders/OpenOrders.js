@@ -9,3 +9,8 @@ Template.OpenOrders.helpers({
     };
   }
 });
+
+Template.OpenOrders.onCreated(function() {
+  // this prevents weirdness due to tabular's nonreactive selector
+  forceReRender();
+});

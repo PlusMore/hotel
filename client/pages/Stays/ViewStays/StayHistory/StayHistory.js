@@ -14,3 +14,8 @@ Template.StayHistory.helpers({
     };
   }
 });
+
+Template.StayHistory.onCreated(function() {
+  // this prevents weirdness due to tabular's nonreactive selector
+  forceReRender();
+});
