@@ -4,7 +4,7 @@ Template.ActiveStaysWidget.helpers({
   }
 });
 
-Template.ActiveStaysWidget.rendered = function() {
+Template.ActiveStaysGauge.rendered = function() {
   var self = this;
   var opts = {
     lines: 12, // The number of lines to draw
@@ -37,3 +37,11 @@ Template.ActiveStaysWidget.rendered = function() {
   });
   gauge.setTextField(document.getElementById("gauge-text"));
 };
+
+Template.ActiveStaysWidget.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('activeStaysWidget', Session.get('hotelId'));
+  })
+});

@@ -14,6 +14,14 @@ Template.bellServiceTimepicker.rendered = function() {
   });
 };
 
+Template.ConfigBellService.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('hotelService', 'bellService', hotel);
+  });
+});
+
 Template.ConfigBellService.helpers({
   isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''

@@ -14,6 +14,14 @@ Template.transportationTimepicker.rendered = function() {
   });
 };
 
+Template.ConfigTransportation.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('hotelService', 'transportation', hotel);
+  });
+});
+
 Template.ConfigTransportation.helpers({
   isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''

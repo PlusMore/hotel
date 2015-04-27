@@ -14,6 +14,14 @@ Template.wakeUpCallTimepicker.rendered = function() {
   });
 };
 
+Template.ConfigWakeUpCall.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('hotelService', 'wakeUpCall', hotel);
+  });
+});
+
 Template.ConfigWakeUpCall.helpers({
   isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''

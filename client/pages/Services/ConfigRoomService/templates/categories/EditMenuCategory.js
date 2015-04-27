@@ -12,6 +12,15 @@ Template.EditMenuCategory.helpers({
   }
 });
 
+Template.EditMenuCategory.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('hotelService', 'roomService', hotel);
+    self.subscribe('hotelMenu', hotel);
+  });
+});
+
 Template.EditMenuCategory.events({
   'change #toggle-category-switch': function(e, tmpl) {
 
@@ -51,7 +60,7 @@ Template.EditMenuCategory.events({
   }
 });
 
-Template.EditMenuCategory.rendered = function() {
+Template.EditMenuCategoryTimepicker.rendered = function() {
   var roomServiceConfiguartion = this.data.serviceConfiguration;
 
   var startTime = moment().startOf('day');
