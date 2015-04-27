@@ -1,21 +1,18 @@
-Template.EditTeamModal.helpers({
-  updateTeamSchema: function() {
-    return Schema.Team;
+Template.CreateGroupModal.helpers({
+  createNewGroupSchema: function() {
+      return Schema.Group;
   },
   hotelId: function() {
     return Session.get('hotelId');
-  },
-  team: function() {
-    return Teams.findOne(Session.get('updateTeamId'));
   }
 });
 
 AutoForm.hooks({
-  updateTeamForm: {
+  addNewGroupForm: {
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result, template) {
-      Messages.success('Successfully updated team!');
+      Messages.success('Successfully created group!');
       BootstrapModalPrompt.dismiss();
     },
 

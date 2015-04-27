@@ -41,14 +41,14 @@ Meteor.users.helpers({
   isManager: function() {
     return Roles.userIsInRole(this._id, ['hotel-manager', 'admin']);
   },
-  isInTeam: function(teamId) {
-    var memberIds = Teams.findOne(teamId).memberIds;
+  isInGroup: function(groupId) {
+    var memberIds = Groups.findOne(groupId).memberIds;
     return _.contains(memberIds, this._id);
   },
-  isInAnyTeams: function() {
-    return Teams.find({memberIds: this._id}).count() > 0;
+  isInAnyGroups: function() {
+    return Groups.find({memberIds: this._id}).count() > 0;
   },
-  memberOfTeams: function() {
-    return Teams.find({memberIds: this._id});
+  memberOfGroups: function() {
+    return Groups.find({memberIds: this._id});
   }
 });

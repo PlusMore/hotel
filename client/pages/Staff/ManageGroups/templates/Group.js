@@ -1,9 +1,9 @@
-Template.Team.helpers({
-  addUserToTeamSchema: function() {
-    return Schema.userForTeam;
+Template.Group.helpers({
+  addUserToGroupSchema: function() {
+    return Schema.userForGroup;
   },
   staffOptions: function() {
-    var memberIds = Teams.findOne(this._id).memberIds;
+    var memberIds = Groups.findOne(this._id).memberIds;
     var usersCursor = Meteor.users.find({
       hotelId: Session.get('hotelId')
     }, {
@@ -25,58 +25,48 @@ Template.Team.helpers({
     });
     return staffOptions;
   },
-  teamId: function() {
+  groupId: function() {
     return this._id;
   }
 });
 
-Template.Team.events({
-  'click #remove-member-from-team': function(e, tmpl) {
+Template.Group.events({
+  'click #remove-member-from-group': function(e, tmpl) {
     e.preventDefault();
     if (confirm('Are you sure?')) {
       var userId = this._id;
-      var teamId = tmpl.data._id;
-      Meteor.call('removeUserFromTeam', userId, teamId, function(err, res) {
-        Messages.success(res.userName + ' successfully removed from ' + res.teamName + ' team!');
+      var groupId = tmpl.data._id;
+      Meteor.call('removeUserFromGroup', userId, groupId, function(err, res) {
+        Messages.success(res.userName + ' successfully removed from ' + res.groupName + ' group!');
       });
     }
   },
-  'click #remove-team': function(e) {
+  'click #remove-group': function(e) {
     e.preventDefault();
     if (confirm('Are you sure?')) {
-      Meteor.call('removeTeam', this._id, function(err, res) {
-        Messages.success('Successfully removed team!');
+      Meteor.call('removeGroup', this._id, function(err, res) {
+        Messages.success('Successfully removed group!');
       });
       return true;
     } else {
       return false;
     }
   },
-  'click #edit-team': function(e) {
+  'click #edit-group': function(e) {
     e.preventDefault();
-    Session.set('updateTeamId', this._id);
+    Session.set('updateGroupId', this._id);
     BootstrapModalPrompt.prompt({
-      dialogTemplate: Template.EditTeamModal
+      dialogTemplate: Template.EditGroupModal
     });
   }
 });
 
-// An array of objects is hard in autoform until updated to 5.0.0, so a meteor method will be used until then
-Schema.userForTeam = new SimpleSchema({
-  teamId: {
-    type: String
-  },
-  userId: {
-    type: String
-  }
-});
-
 AutoForm.hooks({
-  insertTeamMember: {
+  insertGroupMember: {
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result, template) {
-      Messages.success('Successfully added ' + result + ' to the team!');
+      Messages.success('Successfully added ' + result + ' to the group!');
     },
 
     // Called when any operation fails, where operation will be

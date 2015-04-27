@@ -18,13 +18,13 @@
         </div>
       </div>
     {{/if}}
-    {{#if isInAnyTeams}}
-      <h5 class="sidebar-header">Teams</h5>
+    {{#if isInAnyGroups}}
+      <h5 class="sidebar-header">Groups</h5>
       <div class="setting-list">
         <div class="row">
           <div class="col-xs-12">
             <ul class='list-unstyled'>
-              {{#each memberOfTeams}}
+              {{#each memberOfGroups}}
                 <li><small><strong>{{name}}</strong></small></li>
               {{/each}}
             </ul>

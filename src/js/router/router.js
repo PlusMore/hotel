@@ -176,15 +176,14 @@ Router.route('/staff/add', function() {
   controller: "HotelRequiredController"
 });
 
-// TEAMS
-Router.route('/teams/', function() {
-  this.render('ManageTeams', {});
+Router.route('/staff/groups', function() {
+  this.render('ManageGroups', {});
 }, {
-  name: "Teams.Manage",
+  name: "Staff.Groups",
   controller: "HotelRequiredController",
   waitOn: function() {
     return [
-      Meteor.subscribe('teams', Session.get('hotelId')),
+      Meteor.subscribe('groups', Session.get('hotelId')),
       Meteor.subscribe('hotelUsers', Session.get('hotelId'))
     ];
   }

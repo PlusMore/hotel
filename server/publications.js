@@ -29,7 +29,7 @@ Meteor.publish('userHotelData', function(hotelId) {
         Hotels.find({
           _id: hotelId
         }),
-        Teams.find({
+        Groups.find({
           hotelId: hotelId
         })
       ];
@@ -65,15 +65,15 @@ Meteor.publish('tags', function(collectionName) {
   });
 });
 
-Meteor.publish('teams', function(hotelId) {
-  return Teams.find({
+Meteor.publish('groups', function(hotelId) {
+  return Groups.find({
     hotelId: hotelId
   });
 });
 
-Meteor.publish('teamDetails', function(teamId) {
-  return Teams.find({
-    _id: teamId
+Meteor.publish('groupDetails', function(groupId) {
+  return Groups.find({
+    _id: groupId
   });
 });
 
@@ -332,20 +332,20 @@ Meteor.publish('usersForStayId', function(stayId) {
   }
 });
 
-Meteor.publish('usersForTeamId', function(teamId) {
-  var team = Teams.findOne(teamId);
+Meteor.publish('usersForGroupId', function(groupId) {
+  var group = Groups.findOne(groupId);
 
-  if (team && team.membersId && team.membersId.length > 0) {
+  if (group && group.membersId && group.membersId.length > 0) {
     return Meteor.users.find({
       _id: {
-        $in: team.memberIds
+        $in: group.memberIds
       }
     });
   }
 });
 
-Meteor.publish('teamsForUserId', function(userId) {
-  return Teams.find({memberIds: userId});
+Meteor.publish('groupsForUserId', function(userId) {
+  return Groups.find({memberIds: userId});
 });
 
 Meteor.publish("tabular_Orders", function(tableName, ids, fields) {

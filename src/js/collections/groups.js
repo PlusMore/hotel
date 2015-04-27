@@ -1,6 +1,6 @@
-Teams = new Meteor.Collection('teams');
+Groups = new Meteor.Collection('groups');
 
-Teams.allow({
+Groups.allow({
   insert: function(userId, doc) {
     return Roles.userIsInRole(userId, ['hotel-manager', 'admin']);
   },
@@ -12,11 +12,11 @@ Teams.allow({
   }
 });
 
-Teams.helpers({
+Groups.helpers({
   hasMembers: function() {
     return this.memberIds && this.memberIds.length > 0;
   },
-  teamMembers: function() {
+  groupMembers: function() {
     if (this.hasMembers()) {
       return Meteor.users.find({_id: {$in: this.memberIds}});
     }

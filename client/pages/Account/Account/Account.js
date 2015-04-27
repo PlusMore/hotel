@@ -1,6 +1,6 @@
-Template.Account.onCreated = function() {
-  this.subscribe('teams', Session.get('hotelId'));
-};
+Template.Account.onCreated(function() {
+  this.subscribe('groups', Session.get('hotelId'));
+});
 
 Template.Account.events({
   'click .btn-change-avatar': function(e, experienceTemplate) {

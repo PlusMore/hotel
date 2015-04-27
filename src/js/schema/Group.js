@@ -1,7 +1,7 @@
-Schema.Team = new SimpleSchema({
+Schema.Group = new SimpleSchema({
   name: {
     type: String,
-    label: 'Team Name'
+    label: 'Group Name'
   },
   description: {
     type: String,
