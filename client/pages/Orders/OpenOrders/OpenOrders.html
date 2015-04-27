@@ -24,7 +24,17 @@
             </div>
           </div>
           <div class="panel-body">
-            {{> tabular table=TabularTables.OpenOrders selector=selector class="table table-condensed table-hover"}}
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="btn-group btn-group-sm pull-right" role="group" aria-label="View Options">
+                  <a href="{{pathFor 'Orders.Open'}}" class="btn btn-default active">Open</a>
+                  <a href="{{pathFor 'Orders.History'}}" class="btn btn-default">History</a>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                {{> tabular table=TabularTables.OpenOrders selector=selector class="table table-condensed table-hover"}}
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 <template name="AddNewUser">
   {{#Layout template="Page"}}
     {{#contentFor "header"}}
-      <h1>Add New Staff</h1>
+      <h1><a href="{{pathFor 'Staff.View'}}" class="fa  fa-mail-reply"></a> Add New Staff</h1>
     {{/contentFor}}
-        
+
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>

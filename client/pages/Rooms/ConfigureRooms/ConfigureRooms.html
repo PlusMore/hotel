@@ -1,9 +1,9 @@
 <template name="ConfigureRooms">
   {{#Layout template="Page"}}
     {{#contentFor "header"}}
-      <h1>Configure Rooms</h1>
+      <h1><a href="{{pathFor 'Rooms.View'}}" class="fa  fa-mail-reply"></a> Configure Rooms</h1>
     {{/contentFor}}
-        
+
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
@@ -29,20 +29,20 @@
               <div class="tab-wrapper tab-primary">
                 <ul class="nav nav-tabs">
                   <li class="active"><a href="#multiple-room-form" data-toggle="tab">Room Wizard</a></li>
-                  <li><a href="#single-room-form" data-toggle="tab">One-by-One</a></li>     
+                  <li><a href="#single-room-form" data-toggle="tab">One-by-One</a></li>
                 </ul>
                 <div class="tab-content">
 
                   <div class="tab-pane active" id="multiple-room-form">
-                    <p>This form lets you make many rooms at once. For example, setting the start room number to '200', the end room number to '250', and then hitting save will create 50 rooms named from 'Room 200' to 'Room 250'</p>
+                    <p>This form lets you make many rooms at once. For example, setting the start room number to '201', the end room number to '250', and then hitting save will create 50 rooms named from 'Room 201' to 'Room 250'</p>
                     {{#autoForm schema=multipleRoomSchema id="multipleRoomForm" type="method" meteormethod="insertMultipleRooms"}}
                       {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
                       <div class="row">
                         <div class="col-sm-6">
-                          {{> afQuickField name='startNum' placeholder="101"}}
+                          {{> afQuickField name='startNum' placeholder="201"}}
                         </div>
                         <div class="col-sm-6">
-                          {{> afQuickField name='endNum' placeholder="150"}}
+                          {{> afQuickField name='endNum' placeholder="250"}}
                         </div>
                       </div>
                       <button id="multi-room-submit" type="submit" class="btn btn-primary">Create Rooms</button>
@@ -52,7 +52,7 @@
                   <div class="tab-pane" id="single-room-form">
                     {{#autoForm collection="Rooms" id="singleRoomForm" type="insert"}}
                       {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
-                      {{> afQuickField name='name' placeholder="(Room 117, Ole Grande Suite, etc)"}}
+                      {{> afQuickField name='name' placeholder="(Room 117A, Ole Grande Suite, etc)"}}
                       <button type="submit" class="btn btn-primary">Create Room</button>
                     {{/autoForm}}
                   </div>

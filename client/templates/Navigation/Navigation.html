@@ -10,106 +10,44 @@
       </li>
 
       {{#if isHotelStaff}}
-        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Guest.CheckIn'}}" data-state="Guest.CheckIn">
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Guest.CheckIn'}}" data-state="Guest">
           <a href="{{pathFor 'Guest.CheckIn'}}" title="Check-In Guest">
             <i class="fa  fa-fw fa-sign-in"></i> Check-In Guest
             {{{hotelRequiredBadge}}}
           </a>
         </li>
-        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Orders'}} {{currentRouteClass 'Orders'}}" data-state="Orders" >
-          <a href="#" title="Orders">
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Orders'}}" data-state="Orders">
+          <a href="{{pathFor 'Orders.Open'}}" title="Guest Orders">
             <i class="fa  fa-fw fa-th-list"></i> Guest Orders
             {{{hotelRequiredBadge}}}
           </a>
-          <ul class="nav-sub {{navSubStateClass 'Orders'}}">
-            <li class="{{currentRouteClass 'Orders.Open'}}" data-state="Orders.Open">
-              <a href="{{pathFor 'Orders.Open'}}" title="Open Orders">
-                Open Orders
-              </a>
-            </li>
-            <li class="{{currentRouteClass 'Orders.History'}}" data-state="Orders.History">
-              <a href="{{pathFor 'Orders.History'}}" title="Orders History">
-                Order History
-              </a>
-            </li>
-          </ul>
         </li>
-        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Rooms'}} {{currentRouteClass 'Rooms'}}" data-state="Rooms" >
-          <a href="#" title="Rooms">
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Rooms'}}" data-state="Rooms">
+          <a href="{{pathFor 'Rooms.View'}}" title="View Rooms">
             <i class="fa  fa-fw fa-key"></i> Rooms
             {{{hotelRequiredBadge}}}
           </a>
-          <ul class="nav-sub {{navSubStateClass 'Rooms.View'}}">
-            <li class="{{currentRouteClass 'Rooms.View'}}" data-state="Rooms.View">
-              <a href="{{pathFor 'Rooms.View'}}" title="View Rooms">
-                View Rooms
-              </a>
-            </li>
-            {{#if isHotelManager}}
-              <li class="{{currentRouteClass 'Rooms.Configure'}}" data-state="Rooms.Configure">
-                <a href="{{pathFor 'Rooms.Configure'}}" title="Add Rooms">
-                  + Add Rooms
-                </a>
-              </li>
-            {{/if}}
-          </ul>
         </li>
-        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Stays'}} {{currentRouteClass 'Stays'}}" data-state="Stays" >
-          <a href="#" title="Stays">
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Stays'}}" data-state="Stays">
+          <a href="{{pathFor 'Stays.View'}}" title="View Stays">
             <i class="fa  fa-fw fa-calendar"></i> Stays
             {{{hotelRequiredBadge}}}
           </a>
-          <ul class="nav-sub {{navSubStateClass 'Stays.Current'}}">
-            <li class="{{currentRouteClass 'Stays.Current'}}" data-state="Stays.Current">
-              <a href="{{pathFor 'Stays.Current'}}" title="Current Stays">
-                Current Stays
-              </a>
-            </li>
-            <li class="{{currentRouteClass 'Stays.History'}}" data-state="Stays.History">
-              <a href="{{pathFor 'Stays.History'}}" title="Stays History">
-                Stays History
-              </a>
-            </li>
-          </ul>
         </li>
       {{/if}}
 
       {{#if isHotelManager}}
-        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Devices'}} {{currentRouteClass 'Devices'}}" data-state="Devices" >
-          <a href="#" title="Devices">
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Devices'}}" data-state="Devices">
+          <a href="{{pathFor 'Devices.View'}}" title="View Devices">
             <i class="fa  fa-fw fa-map-marker"></i> Devices
             {{{hotelRequiredBadge}}}
           </a>
-          <ul class="nav-sub {{navSubStateClass 'Devices'}}">
-            <li class="{{currentRouteClass 'Devices.View'}}" data-state="Devices.View">
-              <a href="{{pathFor 'Devices.View'}}" title="View Devices">
-                View Devices
-              </a>
-            </li>
-            <li class="{{currentRouteClass 'Devices.Configure'}}" data-state="Devices.Configure">
-              <a href="{{pathFor 'Devices.Configure'}}" title="Change Background">
-                Change Background
-              </a>
-            </li>
-          </ul>
         </li>
-        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Staff'}} {{currentRouteClass 'Staff'}}" data-state="Staff" >
-          <a href="#" title="Staff">
-            <i class="fa  fa-fw fa-user"></i> Your Staff
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Staff'}}" data-state="Staff">
+          <a href="{{pathFor 'Staff.View'}}" title="View Staff">
+            <i class="fa  fa-fw fa-user"></i> Staff
             {{{hotelRequiredBadge}}}
           </a>
-          <ul class="nav-sub {{navSubStateClass 'Staff'}}">
-            <li class="{{currentRouteClass 'Staff.View'}}" data-state="Staff.View">
-              <a href="{{pathFor 'Staff.View'}}" title="View Staff">
-                View Users
-              </a>
-            </li>
-            <li class="{{currentRouteClass 'Staff.AddNewUser'}}" data-state="Staff.AddNewUser">
-              <a href="{{pathFor 'Staff.AddNewUser'}}" title="Add New User">
-                + Add New User
-              </a>
-            </li>
-          </ul>
         </li>
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Teams'}}" data-state="Teams">
         <a href="{{pathFor 'Teams.Manage'}}" title="Teams">
@@ -160,18 +98,11 @@
             </li>
           </ul>
         </li>
-        <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Hotel'}} {{currentRouteClass 'Hotel'}}" data-state="Hotel" >
-          <a href="#" title="Hotel">
-            <i class="fa  fa-fw fa-gear"></i> Hotel Info
+        <li class="{{hotelRequiredClass}} {{currentRouteClass 'Hotel'}}" data-state="Hotel">
+          <a href="{{pathFor 'Hotel.Settings'}}" title="Hotel Settings">
+            <i class="fa  fa-fw fa-gear"></i> Hotel Settings
             {{{hotelRequiredBadge}}}
           </a>
-          <ul class="nav-sub {{navSubStateClass 'Hotel'}}">
-            <li class="{{currentRouteClass 'Hotel.Settings'}}" data-state="Hotel.Settings">
-              <a href="{{pathFor 'Hotel.Settings'}}" title="Hotel Settings">
-                Hotel Settings
-              </a>
-            </li>
-          </ul>
         </li>
       {{/if}}
 

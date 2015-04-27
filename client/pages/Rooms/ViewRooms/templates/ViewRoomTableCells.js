@@ -6,8 +6,6 @@ Template.RoomHasDeviceCell.helpers({
   }
 });
 
-
-
 Template.RoomActiveStayCell.events({
   'click #view-stay-details': function(e) {
     e.preventDefault();

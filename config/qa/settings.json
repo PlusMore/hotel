@@ -1,0 +1,24 @@
+{
+  "public": {
+    "mixpanel": "aea97f2a24f15d245f6ab2e09043e8fe",
+    "filepicker": {
+      "key": "A2yOQB3VHRfe2n6QnJ5vZz"
+    },
+    "bgPhotoUrl": "https://www.filepicker.io/api/file/zUcd74YlSQCLj8PKmgO1"
+  },
+  "apps": {
+    "admin": {
+      "url": "http://admin.plusmoretablets.com"
+    },
+    "device": {
+      "url": "http://device.plusmoretablets.com"
+    },
+    "hotel": {
+      "url": "http://hotel.plusmoretablets.com"
+    }
+  },
+  "kadira": {
+    "appId": "d4CdZBwPx4YCuRCCR",
+    "appSecret": "be8d87e0-df4b-404b-9fd7-308ceada159e"
+  }
+}

@@ -6,7 +6,7 @@ All publications-related code.
 
 /+ ---------------------------------------------------- */
 
-Meteor.publish('userHotelData', function() {
+Meteor.publish('userHotelData', function(hotelId) {
   var userId = this.userId;
 
   if (userId) {
@@ -18,7 +18,7 @@ Meteor.publish('userHotelData', function() {
       user = Meteor.users.findOne({
         _id: userId
       }),
-      hotelId = user && user.hotelId || null;
+      hotelId = user && user.hotelId || hotelId;
     if (hotelId) {
       return [
         Meteor.users.find({
@@ -163,6 +163,18 @@ Meteor.publish('hotel', function(id) {
   return Hotels.find(id);
 });
 
+Meteor.publish('roomNames', function(hotelId) {
+  return Rooms.find({
+    hotelId: hotelId
+  }, {
+    fields: {
+      _id: 1,
+      hotelId: 1,
+      name: 1
+    }
+  });
+});
+
 Meteor.publish('hotelUsers', function(hotelId) {
   var userId = this.userId,
     user = Meteor.users.findOne(userId);
@@ -250,6 +262,22 @@ Meteor.publish('roomsAndActiveStays', function(hotelId, currentTime) {
   }
 });
 
+Meteor.publish('preregisteredStaysForToday', function(hotelId) {
+  var startDay = moment().startOf('day').toDate();
+  var endDay = moment().add(1, 'days').toDate();
+  return Stays.find({
+    hotelId: hotelId,
+    active: false,
+    preReg: {
+      $exists: true
+    },
+    "preReg.startDate": {
+      $gte: startDay,
+      $lte: endDay
+    }
+  });
+});
+
 Meteor.publish('hotelMenu', function(hotelId) {
   var userId = this.userId,
     user = Meteor.users.findOne(userId);
@@ -293,11 +321,15 @@ Meteor.publish('menuItem', function(id) {
 Meteor.publish('usersForStayId', function(stayId) {
   var stay = Stays.findOne(stayId);
 
-  return Meteor.users.find({
-    _id: {
-      $in: stay.users
-    }
-  });
+  if (stay && stay.users) {
+    return Meteor.users.find({
+      _id: {
+        $in: stay.users
+      }
+    });
+  } else {
+    return null;
+  }
 });
 
 Meteor.publish('usersForTeamId', function(teamId) {
