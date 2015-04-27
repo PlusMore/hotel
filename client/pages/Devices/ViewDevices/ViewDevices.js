@@ -1,7 +1,3 @@
-Template.ViewDevices.rendered = function() {
-  this.$('table').parent().addClass('table-responsive');
-};
-
 Template.ViewDevices.helpers({
   selector: function() {
     var user = Meteor.user();
@@ -10,4 +6,9 @@ Template.ViewDevices.helpers({
       hotelId: hotelId
     };
   }
+});
+
+Template.ViewDevices.onCreated(function() {
+  // this prevents weirdness due to tabular's nonreactive selector
+  forceReRender();
 });
