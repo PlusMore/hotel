@@ -15,3 +15,8 @@ Template.UpcomingStays.helpers({
     };
   }
 });
+
+Template.UpcomingStays.onCreated(function() {
+  // this prevents weirdness due to tabular's nonreactive selector
+  forceReRender();
+});

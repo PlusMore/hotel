@@ -11,3 +11,8 @@ Template.ViewStaff.helpers({
     };
   }
 });
+
+Template.ViewStaff.onCreated(function() {
+  // this prevents weirdness due to tabular's nonreactive selector
+  forceReRender();
+});

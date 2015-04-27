@@ -7,3 +7,8 @@ Template.ViewRooms.helpers({
     };
   }
 });
+
+Template.ViewRooms.onCreated(function() {
+  // this prevents weirdness due to tabular's nonreactive selector
+  forceReRender();
+});
