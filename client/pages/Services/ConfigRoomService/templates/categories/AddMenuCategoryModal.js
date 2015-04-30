@@ -23,5 +23,11 @@ AutoForm.hooks({
         Messages.error(error.message);
       }
     },
+    beginSubmit: function() {
+      this.template.$("#add-category-submit").disabled = true;
+    },
+    endSubmit: function() {
+      this.template.$("#add-category-submit").disabled = false;
+    }
   }
 });

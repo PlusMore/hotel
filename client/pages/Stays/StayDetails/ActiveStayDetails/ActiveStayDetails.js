@@ -93,5 +93,11 @@ AutoForm.hooks({
         Messages.error(error.message);
       }
     },
+    beginSubmit: function() {
+      this.template.$("#edit-stay-submit").disabled = true;
+    },
+    endSubmit: function() {
+      this.template.$("#edit-stay-submit").disabled = false;
+    }
   }
 });

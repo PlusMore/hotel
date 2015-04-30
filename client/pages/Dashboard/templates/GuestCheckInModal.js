@@ -152,5 +152,11 @@ AutoForm.hooks({
         Messages.error(error.message);
       }
     },
+    beginSubmit: function() {
+      this.template.$("#guest-checkin-submit").disabled = true;
+    },
+    endSubmit: function() {
+      this.template.$("#guest-checkin-submit").disabled = false;
+    }
   }
 });

@@ -20,5 +20,11 @@ AutoForm.hooks({
         Messages.error(error.message);
       }
     },
+    beginSubmit: function() {
+      this.template.$("#new-menuitem-submit").disabled = true;
+    },
+    endSubmit: function() {
+      this.template.$("#new-menuitem-submit").disabled = false;
+    }
   }
 });

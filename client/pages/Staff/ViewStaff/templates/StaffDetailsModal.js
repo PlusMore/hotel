@@ -32,6 +32,12 @@ AutoForm.hooks({
     onSuccess: function(operation, result) {
       Messages.success('Changes Saved!');
       BootstrapModalPrompt.dismiss();
+    },
+    beginSubmit: function() {
+      this.template.$("#edit-staff-submit").disabled = true;
+    },
+    endSubmit: function() {
+      this.template.$("#edit-staff-submit").disabled = false;
     }
   }
 });

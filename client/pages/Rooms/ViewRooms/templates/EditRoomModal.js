@@ -25,6 +25,13 @@ AutoForm.hooks({
     },
     onError: function(operation, error) {
       Messages.error(error.message);
+    },
+    beginSubmit: function() {
+      debugger;
+      this.template.$("#edit-room-submit").disabled = true;
+    },
+    endSubmit: function() {
+      this.template.$("#edit-room-submit").disabled = false;
     }
   }
 });

@@ -35,5 +35,11 @@ AutoForm.hooks({
         Messages.error(error.message);
       }
     },
+    beginSubmit: function() {
+      this.template.$("#hotel-times-submit").disabled = true;
+    },
+    endSubmit: function() {
+      this.template.$("#hotel-times-submit").disabled = false;
+    }
   }
 });

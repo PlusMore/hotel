@@ -26,5 +26,11 @@ AutoForm.hooks({
         Messages.error(error.message);
       }
     },
+    beginSubmit: function() {
+      this.template.$("#edit-group-submit").disabled = true;
+    },
+    endSubmit: function() {
+      this.template.$("#edit-group-submit").disabled = false;
+    }
   }
 });
