@@ -42,10 +42,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#preregister-stay-submit").disabled = true;
+      this.template.$("#preregister-stay-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#preregister-stay-submit").disabled = false;
+      this.template.$("#preregister-stay-submit").prop('disabled', false);
     }
   }
 });

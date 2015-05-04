@@ -36,10 +36,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#hotel-times-submit").disabled = true;
+      this.template.$("#hotel-times-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#hotel-times-submit").disabled = false;
+      this.template.$("#hotel-times-submit").prop('disabled', false);
     }
   }
 });

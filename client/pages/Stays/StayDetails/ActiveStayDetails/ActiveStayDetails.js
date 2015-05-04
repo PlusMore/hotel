@@ -94,10 +94,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#edit-stay-submit").disabled = true;
+      this.template.$("#edit-stay-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#edit-stay-submit").disabled = false;
+      this.template.$("#edit-stay-submit").prop('disabled', false);
     }
   }
 });

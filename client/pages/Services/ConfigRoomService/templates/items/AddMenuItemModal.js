@@ -21,10 +21,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#new-menuitem-submit").disabled = true;
+      this.template.$("#new-menuitem-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#new-menuitem-submit").disabled = false;
+      this.template.$("#new-menuitem-submit").prop('disabled', false);
     }
   }
 });

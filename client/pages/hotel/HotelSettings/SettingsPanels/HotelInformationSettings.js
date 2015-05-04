@@ -18,10 +18,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#edit-hotelinfo-submit").disabled = true;
+      this.template.$("#edit-hotelinfo-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#edit-hotelinfo-submit").disabled = false;
+      this.template.$("#edit-hotelinfo-submit").prop('disabled', false);
     }
   }
 });

@@ -105,10 +105,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#edit-category-submit").disabled = true;
+      this.template.$("#edit-category-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#edit-category-submit").disabled = false;
+      this.template.$("#edit-category-submit").prop('disabled', false);
     }
   },
   configureMenuCategoryAvailability: {
@@ -126,10 +126,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#update-availability-submit").disabled = true;
+      this.template.$("#update-availability-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#update-availability-submit").disabled = false;
+      this.template.$("#update-availability-submit").prop('disabled', false);
     }
   }
 });

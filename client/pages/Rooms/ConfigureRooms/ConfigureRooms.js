@@ -40,10 +40,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#multi-room-submit").disabled = true;
+      this.template.$("#multi-room-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#multi-room-submit").disabled = false;
+      this.template.$("#multi-room-submit").prop('disabled', false);
     }
   },
   singleRoomForm: {
@@ -65,10 +65,10 @@ AutoForm.hooks({
       Messages.success('Created room successfully!');
     },
     beginSubmit: function() {
-      this.template.$("#single-room-submit").disabled = true;
+      this.template.$("#single-room-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#single-room-submit").disabled = false;
+      this.template.$("#single-room-submit").prop('disabled', false);
     }
   }
 });

@@ -21,10 +21,10 @@ AutoForm.hooks({
       Messages.error(error.reason);
     },
     beginSubmit: function() {
-      this.template.$("#edit-account-submit").disabled = true;
+      this.template.$("#edit-account-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#edit-account-submit").disabled = false;
+      this.template.$("#edit-account-submit").prop('disabled', false);
     }
   },
 });

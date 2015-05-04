@@ -47,10 +47,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#edit-menuitem-submit").disabled = true;
+      this.template.$("#edit-menuitem-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#edit-menuitem-submit").disabled = false;
+      this.template.$("#edit-menuitem-submit").prop('disabled', false);
     }
   }
 });

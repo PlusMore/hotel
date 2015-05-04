@@ -77,10 +77,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#add-groupuser-submit").disabled = true;
+      this.template.$("#add-groupuser-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#add-groupuser-submit").disabled = false;
+      this.template.$("#add-groupuser-submit").prop('disabled', false);
     }
   }
 });

@@ -36,10 +36,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#add-amenity-submit").disabled = true;
+      this.template.$("#add-amenity-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#add-amenity-submit").disabled = false;
+      this.template.$("#add-amenity-submit").prop('disabled', false);
     }
   }
 });

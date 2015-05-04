@@ -24,10 +24,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#add-group-submit").disabled = true;
+      this.template.$("#add-group-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#add-group-submit").disabled = false;
+      this.template.$("#add-group-submit").prop('disabled', false);
     }
   }
 });

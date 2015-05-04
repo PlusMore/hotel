@@ -153,10 +153,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#guest-checkin-submit").disabled = true;
+      this.template.$("#guest-checkin-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#guest-checkin-submit").disabled = false;
+      this.template.$("#guest-checkin-submit").prop('disabled', false);
     }
   }
 });

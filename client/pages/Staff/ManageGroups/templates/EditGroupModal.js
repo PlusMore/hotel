@@ -27,10 +27,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#edit-group-submit").disabled = true;
+      this.template.$("#edit-group-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#edit-group-submit").disabled = false;
+      this.template.$("#edit-group-submit").prop('disabled', false);
     }
   }
 });

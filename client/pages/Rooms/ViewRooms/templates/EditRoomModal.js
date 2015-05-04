@@ -27,10 +27,10 @@ AutoForm.hooks({
       Messages.error(error.message);
     },
     beginSubmit: function() {
-      this.template.$("#edit-room-submit").disabled = true;
+      this.template.$("#edit-room-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#edit-room-submit").disabled = false;
+      this.template.$("#edit-room-submit").prop('disabled', false);
     }
   }
 });

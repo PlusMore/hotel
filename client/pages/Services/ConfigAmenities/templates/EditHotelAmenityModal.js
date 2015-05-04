@@ -40,10 +40,10 @@ AutoForm.hooks({
       }
     },
     beginSubmit: function() {
-      this.template.$("#edit-amenity-submit").disabled = true;
+      this.template.$("#edit-amenity-submit").prop('disabled', true);
     },
     endSubmit: function() {
-      this.template.$("#edit-amenity-submit").disabled = false;
+      this.template.$("#edit-amenity-submit").prop('disabled', false);
     }
   }
 });
