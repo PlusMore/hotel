@@ -27,7 +27,6 @@ AutoForm.hooks({
       Messages.error(error.message);
     },
     beginSubmit: function() {
-      debugger;
       this.template.$("#edit-room-submit").disabled = true;
     },
     endSubmit: function() {
