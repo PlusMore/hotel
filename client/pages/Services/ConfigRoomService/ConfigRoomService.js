@@ -10,6 +10,43 @@ Template.ConfigRoomService.helpers({
   },
   configureServiceSchema: function() {
     return Schema.ServiceConfiguration;
+  },
+  hasAssignedGroups: function() {
+    return Groups.find({
+      hotelId: Session.get('hotelId'),
+      servicesHandled: 'roomService'
+    }).count() > 0;
+  },
+  assignedGroups: function() {
+    return Groups.find({
+      hotelId: Session.get('hotelId'),
+      servicesHandled: 'roomService'
+    }, {
+      $sort: {
+        name: 1
+      }
+    });
+  },
+  assignServiceToGroupSchema: function() {
+    return Schema.AssignServiceToGroup;
+  },
+  groupOptions: function() {
+    var unassignedCursor = Groups.find({
+      hotelId: Session.get('hotelId'),
+      servicesHandled: {
+        $ne: 'roomService'
+      }
+    });
+    var unassigned = unassignedCursor.fetch();
+    var unassignedIds = _.pluck(unassigned, '_id');
+    var groupOptions = [];
+    _.each(unassignedIds, function(groupId) {
+      groupOptions.push({
+        label: Groups.findOne(groupId).name,
+        value: groupId
+      });
+    });
+    return groupOptions;
   }
 });
 
@@ -19,6 +56,7 @@ Template.ConfigRoomService.onCreated(function() {
     var hotel = Session.get('hotelId');
     self.subscribe('hotelService', 'roomService', hotel);
     self.subscribe('hotelMenu', hotel);
+    self.subscribe('groups', hotel);
   });
 });
 
@@ -70,6 +108,16 @@ Template.ConfigRoomService.events({
   'click #add-menu-category': function(e) {
     BootstrapModalPrompt.prompt({
       dialogTemplate: Template.AddMenuCategoryModal
+    });
+  },
+  'click #unassign-group': function(e) {
+    e.preventDefault();
+    Meteor.call('unassignGroupServiceType', this._id, 'roomService', function(err, res) {
+      if (err) {
+        Messages.error(err);
+      } else {
+        Messages.success('Successfully unassigned group');
+      }
     });
   }
 });

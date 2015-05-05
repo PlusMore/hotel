@@ -87,6 +87,41 @@
 
         <div class="row">
           <div class="col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  Assign Room Service To Groups
+                  {{#unless hasAssignedGroups}}<small>Visible By All Staff</small>{{/unless}}
+                </h3>
+              </div>
+              <div class="panel-body">
+                {{#if hasAssignedGroups}}
+                  {{#each assignedGroups}}
+                    <ul>
+                      <li><p>{{name}} <a href="#" class="fa fa-times" id="unassign-group"></a></p></li>
+                    </ul>
+                  {{/each}}
+                {{else}}
+                  <p><em>There are no groups currently assigned to this service type. By default, all room service orders will be visible to all staff members.</em></p>
+                {{/if}}
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col-xs-12">
+                    {{#autoForm schema=assignServiceToGroupSchema id="assignServiceToGroupForm" type="method" meteormethod="assignServiceTypeToGroup"}}
+                      {{> afFieldInput name='serviceType' type='hidden' value="roomService"}}
+                      {{> afFieldInput label=false type="select" name='groupId' options=groupOptions}}
+                      <button type="submit" class="btn btn-default btn-block">Assign</button>
+                    {{/autoForm}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
             <button id="add-menu-category" class="btn btn-primary btn-block">+ Add Menu Category</button><br />
           </div>
         </div>
