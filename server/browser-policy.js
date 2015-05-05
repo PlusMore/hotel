@@ -2,18 +2,19 @@ Meteor.startup(function() {
   BrowserPolicy.content.disallowInlineScripts();
 
   var trustedSecure = [
-    '*.gstatic.com',
     '*.google.com',
     '*.cloudfront.net',
     '*.plusmoretablets.com',
     '*.plusmore.io',
-    '*.kadira.io'
+    '*.kadira.io',
+    'fontastic.s3.amazonaws.com',
+    'query.yahooapis.com'
   ];
 
   var trustedBoth = [
+    '*.gstatic.com',
     '*.filepicker.io',
-    '*.googleapis.com',
-    'fontastic.s3.amazonaws.com'
+    '*.googleapis.com'
   ]
 
   _.each(trustedSecure, function(trustedDomain) {
