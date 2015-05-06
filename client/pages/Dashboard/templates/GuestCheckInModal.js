@@ -122,6 +122,10 @@ AutoForm.hooks({
           return false;
         }
         var room = Rooms.findOne(doc.roomId);
+        if (!room) {
+          Messages.error('Please select a room');
+          return false;
+        }
         if (room.stay() && room.stay().isActive() && confirm('This room has an active stay. Are you sure you want to check a guest in to this room?')) {
           var checkoutDate = Session.get('checkoutDate');
           doc.checkoutDate = checkoutDate.date;
