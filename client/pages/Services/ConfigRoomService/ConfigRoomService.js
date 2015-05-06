@@ -44,7 +44,7 @@ Template.ConfigRoomService.onCreated(function() {
   });
 });
 
-Template.roomServiceTimepicker.rendered = function() {
+Template.roomServiceTimepicker.onRendered(function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -58,7 +58,7 @@ Template.roomServiceTimepicker.rendered = function() {
       }
     }
   });
-};
+});
 
 Template.ConfigRoomService.events({
   'change #toggle-roomservice-switch': function(e, tmpl) {
