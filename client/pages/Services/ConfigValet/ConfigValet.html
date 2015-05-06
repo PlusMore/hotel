@@ -88,7 +88,7 @@
               <div class="panel-heading">
                 <h3 class="panel-title">
                   Assign Groups To Valet
-                  {{#unless hasAssignedGroups}}<small>Visible By All Staff</small>{{/unless}}
+                  {{#unless hasAssignedGroups}}<small>Visible By Managers Only</small>{{/unless}}
                 </h3>
               </div>
               <div class="panel-body">
@@ -99,7 +99,7 @@
                     </ul>
                   {{/each}}
                 {{else}}
-                  <p><em>There are no groups currently assigned to this service type. By default, all valet orders will be visible to all staff members.</em></p>
+                  <p><em>There are no groups currently assigned to this service type. By default, all valet orders will be visible only to hotel managers.</em></p> <p><a href="{{pathFor 'Staff.Groups'}}">Click here</a> to create and configure staff groups.</p>
                 {{/if}}
               </div>
               <div class="panel-footer">
