@@ -11,22 +11,6 @@ Template.ConfigRoomService.helpers({
   configureServiceSchema: function() {
     return Schema.ServiceConfiguration;
   },
-  hasAssignedGroups: function() {
-    return Groups.find({
-      hotelId: Session.get('hotelId'),
-      servicesHandled: 'roomService'
-    }).count() > 0;
-  },
-  assignedGroups: function() {
-    return Groups.find({
-      hotelId: Session.get('hotelId'),
-      servicesHandled: 'roomService'
-    }, {
-      $sort: {
-        name: 1
-      }
-    });
-  },
   assignServiceToGroupSchema: function() {
     return Schema.AssignServiceToGroup;
   },
