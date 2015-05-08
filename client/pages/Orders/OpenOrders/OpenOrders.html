@@ -29,20 +29,7 @@
               <div class="col-sm-7">
                 <div class="form-group">
                   {{#if Template.subscriptionsReady}}
-                    <select class="form-control input-sm" id='order-group-filter'>
-                      <option value="none">-- (select group to filter) --</option>
-                      <option value="all">All Orders</option>
-                      {{#if currentUser.isManager}}
-                        {{#each allGroups}}
-                          <option value="{{_id}}">{{name}} Orders</option>
-                        {{/each}}
-                      {{else}}
-                        {{#each currentUser.memberOfGroups}}
-                          <option value="{{_id}}">{{name}} Orders</option>
-                        {{/each}}
-                      {{/if}}
-                    </select>
-                    <em><small class="pull-right">Selected: {{filterGroupSelect}}</small></em>
+                    {{> FilterOrdersByGroupSelect}}
                   {{/if}}
                 </div>
               </div>
