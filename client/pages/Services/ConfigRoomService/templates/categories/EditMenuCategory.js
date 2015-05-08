@@ -61,7 +61,7 @@ Template.EditMenuCategory.events({
 });
 
 Template.EditMenuCategoryTimepicker.onRendered(function() {
-  var roomServiceConfiguration = MenuCategories.findOne(this.data);
+  var roomServiceConfiguration = MenuCategories.findOne(this.data._id);
 
   var startTime = moment().startOf('day');
   if (roomServiceConfiguration.startMinutes) {
