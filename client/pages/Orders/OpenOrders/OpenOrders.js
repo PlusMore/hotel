@@ -1,43 +1,37 @@
 Template.OpenOrders.helpers({
   selector: function() {
+
     var user = Meteor.user();
     var hotelId = Session.get('hotelId') || user.hotelId;
     var filterGroupId = Session.get('ordersDatatableFilterGroupId');
+
+    var selector = {
+      hotelId: hotelId,
+      open: true,
+      handledBy: 'hotel'
+    };
+
+    // if user is admin/manager, no restrictions
     if (Roles.userIsInRole(user._id, ['admin', 'hotel-manager'])) {
+      // if filter applied
       if (filterGroupId) {
         var group = Groups.findOne(filterGroupId);
-        return {
-          hotelId: hotelId,
-          open: true,
-          handledBy: 'hotel',
-          service: {
-            $exists: true
-          },
-          "service.type": {
-            $in: group.servicesHandled
-          }
-        };
-      } else {
-        return {
-          hotelId: hotelId,
-          open: true,
-          handledBy: 'hotel',
+
+        selector["service.type"] = {
+          $in: group.servicesHandled
         };
       }
+
+    // if staff, restricted to groups the staff member is in
     } else {
+      // if filter applied
       if (filterGroupId) {
         var group = Groups.findOne(filterGroupId);
-        return {
-          hotelId: hotelId,
-          open: true,
-          handledBy: 'hotel',
-          service: {
-            $exists: true
-          },
-          "service.type": {
-            $in: group.servicesHandled
-          }
+        selector["service.type"] = {
+          $in: group.servicesHandled
         };
+
+      // no filter applied, show all orders for groups staff is in
       } else {
         var userGroupsCursor = user.memberOfGroups();
         var userGroups = userGroupsCursor.fetch();
@@ -47,19 +41,14 @@ Template.OpenOrders.helpers({
             userGroupsServices.push(serviceType);
           })
         })
-        return {
-          hotelId: hotelId,
-          open: true,
-          handledBy: 'hotel',
-          service: {
-            $exists: true
-          },
-          "service.type": {
-            $in: userGroupsServices
-          }
+
+        selector["service.type"] = {
+          $in: userGroupsServices
         };
       }
     }
+
+    return selector;
   },
   filterGroupSelect: function() {
     var filterGroupId = Session.get('ordersDatatableFilterGroupId');
