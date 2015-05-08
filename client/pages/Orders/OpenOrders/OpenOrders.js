@@ -2,7 +2,7 @@ Template.OpenOrders.helpers({
   selector: function() {
     var user = Meteor.user();
     var hotelId = Session.get('hotelId') || user.hotelId;
-    var filterGroupId = Session.get('openOrdersDatatableFilterGroupId');
+    var filterGroupId = Session.get('ordersDatatableFilterGroupId');
     if (Roles.userIsInRole(user._id, ['admin', 'hotel-manager'])) {
       if (filterGroupId) {
         var group = Groups.findOne(filterGroupId);
@@ -62,7 +62,7 @@ Template.OpenOrders.helpers({
     }
   },
   filterGroupSelect: function() {
-    var filterGroupId = Session.get('openOrdersDatatableFilterGroupId');
+    var filterGroupId = Session.get('ordersDatatableFilterGroupId');
     if (filterGroupId) {
       return Groups.findOne(filterGroupId).name;
     } else {
@@ -84,11 +84,11 @@ Template.OpenOrders.events({
   'change #order-group-filter': function(e, tmpl) {
     e.preventDefault();
     if (tmpl.$(e.currentTarget).val() != "all" && tmpl.$(e.currentTarget).val() != "none") {
-      Session.set('openOrdersDatatableFilterGroupId', tmpl.$(e.currentTarget).val());
+      Session.set('ordersDatatableFilterGroupId', tmpl.$(e.currentTarget).val());
       var groupName = tmpl.$(e.currentTarget).find('option:selected').text();
       Messages.success("Filter Applied: " + groupName);
     } else if (tmpl.$(e.currentTarget).val() == "all") {
-      Session.set('openOrdersDatatableFilterGroupId', undefined);
+      Session.set('ordersDatatableFilterGroupId', undefined);
       Messages.success("Filter Applied: All");
     }
     forceReRender();
@@ -104,7 +104,7 @@ Template.OpenOrders.onCreated(function() {
     forceReRender();
   });
   self.autorun(function() {
-    var groupFilterId = Session.get('openOrdersDatatableFilterGroupId');
+    var groupFilterId = Session.get('ordersDatatableFilterGroupId');
     forceReRender();
   });
 });
