@@ -1,0 +1,76 @@
+<template name="OrderButtons">
+  {{#if Template.subscriptionsReady}}
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- REASSIGN -->
+        {{> ReassignButton}}
+      </div>
+      <div class="col-sm-6">
+        {{#if isUnassigned}}
+          {{> AssignButton}}
+        {{else}}
+          {{> CompleteButton}}
+        {{/if}}
+      </div>
+    </div><br />
+    <div class="row">
+      <div class="col-xs-12">
+        {{> CancelButton}}
+      </div>
+    </div>
+  {{/if}}
+</template>
+
+<template name="CancelButton">
+  <button type="button" class="btn btn-block btn-danger btn-cancel-order">Cancel Order</button>
+</template>
+
+<template name="AssignButton">
+  <div class="btn-group btn-block dropdown">
+    {{#dropdownTrigger name="assignUserDropdown"}}
+      <button class="btn btn-block btn-primary">
+        Assign Order <span class="caret"></span>
+      </button>
+    {{/dropdownTrigger}}
+
+    {{#dropdown name="assignUserDropdown" top="-10" direction="n" classes="dropdown-menu btn-block"}}
+      {{#each userOptions}}
+        <li><a class="assign-user" staff-id={{_id}} href="#">{{fullName}}</a></li>
+      {{/each}}
+      <li class="divider"></li>
+      {{#with currentUser}}
+        <li><a class="assign-user" staff-id={{_id}} href="#">{{fullName}}</a></li>
+      {{/with}}
+    {{/dropdown}}
+  </div>
+</template>
+
+<template name="SelectUserListItem">
+  <li>
+    <a class="assign-user" staff-id={{_id}} href="#">{{fullName}}</a>
+  </li>
+</template>
+
+<template name="CompleteButton">
+  <button type="button" class="btn btn-block btn-success btn-complete-order">Complete Order</button>
+</template>
+
+<template name="ReassignButton">
+  <div class="btn-group btn-block dropdown">
+    {{#dropdownTrigger name="reassignUserDropdown"}}
+      <button class="btn btn-block {{reassignButtonClass}}">
+        Reassign Order <span class="caret"></span>
+      </button>
+    {{/dropdownTrigger}}
+
+    {{#dropdown name="reassignUserDropdown" top="-10" direction="n" classes="dropdown-menu btn-block"}}
+      {{#each userOptions}}
+        <li><a class="reassign-user" staff-id={{_id}} href="#">{{fullName}}</a></li>
+      {{/each}}
+      <li class="divider"></li>
+      {{#with currentUser}}
+        <li><a class="reassign-user" staff-id={{_id}} href="#">{{fullName}}</a></li>
+      {{/with}}
+    {{/dropdown}}
+  </div>
+</template>
