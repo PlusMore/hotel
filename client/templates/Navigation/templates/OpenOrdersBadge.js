@@ -1,3 +1,9 @@
+Template.OpenOrdersBadge.helpers({
+  hasCount: function() {
+    return Counts.get('open-orders') > 0;
+  }
+});
+
 Template.OpenOrdersBadge.onCreated(function () {
   var self = this;
 
