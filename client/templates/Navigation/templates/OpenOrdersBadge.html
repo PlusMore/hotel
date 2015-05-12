@@ -1,0 +1,5 @@
+<template name="OpenOrdersBadge">
+  {{#if Template.subscriptionsReady}}
+    <span class="pull-right badge badge-primary">{{getPublishedCount 'open-orders'}}</span>
+  {{/if}}
+</template>
