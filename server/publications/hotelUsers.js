@@ -5,7 +5,6 @@ Meteor.publish('hotelUsers', function(hotelId) {
   hotelId = hotelId || user.hotelId;
   return Meteor.users.find({
     hotelId: hotelId,
-    roles: 'hotel-staff'
   }, {
     fields: {
       emails: 1,

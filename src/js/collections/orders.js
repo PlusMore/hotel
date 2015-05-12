@@ -73,7 +73,7 @@ Orders.helpers({
     }
   },
   closedByFullName: function() {
-    if (this.status == 'completed') {
+    if (this.status === 'completed') {
       var user = Meteor.users.findOne(this.completedBy);
     } else {
       var user = Meteor.users.findOne(this.cancelledBy);
@@ -86,7 +86,7 @@ Orders.helpers({
     }
   },
   formattedClosedWhen: function() {
-    if (this.status == 'completed') {
+    if (this.status === 'completed') {
       var when = moment(this.completedDate).zone(this.requestedZone);
     } else {
       var when = moment(this.cancelledDate).zone(this.requestedZone);
@@ -108,5 +108,12 @@ Orders.helpers({
     if (when) {
       return when.format('MM/DD/YYYY, h:mm a');
     }
+  },
+  isUnassigned: function() {
+    return this.status === 'requested';
+  },
+  groupsAssigned: function() {
+    var hotelId = Session.get('hotelId');
+    return Groups.find({hotelId: hotelId, servicesHandled: this.service.type});
   }
 });

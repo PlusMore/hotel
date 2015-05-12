@@ -13,6 +13,25 @@ HotelServices.allow({
   }
 });
 
+HotelServices.helpers({
+  hasAssignedGroups: function() {
+    return Groups.find({
+      hotelId: this.hotelId,
+      servicesHandled: this.type
+    }).count() > 0;
+  },
+  assignedGroups: function() {
+    return Groups.find({
+      hotelId: this.hotelId,
+      servicesHandled: this.type
+    }, {
+      $sort: {
+        name: 1
+      }
+    });
+  }
+});
+
 HotelServices.validateServiceType = function(serviceType) {
   var friendlyServiceType = HotelServices.friendlyServiceType(serviceType);
 

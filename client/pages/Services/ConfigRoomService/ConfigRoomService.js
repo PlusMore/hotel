@@ -10,6 +10,27 @@ Template.ConfigRoomService.helpers({
   },
   configureServiceSchema: function() {
     return Schema.ServiceConfiguration;
+  },
+  assignServiceToGroupSchema: function() {
+    return Schema.AssignServiceToGroup;
+  },
+  groupOptions: function() {
+    var unassignedCursor = Groups.find({
+      hotelId: Session.get('hotelId'),
+      servicesHandled: {
+        $ne: 'roomService'
+      }
+    });
+    var unassigned = unassignedCursor.fetch();
+    var unassignedIds = _.pluck(unassigned, '_id');
+    var groupOptions = [];
+    _.each(unassignedIds, function(groupId) {
+      groupOptions.push({
+        label: Groups.findOne(groupId).name,
+        value: groupId
+      });
+    });
+    return groupOptions;
   }
 });
 
@@ -19,10 +40,11 @@ Template.ConfigRoomService.onCreated(function() {
     var hotel = Session.get('hotelId');
     self.subscribe('hotelService', 'roomService', hotel);
     self.subscribe('hotelMenu', hotel);
+    self.subscribe('groups', hotel);
   });
 });
 
-Template.roomServiceTimepicker.rendered = function() {
+Template.roomServiceTimepicker.onRendered(function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -36,7 +58,7 @@ Template.roomServiceTimepicker.rendered = function() {
       }
     }
   });
-};
+});
 
 Template.ConfigRoomService.events({
   'change #toggle-roomservice-switch': function(e, tmpl) {
@@ -70,6 +92,16 @@ Template.ConfigRoomService.events({
   'click #add-menu-category': function(e) {
     BootstrapModalPrompt.prompt({
       dialogTemplate: Template.AddMenuCategoryModal
+    });
+  },
+  'click #unassign-group': function(e) {
+    e.preventDefault();
+    Meteor.call('unassignGroupServiceType', this._id, 'roomService', function(err, res) {
+      if (err) {
+        Messages.error(err);
+      } else {
+        Messages.success('Successfully unassigned group');
+      }
     });
   }
 });
