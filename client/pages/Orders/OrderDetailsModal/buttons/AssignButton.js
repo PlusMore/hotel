@@ -1,6 +1,6 @@
 Template.AssignButton.helpers({
   userOptions: function() {
-    var groupsAssignedCursor = this.groupsAssigned();
+    var groupsAssignedCursor = this.groupsAssigned(); // collection helper
     var groupsAssigned = groupsAssignedCursor.fetch();
     var userIds = [];
     _.each(groupsAssigned, function(group) {

@@ -33,7 +33,7 @@ Template.OpenOrders.helpers({
 
       // no filter applied, show all orders for groups staff is in
       } else {
-        var userGroupsCursor = user.memberOfGroups();
+        var userGroupsCursor = user.memberOfGroups(); // collection helper
         var userGroups = userGroupsCursor.fetch();
         var userGroupsServices = [];
         _.each(userGroups, function(group) {

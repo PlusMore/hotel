@@ -7,7 +7,7 @@
         <option value="{{_id}}">{{name}} Orders</option>
       {{/each}}
     {{else}}
-      {{#each currentUser.memberOfGroups}}
+      {{#each currentUser.memberOfGroups}} <!-- collection helper -->
         <option value="{{_id}}">{{name}} Orders</option>
       {{/each}}
     {{/if}}
