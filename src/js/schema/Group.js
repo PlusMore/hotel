@@ -14,5 +14,9 @@ Schema.Group = new SimpleSchema({
   memberIds: {
     type: [String],
     optional: true
+  },
+  servicesHandled: {
+    type: [String],
+    optional: true
   }
 });
