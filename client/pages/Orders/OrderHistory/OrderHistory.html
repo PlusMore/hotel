@@ -24,11 +24,26 @@
             </div>
           </div>
           <div class="panel-body">
-            <div class="btn-group btn-group-sm pull-right" role="group" aria-label="View Options">
-              <a href="{{pathFor 'Orders.Open'}}" class="btn btn-default">Open</a>
-              <a href="{{pathFor 'Orders.History'}}" class="btn btn-default active">History</a>
+            <div class="row">
+              <div class="col-sm-7">
+                <div class="form-group">
+                  {{#if Template.subscriptionsReady}}
+                    {{> FilterOrdersByGroupSelect}}
+                  {{/if}}
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <div class="btn-group btn-group-sm pull-right" role="group" aria-label="View Options">
+                  <a href="{{pathFor 'Orders.Open'}}" class="btn btn-default">Open</a>
+                  <a href="{{pathFor 'Orders.History'}}" class="btn btn-default active">History</a>
+                </div>
+              </div>
             </div>
-            {{> tabular table=TabularTables.OrderHistory selector=selector class="table table-condensed table-hover table-responsive"}}
+            {{#if forceReRender}}
+              {{#if Template.subscriptionsReady}}
+                {{> tabular table=TabularTables.OrderHistory selector=selector class="table table-condensed table-hover table-responsive"}}
+              {{/if}}
+            {{/if}}
           </div>
         </div>
       </div>

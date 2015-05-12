@@ -10,6 +10,27 @@ Template.ConfigHouseKeeping.helpers({
   },
   configureServiceSchema: function() {
     return Schema.ServiceConfiguration;
+  },
+  assignServiceToGroupSchema: function() {
+    return Schema.AssignServiceToGroup;
+  },
+  groupOptions: function() {
+    var unassignedCursor = Groups.find({
+      hotelId: Session.get('hotelId'),
+      servicesHandled: {
+        $ne: 'houseKeeping'
+      }
+    });
+    var unassigned = unassignedCursor.fetch();
+    var unassignedIds = _.pluck(unassigned, '_id');
+    var groupOptions = [];
+    _.each(unassignedIds, function(groupId) {
+      groupOptions.push({
+        label: Groups.findOne(groupId).name,
+        value: groupId
+      });
+    });
+    return groupOptions;
   }
 });
 
@@ -18,6 +39,7 @@ Template.ConfigHouseKeeping.onCreated(function() {
   self.autorun(function() {
     var hotel = Session.get('hotelId');
     self.subscribe('hotelService', 'houseKeeping', hotel);
+    self.subscribe('groups', hotel);
   });
 });
 
@@ -40,10 +62,20 @@ Template.ConfigHouseKeeping.events({
         }
       });
     }
+  },
+  'click #unassign-group': function(e) {
+    e.preventDefault();
+    Meteor.call('unassignGroupServiceType', this._id, 'houseKeeping', function(err, res) {
+      if (err) {
+        Messages.error(err);
+      } else {
+        Messages.success('Successfully unassigned group');
+      }
+    });
   }
 });
 
-Template.houseKeepingTimepicker.rendered = function() {
+Template.houseKeepingTimepicker.onRendered(function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -57,4 +89,4 @@ Template.houseKeepingTimepicker.rendered = function() {
       }
     }
   });
-};
+});
