@@ -1,25 +1,35 @@
-Session.setDefault('windowInactive', false);
+Meteor.startup(function() {
+  Session.setDefault('windowInactive', false);
 
-$(window).blur(function(){
-  Session.set('windowInactive', true);
-});
-$(window).focus(function(){
-  Session.set('windowInactive', false);
-});
+  $(window).blur(function(){
+    Session.set('windowInactive', true);
+  });
+  $(window).focus(function(){
+    Session.set('windowInactive', false);
+  });
 
-Tracker.autorun(function() {
-  setInterval(function() {
+  var titleChangeInterval;
+
+  Tracker.autorun(function() {
     var orderCount = Counts.get('open-orders');
-    if (orderCount > 0 && Session.get('windowInactive')) {
+    var windowInactive = Session.get('windowInactive');
 
-      document.title = "(" + orderCount + ") Open Orders";
+    var intervalLength = 4000;
+    var showOrderCountLengthPerInterval = intervalLength / 2;
 
-      setTimeout(function() {
-        document.title = "PlusMore | Hotel";
-      },1500);
-
-    } else {
+    if (orderCount > 0 && windowInactive) {
+      titleChangeInterval = Meteor.setInterval(function() {
+        document.title = "(" + orderCount + ") Open Orders";
+        Meteor.setTimeout(function() {
+          document.title = "PlusMore | Hotel";
+        }, showOrderCountLengthPerInterval)
+      }, intervalLength);
+    }
+    else {
+      if (titleChangeInterval) {
+        Meteor.clearInterval(titleChangeInterval);
+      }
       document.title = "PlusMore | Hotel";
     }
-  }, 4000);
+  });
 });
