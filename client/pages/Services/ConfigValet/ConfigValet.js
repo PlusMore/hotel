@@ -1,4 +1,4 @@
-Template.valetTimepicker.rendered = function() {
+Template.valetTimepicker.onRendered(function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -12,13 +12,14 @@ Template.valetTimepicker.rendered = function() {
       }
     }
   });
-};
+});
 
 Template.ConfigValet.onCreated(function() {
   var self = this;
   self.autorun(function() {
     var hotel = Session.get('hotelId');
     self.subscribe('hotelService', 'valetServices', hotel);
+    self.subscribe('groups', hotel);
   });
 });
 
@@ -34,6 +35,27 @@ Template.ConfigValet.helpers({
   },
   configureServiceSchema: function() {
     return Schema.ServiceConfiguration;
+  },
+  assignServiceToGroupSchema: function() {
+    return Schema.AssignServiceToGroup;
+  },
+  groupOptions: function() {
+    var unassignedCursor = Groups.find({
+      hotelId: Session.get('hotelId'),
+      servicesHandled: {
+        $ne: 'valetServices'
+      }
+    });
+    var unassigned = unassignedCursor.fetch();
+    var unassignedIds = _.pluck(unassigned, '_id');
+    var groupOptions = [];
+    _.each(unassignedIds, function(groupId) {
+      groupOptions.push({
+        label: Groups.findOne(groupId).name,
+        value: groupId
+      });
+    });
+    return groupOptions;
   }
 });
 
@@ -56,5 +78,15 @@ Template.ConfigValet.events({
         }
       });
     }
+  },
+  'click #unassign-group': function(e) {
+    e.preventDefault();
+    Meteor.call('unassignGroupServiceType', this._id, 'valetServices', function(err, res) {
+      if (err) {
+        Messages.error(err);
+      } else {
+        Messages.success('Successfully unassigned group');
+      }
+    });
   }
 });

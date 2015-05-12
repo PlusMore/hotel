@@ -16,7 +16,7 @@ AutoForm.hooks({
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
     onError: function(operation, error) {
-      if (operation !== 'validation') {
+      if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
     },

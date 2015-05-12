@@ -60,16 +60,16 @@ Template.EditMenuCategory.events({
   }
 });
 
-Template.EditMenuCategoryTimepicker.rendered = function() {
-  var roomServiceConfiguartion = this.data.serviceConfiguration;
+Template.EditMenuCategoryTimepicker.onRendered(function() {
+  var roomServiceConfiguration = MenuCategories.findOne(this.data._id);
 
   var startTime = moment().startOf('day');
-  if (roomServiceConfiguartion.startMinutes) {
-    startTime = startTime.minutes(roomServiceConfiguartion.startMinutes);
+  if (roomServiceConfiguration.startMinutes) {
+    startTime = startTime.minutes(roomServiceConfiguration.startMinutes);
   }
   var endTime = moment().endOf('day');
-  if (roomServiceConfiguartion.endMinutes) {
-    endTime = moment().startOf('day').minutes(roomServiceConfiguartion.endMinutes);
+  if (roomServiceConfiguration.endMinutes) {
+    endTime = moment().startOf('day').minutes(roomServiceConfiguration.endMinutes);
   }
 
   this.$('.timepicker').pickatime({
@@ -87,7 +87,7 @@ Template.EditMenuCategoryTimepicker.rendered = function() {
       }
     }
   });
-};
+});
 
 AutoForm.hooks({
   editMenuCategory: {
@@ -100,7 +100,7 @@ AutoForm.hooks({
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
     onError: function(operation, error) {
-      if (operation !== 'validation') {
+      if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
     }
@@ -115,7 +115,7 @@ AutoForm.hooks({
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
     onError: function(operation, error) {
-      if (operation !== 'validation') {
+      if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
     }
