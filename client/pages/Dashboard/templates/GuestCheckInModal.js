@@ -113,28 +113,26 @@ AutoForm.hooks({
   guestCheckInModalForm: {
     before: {
       method: function(doc) {
-        //return doc; (synchronous)
-        //return false; (synchronous, cancel)
-        //this.result(doc); (asynchronous)
-        //this.result(false); (asynchronous, cancel)
         if (!Session.get('checkoutDate')) {
+          // because checkoutdate is set in this hook, using autoform validation results
+          // in an error message that will not disappear when a date is selected
           Messages.error('Please select a check out date');
           return false;
         }
-        var room = Rooms.findOne(doc.roomId);
-        if (room.stay() && room.stay().isActive() && confirm('This room has an active stay. Are you sure you want to check a guest in to this room?')) {
-          var checkoutDate = Session.get('checkoutDate');
-          doc.checkoutDate = checkoutDate.date;
-          doc.zone = checkoutDate.zone;
-          doc.currentStayId = room.stayId;
-          return doc;
-        } else if (!room.stay() || !room.stay().isActive()) {
-          var checkoutDate = Session.get('checkoutDate');
-          doc.checkoutDate = checkoutDate.date;
-          doc.zone = checkoutDate.zone;
-          return doc;
+        if (!AutoForm.validateField(this.formId,'roomId')) {
+          return false;
         }
-        return false;
+        var checkoutDate = Session.get('checkoutDate');
+        doc.checkoutDate = checkoutDate.date;
+        var room = Rooms.findOne(doc.roomId);
+        if (room.stay() && room.stay().isActive()) {
+          if (confirm('This room has an active stay. Are you sure you want to check a guest in to this room?')) {
+            doc.currentStayId = room.stayId;
+          } else {
+            return false;
+          }
+        }
+        return doc;
       }
     },
     // Called when any operation succeeds, where operation will be
@@ -148,7 +146,7 @@ AutoForm.hooks({
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "submit", or the method name.
     onError: function(operation, error) {
-      if (operation !== "validation") {
+      if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
     },
