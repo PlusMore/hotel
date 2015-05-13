@@ -1,6 +1,6 @@
 Template.Navigation.helpers({
   currentRouteClass: function(routeName) {
-    // if page is current route, also return true 
+    // if page is current route, also return true
     var currentRouter = Router.current();
 
     if (currentRouter && currentRouter.route.getName().indexOf(routeName) > -1) {
@@ -52,6 +52,9 @@ Template.Navigation.helpers({
       return "";
     }
     return '<span class="pull-right badge badge-danger">Hotel</span>';
+  },
+  requiresHotel: function() {
+    return !!!Session.get('hotelId');
   }
 });
 
