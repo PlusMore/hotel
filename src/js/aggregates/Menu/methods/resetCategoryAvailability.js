@@ -10,8 +10,6 @@ Meteor.methods({
           startMinutes: undefined,
           endMinutes: undefined
         }
-      }, {
-        validate: false
       }
     );
   }

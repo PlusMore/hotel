@@ -9,7 +9,13 @@ Meteor.methods({
 
     if (emailChanged) {
 
-      var userWithSameEmail = Meteor.users.findOne({emails: {$elemMatch: {address: doc.email}}});
+      var userWithSameEmail = Meteor.users.findOne({
+        emails: {
+          $elemMatch: {
+            address: doc.email
+          }
+        }
+      });
       if (userWithSameEmail) {
         throw new Meteor.Error(500, 'User with that email already exists');
       }
@@ -20,14 +26,22 @@ Meteor.methods({
         "emails.0.address": doc.email
       };
 
-      Meteor.users.update({_id: doc.userId}, {$set: account});
+      Meteor.users.update({
+        _id: doc.userId
+      }, {
+        $set: account
+      });
     } else {
       var account = {
         "profile.firstName": doc.firstName,
         "profile.lastName": doc.lastName
       };
 
-      Meteor.users.update({_id: doc.userId}, {$set: account});
+      Meteor.users.update({
+        _id: doc.userId
+      }, {
+        $set: account
+      });
     }
   }
 });
