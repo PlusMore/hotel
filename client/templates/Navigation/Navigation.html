@@ -19,7 +19,11 @@
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Orders'}}" data-state="Orders">
           <a href="{{pathFor 'Orders.Open'}}" title="Guest Orders">
             <i class="fa  fa-fw fa-th-list"></i> Guest Orders
-            {{{hotelRequiredBadge}}}
+            {{#if requiresHotel}}
+              {{{hotelRequiredBadge}}}
+            {{else}}
+              {{> OpenOrdersBadge}}
+            {{/if}}
           </a>
         </li>
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Rooms'}}" data-state="Rooms">
