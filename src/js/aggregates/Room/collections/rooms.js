@@ -10,7 +10,7 @@ Rooms.allow({
     return Roles.userIsInRole(userId, ['hotel-manager', 'admin']);
   },
   remove: function(userId, doc) {
-    return false;
+    return Roles.userIsInRole(userId, ['hotel-manager', 'admin']);
   }
 });
 
