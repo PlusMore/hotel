@@ -18,7 +18,7 @@ Groups.helpers({
   },
   groupMembers: function() {
     if (this.hasMembers()) {
-      return Meteor.users.find({_id: {$in: this.memberIds}});
+      return Meteor.users.find({_id: {$in: this.memberIds}}, {$sort: {"profile.firstName": 1}});
     }
   },
   containsMember: function(userId) {
