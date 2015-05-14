@@ -114,6 +114,6 @@ Orders.helpers({
   },
   groupsAssigned: function() {
     var hotelId = Session.get('hotelId');
-    return Groups.find({hotelId: hotelId, servicesHandled: this.service.type});
+    return Groups.find({hotelId: hotelId, servicesHandled: this.service.type}, {$sort: {name:1}});
   }
 });

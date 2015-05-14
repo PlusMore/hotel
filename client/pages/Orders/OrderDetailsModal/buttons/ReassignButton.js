@@ -5,21 +5,6 @@ Template.ReassignButton.helpers({
     } else {
       return "btn-info";
     }
-  },
-  userOptions: function() {
-    var groupsAssignedCursor = this.groupsAssigned();
-    var groupsAssigned = groupsAssignedCursor.fetch();
-    var userIds = [];
-    _.each(groupsAssigned, function(group) {
-      userIds.push.apply(userIds, group.memberIds);
-    });
-    // remove dupes
-    userIds = _.uniq(userIds);
-
-    // remove current user as displayed elsewhere
-    userIds = _.without(userIds, Meteor.user()._id);
-    users = Meteor.users.find({_id: {$in: userIds}}, {$sort: {"profile.firstName": 1}}).fetch();
-    return users;
   }
 });
 
@@ -35,5 +20,7 @@ Template.ReassignButton.events({
         Messages.success('You have reassigned this order!');
       }
     });
+    forceReRender();
+    Dropdowns.hide('reassignUserDropdown');
   }
 });

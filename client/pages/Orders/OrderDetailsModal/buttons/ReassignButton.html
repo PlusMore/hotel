@@ -7,8 +7,11 @@
     {{/dropdownTrigger}}
 
     {{#dropdown name="reassignUserDropdown" top="-10" direction="n" classes="dropdown-menu btn-block"}}
-      {{#each userOptions}}
-        <li><a class="reassign-user" staff-id={{_id}} href="#">{{fullName}}</a></li><!-- collection helper -->
+      {{#each groupsAssigned}} <!-- collection helper -->
+        <h4 class="text-center">{{name}}</h4>
+        {{#each groupMembers}}<!-- collection helper -->
+          <li><a class="reassign-user" staff-id={{_id}} href="#">{{fullName}}</a></li><!-- collection helper -->
+        {{/each}}
       {{/each}}
       <li class="divider"></li>
       {{#with currentUser}}
