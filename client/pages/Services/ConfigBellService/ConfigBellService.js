@@ -81,7 +81,9 @@ Template.ConfigBellService.events({
   },
   'click #unassign-group': function(e) {
     e.preventDefault();
-    Meteor.call('unassignGroupServiceType', this._id, 'bellService', function(err, res) {
+    var hotelId = Session.get('hotelId');
+    var hotelService = HotelServices.findOne({hotelId: hotelId, type: 'bellService'});
+    Meteor.call('unassignGroupServiceId', this._id, hotelService._id, function(err, res) {
       if (err) {
         Messages.error(err);
       } else {

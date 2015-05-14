@@ -17,7 +17,7 @@ Template.OrderHistory.helpers({
       if (filterGroupId) {
         var group = Groups.findOne(filterGroupId);
 
-        selector["service.type"] = {
+        selector["service.serviceId"] = {
           $in: group.servicesHandled
         };
       }
@@ -27,7 +27,7 @@ Template.OrderHistory.helpers({
       // if filter applied
       if (filterGroupId) {
         var group = Groups.findOne(filterGroupId);
-        selector["service.type"] = {
+        selector["service.serviceId"] = {
           $in: group.servicesHandled
         };
 
@@ -37,12 +37,12 @@ Template.OrderHistory.helpers({
         var userGroups = userGroupsCursor.fetch();
         var userGroupsServices = [];
         _.each(userGroups, function(group) {
-          _.each(group.servicesHandled, function(serviceType) {
-            userGroupsServices.push(serviceType);
+          _.each(group.servicesHandled, function(serviceId) {
+            userGroupsServices.push(serviceId);
           })
         })
 
-        selector["service.type"] = {
+        selector["service.serviceId"] = {
           $in: userGroupsServices
         };
       }
