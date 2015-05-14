@@ -37,6 +37,6 @@ Template.FilterOrdersByGroupSelect.onCreated(function() {
   self.autorun(function() {
     var groupFilterId = Session.get('ordersDatatableFilterGroupId');
     // this prevents weirdness due to tabular's nonreactive selector
-    forceReRender();
+    TabularTables.refresh();
   });
 });

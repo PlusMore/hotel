@@ -17,13 +17,13 @@ HotelServices.helpers({
   hasAssignedGroups: function() {
     return Groups.find({
       hotelId: this.hotelId,
-      servicesHandled: this.type
+      servicesHandled: this._id
     }).count() > 0;
   },
   assignedGroups: function() {
     return Groups.find({
       hotelId: this.hotelId,
-      servicesHandled: this.type
+      servicesHandled: this._id
     }, {
       $sort: {
         name: 1

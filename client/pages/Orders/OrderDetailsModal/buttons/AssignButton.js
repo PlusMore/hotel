@@ -10,7 +10,7 @@ Template.AssignButton.events({
         Messages.success('You have assigned this order!');
       }
     });
-    forceReRender();
+    TabularTables.refresh();
     Dropdowns.hide('assignUserDropdown');
   }
 });

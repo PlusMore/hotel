@@ -43,7 +43,7 @@ Template.ConfigWakeUpCall.helpers({
     var unassignedCursor = Groups.find({
       hotelId: Session.get('hotelId'),
       servicesHandled: {
-        $ne: 'wakeUpCall'
+        $ne: this._id
       }
     });
     var unassigned = unassignedCursor.fetch();
@@ -81,7 +81,9 @@ Template.ConfigWakeUpCall.events({
   },
   'click #unassign-group': function(e) {
     e.preventDefault();
-    Meteor.call('unassignGroupServiceType', this._id, 'wakeUpCall', function(err, res) {
+    var hotelId = Session.get('hotelId');
+    var hotelService = HotelServices.findOne({hotelId: hotelId, type: 'wakeUpCall'});
+    Meteor.call('unassignGroupServiceId', this._id, hotelService._id, function(err, res) {
       if (err) {
         Messages.error(err);
       } else {

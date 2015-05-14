@@ -26,7 +26,7 @@ Template.OpenOrdersBadge.onCreated(function () {
       _.each(groups, function(group) {
         handledServices.push.apply(group.handledServices);
       });
-      selector["service.type"] = {
+      selector["service.serviceId"] = {
         $in: handledServices
       };
     }
