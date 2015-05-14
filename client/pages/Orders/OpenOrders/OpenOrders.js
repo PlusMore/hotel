@@ -58,6 +58,6 @@ Template.OpenOrders.onCreated(function() {
     var hotelId = Session.get('hotelId');
     self.subscribe('groups', hotelId);
     // this prevents weirdness due to tabular's nonreactive selector
-    forceReRender();
+    TabularTables.refresh();
   });
 });
