@@ -34,7 +34,6 @@ AutoForm.hooks({
       Messages.success('Successfully pre-registered stay!');
       Router.go('Stays.Upcoming');
     },
-
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "submit", or the method name.
     onError: function(operation, error) {
@@ -42,5 +41,11 @@ AutoForm.hooks({
         Messages.error(error.message);
       }
     },
+    beginSubmit: function() {
+      this.template.$("#preregister-stay-submit").prop('disabled', true);
+    },
+    endSubmit: function() {
+      this.template.$("#preregister-stay-submit").prop('disabled', false);
+    }
   }
 });

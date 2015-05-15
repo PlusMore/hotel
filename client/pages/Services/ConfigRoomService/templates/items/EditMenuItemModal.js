@@ -39,13 +39,18 @@ AutoForm.hooks({
       Messages.success('Item Edited!');
       BootstrapModalPrompt.dismiss();
     },
-
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
     onError: function(operation, error) {
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
+    },
+    beginSubmit: function() {
+      this.template.$("#edit-menuitem-submit").prop('disabled', true);
+    },
+    endSubmit: function() {
+      this.template.$("#edit-menuitem-submit").prop('disabled', false);
     }
   }
 });

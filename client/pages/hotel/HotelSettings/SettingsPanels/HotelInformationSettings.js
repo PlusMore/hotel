@@ -16,6 +16,12 @@ AutoForm.hooks({
       } else {
         Messages.error(error.message);
       }
+    },
+    beginSubmit: function() {
+      this.template.$("#edit-hotelinfo-submit").prop('disabled', true);
+    },
+    endSubmit: function() {
+      this.template.$("#edit-hotelinfo-submit").prop('disabled', false);
     }
   }
 });

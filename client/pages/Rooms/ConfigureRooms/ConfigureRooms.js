@@ -39,11 +39,11 @@ AutoForm.hooks({
         }
       }
     },
-    beginSubmit: function(formId) {
-      document.getElementById("multi-room-submit").disabled = true;
+    beginSubmit: function() {
+      this.template.$("#multi-room-submit").prop('disabled', true);
     },
-    endSubmit: function(formId) {
-      document.getElementById("multi-room-submit").disabled = false;
+    endSubmit: function() {
+      this.template.$("#multi-room-submit").prop('disabled', false);
     }
   },
   singleRoomForm: {
@@ -63,6 +63,12 @@ AutoForm.hooks({
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result) {
       Messages.success('Created room successfully!');
+    },
+    beginSubmit: function() {
+      this.template.$("#single-room-submit").prop('disabled', true);
+    },
+    endSubmit: function() {
+      this.template.$("#single-room-submit").prop('disabled', false);
     }
   }
 });

@@ -76,5 +76,11 @@ AutoForm.hooks({
         Messages.error(error.message);
       }
     },
+    beginSubmit: function() {
+      this.template.$("#add-groupuser-submit").prop('disabled', true);
+    },
+    endSubmit: function() {
+      this.template.$("#add-groupuser-submit").prop('disabled', false);
+    }
   }
 });

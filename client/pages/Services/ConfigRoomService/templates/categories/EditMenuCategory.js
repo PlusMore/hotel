@@ -103,6 +103,12 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
+    },
+    beginSubmit: function() {
+      this.template.$("#edit-category-submit").prop('disabled', true);
+    },
+    endSubmit: function() {
+      this.template.$("#edit-category-submit").prop('disabled', false);
     }
   },
   configureMenuCategoryAvailability: {
@@ -118,6 +124,12 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
+    },
+    beginSubmit: function() {
+      this.template.$("#update-availability-submit").prop('disabled', true);
+    },
+    endSubmit: function() {
+      this.template.$("#update-availability-submit").prop('disabled', false);
     }
   }
 });

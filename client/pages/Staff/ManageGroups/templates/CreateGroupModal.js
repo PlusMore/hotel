@@ -23,5 +23,11 @@ AutoForm.hooks({
         Messages.error(error.message);
       }
     },
+    beginSubmit: function() {
+      this.template.$("#add-group-submit").prop('disabled', true);
+    },
+    endSubmit: function() {
+      this.template.$("#add-group-submit").prop('disabled', false);
+    }
   }
 });

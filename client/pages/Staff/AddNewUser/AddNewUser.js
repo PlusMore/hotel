@@ -20,6 +20,12 @@ AutoForm.hooks({
       } else {
         Messages.error(error.message);
       }
+    },
+    beginSubmit: function() {
+      this.template.$("#add-user-submit").prop('disabled', true);
+    },
+    endSubmit: function() {
+      this.template.$("#add-user-submit").prop('disabled', false);
     }
   }
 });

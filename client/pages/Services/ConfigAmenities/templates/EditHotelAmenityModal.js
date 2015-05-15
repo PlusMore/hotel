@@ -39,5 +39,11 @@ AutoForm.hooks({
         Messages.error(error.message);
       }
     },
+    beginSubmit: function() {
+      this.template.$("#edit-amenity-submit").prop('disabled', true);
+    },
+    endSubmit: function() {
+      this.template.$("#edit-amenity-submit").prop('disabled', false);
+    }
   }
 });

@@ -19,6 +19,12 @@ AutoForm.hooks({
     },
     onError: function(operation, error) {
       Messages.error(error.reason);
+    },
+    beginSubmit: function() {
+      this.template.$("#edit-account-submit").prop('disabled', true);
+    },
+    endSubmit: function() {
+      this.template.$("#edit-account-submit").prop('disabled', false);
     }
   },
 });
