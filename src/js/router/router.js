@@ -168,6 +168,13 @@ Router.route('/config-services/room-service', function() {
   }
 });
 
+Router.route('/config-services/add-services', function() {
+  this.render('AddServices', {});
+}, {
+  name: "Services.AddServices",
+  controller: "HotelRequiredController"
+});
+
 Router.route('/config-services/room-service/edit-menu-category/:_id', function() {
   this.render('EditMenuCategory', {});
 }, {

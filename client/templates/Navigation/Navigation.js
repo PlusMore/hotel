@@ -68,6 +68,12 @@ Template.Navigation.helpers({
         }
       }
     );
+  },
+  roomServiceActive: function() {
+    return HotelServices.find({
+      hotelId: Session.get('hotelId'),
+      type: 'roomService'
+    }).count() > 0;
   }
 });
 

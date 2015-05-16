@@ -76,11 +76,13 @@
                 Hotel Amenities
               </a>
             </li>
-            <li class="{{currentRouteClass 'Services.ConfigRoomService'}}" data-state="Services.ConfigRoomService">
-              <a href="{{pathFor 'Services.ConfigRoomService'}}" title="Configure Room Service">
-                Room Service
-              </a>
-            </li>
+            {{#if roomServiceActive}}
+              <li class="{{currentRouteClass 'Services.ConfigRoomService'}}" data-state="Services.ConfigRoomService">
+                <a href="{{pathFor 'Services.ConfigRoomService'}}" title="Configure Room Service">
+                  Room Service
+                </a>
+              </li>
+            {{/if}}
             {{#if Template.subscriptionsReady}}
               {{#each genericServices}}
                 <li class="{{currentRouteClass 'Services.ConfigService'}}" data-state="Services.ConfigService">
@@ -90,6 +92,11 @@
                 </li>
               {{/each}}
             {{/if}}
+            <li class="{{currentRouteClass 'Services.AddServices'}}" data-state="Services.AddServices">
+              <a href="{{pathFor 'Services.AddServices'}}" title="Add Services">
+                + Add Services
+              </a>
+            </li>
           </ul>
         </li>
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Hotel'}}" data-state="Hotel">
