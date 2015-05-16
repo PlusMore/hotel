@@ -29,6 +29,9 @@ HotelServices.helpers({
         name: 1
       }
     });
+  },
+  friendlyServiceType: function() {
+    return HotelServices.friendlyServiceType(this.type);
   }
 });
 

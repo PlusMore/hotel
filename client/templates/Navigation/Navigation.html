@@ -81,31 +81,15 @@
                 Room Service
               </a>
             </li>
-            <li class="{{currentRouteClass 'Services.ConfigHouseKeeping'}}" data-state="Services.ConfigHouseKeeping">
-              <a href="{{pathFor 'Services.ConfigHouseKeeping'}}" title="Configure House Keeping">
-                House Keeping
-              </a>
-            </li>
-            <li class="{{currentRouteClass 'Services.ConfigTransportation'}}" data-state="Services.ConfigTransportation">
-              <a href="{{pathFor 'Services.ConfigTransportation'}}" title="Configure Transportation">
-                Transportation
-              </a>
-            </li>
-            <li class="{{currentRouteClass 'Services.ConfigWakeUpCall'}}" data-state="Services.ConfigWakeUpCall">
-              <a href="{{pathFor 'Services.ConfigWakeUpCall'}}" title="Configure Wake Up Call">
-                Wake Up Calls
-              </a>
-            </li>
-            <li class="{{currentRouteClass 'Services.ConfigBellService'}}" data-state="Services.ConfigBellService">
-              <a href="{{pathFor 'Services.ConfigBellService'}}" title="Configure Bell Service">
-                Bell Service
-              </a>
-            </li>
-            <li class="{{currentRouteClass 'Services.ConfigValet'}}" data-state="Services.ConfigValet">
-              <a href="{{pathFor 'Services.ConfigValet'}}" title="Configure Valet Service">
-                Valet Service
-              </a>
-            </li>
+            {{#if Template.subscriptionsReady}}
+              {{#each genericServices}}
+                <li class="{{currentRouteClass 'Services.ConfigService'}}" data-state="Services.ConfigService">
+                  <a href="{{pathFor 'Services.ConfigService'}}" title="Configure {{serviceName}}">
+                    {{friendlyServiceType}}
+                  </a>
+                </li>
+              {{/each}}
+            {{/if}}
           </ul>
         </li>
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Hotel'}}" data-state="Hotel">

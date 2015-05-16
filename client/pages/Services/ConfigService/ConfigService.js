@@ -1,4 +1,4 @@
-Template.transportationTimepicker.onRendered(function() {
+Template.configServiceTimepicker.onRendered(function() {
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -14,24 +14,19 @@ Template.transportationTimepicker.onRendered(function() {
   });
 });
 
-Template.ConfigTransportation.onCreated(function() {
+Template.ConfigService.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    var hotel = Session.get('hotelId');
-    self.subscribe('hotelService', 'transportation', hotel);
-    self.subscribe('groups', hotel);
+    var hotelId = Session.get('hotelId');
+    self.subscribe('groups', hotelId);
   });
 });
 
-Template.ConfigTransportation.helpers({
+Template.ConfigService.helpers({
   isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''
     // if not configured, return ''
-    if (!this.configuration) {
-      return '';
-    } else {
-      return this.configuration.active ? 'checked' : '';
-    }
+    return this.active ? 'checked' : '';
   },
   configureServiceSchema: function() {
     return Schema.ServiceConfiguration;
@@ -43,7 +38,7 @@ Template.ConfigTransportation.helpers({
     var unassignedCursor = Groups.find({
       hotelId: Session.get('hotelId'),
       servicesHandled: {
-        $ne: 'transportation'
+        $ne: this.type
       }
     });
     var unassigned = unassignedCursor.fetch();
@@ -59,30 +54,31 @@ Template.ConfigTransportation.helpers({
   }
 });
 
-Template.ConfigTransportation.events({
-  'change #toggle-transportation-switch': function(e, tmpl) {
+Template.ConfigService.events({
+  'change #toggle-service-switch': function(e, tmpl) {
+    var hotelService = tmpl.data.hotelService;
     if (tmpl.$(e.currentTarget).prop('checked')) {
-      Meteor.call('activateHotelService', 'transportation', Session.get('hotelId'), function(err, res) {
+      Meteor.call('activateHotelService', hotelService.type, Session.get('hotelId'), function(err, res) {
         if (err) {
           Messages.error(err);
         } else {
-          Messages.success('Transportation Services Enabled!');
+          Messages.success(hotelService.friendlyServiceType() + ' Enabled!');
         }
       });
     } else {
-      Meteor.call('deactivateHotelService', 'transportation', Session.get('hotelId'), function(err, res) {
+      Meteor.call('deactivateHotelService', hotelService.type, Session.get('hotelId'), function(err, res) {
         if (err) {
           Messages.error(err);
         } else {
-          Messages.error('Transportation Services Disabled');
+          Messages.error(hotelService.friendlyServiceType() + ' Disabled');
         }
       });
     }
   },
-  'click #unassign-group': function(e) {
+  'click #unassign-group': function(e, tmpl) {
     e.preventDefault();
     var hotelId = Session.get('hotelId');
-    var hotelService = HotelServices.findOne({hotelId: hotelId, type: 'transportaion'});
+    var hotelService = tmpl.data.hotelService;
     Meteor.call('unassignGroupServiceId', this._id, hotelService._id, function(err, res) {
       if (err) {
         Messages.error(err);

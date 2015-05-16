@@ -183,77 +183,14 @@ Router.route('/config-services/room-service/edit-menu-category/:_id', function()
   }
 });
 
-Router.route('/config-services/house-keeping', function() {
-  this.render('ConfigHouseKeeping', {});
+Router.route('/config-services/:_id', function() {
+  this.render('ConfigService', {});
 }, {
-  name: "Services.ConfigHouseKeeping",
+  name: "Services.ConfigService",
   controller: "HotelRequiredController",
   data: function() {
     return {
-      configuration: HotelServices.findOne({
-        hotelId: Session.get('hotelId'),
-        type: 'houseKeeping'
-      })
-    };
-  }
-});
-
-Router.route('/config-services/transportation', function() {
-  this.render('ConfigTransportation', {});
-}, {
-  name: "Services.ConfigTransportation",
-  controller: "HotelRequiredController",
-  data: function() {
-    return {
-      configuration: HotelServices.findOne({
-        hotelId: Session.get('hotelId'),
-        type: 'transportation'
-      })
-    };
-  }
-});
-
-Router.route('/config-services/wake-up-call', function() {
-  this.render('ConfigWakeUpCall', {});
-}, {
-  name: "Services.ConfigWakeUpCall",
-  controller: "HotelRequiredController",
-  data: function() {
-    return {
-      configuration: HotelServices.findOne({
-        hotelId: Session.get('hotelId'),
-        type: 'wakeUpCall'
-      })
-    };
-  }
-});
-
-Router.route('/config-services/bell-service', function() {
-  this.render('ConfigBellService', {});
-}, {
-  name: "Services.ConfigBellService",
-  controller: "HotelRequiredController",
-  data: function() {
-    return {
-      configuration: HotelServices.findOne({
-        hotelId: Session.get('hotelId'),
-        type: 'bellService'
-      })
-    };
-  }
-});
-
-Router.route('/config-services/valet', function() {
-  this.render('ConfigValet', {});
-}, {
-  name: "Services.ConfigValet",
-  controller: "HotelRequiredController",
-  data: function() {
-    return {
-      configuration: HotelServices.findOne({
-        hotelId: Session.get('hotelId'),
-        type: 'valetServices'
-      })
+      hotelService: HotelServices.findOne(this.params._id)
     };
   }
 });
