@@ -1,3 +1,6 @@
 <template name="ValetServiceDetails">
   <div>Ticket #: {{service.options.ticketNumber}}</div>
+  {{#if service.tip}}
+    <div>Tip: {{currency service.tip}}</div>
+  {{/if}}
 </template>
