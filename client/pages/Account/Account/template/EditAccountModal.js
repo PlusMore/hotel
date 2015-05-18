@@ -4,10 +4,16 @@ Template.EditAccountModal.helpers({
   }
 });
 
+Template.EditAccountModal.onRendered(function() {
+  this.$('.progress-button').progressInitialize();
+});
+
 AutoForm.hooks({
   editAccountForm: {
     before: {
       method: function(doc) {
+        var button = this.template.$('.progress-button');
+        button.progressStart();
         return doc;
       }
     },
@@ -16,9 +22,13 @@ AutoForm.hooks({
     onSuccess: function(operation, result) {
       Messages.success('Successfully updated your account!');
       BootstrapModalPrompt.dismiss();
+      var button = this.template.$('.progress-button');
+      button.progressFinish();
     },
     onError: function(operation, error) {
       Messages.error(error.reason);
+      var button = this.template.$('.progress-button');
+      button.progressError();
     }
   },
 });

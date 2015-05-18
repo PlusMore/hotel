@@ -55,7 +55,8 @@ Template.GuestCheckInModal.onCreated(function() {
   });
 })
 
-Template.GuestCheckInModal.rendered = function() {
+Template.GuestCheckInModal.onRendered(function() {
+  this.$('.progress-button').progressInitialize();
   Session.set('checkoutDate', undefined);
   var hotel = Hotels.findOne(Session.get('hotelId'));
   // Set up datepicker
@@ -74,7 +75,7 @@ Template.GuestCheckInModal.rendered = function() {
       }
     }
   });
-};
+});
 
 Template.GuestCheckInModal.events({
   'change #select-prereg-stay': function(e, tmpl) {
@@ -133,6 +134,8 @@ AutoForm.hooks({
             return false;
           }
         }
+        var button = this.template.$('.progress-button');
+        button.progressStart();
         return doc;
       }
     },
@@ -142,6 +145,8 @@ AutoForm.hooks({
       BootstrapModalPrompt.dismiss();
       Session.set('checkoutDate', undefined);
       Messages.success('Guest successfully checked in to ' + result);
+      var button = this.template.$('.progress-button');
+      button.progressFinish();
     },
 
     // Called when any operation fails, where operation will be
@@ -150,6 +155,8 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
+      var button = this.template.$('.progress-button');
+      button.progressError();
     },
   }
 });
