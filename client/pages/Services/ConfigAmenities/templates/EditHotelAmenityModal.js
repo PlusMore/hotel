@@ -8,7 +8,8 @@ Template.EditHotelAmenityModal.helpers({
   }
 });
 
-Template.editAmenityTimePicker.rendered = function() {
+Template.editAmenityTimePicker.onRendered(function() {
+  this.$('.progress-button').progressInitialize();
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -22,14 +23,21 @@ Template.editAmenityTimePicker.rendered = function() {
       }
     }
   });
-};
+});
 
 AutoForm.hooks({
   editAmenity: {
+    before: {
+      update: function(doc) {
+        this.template.$('.progress-button').progressStart();
+        return doc;
+      }
+    },
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "remove", or the method name.
     onSuccess: function(operation, result) {
       Messages.success('Changes Saved');
+      this.template.$('.progress-button').progressFinish();
       BootstrapModalPrompt.dismiss();
     },
     // Called when any operation fails, where operation will be
@@ -38,6 +46,7 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
+      this.template.$('.progress-button').progressError();
     },
   }
 });

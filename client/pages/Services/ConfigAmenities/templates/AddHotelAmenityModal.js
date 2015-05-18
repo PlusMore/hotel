@@ -4,7 +4,8 @@ Template.AddHotelAmenityModal.helpers({
   }
 });
 
-Template.amenityTimePicker.rendered = function() {
+Template.amenityTimePicker.onRendered(function() {
+  this.$('.progress-button').progressInitialize();
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -18,14 +19,21 @@ Template.amenityTimePicker.rendered = function() {
       }
     }
   });
-};
+});
 
 AutoForm.hooks({
   newAmenity: {
+    before: {
+      insert: function(doc) {
+        this.template.$('.progress-button').progressStart();
+        return doc;
+      }
+    },
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "remove", or the method name.
     onSuccess: function(operation, result) {
       Messages.success('Amenity Created');
+      this.template.$('.progress-button').progressFinish();
       BootstrapModalPrompt.dismiss();
     },
     // Called when any operation fails, where operation will be
@@ -34,6 +42,7 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
+      this.template.$('.progress-button').progressError();
     },
   }
 });
