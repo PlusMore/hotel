@@ -2,7 +2,7 @@ Schema.AssignServiceToGroup = new SimpleSchema({
   groupId: {
     type: String
   },
-  serviceType: {
+  serviceId: {
     type: String
   }
 });

@@ -20,7 +20,7 @@ Template.ReassignButton.events({
         Messages.success('You have reassigned this order!');
       }
     });
-    forceReRender();
+    TabularTables.refresh();
     Dropdowns.hide('reassignUserDropdown');
   }
 });
