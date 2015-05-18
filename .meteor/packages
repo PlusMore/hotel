@@ -21,7 +21,7 @@ ian:accounts-ui-bootstrap-3
 accounts-password
 aldeed:simple-schema
 alanning:roles
-aldeed:autoform@5.1.2
+aldeed:autoform@=5.1.2
 aldeed:collection2
 underscore
 copleykj:simple-publish
