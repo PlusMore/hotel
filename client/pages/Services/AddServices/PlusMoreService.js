@@ -16,6 +16,12 @@ Template.PlusMoreService.helpers({
       hotelId: Session.get('hotelId'),
       type: this.type
     }).count() > 0 ? 'Configured' : 'Not Configured';
+  },
+  configuredService: function() {
+    return HotelServices.findOne({
+      hotelId: Session.get('hotelId'),
+      type: this.type
+    });
   }
 });
 
