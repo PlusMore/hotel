@@ -22,8 +22,14 @@
             </div>
           </div>
           <div class="panel-body">
-            <a href="{{pathFor 'Staff.AddNewUser'}}" class="btn btn-sm btn-primary pull-right">Add New User</a>
-            {{> tabular table=TabularTables.ViewStaff selector=selector class="table table-condensed table-hover table-responsive"}}
+            <div class="row">
+              <div class="col-xs-12">
+                <a href="{{pathFor 'Staff.AddNewUser'}}" class="btn btn-sm btn-primary pull-right">Add New User</a>
+              </div>
+              <div class="col-xs-12">
+                {{> tabular table=TabularTables.ViewStaff selector=selector class="table table-condensed table-hover"}}
+              </div>
+            </div>
           </div>
         </div>
       </div>
