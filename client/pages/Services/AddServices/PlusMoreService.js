@@ -10,6 +10,12 @@ Template.PlusMoreService.helpers({
       hotelId: Session.get('hotelId'),
       type: this.type
     }).count() > 0 ? true : false;
+  },
+  configuredText: function() {
+    return HotelServices.find({
+      hotelId: Session.get('hotelId'),
+      type: this.type
+    }).count() > 0 ? 'Configured' : 'Not Configured';
   }
 });
 

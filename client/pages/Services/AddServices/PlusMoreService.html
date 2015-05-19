@@ -6,9 +6,9 @@
         <span class="title text-center">{{configuredText}}</span>
       </div>
       {{#if isActive}}
-        <a id="remove-service" href="#"><span service-type="roomService" class="label label-danger">Remove {{displayName}}</span></a>
+        <a class="btn btn-block btn-danger configure-service-button" id="remove-service" href="#">Remove {{displayName}}</a>
       {{else}}
-        <a id="add-service" href="#"><span service-type="roomService" class="label label-success">Add {{displayName}}</span></a>
+        <a class="btn btn-block btn-success configure-service-button" id="add-service" href="#">Add {{displayName}}</a>
       {{/if}}
     </div>
   </div>
