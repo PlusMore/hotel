@@ -63,3 +63,10 @@ HotelServices.friendlyServiceType = function(serviceType) {
       return undefined;
   }
 };
+
+HotelServices.clonableServices = function() {
+  return HotelServices.find({
+    plusmore: true,
+    clonable: true
+  })
+}

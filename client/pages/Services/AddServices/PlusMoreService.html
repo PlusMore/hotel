@@ -1,0 +1,15 @@
+<template name="PlusMoreService">
+  <div class="panel {{isServiceConfiguredForHotelClass}} widget-mini">
+    <div class="panel-body">
+      <div style="min-height: 67px">
+        <span class="total text-center">{{displayName}}</span>
+        <span class="title text-center">{{configuredText}}</span>
+      </div>
+      {{#if isActive}}
+        <a id="remove-service" href="#"><span service-type="roomService" class="label label-danger">Remove {{displayName}}</span></a>
+      {{else}}
+        <a id="add-service" href="#"><span service-type="roomService" class="label label-success">Add {{displayName}}</span></a>
+      {{/if}}
+    </div>
+  </div>
+</template>
