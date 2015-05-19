@@ -1,8 +1,12 @@
 Template.WeatherInfo.rendered = function() {
   var hotel = Hotels.findOne(Session.get('hotelId'));
 
+  var location;
+  if (hotel && hotel.geo) {
+    location = hotel.geo.latitude + ',' + hotel.geo.longitude
+  }
+
   var options = {
-    location: hotel.geo.latitude + ',' + hotel.geo.longitude,
     unit: 'f',
     success: function(weather) {
       //html = '<i class="icon-' + weather.code + '"></i>'
@@ -18,6 +22,9 @@ Template.WeatherInfo.rendered = function() {
       //$("#weather").html('<p>' + error + '</p>');
     }
   }
+
+  if (location)
+    _.extend(options, {location: location});
 
   Weather.options = options;
   Weather.load();

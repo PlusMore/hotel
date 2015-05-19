@@ -1,0 +1,13 @@
+<template name="PlusMoreServices">
+  {{#if Template.subscriptionsReady}}
+  <div class="row">
+    {{#each services}}
+      <div class="col-sm-6">
+        {{> PlusMoreService}}
+      </div>
+    {{/each}}
+  </div>
+  {{else}}
+    <p>Loading...</p>
+  {{/if}}
+</template>

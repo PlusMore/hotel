@@ -1,0 +1,19 @@
+<template name="AddServices">
+  {{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Add Services</h1>
+    {{/contentFor}}
+
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li class="active">Add Services</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+
+    {{> PlusMoreServices}}
+
+  {{/Layout}}
+</template>
