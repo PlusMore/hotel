@@ -22,8 +22,15 @@
             </div>
           </div>
           <div class="panel-body">
-            <a href="{{pathFor 'Devices.Configure'}}" class="btn btn-sm btn-primary pull-right">Configure Settings</a>
-            {{> tabular table=TabularTables.ViewDevices selector=selector class="table table-condensed table-hover table-responsive"}}
+            <div class="row">
+              <div class="col-xs-12">
+                <a href="{{pathFor 'Devices.Configure'}}" class="btn btn-sm btn-primary pull-right">Configure Settings</a>
+              </div>
+              <div class="col-xs-12">
+                {{> tabular table=TabularTables.ViewDevices selector=selector class="table table-condensed table-hover"}}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
