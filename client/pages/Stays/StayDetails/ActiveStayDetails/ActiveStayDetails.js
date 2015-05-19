@@ -30,7 +30,7 @@ Template.ActiveStayDetails.events({
   }
 });
 
-Template.ActiveStayDetails.created = function() {
+Template.ActiveStayDetails.onCreated(function() {
   var instance = this;
 
   instance.autorun(function() {
@@ -47,9 +47,11 @@ Template.ActiveStayDetails.created = function() {
       });
     }
   }
-};
+});
 
-Template.ActiveStayDetails.rendered = function() {
+Template.ActiveStayDetails.onRendered(function() {
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -61,12 +63,12 @@ Template.ActiveStayDetails.rendered = function() {
       }
     }
   });
-};
+});
 
 AutoForm.hooks({
   changeCheckoutDate: {
     before: {
-      changeCheckoutDate: function(doc, template) {
+      method: function(doc) {
         //return doc; (synchronous)
         //return false; (synchronous, cancel)
         //this.result(doc); (asynchronous)
@@ -74,6 +76,7 @@ AutoForm.hooks({
         var stay = Stays.findOne(doc._id);
         var checkoutDate = moment(doc.checkoutDate).zone(stay.zone).format('dddd, MM/DD');
         if (confirm("Change the checkout date to " + checkoutDate + " at " + doc.checkoutTime + "?")) {
+          this.template.findParentTemplate('ActiveStayDetails').$progressButton.progressStart();
           return doc;
         }
         return false;
@@ -81,17 +84,18 @@ AutoForm.hooks({
     },
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "submit", or the method name.
-    onSuccess: function(operation, result, template) {
+    onSuccess: function(operation, result) {
       Messages.success('Successfully changed checkout date!');
+      this.template.findParentTemplate('ActiveStayDetails').$progressButton.progressFinish();
       BootstrapModalPrompt.dismiss();
     },
-
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "submit", or the method name.
-    onError: function(operation, error, template) {
+    onError: function(operation, error) {
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
-    },
+      this.template.findParentTemplate('ActiveStayDetails').$progressButton.progressError();
+    }
   }
 });
