@@ -22,10 +22,16 @@
             </div>
           </div>
           <div class="panel-body">
-            {{#if currentUser.isManager}} <!-- collection helper -->
-              <a href="{{pathFor 'Rooms.Configure'}}" class="btn btn-sm btn-primary pull-right">Add/Edit Rooms</a>
-            {{/if}}
-            {{> tabular table=TabularTables.ViewRooms selector=selector class="table table-condensed table-hover table-responsive"}}
+            <div class="row">
+              <div class="col-xs-12">
+                {{#if currentUser.isManager}} <!-- collection helper -->
+                  <a href="{{pathFor 'Rooms.Configure'}}" class="btn btn-sm btn-primary pull-right">Add/Edit Rooms</a>
+                {{/if}}
+              </div>
+              <div class="col-xs-12">
+                {{> tabular table=TabularTables.ViewRooms selector=selector class="table table-condensed table-hover"}}
+              </div>
+            </div>
           </div>
         </div>
       </div>

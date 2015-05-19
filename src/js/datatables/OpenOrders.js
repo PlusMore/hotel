@@ -10,7 +10,7 @@ TabularTables.OpenOrders = new Tabular.Table({
   // https://datatables.net/reference/option/dom
   // removing 'p' removes pagination buttons
   // see link for ways to manipulate datatable appearance
-  dom: 'lfrti',
+  dom: 'lfr<"table-responsive"t>i',
   extraFields: [
     'open',
     'type',
