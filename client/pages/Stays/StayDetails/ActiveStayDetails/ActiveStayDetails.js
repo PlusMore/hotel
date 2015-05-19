@@ -11,7 +11,7 @@ Template.ActiveStayDetails.helpers({
   },
   users: function() {
     return Template.instance().users();
-  },
+  }
 });
 
 Template.ActiveStayDetails.events({

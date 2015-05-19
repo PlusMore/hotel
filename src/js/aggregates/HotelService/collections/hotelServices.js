@@ -29,6 +29,9 @@ HotelServices.helpers({
         name: 1
       }
     });
+  },
+  friendlyServiceType: function() {
+    return HotelServices.friendlyServiceType(this.type);
   }
 });
 
@@ -60,3 +63,10 @@ HotelServices.friendlyServiceType = function(serviceType) {
       return undefined;
   }
 };
+
+HotelServices.clonableServices = function() {
+  return HotelServices.find({
+    plusmore: true,
+    clonable: true
+  })
+}

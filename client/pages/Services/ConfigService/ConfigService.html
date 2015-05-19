@@ -1,52 +1,53 @@
-<template name="ConfigWakeUpCall">
+<template name="ConfigService">
   {{#Layout template="Page"}}
     {{#contentFor "header"}}
-      <h1>Manage Wake-up Calls</h1>
+      {{#with hotelService}}
+        <h1>Manage {{friendlyServiceType}}</h1>
+      {{/with}}
     {{/contentFor}}
 
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
       </li>
-      <li>Manage Services</li>
-      <li class="active">Wake-up Calls</li>
+      {{#with hotelService}}
+        <li class="active">Config {{friendlyServiceType}}</li>
+      {{/with}}
     {{/contentFor}}
 
-    <!-- page content -->
-    {{#if Template.subscriptionsReady}}
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="pull-right">
-                <div class="tgl-container" style="margin-top:-8px;">
-                  <label class="tgl">
-                    <input id="toggle-wakeupcall-switch" type="checkbox" {{isChecked}}/>
-                    <span class="tgl_body">
-                      <span class="tgl_switch"></span>
-                      <span class="tgl_track">
-                        <span class="tgl_bgd"></span>
-                        <span class="tgl_bgd tgl_bgd-negative"></span>
+    {{#with hotelService}}
+      <!-- page content -->
+      {{#if Template.subscriptionsReady}}
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-right">
+                  <div class="tgl-container" style="margin-top:-8px;">
+                    <label class="tgl">
+                      <input id="toggle-service-switch" type="checkbox" {{isChecked}}/>
+                      <span class="tgl_body">
+                        <span class="tgl_switch"></span>
+                        <span class="tgl_track">
+                          <span class="tgl_bgd"></span>
+                          <span class="tgl_bgd tgl_bgd-negative"></span>
+                        </span>
                       </span>
-                    </span>
-                  </label>
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <h3 class="panel-title">
-                Wake-up Calls
-                {{#with configuration}}
+                <h3 class="panel-title">
+                  {{friendlyServiceType}}
                   <small>
-                  Available
-                  {{#if startTime}}
-                    {{startTime}} - {{endTime}}
-                  {{else}}
-                    Anytime
-                  {{/if}}
+                    Available
+                    {{#if startTime}}
+                      {{startTime}} - {{endTime}}
+                    {{else}}
+                      Anytime
+                    {{/if}}
                   </small>
-                {{/with}}
-              </h3>
-            </div>
-            {{#with configuration}}
+                </h3>
+              </div>
               <div class="panel-body">
                 {{#autoForm schema=configureServiceSchema id='configureService' doc=this type="method" meteormethod="configureService" resetOnSuccess=false}}
                   {{> afFieldInput name='_id' type='hidden'}}
@@ -59,7 +60,7 @@
                     </div>
                   </div>
 
-                  {{> wakeUpCallTimepicker}}
+                  {{> configServiceTimepicker}}
 
                   <div class="row">
                     <div class="col-md-12">
@@ -77,17 +78,16 @@
                   <button type="submit" class="btn btn-primary">Update Availability</button>
                 {{/autoForm}}
               </div>
-            {{/with}}
+            </div>
           </div>
         </div>
-      </div>
-      {{#with configuration}}
+
         <div class="row">
           <div class="col-xs-12">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">
-                  Assign Groups To Wake-up Calls
+                  Assign Groups To {{friendlyServiceType}}
                   {{#unless hasAssignedGroups}}<small>Visible By Managers Only</small>{{/unless}}
                 </h3>
               </div>
@@ -99,7 +99,7 @@
                     </ul>
                   {{/each}}
                 {{else}}
-                  <p><em>There are no groups currently assigned to this service type. By default, all wake-up call orders will be visible only to hotel managers.</em></p> <p><a href="{{pathFor 'Staff.Groups'}}">Click here</a> to create and configure staff groups.</p>
+                  <p><em>There are no groups currently assigned to this service type. By default, all {{friendlyServiceType}} orders will be visible only to hotel managers.</em></p> <p><a href="{{pathFor 'Staff.Groups'}}">Click here</a> to create and configure staff groups.</p>
                 {{/if}}
               </div>
               <div class="panel-footer">
@@ -116,15 +116,14 @@
             </div>
           </div>
         </div>
-      {{/with}}
-    {{else}}
-      {{> spinner}}
-    {{/if}}
-
+      {{else}}
+        {{> spinner}}
+      {{/if}}
+    {{/with}}
   {{/Layout}}
 </template>
 
-<template name="wakeUpCallTimepicker">
+<template name="configServiceTimepicker">
   <div class="row">
     <div class="col-sm-6 picker-container with-vertical-label">
       {{> afQuickField name='startTime' class='timepicker'}}
