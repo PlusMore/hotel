@@ -55,6 +55,25 @@ Template.Navigation.helpers({
   },
   requiresHotel: function() {
     return !!!Session.get('hotelId');
+  },
+  genericServices: function() {
+    return HotelServices.find({
+        hotelId: Session.get('hotelId'),
+        type: {
+          $ne: 'roomService'
+        }
+      }, {
+        $sort: {
+          type: 1
+        }
+      }
+    );
+  },
+  roomServiceActive: function() {
+    return HotelServices.find({
+      hotelId: Session.get('hotelId'),
+      type: 'roomService'
+    }).count() > 0;
   }
 });
 
@@ -83,4 +102,15 @@ Template.Navigation.events({
     }
   },
 
+});
+
+Template.Navigation.onCreated(function() {
+  var self = this;
+
+  self.autorun(function() {
+    var hotelId = Session.get('hotelId');
+    if (hotelId) {
+      self.subscribe('hotelServices', hotelId);
+    }
+  });
 });
