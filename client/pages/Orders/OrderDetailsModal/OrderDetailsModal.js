@@ -11,7 +11,7 @@ Template.OrderDetailsModal.helpers({
       case 'valetServices':
         return 'ValetServiceDetails';
       default:
-        return '';
+        return 'GenericServiceDetails';
     }
   },
   statusButtonClass: function() {
