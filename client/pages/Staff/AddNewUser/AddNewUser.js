@@ -8,19 +8,21 @@ Template.AddNewUser.helpers({
 });
 
 Template.AddNewUser.onRendered(function() {
-  this.$('.progress-button').progressInitialize();
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
 });
 
 AutoForm.hooks({
   addHotelStaffForm: {
     before: {
       method: function(doc) {
-        this.template.$('.progress-button').progressStart();
+        this.template.findParentTemplate('AddNewUser').$progressButton.progressStart();
+        return doc;
       }
     },
     onSuccess: function(operation, result) {
       Messages.success('User Added Successfully!');
-      this.template.$('.progress-button').progressFinish();
+      this.template.findParentTemplate('AddNewUser').$progressButton.progressFinish();
       Router.go('Staff.View');
     },
     onError: function(operation, error) {
@@ -30,7 +32,7 @@ AutoForm.hooks({
       } else {
         Messages.error(error.message);
       }
-      this.template.$('.progress-button').progressError();
+      this.template.findParentTemplate('AddNewUser').$progressButton.progressError();
     }
   }
 });

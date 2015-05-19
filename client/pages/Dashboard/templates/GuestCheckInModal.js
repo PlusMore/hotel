@@ -56,7 +56,8 @@ Template.GuestCheckInModal.onCreated(function() {
 })
 
 Template.GuestCheckInModal.onRendered(function() {
-  this.$('.progress-button').progressInitialize();
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
   Session.set('checkoutDate', undefined);
   var hotel = Hotels.findOne(Session.get('hotelId'));
   // Set up datepicker
@@ -134,8 +135,7 @@ AutoForm.hooks({
             return false;
           }
         }
-        var button = this.template.$('.progress-button');
-        button.progressStart();
+        this.template.findParentTemplate('GuestCheckInModal').$progressButton.progressStart();
         return doc;
       }
     },
@@ -145,8 +145,7 @@ AutoForm.hooks({
       BootstrapModalPrompt.dismiss();
       Session.set('checkoutDate', undefined);
       Messages.success('Guest successfully checked in to ' + result);
-      var button = this.template.$('.progress-button');
-      button.progressFinish();
+      this.template.findParentTemplate('GuestCheckInModal').$progressButton.progressFinal();
     },
 
     // Called when any operation fails, where operation will be
@@ -155,8 +154,7 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
-      var button = this.template.$('.progress-button');
-      button.progressError();
+      this.template.findParentTemplate('GuestCheckInModal').$progressButton.progressError();
     },
   }
 });

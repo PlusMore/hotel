@@ -11,21 +11,23 @@ Template.EditGroupModal.helpers({
 });
 
 Template.EditGroupModal.onRendered(function() {
-  this.$('.progress-button').progressInitialize();
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
 });
 
 AutoForm.hooks({
   updateGroupForm: {
     before: {
       update: function(doc) {
-        this.template.$('.progress-button').progressStart();
+        this.template.findParentTemplate('EditGroupModal').$progressButton.progressStart();
+        return doc;
       }
     },
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result) {
       Messages.success('Successfully updated group!');
-      this.template.$('.progress-button').progressFinish();
+      this.template.findParentTemplate('EditGroupModal').$progressButton.progressFinish();
       BootstrapModalPrompt.dismiss();
     },
 
@@ -35,7 +37,7 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
-      this.template.$('.progress-button').progressError();
+      this.template.findParentTemplate('EditGroupModal').$progressButton.progressError();
     },
   }
 });

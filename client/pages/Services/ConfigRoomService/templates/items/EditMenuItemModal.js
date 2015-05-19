@@ -32,14 +32,15 @@ Template.EditMenuItemModal.events({
 });
 
 Template.EditMenuItemModal.onRendered(function() {
-  this.$('.progress-button').progressInitialize();
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
 });
 
 AutoForm.hooks({
   editMenuItem: {
     before: {
       update: function(doc) {
-        this.template.$('.progress-button').progressStart();
+        this.template.findParentTemplate('EditMenuItemModal').$progressButton.progressStart();
         return doc;
       }
     },
@@ -47,7 +48,7 @@ AutoForm.hooks({
     // "insert", "update", "remove", or the method name.
     onSuccess: function(operation, result) {
       Messages.success('Item Edited!');
-      this.template.$('.progress-button').progressFinish();
+      this.template.findParentTemplate('EditMenuItemModal').$progressButton.progressFinish();
       BootstrapModalPrompt.dismiss();
     },
     // Called when any operation fails, where operation will be
@@ -56,7 +57,7 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
-      this.template.$('.progress-button').progressError();
+      this.template.findParentTemplate('EditMenuItemModal').$progressButton.progressError();
     }
   }
 });

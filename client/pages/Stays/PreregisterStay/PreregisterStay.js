@@ -14,7 +14,8 @@ Template.PreregisterStay.helpers({
 });
 
 Template.PreregisterStay.onRendered(function() {
-  this.$('.progress-button').progressInitialize();
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
 });
 
 AutoForm.hooks({
@@ -29,7 +30,7 @@ AutoForm.hooks({
           Messages.error('Check-out date must be after Check-in date');
           return false;
         }
-        this.template.$('.progress-button').progressStart();
+        this.template.findParentTemplate('PreregisterStay').$progressButton.progressStart();
         return doc;
       }
     },
@@ -37,7 +38,7 @@ AutoForm.hooks({
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result) {
       Messages.success('Successfully pre-registered stay!');
-      this.template.$('.progress-button').progressFinish();
+      this.template.findParentTemplate('PreregisterStay').$progressButton.progressFinish();
       Router.go('Stays.Upcoming');
     },
     // Called when any operation fails, where operation will be
@@ -46,7 +47,7 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
-      this.template.$('.progress-button').progressError();
+      this.template.findParentTemplate('PreregisterStay').$progressButton.progressError();
     },
   }
 });

@@ -8,14 +8,15 @@ Template.CreateGroupModal.helpers({
 });
 
 Template.CreateGroupModal.onRendered(function() {
-  this.$('.progress-button').progressInitialize();
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
 });
 
 AutoForm.hooks({
   addNewGroupForm: {
     before: {
       insert: function(doc) {
-        this.template.$('progress-button').progressStart();
+        this.template.findParentTemplate('CreateGroupModal').$progressButton.progressStart();
         return doc;
       }
     },
@@ -23,7 +24,7 @@ AutoForm.hooks({
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result, template) {
       Messages.success('Successfully created group!');
-      this.template.$('progress-button').progressFinish();
+      this.template.findParentTemplate('CreateGroupModal').$progressButton.progressFinish();
       BootstrapModalPrompt.dismiss();
     },
 
@@ -33,7 +34,7 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
-      this.template.$('progress-button').progressError();
+      this.template.findParentTemplate('CreateGroupModal').$progressButton.progressError();
     }
   }
 });

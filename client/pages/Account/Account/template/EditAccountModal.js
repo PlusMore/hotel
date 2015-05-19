@@ -5,15 +5,15 @@ Template.EditAccountModal.helpers({
 });
 
 Template.EditAccountModal.onRendered(function() {
-  this.$('.progress-button').progressInitialize();
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
 });
 
 AutoForm.hooks({
   editAccountForm: {
     before: {
       method: function(doc) {
-        var button = this.template.$('.progress-button');
-        button.progressStart();
+        this.template.findParentTemplate('EditAccountModal').$progressButton.progressStart();
         return doc;
       }
     },
@@ -21,14 +21,12 @@ AutoForm.hooks({
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result) {
       Messages.success('Successfully updated your account!');
+      this.template.findParentTemplate('EditAccountModal').$progressButton.progressFinish();
       BootstrapModalPrompt.dismiss();
-      var button = this.template.$('.progress-button');
-      button.progressFinish();
     },
     onError: function(operation, error) {
       Messages.error(error.reason);
-      var button = this.template.$('.progress-button');
-      button.progressError();
+      this.template.findParentTemplate('EditAccountModal').$progressButton.progressError();
     }
   },
 });

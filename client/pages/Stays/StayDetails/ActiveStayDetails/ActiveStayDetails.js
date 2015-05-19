@@ -50,7 +50,8 @@ Template.ActiveStayDetails.onCreated(function() {
 });
 
 Template.ActiveStayDetails.onRendered(function() {
-  this.$('.progress-button').progressInitialize();
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -75,7 +76,7 @@ AutoForm.hooks({
         var stay = Stays.findOne(doc._id);
         var checkoutDate = moment(doc.checkoutDate).zone(stay.zone).format('dddd, MM/DD');
         if (confirm("Change the checkout date to " + checkoutDate + " at " + doc.checkoutTime + "?")) {
-          this.template.$('.progress-button').progressStart();
+          this.template.findParentTemplate('ActiveStayDetails').$progressButton.progressStart();
           return doc;
         }
         return false;
@@ -85,7 +86,7 @@ AutoForm.hooks({
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result) {
       Messages.success('Successfully changed checkout date!');
-      this.template.$('.progress-button').progressFinish();
+      this.template.findParentTemplate('ActiveStayDetails').$progressButton.progressFinish();
       BootstrapModalPrompt.dismiss();
     },
     // Called when any operation fails, where operation will be
@@ -94,7 +95,7 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
-      this.template.$('.progress-button').progressError();
+      this.template.findParentTemplate('ActiveStayDetails').$progressButton.progressError();
     }
   }
 });

@@ -8,14 +8,15 @@ Template.AddMenuCategoryModal.helpers({
 });
 
 Template.AddMenuCategoryModal.onRendered(function() {
-  this.$('.progress-button').progressInitialize();
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
 });
 
 AutoForm.hooks({
   newMenuCategory: {
     before: {
       insert: function(doc) {
-        this.template.$('.progress-button').progressStart();
+        this.template.findParentTemplate('AddMenuCategoryModal').$progressButton.progressStart();
         return doc;
       }
     },
@@ -23,7 +24,7 @@ AutoForm.hooks({
     // "insert", "update", "remove", or the method name.
     onSuccess: function(operation, result) {
       Messages.success('Created New Category');
-      this.template.$('.progress-button').progressFinish();
+      this.template.findParentTemplate('AddMenuCategoryModal').$progressButton.progressFinish();
       BootstrapModalPrompt.dismiss();
     },
 
@@ -33,7 +34,7 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
-      this.template.$('.progress-button').progressError();
+      this.template.findParentTemplate('AddMenuCategoryModal').$progressButton.progressError();
     },
   }
 });

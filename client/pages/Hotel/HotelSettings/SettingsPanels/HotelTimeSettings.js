@@ -5,7 +5,8 @@ Template.HotelTimeSettings.helpers({
 });
 
 Template.HotelTimeSettings.onRendered(function() {
-  this.$('.progress-button').progressInitialize();
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
   this.$('.timepicker').pickatime({
     container: $("#main-wrapper"),
     onSet: function(selection) {
@@ -25,7 +26,7 @@ AutoForm.hooks({
   updateHotelTimesForm: {
     before: {
       method: function(doc) {
-        this.template.$('.progress-button').progressStart();
+        this.template.findParentTemplate('HotelTimeSettings').$progressButton.progressStart();
         return doc;
       }
     },
@@ -33,7 +34,7 @@ AutoForm.hooks({
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result) {
       Messages.success('Successfully updated!');
-      this.template.$('.progress-button').progressFinish();
+      this.template.findParentTemplate('HotelTimeSettings').$progressButton.progressFinish();
     },
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "submit", or the method name.
@@ -41,7 +42,7 @@ AutoForm.hooks({
       if (operation !== "validation") {
         Messages.error(error.message);
       }
-      this.template.$('.progress-button').progressError();
+      this.template.findParentTemplate('HotelTimeSettings').$progressButton.progressError();
     },
   }
 });

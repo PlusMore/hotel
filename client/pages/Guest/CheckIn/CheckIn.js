@@ -56,7 +56,8 @@ Template.CheckIn.onCreated(function() {
 })
 
 Template.GuestCheckInPanelForm.onRendered(function() {
-  this.$('.progress-button').progressInitialize();
+  this.$progressButton = this.$('.progress-button');
+  this.$progressButton.progressInitialize();
   Session.set('checkoutDate', undefined);
   var hotel = Hotels.findOne(Session.get('hotelId'));
   // Set up datepicker
@@ -134,16 +135,14 @@ AutoForm.hooks({
             return false;
           }
         }
-        var button = this.template.$('.progress-button');
-        button.progressStart();
+        this.template.findParentTemplate('GuestCheckInPanelForm').$progressButton.progressStart();
         return doc;
       }
     },
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result) {
-      var button = this.template.$('.progress-button');
-      button.progressFinish();
+      this.template.findParentTemplate('GuestCheckInPanelForm').$progressButton.progressFinal();
       Messages.success('Guest successfully checked in to ' + result);
       Session.set('checkoutDate', undefined);
       Router.go('Dashboard');
@@ -155,8 +154,7 @@ AutoForm.hooks({
       if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
-      var button = this.template.$('.progress-button');
-      button.progressError();
+      this.template.findParentTemplate('GuestCheckInPanelForm').$progressButton.progressError();
     }
   }
 });
