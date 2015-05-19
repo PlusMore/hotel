@@ -10,7 +10,7 @@
           <a class="btn btn-block btn-danger configure-service-button" id="remove-service" href="#">&ndash; Remove</a>
         </div>
         <div class="col-xs-6 padding-sides-5">
-          <a class="btn btn-block btn-info configure-service-button" href="{{pathFor 'Services.ConfigService' configuredService}}"><span class="fa fa-cog"></span>&nbsp;Settings</a>
+          <a class="btn btn-block btn-info configure-service-button" href="{{pathFor 'Services.ConfigService' data=configuredService}}"><span class="fa fa-cog"></span>&nbsp;Settings</a>
         </div>
       {{else}}
         <a class="btn btn-block btn-success configure-service-button" id="add-service" href="#">+ Add {{displayName}}</a>
