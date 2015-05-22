@@ -5,7 +5,7 @@ Meteor.publish('hotelsAdminSelect', function() {
         _id: 1,
         name: 1
       },
-      sort: {
+      $sort: {
         name: 1
       }
     });

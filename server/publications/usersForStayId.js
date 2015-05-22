@@ -6,6 +6,11 @@ Meteor.publish('usersForStayId', function(stayId) {
       _id: {
         $in: stay.users
       }
+    }, {
+      fields: {
+        emails: 1,
+        profile: 1
+      }
     });
   } else {
     return null;
