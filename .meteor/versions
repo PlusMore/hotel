@@ -33,7 +33,6 @@ ejson@1.0.6
 email@1.0.6
 fastclick@1.0.3
 force-ssl@1.0.4
-fortawesome:fontawesome@4.3.0
 geojson-utils@1.0.3
 gwendall:session-json@0.1.7
 handlebars@1.0.3
@@ -77,7 +76,6 @@ mongo-livedata@1.0.8
 mquandalle:bower@1.3.12
 mquandalle:jade@0.4.1
 msavin:mongol@1.0.22
-nahue:simple-line-icons@1.0.0
 natestrauser:animate-css@3.2.6
 natestrauser:filepicker-plus@1.2.3
 nemo64:bootstrap@3.3.4_2
