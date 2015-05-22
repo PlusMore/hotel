@@ -30,8 +30,10 @@
                   <a href="{{pathFor 'Stays.Upcoming'}}" class="btn btn-default">Upcoming</a>
                   <a href="{{pathFor 'Stays.History'}}" class="btn btn-default active">History</a>
                 </div>
+              </div>
+              <div class="col-xs-12">
                 {{#if TabularRefreshed}}
-                  {{> tabular table=TabularTables.ViewStays selector=selector class="table table-condensed table-hover table-responsive"}}
+                  {{> tabular table=TabularTables.ViewStays selector=selector class="table table-condensed table-hover"}}
                 {{/if}}
               </div>
             </div>

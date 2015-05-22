@@ -1,7 +1,7 @@
 <template name="AssignButton">
   <div class="btn-group btn-block dropdown">
     {{#dropdownTrigger name="assignUserDropdown"}}
-      <button class="btn btn-block btn-primary">
+      <button class="btn btn-block btn-primary progress-button" data-loading="Assigning..." data-finished="Order Assigned!">
         Assign Order <span class="caret"></span>
       </button>
     {{/dropdownTrigger}}

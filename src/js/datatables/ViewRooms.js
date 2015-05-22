@@ -5,6 +5,7 @@ TabularTables.ViewRooms = new Tabular.Table({
   autoWidth: true,
   searching: false,
   pagingType: "simple",
+  dom: 'fr<"table-responsive"t>ipl',
   columns: [
     {
       data: "name",

@@ -1,5 +1,5 @@
 Template.ChangeDeviceBackground.events({
-  'click .btn-change-photo': function(e, experienceTemplate) {
+  'click .btn-change-photo': function(e, tmpl) {
     e.preventDefault();
 
     var hotelId = Meteor.user().hotelId || Session.get('hotelId');
