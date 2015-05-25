@@ -2,15 +2,14 @@
   {{#if Template.subscriptionsReady}}
     <div class="row">
       <div class="col-sm-6">
-        <!-- REASSIGN -->
-        {{> ReassignButton}}
-      </div>
-      <div class="col-sm-6">
         {{#if isUnassigned}} <!-- collection helper -->
           {{> AssignButton}}
         {{else}}
-          {{> CompleteButton}}
+          {{> ReassignButton}}
         {{/if}}
+      </div>
+      <div class="col-sm-6">
+        {{> CompleteButton}}
       </div>
     </div><br />
     <div class="row">
