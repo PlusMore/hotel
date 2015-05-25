@@ -31,7 +31,7 @@
             {{#autoForm schema=addUserToGroupSchema id="insertGroupMember" type="method" meteormethod="addUserToGroup"}}
               {{> afFieldInput name='groupId' type='hidden' value=groupId}}
               {{> afFieldInput label=false type="select" name='userId' options=staffOptions}}
-              <button type="submit" class="btn btn-default btn-block">Add Staff Member</button>
+              <button type="submit" class="btn btn-primary btn-block">Add Staff Member</button>
             {{/autoForm}}
           </div>
         </div>
