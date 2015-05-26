@@ -1,13 +1,13 @@
 <template name="StayRoomCell">
   {{#if isActive}} <!-- collection helper -->
     <h4>{{roomName}}</h4>
-    <h4><small>{{primaryGuest.lastName}}</small></h4> <!-- collection helper -->
+    <h4><small>{{primaryGuest.fullName}}</small></h4> <!-- collection helper -->
   {{else}}
     {{#if isPrereg}} <!-- collection helper -->
       <h4>{{preReg.guestLastName}}</h4> <!-- collection helper -->
     {{else}}
       <h4>{{#if roomName}}{{roomName}}{{else}}N/A{{/if}}</h4>
-      <h4><small>{{primaryGuest.lastName}}</small></h4> <!-- collection helper -->
+      <h4><small>{{primaryGuest.fullName}}</small></h4> <!-- collection helper -->
     {{/if}}
   {{/if}}
 </template>
