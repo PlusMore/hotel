@@ -6,6 +6,13 @@ Meteor.publish('usersForGroupId', function(groupId) {
       _id: {
         $in: group.memberIds
       }
+    }, {
+      fields: {
+        emails: 1,
+        roles: 1,
+        hotelId: 1,
+        profile: 1
+      }
     });
   }
 });
