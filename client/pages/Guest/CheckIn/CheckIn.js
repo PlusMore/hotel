@@ -142,7 +142,7 @@ AutoForm.hooks({
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result) {
-      this.template.findParentTemplate('GuestCheckInPanelForm').$progressButton.progressFinal();
+      this.template.findParentTemplate('GuestCheckInPanelForm').$progressButton.progressFinish();
       Messages.success('Guest successfully checked in to ' + result);
       Session.set('checkoutDate', undefined);
       Router.go('Dashboard');
