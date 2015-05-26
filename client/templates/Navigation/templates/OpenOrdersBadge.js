@@ -4,7 +4,7 @@ Template.OpenOrdersBadge.helpers({
   }
 });
 
-Template.OpenOrdersBadge.onCreated(function () {
+Template.OpenOrdersBadge.onCreated(function() {
   var self = this;
 
   self.autorun(function() {

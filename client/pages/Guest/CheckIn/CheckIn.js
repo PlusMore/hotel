@@ -121,7 +121,7 @@ AutoForm.hooks({
           Messages.error('Please select a check out date');
           return false;
         }
-        if (!AutoForm.validateField(this.formId,'roomId')) {
+        if (!AutoForm.validateField(this.formId, 'roomId')) {
           return false;
         }
         var checkoutDate = Session.get('checkoutDate');

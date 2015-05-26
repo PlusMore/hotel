@@ -1,10 +1,10 @@
 Meteor.startup(function() {
   Session.setDefault('windowInactive', false);
 
-  $(window).blur(function(){
+  $(window).blur(function() {
     Session.set('windowInactive', true);
   });
-  $(window).focus(function(){
+  $(window).focus(function() {
     Session.set('windowInactive', false);
   });
 
@@ -24,8 +24,7 @@ Meteor.startup(function() {
           document.title = "PlusMore | Hotel";
         }, showOrderCountLengthPerInterval)
       }, intervalLength);
-    }
-    else {
+    } else {
       if (titleChangeInterval) {
         Meteor.clearInterval(titleChangeInterval);
       }

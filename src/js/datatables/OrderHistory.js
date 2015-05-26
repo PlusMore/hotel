@@ -5,7 +5,9 @@ TabularTables.OrderHistory = new Tabular.Table({
   searching: false,
   autoWidth: true,
   pagingType: "simple",
-  order: [[0, 'desc']],
+  order: [
+    [0, 'desc']
+  ],
   // https://datatables.net/reference/option/dom
   // removing 'p' removes pagination buttons
   // see link for ways to manipulate datatable appearance

@@ -6,7 +6,7 @@ TabularTables.ViewStays = new Tabular.Table({
   searching: false,
   pagingType: "simple",
   dom: 'fr<"table-responsive"t>ipl',
-  extraFields: ['checkInDate', 'checkoutDate', 'zone', 'guestId','users','preReg', 'active'],
+  extraFields: ['checkInDate', 'checkoutDate', 'zone', 'guestId', 'users', 'preReg', 'active'],
   language: {
     emptyTable: "There are no stays to display."
   },

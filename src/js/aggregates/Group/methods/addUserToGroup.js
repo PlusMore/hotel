@@ -3,7 +3,13 @@ Meteor.methods({
     check(doc.groupId, String);
     check(doc.userId, String);
 
-    Groups.update({_id: doc.groupId}, {$push: {memberIds: doc.userId}});
+    Groups.update({
+      _id: doc.groupId
+    }, {
+      $push: {
+        memberIds: doc.userId
+      }
+    });
 
     return Meteor.users.findOne(doc.userId).fullName();
   }

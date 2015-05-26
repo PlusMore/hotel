@@ -1,5 +1,3 @@
-
-
 // TODO: Refactor into setupNewDevice, and replaceExistingDevice
 // UI will have to change to support this. It should let the user select a hotel,
 // then a room. The user hits next and sees a list of existing devices for the
@@ -11,7 +9,7 @@ Meteor.methods({
     check(deviceSetupOptions, Schema.setupDevice);
 
     // If that user is not logged in, he'll get an error
-    if(!this.userId) {
+    if (!this.userId) {
       throw new Meteor.Error(401, "Unauthorized");
     }
 

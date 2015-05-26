@@ -3,6 +3,10 @@ Meteor.methods({
     check(groupId, String);
     check(serviceId, String);
 
-    Groups.update(groupId, {$pull: {servicesHandled: serviceId}});
+    Groups.update(groupId, {
+      $pull: {
+        servicesHandled: serviceId
+      }
+    });
   }
 });

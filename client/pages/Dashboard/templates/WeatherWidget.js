@@ -24,7 +24,9 @@ Template.WeatherInfo.rendered = function() {
   }
 
   if (location)
-    _.extend(options, {location: location});
+    _.extend(options, {
+      location: location
+    });
 
   Weather.options = options;
   Weather.load();

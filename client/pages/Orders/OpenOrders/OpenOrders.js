@@ -22,7 +22,7 @@ Template.OpenOrders.helpers({
         };
       }
 
-    // if staff, restricted to groups the staff member is in
+      // if staff, restricted to groups the staff member is in
     } else {
       // if filter applied
       if (filterGroupId) {
@@ -31,7 +31,7 @@ Template.OpenOrders.helpers({
           $in: group.servicesHandled
         };
 
-      // no filter applied, show all orders for groups staff is in
+        // no filter applied, show all orders for groups staff is in
       } else {
         var userGroupsCursor = user.memberOfGroups(); // collection helper
         var userGroups = userGroupsCursor.fetch();

@@ -1,6 +1,6 @@
 Template.CreateGroupModal.helpers({
   createNewGroupSchema: function() {
-      return Schema.Group;
+    return Schema.Group;
   },
   hotelId: function() {
     return Session.get('hotelId');

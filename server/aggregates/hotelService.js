@@ -8,32 +8,25 @@ Meteor.startup(function() {
   });
 
   if (plusmoreHotelServices.count() === 0) {
-    var insertServices = [
-      {
-        type: 'roomService',
-        displayName: 'Room Service'
-      },
-      {
-        type: 'transportation',
-        displayName: 'Transportation'
-      },
-      {
-        type: 'bellService',
-        displayName: 'Luggage Pickup'
-      },
-      {
-        type: 'houseKeeping',
-        displayName: 'House Keeping'
-      },
-      {
-        type: 'wakeUpCall',
-        displayName: 'Wake Up Call'
-      },
-      {
-        type: 'valetServices',
-        displayName: 'Valet Services'
-      }
-    ]
+    var insertServices = [{
+      type: 'roomService',
+      displayName: 'Room Service'
+    }, {
+      type: 'transportation',
+      displayName: 'Transportation'
+    }, {
+      type: 'bellService',
+      displayName: 'Luggage Pickup'
+    }, {
+      type: 'houseKeeping',
+      displayName: 'House Keeping'
+    }, {
+      type: 'wakeUpCall',
+      displayName: 'Wake Up Call'
+    }, {
+      type: 'valetServices',
+      displayName: 'Valet Services'
+    }]
 
     _.each(insertServices, function(service) {
       console.log('inserting clonable service:', service.displayName);
