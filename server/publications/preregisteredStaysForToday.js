@@ -13,3 +13,7 @@ Meteor.publish('preregisteredStaysForToday', function(hotelId) {
     }
   });
 });
+
+Meteor.startup(function () {
+  Stays._ensureIndex({hotelId: 1, checkInDate: -1, checkoutDate: 1}, {background: true});
+});

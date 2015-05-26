@@ -25,3 +25,11 @@ Meteor.publish('roomsAndActiveStays', function(hotelId, currentTime) {
     ]
   }).start();
 });
+
+Meteor.startup(function () {
+  Stays._ensureIndex({hotelId: 1, checkInDate: -1, checkoutDate: 1}, {background: true});
+});
+
+Meteor.startup(function () {
+  Rooms._ensureIndex({hotelId: 1, name: 1}, {background: true});
+});
