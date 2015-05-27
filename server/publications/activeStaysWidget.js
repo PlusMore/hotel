@@ -13,13 +13,18 @@ Meteor.publish('activeStaysWidget', function(hotelId) {
       $exists: true
     }
   }), {
-    noReady: true,
-    nonReactive: true
+    noReady: true
   });
 
   Counts.publish(this, 'total-rooms', Rooms.find({
     hotelId: hotelId
-  }), {
-    nonReactive: true
-  });
+  }));
+});
+
+Meteor.startup(function () {
+  Stays._ensureIndex({hotelId: 1, checkInDate: -1, checkoutDate: 1}, {background: true});
+});
+
+Meteor.startup(function () {
+  Rooms._ensureIndex({hotelId: 1}, {background: true});
 });

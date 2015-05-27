@@ -98,7 +98,7 @@
                   {{#if hasAssignedGroups}} <!-- collection helper -->
                     {{#each assignedGroups}} <!-- collection helper -->
                       <ul>
-                        <li><p>{{name}} <a href="#" class="fa fa-times" id="unassign-group"></a></p></li>
+                        <li><p>{{name}} <a href="#" class="icon icon-x" id="unassign-group"></a></p></li>
                       </ul>
                     {{/each}}
                   {{else}}
@@ -111,7 +111,7 @@
                       {{#autoForm schema=assignServiceToGroupSchema id="assignServiceToGroupForm" type="method" meteormethod="assignServiceIdToGroup"}}
                         {{> afFieldInput name='serviceId' type='hidden' value=_id}}
                         {{> afFieldInput label=false type="select" name='groupId' options=groupOptions}}
-                        <button type="submit" class="btn btn-default btn-block">Assign</button>
+                        <button type="submit" class="btn btn-primary btn-block">Assign</button>
                       {{/autoForm}}
                     </div>
                   </div>

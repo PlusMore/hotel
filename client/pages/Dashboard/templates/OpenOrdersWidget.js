@@ -16,7 +16,9 @@ Template.OpenOrdersWidget.onCreated(function() {
       var groups = user.memberOfGroups().fetch();
       var handledServices = [];
       _.each(groups, function(group) {
-        handledServices.push.apply(group.handledServices);
+        if (group.handledServices) {
+          handledServices.push.apply(group.handledServices);
+        }
       });
       selector["service.serviceId"] = {
         $in: handledServices

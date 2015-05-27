@@ -9,3 +9,7 @@ Meteor.publish('amenityDetails', function(hotelId) {
     });
   }
 });
+
+Meteor.startup(function () {
+  AmenityDetails._ensureIndex({hotelId: 1, amenityId: 1}, {background: true});
+});

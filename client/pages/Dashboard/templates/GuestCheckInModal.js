@@ -142,10 +142,10 @@ AutoForm.hooks({
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "submit", or the method name.
     onSuccess: function(operation, result) {
+      this.template.findParentTemplate('GuestCheckInModal').$progressButton.progressFinish();
       BootstrapModalPrompt.dismiss();
       Session.set('checkoutDate', undefined);
       Messages.success('Guest successfully checked in to ' + result);
-      this.template.findParentTemplate('GuestCheckInModal').$progressButton.progressFinal();
     },
 
     // Called when any operation fails, where operation will be
