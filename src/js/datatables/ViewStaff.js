@@ -13,6 +13,8 @@ TabularTables.ViewStaff = new Tabular.Table({
     return Roles.userIsInRole(userId, ['hotel-manager', 'admin']);
   },
   columns: [{
+    tmpl: Meteor.isClient && Template.staffEditCell
+  }, {
     tmpl: Meteor.isClient && Template.staffAvatarCell
   }, {
     data: "profile.firstName",
@@ -46,7 +48,5 @@ TabularTables.ViewStaff = new Tabular.Table({
   }, {
     title: "Role",
     tmpl: Meteor.isClient && Template.staffRoleCell
-  }, {
-    tmpl: Meteor.isClient && Template.staffEditCell
   }]
 });
