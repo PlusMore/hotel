@@ -5,20 +5,20 @@
 
       <li class="{{currentRouteClass 'Dashboard'}}" data-state="Dashboard">
         <a href="{{pathFor 'Dashboard'}}" title="Dashboard">
-          <i class="fa  fa-fw fa-tachometer"></i> Dashboard
+          <i class="icon icon-fw icon-tachometer"></i> Dashboard
         </a>
       </li>
 
       {{#if isHotelStaff}}
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Guest.CheckIn'}}" data-state="Guest">
           <a href="{{pathFor 'Guest.CheckIn'}}" title="Check-In Guest">
-            <i class="fa  fa-fw fa-sign-in"></i> Check-In Guest
+            <i class="icon icon-fw icon-log-in"></i> Set Up Guest
             {{{hotelRequiredBadge}}}
           </a>
         </li>
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Orders'}}" data-state="Orders">
           <a href="{{pathFor 'Orders.Open'}}" title="Guest Orders">
-            <i class="fa  fa-fw fa-th-list"></i> Guest Orders
+            <i class="icon icon-fw icon-list-2"></i> Guest Orders
             {{#if requiresHotel}}
               {{{hotelRequiredBadge}}}
             {{else}}
@@ -28,13 +28,13 @@
         </li>
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Rooms'}}" data-state="Rooms">
           <a href="{{pathFor 'Rooms.View'}}" title="View Rooms">
-            <i class="fa  fa-fw fa-key"></i> Rooms
+            <i class="icon icon-fw icon-key"></i> Rooms
             {{{hotelRequiredBadge}}}
           </a>
         </li>
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Stays'}}" data-state="Stays">
           <a href="{{pathFor 'Stays.View'}}" title="View Stays">
-            <i class="fa  fa-fw fa-calendar"></i> Stays
+            <i class="icon icon-fw icon-calendar"></i> Stays
             {{{hotelRequiredBadge}}}
           </a>
         </li>
@@ -43,13 +43,13 @@
       {{#if isHotelManager}}
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Devices'}}" data-state="Devices">
           <a href="{{pathFor 'Devices.View'}}" title="View Devices">
-            <i class="fa  fa-fw fa-map-marker"></i> Devices
+            <i class="icon icon-fw icon-pin-map"></i> Devices
             {{{hotelRequiredBadge}}}
           </a>
         </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Staff'}} {{currentRouteClass 'Staff'}}" data-state="Staff" >
           <a href="#" title="Staff">
-            <i class="fa  fa-fw fa-group"></i> Staff
+            <i class="icon icon-fw icon-group"></i> Staff
             {{{hotelRequiredBadge}}}
           </a>
           <ul class="nav-sub {{navSubStateClass 'Staff'}}">
@@ -67,7 +67,7 @@
         </li>
         <li class="{{hotelRequiredClass}} nav-dropdown {{stateClass 'Services'}} {{currentRouteClass 'Services'}}" data-state="Services" >
           <a href="#" title="Services">
-            <i class="fa  fa-fw fa-bell"></i> Guest Services
+            <i class="icon icon-fw icon-bell"></i> Guest Services
             {{{hotelRequiredBadge}}}
           </a>
           <ul class="nav-sub {{navSubStateClass 'Services'}}">
@@ -101,7 +101,7 @@
         </li>
         <li class="{{hotelRequiredClass}} {{currentRouteClass 'Hotel'}}" data-state="Hotel">
           <a href="{{pathFor 'Hotel.Settings'}}" title="Hotel Settings">
-            <i class="fa  fa-fw fa-gear"></i> Hotel Settings
+            <i class="icon icon-fw icon-cog-gear"></i> Hotel Settings
             {{{hotelRequiredBadge}}}
           </a>
         </li>
