@@ -3,7 +3,11 @@ Meteor.methods({
     check(userId, String);
     check(groupId, String);
 
-    Groups.update(groupId, {$pull: {memberIds: userId}});
+    Groups.update(groupId, {
+      $pull: {
+        memberIds: userId
+      }
+    });
 
     return {
       userName: Meteor.users.findOne(userId).fullName(),

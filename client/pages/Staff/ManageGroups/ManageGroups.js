@@ -15,10 +15,10 @@ Template.ManageGroups.onCreated(function() {
 });
 
 Template.ManageGroups.events({
-	'click #create-new-group': function(e) {
-		e.preventDefault();
-		BootstrapModalPrompt.prompt({
+  'click #create-new-group': function(e) {
+    e.preventDefault();
+    BootstrapModalPrompt.prompt({
       dialogTemplate: Template.CreateGroupModal
     });
-	}
+  }
 });

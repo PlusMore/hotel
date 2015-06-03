@@ -18,8 +18,12 @@ Meteor.methods({
         users: user._id,
         active: true
       });
-      activeStays.forEach(function (stay) {
-        Stays.update(stay._id, {$set: {active: false}});
+      activeStays.forEach(function(stay) {
+        Stays.update(stay._id, {
+          $set: {
+            active: false
+          }
+        });
       });
 
       Meteor.users.update(user._id, {

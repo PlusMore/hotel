@@ -97,7 +97,10 @@ Template.ConfigRoomService.events({
   'click #unassign-group': function(e) {
     e.preventDefault();
     var hotelId = Session.get('hotelId');
-    var hotelService = HotelServices.findOne({hotelId: hotelId, type: 'roomService'});
+    var hotelService = HotelServices.findOne({
+      hotelId: hotelId,
+      type: 'roomService'
+    });
     Meteor.call('unassignGroupServiceId', this._id, hotelService._id, function(err, res) {
       if (err) {
         Messages.error(err);

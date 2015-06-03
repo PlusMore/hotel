@@ -1,6 +1,8 @@
 Template.ConfigAmenities.helpers({
   amenities: function() {
-    return HotelAmenities.find({hotelId: Session.get('hotelId')});
+    return HotelAmenities.find({
+      hotelId: Session.get('hotelId')
+    });
   }
 });
 

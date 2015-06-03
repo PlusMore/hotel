@@ -49,9 +49,13 @@ Meteor.users.helpers({
     return _.contains(memberIds, this._id);
   },
   isInAnyGroups: function() {
-    return Groups.find({memberIds: this._id}).count() > 0;
+    return Groups.find({
+      memberIds: this._id
+    }).count() > 0;
   },
   memberOfGroups: function() {
-    return Groups.find({memberIds: this._id});
+    return Groups.find({
+      memberIds: this._id
+    });
   }
 });

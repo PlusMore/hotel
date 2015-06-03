@@ -1,6 +1,10 @@
 Template.AdminHotelSelect.helpers({
   hotels: function() {
-    return Hotels.find({}, {sort: {name: 1}});
+    return Hotels.find({}, {
+      sort: {
+        name: 1
+      }
+    });
   },
   currentHotelOrNone: function() {
     if (Session.get('hotelName')) {

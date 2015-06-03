@@ -59,16 +59,15 @@ Template.Navigation.helpers({
   },
   genericServices: function() {
     return HotelServices.find({
-        hotelId: Session.get('hotelId'),
-        type: {
-          $ne: 'roomService'
-        }
-      }, {
-        $sort: {
-          type: 1
-        }
+      hotelId: Session.get('hotelId'),
+      type: {
+        $ne: 'roomService'
       }
-    );
+    }, {
+      $sort: {
+        type: 1
+      }
+    });
   },
   roomServiceActive: function() {
     return HotelServices.find({
