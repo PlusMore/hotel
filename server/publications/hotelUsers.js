@@ -14,3 +14,7 @@ Meteor.publish('hotelUsers', function(hotelId) {
     }
   });
 });
+
+Meteor.startup(function () {
+  Meteor.users._ensureIndex({hotelId: 1}, {background: true});
+});

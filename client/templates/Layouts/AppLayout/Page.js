@@ -1,5 +1,5 @@
 Template.Page.helpers({
   pageAnimation: function () {
-    return ResponsiveHelpers.isXs() ? 'fadeInRight' : 'fadeIn'
+    return ResponsiveHelpers.isXs() ? 'fadeInRight' : 'fadeIn';
   }
 });
