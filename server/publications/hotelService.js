@@ -10,3 +10,7 @@ Meteor.publish('hotelService', function(serviceType, hotelId) {
     });
   }
 });
+
+Meteor.startup(function () {
+  HotelServices._ensureIndex({hotelId: 1, serviceType: 1}, {background: true});
+});

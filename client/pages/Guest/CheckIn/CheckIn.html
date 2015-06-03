@@ -1,14 +1,14 @@
 <template name="CheckIn">
   {{#Layout template="Page"}}
     {{#contentFor "header"}}
-      <h1>Guest Check-In</h1>
+      <h1>Guest Setup</h1>
     {{/contentFor}}
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
       </li>
       <li>Guest</li>
-      <li class="active">Check-In</li>
+      <li class="active">Guest Setup</li>
     {{/contentFor}}
 
     <!-- page content -->
@@ -16,9 +16,9 @@
       <div class="col-xs-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Guest Check-in</h3>
+            <h3 class="panel-title">Set Up Guest</h3>
             <div class="actions pull-right">
-              <i class="fa fa-chevron-down"></i>
+              <i class="icon icon-fw icon-chevron-down"></i>
             </div>
           </div>
           {{#if Template.subscriptionsReady}}

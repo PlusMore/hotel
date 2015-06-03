@@ -34,3 +34,7 @@ Meteor.publish('userHotelData', function(hotelId) {
     return null;
   }
 });
+
+Meteor.startup(function () {
+  Meteor.users._ensureIndex({hotelId: 1}, {background: true});
+});
