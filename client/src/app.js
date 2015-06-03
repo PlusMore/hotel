@@ -15,19 +15,19 @@ App = function() {
   };
 
   var widgetToggle = function() {
-    $(document).on('click', '.actions > .fa-chevron-down, .actions > .fa-chevron-up', function() {
-      $(this).parent().parent().next().slideToggle("fast"), $(this).toggleClass("fa-chevron-down fa-chevron-up");
+    $(document).on('click', '.actions > .icon-chevron-down, .actions > .icon-chevron-up', function() {
+      $(this).parent().parent().next().slideToggle("fast"), $(this).toggleClass("icon-chevron-down icon-chevron-up");
     });
   };
 
   var widgetClose = function() {
-    $(document).on('click', '.actions > .fa-times', function() {
+    $(document).on('click', '.actions > .icon-x', function() {
       $(this).parent().parent().parent().fadeOut();
     });
   };
 
   var widgetFlip = function() {
-    $(document).on('click', ".actions > .fa-cog", function() {
+    $(document).on('click', ".actions > .icon-cog-gear", function() {
       $(this).closest('.flip-wrapper').toggleClass('flipped');
     });
   };

@@ -6,6 +6,10 @@ Meteor.publish("tabular_Stays", function(tableName, ids, fields) {
   var usersPub = new SimplePublication({
     subHandle: this,
     collection: Meteor.users,
+    fields: {
+      emails: 1,
+      profile: 1
+    },
     foreignKey: 'guestId',
     inverted: true
   });

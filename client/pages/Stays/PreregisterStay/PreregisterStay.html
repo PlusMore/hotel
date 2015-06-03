@@ -1,7 +1,7 @@
 <template name="PreregisterStay">
   {{#Layout template="Page"}}
     {{#contentFor "header"}}
-      <h1><a href="{{pathFor 'Stays.View'}}" class="fa  fa-mail-reply"></a> Pre-Register Stay</h1>
+      <h1><a href="{{pathFor 'Stays.View'}}" class="icon icon-fw icon-reply-mail"></a> Pre-Register Stay</h1>
     {{/contentFor}}
 
     {{#contentFor "breadcrumb"}}
@@ -19,7 +19,7 @@
           <div class="panel-heading">
             <h3 class="panel-title">Pre-Register Stay</h3>
             <div class="actions pull-right">
-              <i class="fa fa-chevron-down"></i>
+              <i class="icon icon-fw icon-chevron-down"></i>
             </div>
           </div>
           {{#autoForm schema=preregisterSchema id="preregisterStayForm" type="method" meteormethod="preregisterStay"}}
