@@ -10,8 +10,6 @@ Meteor.methods({
 
     var importData = {
       hotelId: hotel._id,
-      arrivalMinutes: hotel.arrivalMinutes(),
-      departureMinutes: hotel.departureMinutes()
     };
 
     return importData;
