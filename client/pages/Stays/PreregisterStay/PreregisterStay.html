@@ -28,13 +28,16 @@
               <p>Pre-registering a stay will make it easier to check-in guests on the day of their arrival.</p>
               <div class="row">
                 <div class="col-sm-6">
-                  {{> afQuickField name='preReg.guestLastName'}}
+                  {{> afQuickField name='preReg.guestFirstName'}}
                 </div>
                 <div class="col-sm-6">
-                  {{> afQuickField name='preReg.guestPhone'}}
+                  {{> afQuickField name='preReg.guestLastName'}}
                 </div>
               </div>
               <div class="row">
+                <div class="col-sm-12">
+                  {{> afQuickField name='preReg.guestPhone'}}
+                </div>
                 <div class="col-sm-12">
                   {{> afQuickField name='preReg.guestEmail'}}
                 </div>

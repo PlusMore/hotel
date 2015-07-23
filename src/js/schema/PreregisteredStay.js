@@ -4,7 +4,12 @@ Schema.PreregisteredStay = new SimpleSchema({
   },
   "preReg.guestLastName": {
     type: String,
-    label: "Guest's Last Name"
+    label: "Last Name"
+  },
+  "preReg.guestFirstName": {
+    type: String,
+    label: "First Name (optional)",
+    optional: true
   },
   "preReg.guestEmail": {
     type: String,

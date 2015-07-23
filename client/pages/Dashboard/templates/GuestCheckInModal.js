@@ -88,6 +88,7 @@ Template.GuestCheckInModal.events({
       tmpl.$('#preregId').val(stayId);
       tmpl.$('#guestLastName').val(stay.preReg.guestLastName);
       tmpl.$('#guestLastName').prop('readonly', true); // disable field
+      tmpl.$('#guestFirstName').val(stay.preReg.guestFirstName);
       var setPicker = {
         select: stay.preReg.endDate
       };
@@ -103,6 +104,7 @@ Template.GuestCheckInModal.events({
       tmpl.$('#preregId').val('');
       tmpl.$('#guestLastName').val('');
       tmpl.$('#guestLastName').prop('readonly', false);
+      tmpl.$('#guestFirstName').val('');
       tmpl.$('#guestPhone').val('');
       tmpl.$('#guestEmail').val('');
       tmpl.$('[name=checkoutDate]').pickadate('set', 'clear');
