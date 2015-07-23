@@ -1,9 +1,10 @@
 Template.Navigation.helpers({
   currentRouteClass: function(routeName) {
-    // if page is current route, also return true 
+    // if page is current route, also return true
     var currentRouter = Router.current();
+    var route = currentRouter && currentRouter.route;
 
-    if (currentRouter && currentRouter.route.getName().indexOf(routeName) > -1) {
+    if (route && route.getName().indexOf(routeName) > -1) {
       return 'active';
     }
 
@@ -52,6 +53,28 @@ Template.Navigation.helpers({
       return "";
     }
     return '<span class="pull-right badge badge-danger">Hotel</span>';
+  },
+  requiresHotel: function() {
+    return !!!Session.get('hotelId');
+  },
+  genericServices: function() {
+    return HotelServices.find({
+        hotelId: Session.get('hotelId'),
+        type: {
+          $ne: 'roomService'
+        }
+      }, {
+        $sort: {
+          type: 1
+        }
+      }
+    );
+  },
+  roomServiceActive: function() {
+    return HotelServices.find({
+      hotelId: Session.get('hotelId'),
+      type: 'roomService'
+    }).count() > 0;
   }
 });
 
@@ -80,4 +103,15 @@ Template.Navigation.events({
     }
   },
 
+});
+
+Template.Navigation.onCreated(function() {
+  var self = this;
+
+  self.autorun(function() {
+    var hotelId = Session.get('hotelId');
+    if (hotelId) {
+      self.subscribe('hotelServices', hotelId);
+    }
+  });
 });

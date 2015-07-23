@@ -12,7 +12,7 @@
       {{#visibleXs}}
         <li class="toggle-navigation toggle-left">
           <button class="sidebar-toggle" id="toggle-left">
-            <i class="fa fa-bars"></i>
+            <i class="icon icon-align-justify"></i>
           </button>
         </li>
       {{/visibleXs}}
@@ -46,29 +46,17 @@
           <ul class="dropdown-menu animated fadeInRight" role="menu">
             <li>
               <a href="{{pathFor 'Account'}}">
-                <span class="icon"><i class="fa fa-user"></i>
+                <span class="icon"><i class="icon icon-fw icon-user"></i>
                 </span>My Account</a>
-            </li>
-            <li>
-              <a href="{{pathFor 'Account.Settings'}}">
-                <span class="icon"><i class="fa fa-cog"></i>
-                </span>Settings</a>
             </li>
             <li class="divider"></li>
             <li>
               <a id="logout" href="#">
-                <span class="icon"><i class="fa fa-sign-out"></i>
+                <span class="icon"><i class="icon icon-fw icon-log-out"></i>
                 </span>Logout</a>
             </li>
           </ul>
         </li>
-        <!-- Toggle Right Sidebar
-          <li class="toggle-navigation toggle-right">
-            <button class="sidebar-toggle" id="toggle-right">
-              <i class="fa fa-indent"></i>
-            </button>
-          </li>
-        -->
       </ul>
     {{/with}}
   </header>

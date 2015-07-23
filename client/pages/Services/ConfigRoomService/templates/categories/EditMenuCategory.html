@@ -2,7 +2,7 @@
   {{#with menuCategory}}
     {{#Layout template="Page"}}
       {{#contentFor "header"}}
-        <h1>Edit {{name}} Category</h1>
+        <h1><a href="{{pathFor 'Services.ConfigRoomService'}}" class="icon icon-fw icon-reply-mail"></a> Edit {{name}} Category</h1>
       {{/contentFor}}
 
       {{#contentFor "breadcrumb"}}
@@ -14,111 +14,119 @@
       {{/contentFor}}
 
       <!-- page content -->
-     <div class="row">
-      <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="pull-right">
-              <div class="tgl-container" style="margin-top:-8px;">
-                <label class="tgl">
-                  <input id="toggle-category-switch" type="checkbox" {{isChecked}}/>
-                  <span class="tgl_body">
-                    <span class="tgl_switch"></span>
-                    <span class="tgl_track">
-                      <span class="tgl_bgd"></span>
-                      <span class="tgl_bgd tgl_bgd-negative"></span>
+    {{#if Template.subscriptionsReady}}
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="pull-right">
+                <div class="tgl-container" style="margin-top:-8px;">
+                  <label class="tgl">
+                    <input id="toggle-category-switch" type="checkbox" {{isChecked}}/>
+                    <span class="tgl_body">
+                      <span class="tgl_switch"></span>
+                      <span class="tgl_track">
+                        <span class="tgl_bgd"></span>
+                        <span class="tgl_bgd tgl_bgd-negative"></span>
+                      </span>
                     </span>
-                  </span>
-                </label>
-              </div>
-            </div>
-            <h3 class="panel-title">
-              Name and Description
-            </h3>
-          </div>
-          {{#autoForm schema=menuCategoryDescriptionSchema collection='MenuCategories' id='editMenuCategory' doc=this type="update" resetOnSuccess=false}}
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-12">
-                  {{> afQuickField name='name'}}
-                  {{> afQuickField name='description' rows=3}}
+                  </label>
                 </div>
               </div>
+              <h3 class="panel-title">
+                Name and Description
+              </h3>
             </div>
-            <div class="panel-footer">
-              <button type="submit" class="btn btn-primary">Update Menu Category</button>
-            </div>
-          {{/autoForm}}
+            {{#autoForm schema=menuCategoryDescriptionSchema collection='MenuCategories' id='editMenuCategory' doc=this type="update" resetOnSuccess=false}}
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    {{> afQuickField name='name'}}
+                    {{> afQuickField name='description' rows=3}}
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <button type="submit" class="btn btn-primary">Update Menu Category</button>
+              </div>
+            {{/autoForm}}
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              {{name}} Availability
-              <small>
-                Available
-                {{#if startTime}}
-                  {{startTime}} - {{endTime}}
-                {{else}}
-                  Anytime
-                {{/if}}
-              </small>
-            </h3>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                {{name}} Availability
+                <small>
+                  Available
+                  {{#if startTime}}
+                    {{startTime}} - {{endTime}}
+                  {{else}}
+                    Anytime
+                  {{/if}}
+                </small>
+              </h3>
+            </div>
+            {{#autoForm schema=menuCategoryAvailabilitySchema id='configureMenuCategoryAvailability' doc=this type="method" meteormethod="configureMenuCategoryAvailability" resetOnSuccess=false}}
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <p>
+                      The default configuration for this category is to be available whenever room service is available. You may optionally configure start and end times for this category by selecting times below.
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  {{> afFieldInput name='_id' type='hidden'}}
+                  {{> EditMenuCategoryTimepicker}}
+                </div>
+              </div>
+              <div class="panel-footer">
+                <a href="#" class="btn btn-reset btn-default btn-reset-availability">Reset</a>
+                <button type="submit" class="btn btn-primary">Update Availability</button>
+              </div>
+            {{/autoForm}}
           </div>
-          {{#autoForm schema=menuCategoryAvailabilitySchema id='configureMenuCategoryAvailability' doc=this type="method" meteormethod="configureMenuCategoryAvailability" resetOnSuccess=false}}
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <p>
-                    The default configuration for this category is to be available whenever room service is available. You may optionally configure start and end times for this category by selecting times below.
-                  </p>
-                </div>
-              </div>
-              <div class="row">
-                {{> afFieldInput name='_id' type='hidden'}}
-                <div class="col-md-6 picker-container with-vertical-label">
-                  {{> afQuickField name='startTime' class='timepicker'}}
-                  {{> afFieldInput name="startMinutes" type="hidden"}}
-                </div>
-                <div class="col-md-6 picker-container with-vertical-label">
-                  {{> afQuickField name='endTime' class='timepicker'}}
-                  {{> afFieldInput name="endMinutes" type="hidden"}}
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer">
-              <a href="#" class="btn btn-reset btn-default btn-reset-availability">Reset</a>
-              <button type="submit" class="btn btn-primary">Update Availability</button>
-            </div>
-          {{/autoForm}}
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              {{name}} Menu Items
-            </h3>
-          </div>
-            <div class="panel-body">
-              <div class="row">
-                {{> EditMenuItems}}
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                {{name}} Menu Items
+              </h3>
+            </div>
+              <div class="panel-body">
+                <div class="row">
+                  {{> EditMenuItems}}
+                </div>
               </div>
-            </div>
-            <div class="panel-footer">
-              <a href="#" class='btn btn-primary' id='add-menu-item'>Add Menu Item</a>
-            </div>
+              <div class="panel-footer">
+                <a href="#" class='btn btn-primary' id='add-menu-item'>Add Menu Item</a>
+              </div>
+          </div>
         </div>
       </div>
-    </div>
+    {{else}}
+      {{> spinner}}
+    {{/if}}
 
     {{/Layout}}
   {{/with}}
+</template>
+
+<template name="EditMenuCategoryTimepicker">
+  <div class="col-md-6 picker-container with-vertical-label">
+    {{> afQuickField name='startTime' class='timepicker'}}
+    {{> afFieldInput name="startMinutes" type="hidden"}}
+  </div>
+  <div class="col-md-6 picker-container with-vertical-label">
+    {{> afQuickField name='endTime' class='timepicker'}}
+    {{> afFieldInput name="endMinutes" type="hidden"}}
+  </div>
 </template>

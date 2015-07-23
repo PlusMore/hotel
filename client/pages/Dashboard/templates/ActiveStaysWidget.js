@@ -4,7 +4,7 @@ Template.ActiveStaysWidget.helpers({
   }
 });
 
-Template.ActiveStaysWidget.rendered = function () {
+Template.ActiveStaysGauge.rendered = function() {
   var self = this;
   var opts = {
     lines: 12, // The number of lines to draw
@@ -15,10 +15,10 @@ Template.ActiveStaysWidget.rendered = function () {
       strokeWidth: 0.042, // The rotation offset
       color: '#1D212A' // Fill color
     },
-    limitMax: 'false',   // If true, the pointer will not go past the end of the gauge
-    colorStart: App.colors.primaryDark,   // Colors
-    colorStop: App.colors.primary,    // just experiment with them
-    strokeColor: '#F0F3F3',   // to see which ones work best for you
+    limitMax: 'false', // If true, the pointer will not go past the end of the gauge
+    colorStart: App.colors.primaryDark, // Colors
+    colorStop: App.colors.primary, // just experiment with them
+    strokeColor: '#F0F3F3', // to see which ones work best for you
     generateGradient: true
   };
   var target = document.getElementById('gauge'); // your canvas element
@@ -37,3 +37,11 @@ Template.ActiveStaysWidget.rendered = function () {
   });
   gauge.setTextField(document.getElementById("gauge-text"));
 };
+
+Template.ActiveStaysWidget.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('activeStaysWidget', Session.get('hotelId'));
+  })
+});

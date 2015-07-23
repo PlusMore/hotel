@@ -1,11 +1,47 @@
+<template name="StayRoomCell">
+  {{#if isActive}} <!-- collection helper -->
+    <h4>{{roomName}}</h4>
+    <h4><small>{{primaryGuest.lastName}}</small></h4> <!-- collection helper -->
+  {{else}}
+    {{#if isPrereg}} <!-- collection helper -->
+      <h4>{{preReg.guestLastName}}</h4> <!-- collection helper -->
+    {{else}}
+      <h4>{{#if roomName}}{{roomName}}{{else}}N/A{{/if}}</h4>
+      <h4><small>{{primaryGuest.lastName}}</small></h4> <!-- collection helper -->
+    {{/if}}
+  {{/if}}
+</template>
+
 <template name="StayCheckInCell">
-  <p>{{formattedCheckInDate}} {{formattedCheckInTime}}</p><!-- collection helper -->
+  {{#if isActive}} <!-- collection helper -->
+    <h4>{{friendlyCheckInDate}}</h4> <!-- collection helper -->
+    <h4><small>{{checkInTime}}</small></h4> <!-- collection helper -->
+  {{else}}
+    {{#if isPrereg}} <!-- collection helper -->
+      <h4>{{friendlyStartDate}}</h4> <!-- collection helper -->
+      <h4><small>{{startTime}}</small></h4>
+    {{else}}
+      <h4>{{formattedCheckInDate}}</h4> <!-- collection helper -->
+      <h4><small>{{checkInTime}}</small></h4> <!-- collection helper -->
+    {{/if}}
+  {{/if}}
 </template>
 
 <template name="StayCheckOutCell">
-  <p>{{formattedCheckOutDate}} {{formattedCheckOutTime}}</p><!-- collection helper -->
+  {{#if isActive}} <!-- collection helper -->
+    <h4>{{friendlyCheckOutDate}}</h4> <!-- collection helper -->
+    <h4><small>{{checkOutTime}}</small></h4> <!-- collection helper -->
+  {{else}}
+    {{#if isPrereg}} <!-- collection helper -->
+      <h4>{{friendlyEndDate}}</h4> <!-- collection helper -->
+      <h4><small>{{endTime}}</small></h4> <!-- collection helper -->
+    {{else}}
+      <h4>{{formattedCheckOutDate}}</h4> <!-- collection helper -->
+      <h4><small>{{checkOutTime}}</small></h4> <!-- collection helper -->
+    {{/if}}
+  {{/if}}
 </template>
 
 <template name="ViewStayCell">
-  <button id="view-stay" type="button" class="btn btn-info btn-sm pull-right">View</button>
+  <button id="view-stay" type="button" class="btn btn-primary btn-sm pull-right">View</button>
 </template>

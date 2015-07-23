@@ -13,34 +13,38 @@
     {{/contentFor}}
 
     <!-- page content -->
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">What is an Amenity?</h3>
-            <div class="actions pull-right">
-              <i class="fa fa-chevron-down"></i>
+    {{#if Template.subscriptionsReady}}
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">What is an Amenity?</h3>
+              <div class="actions pull-right">
+                <i class="icon icon-fw icon-chevron-down"></i>
+              </div>
             </div>
-          </div>
-          <div class="panel-body">
-            <p>
-              An amenity is a feature or facility you have made available to your guests
-               for their comfort or convenience. Common examples include a pool, gym, boardroom, or a complimentary breakfast.
-            </p>
+            <div class="panel-body">
+              <p>
+                An amenity is a feature or facility you have made available to your guests
+                 for their comfort or convenience. Common examples include a pool, gym, boardroom, or a complimentary breakfast.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <button id="add-new-amenity" class="btn btn-primary btn-block">+ Add New Amenity</button><br />
+      <div class="row">
+        <div class="col-xs-12">
+          <button id="add-new-amenity" class="btn btn-primary btn-block">+ Add New Amenity</button><br />
+        </div>
       </div>
-    </div>
 
-    {{#each amenities}}
-      {{> HotelAmenity}}
-    {{/each}}
+      {{#each amenities}}
+        {{> HotelAmenity}}
+      {{/each}}
+    {{else}}
+      {{> spinner}}
+    {{/if}}
 
   {{/Layout}}
 </template>

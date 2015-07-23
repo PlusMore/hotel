@@ -8,25 +8,25 @@
         <h2 class="modal-title">Edit Hotel Amenity</h2>
       </div>
       {{#with amenity}}
-      {{#autoForm collection='HotelAmenities' doc=this id='editAmenity' type='update'}}
-        <div class="modal-body">
-          {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
-          {{> afQuickField name='name'}}
-          {{> afQuickField name='description' rows=3}}
-          <div class="row">
-            <div class="col-sm-4">
-              {{> afQuickField name='availableAnytime'}}
+        {{#autoForm collection='HotelAmenities' doc=this id='editAmenity' type='update'}}
+          <div class="modal-body">
+            {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+            {{> afQuickField name='name'}}
+            {{> afQuickField name='description' rows=3}}
+            <div class="row">
+              <div class="col-sm-4">
+                {{> afQuickField name='availableAnytime'}}
+              </div>
+              {{#if afFieldValueIs name='availableAnytime' value=false}}
+                {{> editAmenityTimePicker}}
+              {{/if}}
             </div>
-            {{#if afFieldValueIs name='availableAnytime' value=false}}
-              {{> editAmenityTimePicker}}
-            {{/if}}
           </div>
-        </div>
-        <div class="modal-footer">
-          <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
-          <button type="submit" class="btn btn-default">Save Changes</button>
-        </div>
-      {{/autoForm}}
+          <div class="modal-footer">
+            <a href="#" class="btn btn-cancel" data-dismiss="modal">Cancel</a>
+            <button type="submit" class="btn btn-primary progress-button" data-loading="Saving..." data-finished="Saved!">Save Changes</button>
+          </div>
+        {{/autoForm}}
       {{/with}}
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

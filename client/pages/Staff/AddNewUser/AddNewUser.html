@@ -1,9 +1,9 @@
 <template name="AddNewUser">
   {{#Layout template="Page"}}
     {{#contentFor "header"}}
-      <h1>Add New Staff</h1>
+      <h1><a href="{{pathFor 'Staff.View'}}" class="icon icon-fw icon-reply-mail"></a> Add New Staff</h1>
     {{/contentFor}}
-        
+
     {{#contentFor "breadcrumb"}}
       <li>
         <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
@@ -21,7 +21,7 @@
           <div class="panel-heading">
             <h3 class="panel-title">Enter User Details</h3>
             <div class="actions pull-right">
-              <i class="fa fa-chevron-down"></i>
+              <i class="icon icon-fw icon-chevron-down"></i>
             </div>
           </div>
           <div class="panel-body">
@@ -44,7 +44,7 @@
                   {{> afQuickField name='isManager'}}
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary">Create User</button>
+              <button type="submit" class="btn btn-primary progress-button" data-loading="Creating..." data-finished="Created!">Create User</button>
             {{/autoForm}}
           </div>
         </div>

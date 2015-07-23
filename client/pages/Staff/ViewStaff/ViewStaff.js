@@ -1,7 +1,3 @@
-Template.ViewStaff.rendered = function() {
-  this.$('table').parent().addClass('table-responsive');
-};
-
 Template.ViewStaff.helpers({
   selector: function() {
     var user = Meteor.user();
@@ -10,4 +6,9 @@ Template.ViewStaff.helpers({
       hotelId: hotelId
     };
   }
+});
+
+Template.ViewStaff.onCreated(function() {
+  // this prevents weirdness due to tabular's nonreactive selector
+  TabularTables.refresh();
 });

@@ -1,0 +1,33 @@
+<template name="HotelTimeSettings">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Edit Arrival and Departure Times</h3>
+          <div class="actions pull-right">
+            <i class="icon icon-fw icon-chevron-down"></i>
+          </div>
+        </div>
+        <div class="panel-body">
+          <p>
+            Changing the default arrival and departure times will only affect stays that begin after these changes have been made.
+          </p>
+          {{#autoForm id="updateHotelTimesForm" schema=defaultHotelTimesSchema doc=this type="method" meteormethod="setHotelArrivalAndDepartureTimes" resetOnSuccess=false}}
+            {{> afFieldInput name='_id' type='hidden'}}
+            <div class="row">
+              <div class="col-sm-6 picker-container with-vertical-label">
+                {{> afQuickField name='arrivalTime' class='timepicker' value=arrivalTime}}
+                {{> afFieldInput name="arrivalMinutes" type="hidden" value=arrivalMinutes}}
+              </div>
+              <div class="col-sm-6 picker-container with-vertical-label">
+                {{> afQuickField name='departureTime' class='timepicker' value=departureTime}}
+                {{> afFieldInput name="departureMinutes" type="hidden" value=departureMinutes}}
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary progress-button" data-loading="Saving..." data-finished="Updated!">Update</button>
+          {{/autoForm}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

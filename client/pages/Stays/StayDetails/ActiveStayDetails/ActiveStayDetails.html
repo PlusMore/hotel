@@ -1,0 +1,64 @@
+<template name="ActiveStayDetails">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 class="modal-title">Stay Details</h3>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="text-center">{{primaryGuest.fullName}} - {{roomName}}</h2>
+        <!-- collection helper -->
+        <h3 class="text-center"><a href="{{primaryGuest.userEmail}}">{{primaryGuest.email}}</a></h3>
+        <!-- collection helper -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Checked In: </strong>{{formattedCheckInDate}} {{formattedCheckInTime}}</p>
+        <!-- collection helper -->
+      </div>
+      <div class="col-md-6">
+        <p><strong>Checkout Date: </strong>{{formattedCheckOutDate}} {{formattedCheckOutTime}}</p>
+        <!-- collection helper -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="text-center">Users in Stay</h3>
+      </div>
+      {{#each users}}
+      <div class="col-xs-12">
+        <p><strong>{{fullName}}</strong> - <a href="{{userEmail}}">{{email}}</a> {{phone}}</p>
+        <!-- collection helper -->
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-warning pull-left" id="checkout-guest">End Stay</button>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#stay-editor">Edit</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+  <div class="collapse out" id="stay-editor">
+    {{#autoForm id="changeCheckoutDate" doc=this schema=changeCheckoutSchema type="method" meteormethod="changeCheckoutDate" resetOnSuccess=false}}
+      {{> afFieldInput name='_id' type='hidden'}}
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-6 picker-container with-vertical-label">
+            {{> afQuickField name='checkoutDate' type="pickadate" pickadateOptions=pickadateOptions}}
+          </div>
+          <div class="col-sm-6 picker-container with-vertical-label">
+            {{> afQuickField name='checkoutTime' class='timepicker' value=checkOutTime}}
+            <!--collection helper -->
+            {{> afFieldInput name="checkoutMinutes" type="hidden" value=checkOutMinutes}}
+            <!-- collection helper -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#stay-editor">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
+    {{/autoForm}}
+  </div>
+</template>

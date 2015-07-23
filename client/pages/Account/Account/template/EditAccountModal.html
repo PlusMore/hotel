@@ -1,0 +1,32 @@
+<template name="EditAccountModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-title" id="staff-details">Edit Account</h3>
+      </div>
+      {{#autoForm id="editAccountForm" schema=accountInfoSchema type="method" meteormethod="editAccountInfo" resetOnSuccess=false}}
+        <div class="modal-body">
+          {{> afFieldInput name="userId" type="hidden" value=currentUser._id}}
+          <div class="row">
+            <div class="col-xs-12">
+              {{> afQuickField name="firstName" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" value=currentUser.firstName}}
+            </div>
+            <div class="col-xs-12">
+              {{> afQuickField name="lastName" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" value=currentUser.lastName}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              {{> afQuickField name="email" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9" value=currentUser.email}}
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary progress-button" data-loading="Saving..." data-finished="Saved!">Save</button>
+        </div>
+      {{/autoForm}}
+    </div>
+  </div>
+</template>

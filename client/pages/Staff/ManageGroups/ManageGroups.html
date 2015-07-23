@@ -1,0 +1,54 @@
+<template name="ManageGroups">
+	{{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Manage Groups</h1>
+    {{/contentFor}}
+
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li>
+        <a href="{{pathFor 'Staff.View'}}">Staff</a>
+      </li>
+      <li class="active">Groups</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    {{#if Template.subscriptionsReady}}
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Staff Groups</h3>
+              <div class="actions pull-right">
+                <i class="icon icon-fw icon-chevron-down"></i>
+              </div>
+            </div>
+            <div class="panel-body">
+              <h4>Groups allow you to group your staff members together based on their department or role. A staff member can be placed in more than one group and will receive notifications for each group it is a member of.</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <button id="create-new-group" class="btn btn-primary btn-block">+ Create New Group</button><br />
+        </div>
+      </div>
+
+      <div class="row">
+        {{#each groups}}
+          {{> Group}}
+        {{/each}}
+      </div>
+    {{else}}
+      <!-- place spinner here -->
+    {{/if}}
+
+
+    <!-- page content end -->
+
+  {{/Layout}}
+</template>

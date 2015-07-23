@@ -18,11 +18,18 @@
           <div class="panel-heading">
             <h3 class="panel-title">View Staff</h3>
             <div class="actions pull-right">
-              <i class="fa fa-chevron-down"></i>
+              <i class="icon icon-fw icon-chevron-down"></i>
             </div>
           </div>
           <div class="panel-body">
-            {{> tabular table=TabularTables.ViewStaff selector=selector class="table table-condensed table-hover"}}
+            <div class="row">
+              <div class="col-xs-12">
+                <a href="{{pathFor 'Staff.AddNewUser'}}" class="btn btn-sm btn-primary pull-right">Add New User</a>
+              </div>
+              <div class="col-xs-12">
+                {{> tabular table=TabularTables.ViewStaff selector=selector class="table table-condensed table-hover"}}
+              </div>
+            </div>
           </div>
         </div>
       </div>

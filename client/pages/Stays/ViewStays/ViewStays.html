@@ -1,0 +1,53 @@
+<template name="ViewStays">
+  {{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      <h1>Stays</h1>
+    {{/contentFor}}
+
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      <li class="active">Stays</li>
+    {{/contentFor}}
+
+    <!-- page content -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">View Stays</h3>
+            <div class="actions pull-right">
+              <i class="icon icon-fw icon-chevron-down"></i>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="btn-group btn-group-sm pull-right" role="group" aria-label="View Options">
+                  <a href="{{pathFor 'Stays.View'}}" class="btn btn-primary active">Current</a>
+                  <a href="{{pathFor 'Stays.Upcoming'}}" class="btn btn-primary">Upcoming</a>
+                  <a href="{{pathFor 'Stays.History'}}" class="btn btn-primary">History</a>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                {{#if TabularRefreshed}}
+                  {{> tabular table=TabularTables.ViewStays selector=selector class="table table-condensed table-hover"}}
+                {{/if}}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="{{pathFor 'Stays.Preregister'}}" class="btn btn-primary btn-block">+ Preregister Upcoming Stay</a>
+      </div>
+    </div>
+    <!-- page content end -->
+
+  {{/Layout}}
+</template>

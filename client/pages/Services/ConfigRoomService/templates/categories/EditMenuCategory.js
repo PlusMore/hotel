@@ -1,9 +1,9 @@
 Template.EditMenuCategory.helpers({
   menuCategoryAvailabilitySchema: function() {
-    return Schema.menuCategoryAvailability;
+    return Schema.MenuCategoryAvailability;
   },
   menuCategoryDescriptionSchema: function() {
-    return Schema.menuCategoryDescriptionSchema;
+    return Schema.MenuCategoryDescription;
   },
   isChecked: function() {
     // sets property 'checked' of input checkbox to 'checked' or ''
@@ -12,8 +12,17 @@ Template.EditMenuCategory.helpers({
   }
 });
 
+Template.EditMenuCategory.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('hotelService', 'roomService', hotel);
+    self.subscribe('hotelMenu', hotel);
+  });
+});
+
 Template.EditMenuCategory.events({
-  'change #toggle-category-switch': function (e, tmpl) {
+  'change #toggle-category-switch': function(e, tmpl) {
 
     if (tmpl.$(e.currentTarget).prop('checked')) {
       Meteor.call('activateMenuCategory', this._id, function(err, res) {
@@ -35,12 +44,12 @@ Template.EditMenuCategory.events({
   },
   'click .btn-reset-availability': function(e, tmpl) {
     Meteor.call('resetCategoryAvailability', this._id, function(err, res) {
-        if (err) {
-          Messages.error(err);
-        } else {
-          Messages.success('Availability Reset!');
-        }
-      });
+      if (err) {
+        Messages.error(err);
+      } else {
+        Messages.success('Availability Reset!');
+      }
+    });
   },
   'click #add-menu-item': function(e) {
     e.preventDefault();
@@ -51,19 +60,20 @@ Template.EditMenuCategory.events({
   }
 });
 
-Template.EditMenuCategory.rendered = function () {
-  var roomServiceConfiguartion = this.data.serviceConfiguration;
+Template.EditMenuCategoryTimepicker.onRendered(function() {
+  var roomServiceConfiguration = MenuCategories.findOne(this.data._id);
 
   var startTime = moment().startOf('day');
-  if (roomServiceConfiguartion.startMinutes) {
-    startTime = startTime.minutes(roomServiceConfiguartion.startMinutes);
+  if (roomServiceConfiguration.startMinutes) {
+    startTime = startTime.minutes(roomServiceConfiguration.startMinutes);
   }
   var endTime = moment().endOf('day');
-  if (roomServiceConfiguartion.endMinutes) {
-    endTime = moment().startOf('day').minutes(roomServiceConfiguartion.endMinutes);
+  if (roomServiceConfiguration.endMinutes) {
+    endTime = moment().startOf('day').minutes(roomServiceConfiguration.endMinutes);
   }
 
   this.$('.timepicker').pickatime({
+    container: $("#main-wrapper"),
     min: startTime.toDate(),
     max: endTime.toDate(),
     onSet: function(selection) {
@@ -77,20 +87,20 @@ Template.EditMenuCategory.rendered = function () {
       }
     }
   });
-};
+});
 
 AutoForm.hooks({
   editMenuCategory: {
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "remove", or the method name.
-    onSuccess: function(operation, result, template) {
+    onSuccess: function(operation, result) {
       Messages.success('Changes Saved!')
     },
 
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
-    onError: function(operation, error, template) {
-      if (operation !== 'validation') {
+    onError: function(operation, error) {
+      if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
     }
@@ -98,14 +108,14 @@ AutoForm.hooks({
   configureMenuCategoryAvailability: {
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "remove", or the method name.
-    onSuccess: function(operation, result, template) {
+    onSuccess: function(operation, result) {
       Messages.success('Availability Set!')
     },
 
     // Called when any operation fails, where operation will be
     // "validation", "insert", "update", "remove", or the method name.
-    onError: function(operation, error, template) {
-      if (operation !== 'validation') {
+    onError: function(operation, error) {
+      if (operation !== "pre-submit validation") {
         Messages.error(error.message);
       }
     }

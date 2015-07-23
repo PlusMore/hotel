@@ -2,28 +2,28 @@
 
 .selectlist {
 
-	&.disabled {
-		cursor: not-allowed;
-	}
+  &.disabled {
+    cursor: not-allowed;
+  }
 
-	.selected-label {
-		overflow: hidden;	// helps with text flow on small screens
-		min-width: 2em;
-	}
+  .selected-label {
+    overflow: hidden; // helps with text flow on small screens
+    min-width: 2em;
+  }
 
-	.dropdown-menu {
-		min-width: inherit;
-	}
-	.btn.dropdown-toggle {
-		white-space: normal;
+  .dropdown-menu {
+    min-width: inherit;
+  }
+  .btn.dropdown-toggle {
+    white-space: normal;
 
-		.selected-label {
-			padding-right: 18px;
-			float: left;
-		}
-		.caret {
-			.vertical-align();
-			right: @btnPaddingHorizontal;
-		}
-	}
+    .selected-label {
+      padding-right: 18px;
+      float: left;
+    }
+    .caret {
+      .vertical-align();
+      right: @btnPaddingHorizontal;
+    }
+  }
 }

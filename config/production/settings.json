@@ -16,5 +16,9 @@
     "hotel": {
       "url": "http://hotel.plusmoretablets.com"
     }
+  },
+  "kadira": {
+    "appId": "rPd2xaKrNECZdSTaG",
+    "appSecret": "822b8d23-afc7-4827-925f-5c0586ba75b2"
   }
 }

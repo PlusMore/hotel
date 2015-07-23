@@ -15,8 +15,9 @@
             </small>
           </h3>
           <div class="actions pull-right">
-            <i class="fa fa-chevron-down"></i>
-            <i class="fa fa-times" id="remove-amenity"></i>
+            <i class="icon icon-fw icon-pencil" id="edit-amenity"></i>
+            <i class="icon icon-fw icon-chevron-down"></i>
+            <i class="icon icon-fw icon-x" id="remove-amenity"></i>
           </div>
         </div>
         <div class="panel-body">
@@ -25,21 +26,18 @@
             <div class="col-xs-12">
               <ul>
                 {{#each amenityDetails}}
-                  <li><p>{{detail}} <a href="#" class="fa fa-times" id="remove-detail"></a></p></li>
+                  <li><p>{{detail}} <a href="#" class="icon icon-fw icon-x" id="remove-detail"></a></p></li>
                 {{/each}}
               </ul>
             </div>
             <div class="col-xs-12">
-              {{#autoForm collection="AmenityDetails" type="insert"}}
+              {{#autoForm collection="AmenityDetails" id="insertAmenityDetail" type="insert"}}
                 {{> afFieldInput name="hotelId" type="hidden" value=hotelId}}
                 {{> afFieldInput name="amenityId" type="hidden" value=_id}}
                 {{> afQuickField name="detail" label=false placeholder="Type here to add details..."}}
               {{/autoForm}}
             </div>
           </div>
-        </div>
-        <div class="panel-footer">
-          <button id="edit-amenity" class="btn btn-primary">Edit Amenity</button>
         </div>
       </div>
     </div>

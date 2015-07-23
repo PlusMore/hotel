@@ -1,0 +1,137 @@
+<template name="ConfigService">
+  {{#Layout template="Page"}}
+    {{#contentFor "header"}}
+      {{#with hotelService}}
+        <h1>Manage {{friendlyServiceType}}</h1>
+      {{/with}}
+    {{/contentFor}}
+
+    {{#contentFor "breadcrumb"}}
+      <li>
+        <a href="{{pathFor 'Dashboard'}}">Dashboard</a>
+      </li>
+      {{#with hotelService}}
+        <li class="active">Config {{friendlyServiceType}}</li>
+      {{/with}}
+    {{/contentFor}}
+
+    {{#with hotelService}}
+      <!-- page content -->
+      {{#if Template.subscriptionsReady}}
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-right">
+                  <div class="tgl-container" style="margin-top:-8px;">
+                    <label class="tgl">
+                      <input id="toggle-service-switch" type="checkbox" {{isChecked}}/>
+                      <span class="tgl_body">
+                        <span class="tgl_switch"></span>
+                        <span class="tgl_track">
+                          <span class="tgl_bgd"></span>
+                          <span class="tgl_bgd tgl_bgd-negative"></span>
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <h3 class="panel-title">
+                  {{friendlyServiceType}}
+                  <small>
+                    Available
+                    {{#if startTime}}
+                      {{startTime}} - {{endTime}}
+                    {{else}}
+                      Anytime
+                    {{/if}}
+                  </small>
+                </h3>
+              </div>
+              <div class="panel-body">
+                {{#autoForm schema=configureServiceSchema id='configureService' doc=this type="method" meteormethod="configureService" resetOnSuccess=false}}
+                  {{> afFieldInput name='_id' type='hidden'}}
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4>Availablity</h4>
+                      <p>
+                        The default configuration for this service is to be available 24/7. You may optionally configure start and end times for this service by selecting times below.
+                      </p>
+                    </div>
+                  </div>
+
+                  {{> configServiceTimepicker}}
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4>Allow Tips</h4>
+                      <p>
+                        Would you like PlusMore to allow guests to tip for this service?
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      {{> afQuickField name='allowTips'}}
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Update Availability</button>
+                {{/autoForm}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  Assign Groups To {{friendlyServiceType}}
+                  {{#unless hasAssignedGroups}}<small>Visible By Managers Only</small>{{/unless}}
+                </h3>
+              </div>
+              <div class="panel-body">
+                {{#if hasAssignedGroups}} <!-- collection helper -->
+                  {{#each assignedGroups}} <!-- collection helper -->
+                    <ul>
+                      <li><p>{{name}} <a href="#" class="icon icon-x" id="unassign-group"></a></p></li>
+                    </ul>
+                  {{/each}}
+                {{else}}
+                  <p><em>There are no groups currently assigned to this service type. By default, all {{friendlyServiceType}} orders will be visible only to hotel managers.</em></p> <p><a href="{{pathFor 'Staff.Groups'}}">Click here</a> to create and configure staff groups.</p>
+                {{/if}}
+              </div>
+              <div class="panel-footer">
+                <div class="row">
+                  <div class="col-xs-12">
+                    {{#autoForm schema=assignServiceToGroupSchema id="assignServiceToGroupForm" type="method" meteormethod="assignServiceIdToGroup"}}
+                      {{> afFieldInput name='serviceId' type='hidden' value=_id}}
+                      {{> afFieldInput label=false type="select" name='groupId' options=groupOptions}}
+                      <button type="submit" class="btn btn-default btn-block">Assign</button>
+                    {{/autoForm}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{else}}
+        {{> spinner}}
+      {{/if}}
+    {{/with}}
+  {{/Layout}}
+</template>
+
+<template name="configServiceTimepicker">
+  <div class="row">
+    <div class="col-sm-6 picker-container with-vertical-label">
+      {{> afQuickField name='startTime' class='timepicker'}}
+      {{> afFieldInput name="startMinutes" type="hidden"}}
+    </div>
+    <div class="col-sm-6 picker-container with-vertical-label">
+      {{> afQuickField name='endTime' class='timepicker'}}
+      {{> afFieldInput name="endMinutes" type="hidden"}}
+    </div>
+  </div>
+</template>

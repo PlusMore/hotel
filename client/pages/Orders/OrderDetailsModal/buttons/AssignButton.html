@@ -1,0 +1,22 @@
+<template name="AssignButton">
+  <div class="btn-group btn-block dropdown">
+    {{#dropdownTrigger name="assignUserDropdown"}}
+      <button class="btn btn-block btn-primary progress-button" data-loading="Assigning..." data-finished="Order Assigned!">
+        Assign Order <span class="caret"></span>
+      </button>
+    {{/dropdownTrigger}}
+
+    {{#dropdown name="assignUserDropdown" top="-10" direction="n" classes="dropdown-menu btn-block"}}
+      {{#each groupsAssigned}} <!-- collection helper -->
+        <h4 class="text-center">{{name}}</h4>
+        {{#each groupMembers}}<!-- collection helper -->
+          <li><a class="assign-user" staff-id={{_id}} href="#">{{fullName}}</a></li><!-- collection helper -->
+        {{/each}}
+      {{/each}}
+      <li class="divider"></li>
+      {{#with currentUser}}
+        <li><a class="assign-user" staff-id={{_id}} href="#">{{fullName}}</a></li><!-- collection helper -->
+      {{/with}}
+    {{/dropdown}}
+  </div>
+</template>

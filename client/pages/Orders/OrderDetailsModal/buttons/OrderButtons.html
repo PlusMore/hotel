@@ -1,0 +1,21 @@
+<template name="OrderButtons">
+  {{#if Template.subscriptionsReady}}
+    <div class="row">
+      <div class="col-sm-6">
+        {{#if isUnassigned}} <!-- collection helper -->
+          {{> AssignButton}}
+        {{else}}
+          {{> ReassignButton}}
+        {{/if}}
+      </div>
+      <div class="col-sm-6">
+        {{> CompleteButton}}
+      </div>
+    </div><br />
+    <div class="row">
+      <div class="col-xs-12">
+        {{> CancelButton}}
+      </div>
+    </div>
+  {{/if}}
+</template>

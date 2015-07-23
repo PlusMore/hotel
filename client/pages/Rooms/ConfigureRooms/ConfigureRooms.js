@@ -1,6 +1,6 @@
 Template.ConfigureRooms.helpers({
   multipleRoomSchema: function() {
-    return Schema.multipleRoomSchema;
+    return Schema.MultipleRooms;
   },
   singleRoomSchema: function() {
     return Schema.Room;
@@ -10,26 +10,19 @@ Template.ConfigureRooms.helpers({
   }
 });
 
-Schema.multipleRoomSchema = new SimpleSchema({
-  startNum: {
-    type: Number,
-    label: "Starting Room Number",
-    min: 0
-  },
-  endNum: {
-    type: Number,
-    label: "Ending Room Number",
-    min: 1
-  },
-  hotelId: {
-    type: String
-  }
+Template.ConfigureRooms.onCreated(function() {
+  var self = this;
+
+  self.autorun(function() {
+    var hotel = Session.get('hotelId');
+    self.subscribe('roomNames', Session.get('hotelId'));
+  })
 });
 
 AutoForm.hooks({
   multipleRoomForm: {
     before: {
-      "insertMultipleRooms": function(doc, template) {
+      method: function(doc) {
         if (doc.startNum > doc.endNum) {
           Messages.error('The starting room number must be less than the ending room number');
           return false;
@@ -38,7 +31,7 @@ AutoForm.hooks({
       }
     },
     after: {
-      "insertMultipleRooms": function(error, result, template) {
+      method: function(error, result) {
         if (error) {
           Messages.error(error);
         } else {
@@ -46,17 +39,29 @@ AutoForm.hooks({
         }
       }
     },
-    beginSubmit: function(formId, template) {
+    beginSubmit: function(formId) {
       document.getElementById("multi-room-submit").disabled = true;
     },
-    endSubmit: function(formId, template) {
+    endSubmit: function(formId) {
       document.getElementById("multi-room-submit").disabled = false;
     }
   },
   singleRoomForm: {
+    before: {
+      insert: function(doc) {
+        if (Rooms.find({
+            hotelId: doc.hotelId,
+            name: doc.name
+          }).count() > 0) {
+          Messages.error('A room with this name (' + doc.name + ') already exists');
+          return false;
+        }
+        return doc;
+      }
+    },
     // Called when any operation succeeds, where operation will be
     // "insert", "update", "submit", or the method name.
-    onSuccess: function(operation, result, template) {
+    onSuccess: function(operation, result) {
       Messages.success('Created room successfully!');
     }
   }

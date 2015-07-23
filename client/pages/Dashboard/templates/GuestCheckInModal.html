@@ -4,26 +4,39 @@
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 class="modal-title" id="staff-details">Guest Check-In</h3>
+        <h3 class="modal-title" id="staff-details">Set Up Guest</h3>
       </div>
 
       {{#autoForm id="guestCheckInModalForm" schema=guestCheckInSchema type="method" meteormethod="checkInGuest"}}
         {{> afFieldInput name='hotelId' type='hidden' value=hotelId}}
+        {{> afFieldInput name='preregId' type='hidden' id="preregId"}}
         <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <select class="form-control" id='select-prereg-stay'>
+                  <option value="none">-- Select Preregistered Stay (Optional) --</option>
+                  {{#each preregisteredStays}}
+                    <option value="{{_id}}">{{preReg.guestLastName}} ({{friendlyStartDate}} - {{friendlyEndDate}})</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-sm-6">
               {{> afQuickField name='guestFirstName'}}
             </div>
             <div class="col-sm-6">
-              {{> afQuickField name='guestLastName'}}
+              {{> afQuickField name='guestLastName' id="guestLastName"}}
             </div>
           </div>
           <div class="row">
-            <div class="col-md-7">
-              {{> afQuickField name='guestEmail'}}
+            <div class="col-xs-12">
+              {{> afQuickField name='guestEmail' id="guestEmail"}}
             </div>
-            <div class="col-md-5">
-              {{> afQuickField name='guestPhone' placeholder='xxx-xxx-xxxx'}}
+            <div class="col-xs-12">
+              {{> afQuickField name='guestPhone' placeholder='xxx-xxx-xxxx' id="guestPhone"}}
             </div>
           </div>
           <div class="row">
@@ -31,12 +44,12 @@
               {{> afQuickField name='roomId' options=roomOptions}}
             </div>
             <div class="col-sm-6">
-              {{> afQuickField name='checkoutDate'}}
+              {{> afQuickField name='checkoutDate' id="checkoutDate"}}
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Check-In Guest</button>
+          <button type="submit" class="btn btn-primary progress-button" data-loading="..." data-finished="Done!">Set Up Guest</button>
         </div>
       {{/autoForm}}
 

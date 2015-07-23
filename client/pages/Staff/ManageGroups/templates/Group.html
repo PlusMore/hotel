@@ -1,0 +1,41 @@
+<template name="Group">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{name}}</h3>
+        <div class="actions pull-right">
+          <i class="icon icon-fw icon-pencil" id="edit-group"></i>
+          <i class="icon icon-fw icon-chevron-down"></i>
+          <i class="icon icon-fw icon-x" id="remove-group"></i>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12">
+            <h4>{{description}}</h4>
+            <ul>
+              {{#if hasMembers}}<!-- collection helper -->
+                {{#each groupMembers}}<!-- collection helper -->
+                  <li><p>{{fullName}} <a href="#" class="icon icon-x" id="remove-member-from-group"></a></p></li>
+                {{/each}}
+              {{else}}
+                <li><p><em>This group is empty...</em></p></li>
+              {{/if}}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-xs-12">
+            {{#autoForm schema=addUserToGroupSchema id="insertGroupMember" type="method" meteormethod="addUserToGroup"}}
+              {{> afFieldInput name='groupId' type='hidden' value=groupId}}
+              {{> afFieldInput label=false type="select" name='userId' options=staffOptions}}
+              <button type="submit" class="btn btn-primary btn-block">Add Staff Member</button>
+            {{/autoForm}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
