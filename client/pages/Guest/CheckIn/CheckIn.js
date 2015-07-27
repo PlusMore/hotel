@@ -40,6 +40,10 @@ Template.GuestCheckInPanelForm.helpers({
         $gte: startDay,
         $lte: endDay
       }
+    }, {
+      sort: {
+        'preReg.guestLastName': 1
+      }
     });
   }
 });
