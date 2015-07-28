@@ -40,6 +40,10 @@ Template.GuestCheckInPanelForm.helpers({
         $gte: startDay,
         $lte: endDay
       }
+    }, {
+      sort: {
+        'preReg.guestLastName': 1
+      }
     });
   }
 });
@@ -87,7 +91,6 @@ Template.GuestCheckInPanelForm.events({
       var stay = Stays.findOne(stayId);
       tmpl.$('#preregId').val(stayId);
       tmpl.$('#guestLastName').val(stay.preReg.guestLastName);
-      tmpl.$('#guestLastName').prop('readonly', true); // disable field
       tmpl.$('#guestFirstName').val(stay.preReg.guestFirstName);
       var setPicker = {
         select: stay.preReg.endDate
